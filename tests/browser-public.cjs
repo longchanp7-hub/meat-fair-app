@@ -86,7 +86,11 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
           await page.screenshot({path:`browser-report/${width}-${id}.png`,fullPage:true});
         }
         const h=fairs.sourceHealth.find(h=>h.brandId===id);
-        if(h.status==='unavailable')assert.match(await page.locator('.empty-brand').innerText(),/「フェアなし」とは判断していません/);
+        if(h.status==='unavailable'){
+          const emptyCount=await page.locator('.empty-brand').count();
+          if(emptyCount)assert.match(await page.locator('.empty-brand').innerText(),/「フェアなし」とは判断していません/);
+          else assert.ok(await page.locator('.data-note').count()>0,`unavailable ${id} should explain its last-known-good data`);
+        }
         await page.locator('#clear-filter').click();
       }
       assert.deepEqual(errors,[]);
