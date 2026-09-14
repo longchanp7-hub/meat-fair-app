@@ -99,10 +99,19 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
         await inspect();
         assert.equal(await page.locator('.media-tile,.media-unavailable').count(),expectedCount,'missing or fictitious image');
         assert.equal(await page.locator('.brand-availability,.local-note').count(),1,'missing availability explanation');
-        if(['syabuyo','asakuma','washoku-sato'].includes(brand.id))await screenshotCard(brand.id,width);
+        await screenshotCard(brand.id,width);
         await page.locator('#clear-filter').click();
       }
-      await inspect();await page.screenshot({path:`${folder}/${width}-all.png`,fullPage:true});
+      await inspect();
+      const geometry=await page.locator('[data-brand-card]').evaluateAll(cards=>cards.map(card=>({brandId:card.dataset.brandCard,campaigns:card.querySelectorAll('[data-campaign]').length,images:[...card.querySelectorAll('.media-tile')].map(t=>{const r=t.getBoundingClientRect(),ir=t.querySelector('img').getBoundingClientRect();return{title:t.title,kind:t.dataset.kind,group:t.dataset.group,x:r.x,y:r.y,width:r.width,height:r.height,imageHeight:ir.height};})})));
+      await fs.writeFile(`${folder}/${width}-geometry.json`,JSON.stringify(geometry,null,2));
+      const shabuyo=geometry.find(b=>b.brandId==='syabuyo'),main=shabuyo?.images.find(a=>a.kind==='campaign'),courses=shabuyo?.images.filter(a=>a.group==='course')||[],meals=shabuyo?.images.filter(a=>a.group==='related-meal')||[];
+      if(main&&courses.length===2&&meals.length===2&&main.height>main.width){
+        assert.ok(courses.every(c=>c.x>=main.x+main.width-1),'featured courses not beside portrait lead');
+        assert.ok(meals.every(m=>m.y>=Math.max(...courses.map(c=>c.y+c.height))-1),'lunch/banquet must follow featured meat courses');
+        if(width>=690)assert.ok(meals.every(m=>m.x>=main.x+main.width-1),'related meal blocks not in the Fold side panel');
+      }
+      await page.screenshot({path:`${folder}/${width}-all.png`,fullPage:true});
       reports.push({width,tabs});console.log('All tabs and brand filters passed:',width);
     }
     // Caption size changes must trigger re-layout without a viewport change.
@@ -120,6 +129,8 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
     await page.locator('#clear-filter').click();
     const liveChanges=await require('./gallery-live-resize.cjs')({page,inspect,settle});
     reports.push({liveChanges});console.log('Image-count changes and live Fold resizing passed:',JSON.stringify(liveChanges));
+    const refreshLifecycle=await require('./refresh-lifecycle.cjs')({page,inspect,settle});
+    reports.push({refreshLifecycle});console.log('Foreground data lifecycle passed:',JSON.stringify(refreshLifecycle));
     const manifest=await page.evaluate(async()=>await(await fetch(document.querySelector('link[rel="manifest"]').href)).json());
     assert.equal(manifest.id,'/meat-fair-app/');assert.equal(manifest.start_url,manifest.id);assert.equal(manifest.scope,manifest.id);assert.equal(manifest.display,'standalone');
     const scope=await page.evaluate(async()=>(await navigator.serviceWorker.ready).scope);assert.equal(new URL(scope).pathname,'/meat-fair-app/');

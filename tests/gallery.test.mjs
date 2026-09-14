@@ -30,7 +30,7 @@ test('addition, removal and unfolding recompute all positions',()=>{
 });
 const now=new Date('2026-09-15T00:00:00Z');
 const campaign={id:'c',brandId:'b',contentHash:'hash',title:'秋フェア',imageUrl:'https://official.example/main.jpg',officialUrl:'https://official.example/fair/'};
-const menu={brandId:'b',kind:'menu',title:'豚2皿ランチ',imageUrl:'https://official.example/lunch.jpg',officialUrl:'https://official.example/lunch/',checkedAt:now.toISOString()};
+const menu={brandId:'b',kind:'menu',parents:[{campaignId:'c',parentHash:'hash'}],title:'豚2皿ランチ',imageUrl:'https://official.example/lunch.jpg',officialUrl:'https://official.example/lunch/',checkedAt:now.toISOString()};
 test('expired campaigns, stale menus and changed parent hashes do not leak into the gallery',()=>{
   const data={assets:[menu,{...menu,kind:'detail',campaignId:'old',parentHash:'hash',imageUrl:'https://official.example/old.jpg'},{...menu,imageUrl:'https://official.example/stale.jpg',checkedAt:'2026-09-01T00:00:00Z'}]};
   assert.equal(selectMedia([campaign],'b',data,'active',now).length,2);

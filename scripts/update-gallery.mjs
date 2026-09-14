@@ -3,6 +3,7 @@ import crypto from 'node:crypto';
 import {extractPage} from './site-profiles.mjs';
 import {SOURCES} from './source-registry.mjs';
 import {campaignStatus} from '../app/status.mjs';
+import {mediaSemantics,hasCurrentParent,bindMenus} from '../app/gallery-semantics.mjs';
 import {publicUrl,detailAssets,menuAssets,dimensions,imageKey} from './gallery-extract.mjs';
 const root=new URL('../app/data/',import.meta.url),stamp=new Date().toISOString();
 const read=async name=>JSON.parse(await fs.readFile(new URL(name,root),'utf8'));
@@ -53,23 +54,26 @@ async function enrich(brand){
       raw.push(...previous.assets.filter(a=>a.brandId===brand.id&&a.campaignId===c.id&&a.parentHash===c.contentHash&&a.kind==='detail'&&Date.now()-Date.parse(a.checkedAt)<172800000));
     }
   }
-  try{raw.push(...menuAssets(await page(brand.homeUrl),brand.homeUrl,campaigns.map(c=>c.officialUrl)).map(a=>({...a,checkedAt:stamp})));pagesRead++;}
-  catch(e){errors.push({brandId:brand.id,url:brand.homeUrl,error:e.message});raw.push(...previous.assets.filter(a=>a.brandId===brand.id&&a.kind==='menu'&&Date.now()-Date.parse(a.checkedAt)<172800000));}
+  try{
+    const home=await page(brand.homeUrl),sourceHash=crypto.createHash('sha256').update(home).digest('hex');
+    raw.push(...bindMenus(menuAssets(home,brand.homeUrl,campaigns.map(c=>c.officialUrl)),campaigns,sourceHash).map(a=>({...a,checkedAt:stamp})));pagesRead++;
+  }
+  catch(e){errors.push({brandId:brand.id,url:brand.homeUrl,error:e.message});raw.push(...previous.assets.filter(a=>a.brandId===brand.id&&a.kind==='menu'&&hasCurrentParent(a,campaigns)&&Date.now()-Date.parse(a.checkedAt)<172800000));}
   const seen=new Set(),assets=[];
   for(const a of raw.sort((a,b)=>a.rank-b.rank)){
     if(!publicUrl(a.imageUrl)||!publicUrl(a.officialUrl))continue;
     const key=imageKey(a.imageUrl);if(seen.has(key))continue;seen.add(key);
-    try{const d=await probe(a.imageUrl);if(a.kind==='detail'&&d.width/d.height>4)continue;assets.push({...a,...d,brandId:brand.id,id:crypto.createHash('sha256').update(brand.id+'|'+a.imageUrl).digest('hex').slice(0,16)});}
+    try{const d=await probe(a.imageUrl);if(a.kind==='detail'&&d.width/d.height>4)continue;assets.push(mediaSemantics({...a,...d,brandId:brand.id,id:crypto.createHash('sha256').update(brand.id+'|'+a.imageUrl).digest('hex').slice(0,16)}));}
     catch(e){
       errors.push({brandId:brand.id,url:a.imageUrl,error:e.message});
       const old=previous.assets.find(x=>x.brandId===brand.id&&x.imageUrl===a.imageUrl&&x.parentHash===a.parentHash&&Date.now()-Date.parse(x.checkedAt)<172800000);
-      if(old)assets.push(old);
+      if(old&&(old.kind!=='menu'||hasCurrentParent(old,campaigns)))assets.push(mediaSemantics(old));
     }
   }
   return{assets,health:{brandId:brand.id,pagesRead,images:assets.length,status:errors.some(e=>e.brandId===brand.id)?'partial':'ok'}};
 }
 const results=[];
 for(let i=0;i<brands.length;i+=3)results.push(...await Promise.all(brands.slice(i,i+3).map(enrich)));
-const result={schemaVersion:1,updatedAt:stamp,fairsUpdatedAt:fairs.updatedAt,assets:results.flatMap(r=>r.assets),sourceHealth:results.map(r=>r.health),errors};
+const result={schemaVersion:1,policyVersion:2,updatedAt:stamp,fairsUpdatedAt:fairs.updatedAt,assets:results.flatMap(r=>r.assets),sourceHealth:results.map(r=>r.health),errors};
 await fs.writeFile(new URL('gallery.json',root),JSON.stringify(result,null,2)+'\n');
 console.log(JSON.stringify({galleryAssets:result.assets.length,brands:result.sourceHealth,warnings:errors.length},null,2));

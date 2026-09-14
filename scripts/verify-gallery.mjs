@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 import {publicUrl} from './gallery-extract.mjs';
+import {hasCurrentParent} from '../app/gallery-semantics.mjs';
 const root=new URL('../app/data/',import.meta.url);
 const read=async name=>JSON.parse(await fs.readFile(new URL(name,root),'utf8'));
 const [gallery,fairs,brands]=await Promise.all([read('gallery.json'),read('fairs.json'),read('brands.json')]);
@@ -14,6 +15,10 @@ for(const a of gallery.assets){
  if(!a.title||!['campaign','detail','menu'].includes(a.kind)||!Number.isFinite(a.rank))throw Error('Invalid media metadata');
  if(!Number.isFinite(Date.parse(a.checkedAt)))throw Error('Missing media evidence time');
  if(!Number.isFinite(a.width)||!Number.isFinite(a.height)||a.width<=0||a.height<=0)throw Error('Missing media dimensions');
+ if(gallery.policyVersion>=2){
+  if(!a.group||!Number.isFinite(a.priority)||!Number.isFinite(a.visualWeight)||a.visualWeight<1)throw Error('Missing semantic layout metadata');
+  if(a.kind==='menu'&&(!hasCurrentParent(a,fairs.campaigns)||!a.sourceHash))throw Error('Stale/orphaned related menu');
+ }
  if(a.kind!=='menu'){
   const parent=fairs.campaigns.find(c=>c.id===a.campaignId&&c.brandId===a.brandId);
   if(!parent||parent.contentHash!==a.parentHash)throw Error('Stale/orphaned campaign artwork');

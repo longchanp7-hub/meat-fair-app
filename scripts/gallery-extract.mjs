@@ -1,5 +1,6 @@
 import {parseHtml,all,one,text,links,httpUrl} from './html-document.mjs';
 import {officialPhotoCandidates} from './gallery-photo.mjs';
+import {mediaSemantics} from '../app/gallery-semantics.mjs';
 // Only actual image elements from an official page are eligible. No generated URLs.
 const NONFOOD=/求人|採用|アンケート|ポイント|プレゼント|抽選|グッズ|学生|学割|キッズ|お子さま|お子様|ドリンクバー|アルコール|飲み放題のみ|アレルギー|原産地|栄養成分|料金表|価格表|お支払い|営業時間|店舗検索|壁紙|ダウンロード|QR|クーポン|スクリーンショット|有効期間|対象コースを|コース紹介|コース内容|詳しくはこちら|サワー|ハイボール|ビール|ワイン|茶ハイ|ウーロンハイ|焼酎|日本酒/i;
 const DECORATION=/(?:logo|icon|qrcode|qr_|button|btn_|arrow|sprite|footer|header|bg[_.-]|spacer|loading)/i;
@@ -45,7 +46,7 @@ export function detailAssets(scope,base,campaign){
   return officialPhotoCandidates(observed).filter(a=>imageKey(a.imageUrl)!==mainKey&&a.title.length>=4&&a.title.length<=200&&FOOD.test(a.title)&&!NONFOOD.test(a.title)&&!/^コースは|^土[・日]|^おすすめ.*アレンジ|^ワクワク|^豪華.*コース/.test(a.title)).map(a=>{
     let href=base;
     for(let n=a.node.parent;n&&n!==scope;n=n.parent)if(n.attrs?.id){href=new URL('#'+n.attrs.id,base).href;break;}
-    return {imageUrl:a.imageUrl,title:a.title,officialUrl:href,sourceUrl:base,kind:'detail',rank:/食べ放題/.test(a.title)&&/[￥円]/.test(a.title)?20:30,campaignId:campaign.id,parentHash:campaign.contentHash};
+    return mediaSemantics({imageUrl:a.imageUrl,title:a.title,officialUrl:href,sourceUrl:base,kind:'detail',rank:/食べ放題/.test(a.title)&&/[￥円]/.test(a.title)?20:30,campaignId:campaign.id,parentHash:campaign.contentHash});
   });
 }
 export function menuAssets(html,base,campaignUrls=[]){
@@ -67,7 +68,7 @@ export function menuAssets(html,base,campaignUrls=[]){
     }
   }
   const byTarget=new Map();for(const a of result)if(!byTarget.has(a.officialUrl))byTarget.set(a.officialUrl,a);
-  return [...byTarget.values()];
+  return [...byTarget.values()].map(mediaSemantics);
 }
 export function dimensions(b){
   // Honor the actual image signature, which may differ from the URL extension.

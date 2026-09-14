@@ -1,4 +1,6 @@
-import {planGallery} from './gallery-plan.mjs';
+import {planGallery} from './gallery-plan.mjs?v=20260915-semantic1';
+import {hasCurrentParent} from './gallery-semantics.mjs';
+import {campaignStatus} from './status.mjs';
 const DAY=86400000;
 const MEDIA_ORDER={campaign:0,detail:1,menu:2};
 const html=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -24,6 +26,7 @@ export function mediaCaption(value){
   return {title,price:`税込${match[1]}円${match[2]?'〜':''}`};
 }
 export function selectMedia(rows,brandId,data={},tab='active',now=new Date()){
+  rows=rows.filter(c=>campaignStatus(c,now).state!=='ended');
   const available=(Array.isArray(data?.assets)?data.assets:[]).filter(a=>a.brandId===brandId);
   const fresh=a=>{const age=+now-Date.parse(a.checkedAt);return age>=0&&age<=2*DAY;};
   const selected=[], seen=new Set();
@@ -34,16 +37,18 @@ export function selectMedia(rows,brandId,data={},tab='active',now=new Date()){
     const extras=assets.filter(a=>a.kind==='detail'&&fresh(a)&&isSupplementaryPhoto(a.imageUrl));
     const representative=main||(!c.imageUrl?(extras.find(a=>/フェア|キャンペーン|割引|OFF/.test(a.title))||extras[0]):null);
     const imageUrl=representative?.imageUrl||c.imageUrl;
-    if(imageUrl)push({...representative,brandId,campaignId:c.id,kind:'campaign',campaignType:c.campaignType,imageUrl,officialUrl:c.officialUrl,title:c.title,rank:i===0?0:10});
+    if(imageUrl)push({...representative,brandId,campaignId:c.id,kind:'campaign',priority:0,group:'campaign',visualWeight:2,campaignType:c.campaignType,imageUrl,officialUrl:c.officialUrl,title:c.title,rank:i===0?0:10});
   }
   for(const c of rows)for(const a of available.filter(a=>a.campaignId===c.id&&a.parentHash===c.contentHash&&a.kind==='detail')){
     if(fresh(a)&&isSupplementaryPhoto(a.imageUrl))push(a);
   }
   if(tab==='active')for(const a of available.filter(a=>a.kind==='menu')){
-    if(fresh(a)&&isSupplementaryPhoto(a.imageUrl))push(a);
+    if(fresh(a)&&hasCurrentParent(a,rows,now)&&isSupplementaryPhoto(a.imageUrl))push(a);
   }
-  // Preserve category order even for last-known-good records with legacy ranks.
-  return selected.sort((a,b)=>(MEDIA_ORDER[a.kind]??3)-(MEDIA_ORDER[b.kind]??3)||(a.rank??30)-(b.rank??30));
+  // Explicit semantic priority precedes legacy category order. Fair counts are
+  // still exclusively derived from rows, never from supplementary assets.
+  const priority=a=>Number.isFinite(a.priority)?a.priority:(MEDIA_ORDER[a.kind]??3)*20;
+  return selected.sort((a,b)=>priority(a)-priority(b)||(a.rank??30)-(b.rank??30));
 }
 export function renderGallery(rows,brand,data,tab){
   const assets=selectMedia(rows,brand.id,data,tab);
@@ -52,7 +57,7 @@ export function renderGallery(rows,brand,data,tab){
     const w=Number(a.width)||0,h=Number(a.height)||0,ratio=w>0&&h>0?w/h:1;
     const label=a.kind==='campaign'?(a.campaignType==='discount'?'割引・キャンペーン':'フェア'):a.kind==='detail'?'フェア内メニュー':'公式メニュー';
     const caption=mediaCaption(a.title);
-    return `<a class="gallery-item media-tile ${i===0?'main':''}" href="${html(a.officialUrl)}" target="_blank" rel="noopener noreferrer" data-ratio="${ratio}" data-kind="${html(a.kind)}" title="${html(a.title)}" aria-label="${html(a.title)}：公式ページを開く"><img src="${html(a.imageUrl)}" alt="${html(a.title)}" ${w&&h?`width="${w}" height="${h}"`:''} loading="lazy" decoding="async" referrerpolicy="no-referrer"><span class="media-caption${caption.price?' has-price':''}"><small>${label}</small><span class="media-title">${html(caption.title)}</span>${caption.price?`<strong class="media-price">${html(caption.price)}</strong>`:''}</span></a>`;
+    return `<a class="gallery-item media-tile ${i===0?'main':''}" href="${html(a.officialUrl)}" target="_blank" rel="noopener noreferrer" data-ratio="${ratio}" data-kind="${html(a.kind)}" data-group="${html(a.group||'')}" data-visual-weight="${Number(a.visualWeight)||1}" title="${html(a.title)}" aria-label="${html(a.title)}：公式ページを開く"><img src="${html(a.imageUrl)}" alt="${html(a.title)}" ${w&&h?`width="${w}" height="${h}"`:''} loading="lazy" decoding="async" referrerpolicy="no-referrer"><span class="media-caption${caption.price?' has-price':''}"><small>${label}</small><span class="media-title">${html(caption.title)}</span>${caption.price?`<strong class="media-price">${html(caption.price)}</strong>`:''}</span></a>`;
   }).join('')}</div><div class="media-fallbacks" aria-live="polite"></div>${assets.some(a=>a.kind==='menu')?'<p class="media-disclaimer">関連メニューはフェア件数に含めていません。店舗・曜日・料金などの条件は各画像の公式ページで確認してください。</p>':''}</div>`;
 }
 let cleanups=[];
@@ -66,7 +71,12 @@ export function enhanceGalleries(root=document){
       const width=gallery.clientWidth;if(!width)return;
       // Larger accessibility text also needs wider tiles, not merely taller captions.
       const scale=Math.max(1,(parseFloat(getComputedStyle(document.documentElement).fontSize)||16)/16);
-      const items=tiles.map(t=>({ratio:Number(t.dataset.ratio)||1,captionHeight:(parseFloat(getComputedStyle(t.querySelector('.media-caption')).height)||64)/scale,kind:t.dataset.kind}));
+      const items=tiles.map(t=>{
+        const caption=t.querySelector('.media-caption'),style=getComputedStyle(caption),price=t.querySelector('.media-price');
+        let minWidth=0;
+        if(price){const range=document.createRange();range.selectNodeContents(price);minWidth=range.getBoundingClientRect().width+parseFloat(style.paddingLeft)+parseFloat(style.paddingRight)+2;}
+        return {ratio:Number(t.dataset.ratio)||1,captionHeight:(parseFloat(style.height)||64)/scale,kind:t.dataset.kind,group:t.dataset.group,visualWeight:Number(t.dataset.visualWeight)||1,minWidth:minWidth/scale};
+      });
       const plan=planGallery(items,width/scale,6/scale);
       plan.height*=scale;
       for(const b of plan.boxes)for(const key of ['x','y','width','height','imageHeight'])b[key]*=scale;
