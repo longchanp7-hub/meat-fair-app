@@ -24,3 +24,9 @@ main{padding-top:16px}
 .brand-rank{background:#fff;border-color:#d8cfc7;color:#8b8178}
 #list-title{margin-top:30px;margin-bottom:13px}
 @media(min-width:760px){main{padding-top:20px}.grid{gap:12px}#campaign-list{gap:34px}.restaurant-card{box-shadow:0 8px 26px #3a2b201c}.restaurant-head{padding-top:16px}}
+
+/* Red app canvas: keep the restaurant cards white so each chain is unmistakable. */
+:root{background:#9b1f2b;--page-bg:#9b1f2b}
+body{background:var(--page-bg)}
+#status-tabs{background:var(--page-bg)}
+main>section>h2,.filter-heading h2,#list-title{color:#fff;text-shadow:0 1px 1px #5f1018aa}
