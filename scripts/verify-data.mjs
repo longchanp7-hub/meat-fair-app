@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import {validateDataset} from './quality-gate.mjs';
 import {SOURCES} from './source-registry.mjs';
+import {duplicateAnnouncements} from './campaign-aliases.mjs';
 import {campaignStatus} from '../app/status.mjs';
 
 const brands=JSON.parse(await fs.readFile(new URL('../app/data/brands.json',import.meta.url),'utf8'));
@@ -25,6 +26,7 @@ for(const c of fairs.campaigns){
   if(c.lifecycleStatus==='stale_unverified')throw Error(`Unreviewed candidate leaked into public data: ${c.id}`);
   if(c.verificationState==='reviewed'&&!c.contentHash)throw Error(`Missing evidence hash: ${c.id}`);
 }
+if(duplicateAnnouncements(fairs.campaigns).length)throw Error('Duplicate announcement and campaign landing page in public data');
 const states=fairs.campaigns.map(c=>({...c,...campaignStatus(c)}));
 const live=states.filter(c=>c.state!=='ended');
 console.log(JSON.stringify({verified:true,brands:known.size,readableSources:health.filter(h=>h.sourceOk).length,

@@ -1,6 +1,7 @@
 import crypto from 'node:crypto';
 import {parseHtml,one,all,text,markup,links,httpUrl} from './html-document.mjs';
 import {imageCandidatesFromHtml} from './fair-utils.mjs';
+import {resolveAnnouncements} from './campaign-aliases.mjs';
 
 export const PROFILE = {
   'yakiniku-king':{scope:'main,article',head:'h1',paths:/^\/(?:news\/\d+\/?|menu_all\/season\/[^/]+\/?)$/},
@@ -100,35 +101,15 @@ export function discoverLinks(brand,html,url){
   }
   return found;
 }
-function topicKey(c){
-  return c.title.normalize('NFKC')
-    .replace(/20\d{2}年\d{1,2}月\d{1,2}日(?:\([^)]*\))?/g,'')
-    .replace(/\d{1,2}月\d{1,2}日(?:\([^)]*\))?/g,'')
-    .replace(/焼肉きんぐ|牛角|しゃぶ葉|ゆず庵|期間限定|フェア|フェス|キャンペーン|販売開始|発売開始|開催します|開催|お知らせ|より|から/g,'')
-    .replace(/[\s「」『』【】!！?？。、・（）()~〜～\-]/g,'')
-    .toLowerCase();
-}
 export function dedupCampaigns(rows){
   const out=[],keys=new Map();
-  for(const c of rows){
+  for(const c of resolveAnnouncements(rows)){
     const title=c.title.normalize('NFKC').replace(/[\s「」『』【】!！。、]/g,'');
     const key=c.brandId+'|'+(c.campaignKey||c.officialUrl);
+    // Never merge different offers merely because their dates/ingredients overlap.
     const semantic=c.brandId+'|'+title+'|'+(c.startDate||'')+'|'+(c.endDate||'');
-    const topic=topicKey(c);
-    let at=keys.get(key)??keys.get(semantic);
-    if(at===undefined&&topic.length>=5){
-      at=out.findIndex(x=>{
-        if(x.brandId!==c.brandId)return false;
-        const other=topicKey(x);
-        return other.length>=5&&(topic===other||topic.includes(other)||other.includes(topic));
-      });
-      if(at<0)at=undefined;
-    }
-    if(at===undefined){
-      const idx=out.length;keys.set(key,idx);keys.set(semantic,idx);out.push({...c,secondarySources:c.secondarySources||[]});
-    }else if(c.officialUrl!==out[at].officialUrl){
-      out[at].secondarySources.push({url:c.officialUrl,title:c.title,type:c.sourceType});
-    }
-  }
-  return out;
+    const at=keys.get(key)??keys.get(semantic);
+    if(at===undefined){keys.set(key,out.length);keys.set(semantic,out.length);out.push({...c,secondarySources:c.secondarySources||[]});}
+    else if(c.officialUrl!==out[at].officialUrl)out[at].secondarySources.push({url:c.officialUrl,title:c.title,type:c.sourceType});
+  }return out;
 }

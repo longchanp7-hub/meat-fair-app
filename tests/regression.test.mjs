@@ -62,3 +62,23 @@ test('current rollout has 15 distinct source definitions and audited imagery',()
  assert.match(find('taiwan_gourmet').fields.imageUrl,/台湾グルメフェア2026.jpg$/);
  assert.match(find('cat5').fields.imageUrl,/autumn/);
 });
+
+test('verified news announcement and landing page are one fair in either input order',()=>{
+ const landing={brandId:'yakiniku-king',title:'期間限定 韓国市場（カンコクシジャン）',officialUrl:'https://www.yakiniku-king.jp/menu_all/season/2609_koreanfair/',startDate:'2026-09-16',endDate:'2026-12-08',verificationState:'reviewed',imageUrl:'https://example.com/overview.jpg'};
+ const news={...landing,title:'2026年9月16日(水)より期間限定フェア「韓国市場(カンコクシジャン)」を開催します。',officialUrl:'https://www.yakiniku-king.jp/news/6811/',endDate:null,verificationState:'automatic',imageUrl:'https://example.com/announcement.jpg'};
+ for(const rows of [[landing,news],[news,landing]]){
+  const merged=dedupCampaigns(rows);assert.equal(merged.length,1);
+  assert.equal(merged[0].officialUrl,landing.officialUrl);
+  assert.equal(merged[0].endDate,'2026-12-08');
+  assert.equal(merged[0].imageUrl,landing.imageUrl);
+  assert.ok(merged[0].secondarySources.some(x=>x.url===news.officialUrl));
+ }
+ assert.equal(dedupCampaigns([news]).length,0,'missing checked landing page cannot be bypassed');
+ assert.equal(dedupCampaigns([{...landing,verificationState:'automatic'},news]).length,1,'changed review cannot be bypassed');
+});
+
+test('same seasonal theme in different years is not merged',()=>{
+ const a={brandId:'yakiniku-king',title:'韓国フェア',officialUrl:'https://www.yakiniku-king.jp/menu_all/season/2509_koreanfair/',startDate:'2025-09-17',endDate:'2025-12-09'};
+ const b={...a,officialUrl:'https://www.yakiniku-king.jp/menu_all/season/2609_koreanfair/',startDate:'2026-09-16',endDate:'2026-12-08'};
+ assert.equal(dedupCampaigns([a,b]).length,2);
+});
