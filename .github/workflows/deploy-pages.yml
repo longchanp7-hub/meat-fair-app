@@ -26,3 +26,21 @@ jobs:
           path: app
       - id: deployment
         uses: actions/deploy-pages@v4
+      - name: Verify public app
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          curl --fail --location --retry 10 --retry-delay 6 --retry-all-errors "${PAGE_URL}" -o /tmp/index.html
+          curl --fail --location --retry 10 --retry-delay 6 --retry-all-errors "${PAGE_URL}data/brands.json" -o /tmp/brands.json
+          curl --fail --location --retry 10 --retry-delay 6 --retry-all-errors "${PAGE_URL}data/fairs.json" -o /tmp/fairs.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const local=JSON.parse(fs.readFileSync('app/data/fairs.json','utf8'));
+          const fairs=JSON.parse(fs.readFileSync('/tmp/fairs.json','utf8'));
+          const brands=JSON.parse(fs.readFileSync('/tmp/brands.json','utf8'));
+          if(!Array.isArray(fairs.campaigns)) throw new Error('public campaigns is not an array');
+          if(!Array.isArray(brands.brands)||brands.brands.length!==15) throw new Error(`public brand count=${brands.brands?.length}`);
+          if(local.updatedAt!==fairs.updatedAt) throw new Error(`public data is stale: local=${local.updatedAt} public=${fairs.updatedAt}`);
+          for(const [i,c] of fairs.campaigns.entries()) for(const k of ['id','brandId','title','officialUrl']) if(!c?.[k]) throw new Error(`public campaign ${i} missing ${k}`);
+          console.log(`public verify ok: ${brands.brands.length} brands, ${fairs.campaigns.length} campaigns, updatedAt=${fairs.updatedAt}`);
+          NODE
