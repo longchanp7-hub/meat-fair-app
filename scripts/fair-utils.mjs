@@ -5,7 +5,7 @@ const GENERIC=new Set(['食べ放題','食べ放題一覧','海鮮','デザー�
 const INGREDIENTS=['牛タン','牛たん','黒毛和牛','鴨肉','きのこ','九州黒豚','松茸','サーモン','秋刀魚','蟹','かに','カニ','海鮮','メロン','苺','いちご','韓国','台湾','北海道','蜜芋','秋栗','和梨'];
 const SOCIAL=/フォロー.{0,3}リポスト|SNSキャンペーン|プレゼントキャンペーン/;
 const FOOD_TERMS=['カルビ','牛タン','牛たん','焼肉','肉','鴨','豚','黒毛和牛','サーモン','寿司','秋刀魚','松茸','きのこ','つみれ','海鮮','蟹','かに','カニ','しゃぶ','鍋','キムチ','ラーメン','ステーキ','デザート','プリン','シャーベット','ロコモコ','チーズ','ポテト'];
-const BAD_IMAGE_RE=/(?:logo|ロゴ|icon|favicon|sprite|loading|placeholder|header|footer|sns|share|common\/og|img_ogp|\/ogp(?:[._-]|\.)|appstore|googleplay)/i;
+const BAD_IMAGE_RE=/(?:logo|ロゴ|icon|favicon|sprite|loading|placeholder|header|footer|sns|share|common\/og|img_ogp|\/ogp(?:[._-]|\.)|appstore|googleplay|(?:^|[_\/-])(?:sign|deco|bg|background|title|ttl|heading|frame|arrow)(?:[_\/.\-]|$))/i;
 
 export function textFromHtml(s=''){return s.replace(/<img\b[^>]*alt=["']([^"']*)["'][^>]*>/gi,' $1 ').replace(/<script[\s\S]*?<\/script>/gi,' ').replace(/<style[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/\s+/g,' ').trim()}
 export function absolute(base,href){try{return new URL(href,base).href}catch{return null}}
