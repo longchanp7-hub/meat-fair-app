@@ -1,0 +1,41 @@
+name: Phone and Fold layout check
+on:
+  push:
+    branches: ['layout/**']
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: layout-check-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm test && npm run quality-gate
+      - name: Collect current official images and dimensions
+        run: npm run update && npm run verify
+      - name: Install isolated browser test tools
+        run: |
+          npm install --prefix /tmp/meat-browser --no-save --package-lock=false playwright@1.55.1
+          /tmp/meat-browser/node_modules/.bin/playwright install --with-deps chromium
+      - name: Check portrait phones and folding tablets before publication
+        env:
+          PLAYWRIGHT_MODULE: /tmp/meat-browser/node_modules/playwright
+        run: node tests/browser-public.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: phone-fold-preview
+          path: |
+            browser-report
+            app
+          retention-days: 7

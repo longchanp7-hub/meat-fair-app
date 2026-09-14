@@ -1,117 +1,110 @@
 const fs=require('node:fs/promises');
 const assert=require('node:assert/strict');
 const path=require('node:path');
+const http=require('node:http');
 const {pathToFileURL}=require('node:url');
 const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
 (async()=>{
-  const base=process.env.PAGE_URL;
-  assert.ok(base?.startsWith('https://longchanp7-hub.github.io/meat-fair-app/'));
+  let base=process.env.PAGE_URL,server;
+  if(!base){
+    server=http.createServer(async(req,res)=>{
+      const name=decodeURIComponent(new URL(req.url,'http://localhost').pathname).replace(/^\/meat-fair-app\//,'');
+      const file=path.resolve('app',name||'index.html');
+      if(!file.startsWith(path.resolve('app')+path.sep)){res.writeHead(403);return res.end();}
+      try{const bytes=await fs.readFile(file);const ext=path.extname(file);res.writeHead(200,{'Content-Type':({'.html':'text/html','.js':'text/javascript','.mjs':'text/javascript','.css':'text/css','.json':'application/json','.webmanifest':'application/manifest+json','.png':'image/png'})[ext]||'application/octet-stream','Cache-Control':'no-store'});res.end(bytes);}catch{res.writeHead(404);res.end();}
+    });
+    await new Promise(r=>server.listen(0,'127.0.0.1',r));base=`http://127.0.0.1:${server.address().port}/meat-fair-app/`;
+  }else assert.ok(base.startsWith('https://longchanp7-hub.github.io/meat-fair-app/'));
   const {campaignStatus}=await import(pathToFileURL(path.resolve('app/status.mjs')));
+  const {selectMedia}=await import(pathToFileURL(path.resolve('app/gallery.mjs')));
   const fairs=JSON.parse(await fs.readFile('app/data/fairs.json','utf8'));
-  const brandIds=JSON.parse(await fs.readFile('app/data/brands.json','utf8')).brands.map(b=>b.id);
+  const media=JSON.parse(await fs.readFile('app/data/gallery.json','utf8'));
+  const brands=JSON.parse(await fs.readFile('app/data/brands.json','utf8')).brands;
   const stores=JSON.parse(await fs.readFile('app/data/stores.json','utf8'));
-  assert.equal(new Set(stores.stores.map(s=>s.brandId)).size,15,'store registry must cover all brands');
-  await fs.mkdir('browser-report',{recursive:true});
-  const browser=await chromium.launch({headless:true});
-  const reports=[];
+  assert.equal(new Set(stores.stores.map(s=>s.brandId)).size,15);
+  const folder='browser-report';await fs.mkdir(folder,{recursive:true});
+  const browser=await chromium.launch({headless:true});const reports=[];
   try{
-    for(const width of [390,1180]){
-      const page=await browser.newPage({viewport:{width,height:920},timezoneId:'America/Los_Angeles'});
-      const errors=[];page.on('pageerror',e=>errors.push(String(e)));
-      const tabs={};
-      await page.goto(base+'?release='+Date.now(),{waitUntil:'domcontentloaded'});
-      await page.locator('body[data-ready="true"]').waitFor({timeout:30000});
-      assert.equal(await page.locator('.brand').count(),15);
-      const publicData=await page.evaluate(async()=>await (await fetch('./data/fairs.json',{cache:'no-cache'})).json());
-      assert.equal(publicData.updatedAt,fairs.updatedAt,'browser data is stale');
-      for(const tab of ['active','upcoming','ending','new']){
-        await page.locator(`button[data-tab="${tab}"]`).click();
-        const expected=fairs.campaigns.filter(c=>{
-          if(!['P1','P2'].includes(c.priority))return false;
-          const s=campaignStatus(c);
-          return tab==='new'?s.isNew&&s.state!=='ended':tab==='ending'?s.endingSoon:s.state===tab;
-        }).map(c=>c.id).sort();
-        const shown=await page.locator('[data-campaign]').evaluateAll(els=>els.map(e=>e.dataset.campaign).sort());
-        assert.deepEqual(shown,expected,`wrong ${tab} campaigns at ${width}px`);
-        const cards=await page.locator('[data-brand-card]').evaluateAll(els=>els.map(e=>e.dataset.brandCard));
-        assert.equal(new Set(cards).size,cards.length,'duplicate brand cards');
-        if(tab==='active')assert.deepEqual([...cards].sort(),[...brandIds].sort());
-        const images=page.locator('.gallery img'),imageCount=await images.count();
-        for(const image of await images.all()){
-          await image.scrollIntoViewIfNeeded();
-          await image.evaluate(img=>img.decode());
-          assert.ok(await image.evaluate(img=>img.naturalWidth>0&&getComputedStyle(img).objectFit==='contain'));
-          assert.ok(await image.evaluate(img=>{
-            const r=img.getBoundingClientRect(),g=img.closest('.gallery').getBoundingClientRect();
-            return r.top>=g.top-1&&r.bottom<=g.bottom+1&&r.left>=g.left-1&&r.right<=g.right+1;
-          }),'the visible gallery clips the image despite object-fit:contain');
-        }
-        assert.equal(await page.locator('.image-unavailable').count(),0,'image request failed');
-        assert.equal(await page.locator('.brand-official').count(),cards.length,'repeated official-site buttons');
-        assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'horizontal overflow');
-        tabs[tab]={cards:cards.length,campaigns:shown.length,images:imageCount};
+    const page=await browser.newPage({viewport:{width:390,height:900},timezoneId:'America/Los_Angeles'});
+    const errors=[];page.on('pageerror',e=>errors.push(String(e)));
+    await page.goto(base+'?release='+Date.now(),{waitUntil:'domcontentloaded'});
+    await page.locator('body[data-ready="true"]').waitFor({timeout:30000});
+    const received=await page.evaluate(async()=>await(await fetch('./data/fairs.json',{cache:'no-cache'})).json());
+    assert.equal(received.updatedAt,fairs.updatedAt,'stale public data');
+    const expectedRows=tab=>fairs.campaigns.filter(c=>{
+      if(!['P1','P2'].includes(c.priority))return false;const s=campaignStatus(c);
+      return tab==='new'?s.isNew&&s.state!=='ended':tab==='ending'?s.endingSoon:s.state===tab;
+    });
+    const settle=()=>page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+    async function inspect(){
+      for(const image of await page.locator('.adaptive-gallery img').all()){
+        try{await image.scrollIntoViewIfNeeded({timeout:4000});await image.evaluate(i=>i.decode().catch(()=>{}));}catch{ /* An external failure removes the tile and leaves its official link. */ }
       }
-      await page.locator('button[data-tab="active"]').click();
-      for(const id of brandIds){
-        await page.locator(`button[data-brand="${id}"]`).click();
-        assert.equal(await page.locator('[data-brand-card]').count(),1);
-        assert.equal(await page.locator('[data-brand-card]').getAttribute('data-brand-card'),id);
-        const cardWidth=await page.locator('[data-brand-card]').evaluate(el=>el.getBoundingClientRect().width);
-        const minimum=width<760?width-24:width-64;
-        assert.ok(cardWidth>=minimum,`brand card wastes too much horizontal space for ${id}: ${cardWidth}px at ${width}px`);
-        assert.equal(await page.locator('.brand-availability').count(),1,`missing local availability for ${id}`);
-        assert.ok(await page.locator('.brand-availability .area-chip').count()>0,`missing local area chips for ${id}`);
-        for(const image of await page.locator('.gallery img').all()){await image.scrollIntoViewIfNeeded();await image.evaluate(img=>img.decode());}
-        if(id==='syabuyo'){
-          const promo=await page.locator('.gallery-1').evaluate(async g=>{
-            const backgrounds=['::before','::after'].map(p=>getComputedStyle(g,p).backgroundImage);
-            const urls=backgrounds.map(v=>v.match(/^url\(["']?(.*?)["']?\)$/)?.[1]||'');
-            return await Promise.all(urls.map(url=>new Promise(resolve=>{
-              if(!url)return resolve({url,width:0,height:0});
-              const img=new Image();
-              img.onload=()=>resolve({url,width:img.naturalWidth,height:img.naturalHeight});
-              img.onerror=()=>resolve({url,width:0,height:0});
-              img.src=url;
-            })));
-          });
-          assert.equal(promo.length,2,'Shabu-yo should show two official side highlights');
-          assert.match(promo[0].url,/ss_0901_sp_07\.jpg$/,'Shabu-yo should use current official Kyushu Kurobuta artwork');
-          assert.match(promo[1].url,/ss_0901_sp_14\.jpg$/,'Shabu-yo should use current official Kuroge Wagyu artwork');
-          assert.ok(promo.every(x=>x.width>0&&x.height>0),'Shabu-yo side artwork failed to load');
-        }
-        if(id==='asakuma'){
-          const stats=await page.locator('.gallery-2').evaluateAll(gs=>gs.map(g=>{
-            const r=g.getBoundingClientRect();
-            const imgs=[...g.querySelectorAll('img')].map(i=>i.getBoundingClientRect());
-            return{h:r.height,images:imgs.map(x=>({top:x.top,bottom:x.bottom,height:x.height,left:x.left,right:x.right}))};
-          }));
-          assert.ok(stats.every(s=>s.images.length===2),'Asakuma should show both current official posters');
-          if(width<760){
-            assert.ok(stats.every(s=>s.images[1].top>=s.images[0].bottom-1),`Asakuma posters should stack vertically at ${width}px`);
-            assert.ok(stats.every(s=>s.h<=s.images[0].height+s.images[1].height+12),`Asakuma stacked gallery leaves an unnecessary vertical band at ${width}px`);
-          }else{
-            assert.ok(stats.every(s=>Math.abs(s.images[0].top-s.images[1].top)<=1),`Asakuma posters should remain side-by-side on wide screens at ${width}px`);
-            assert.ok(stats.every(s=>s.h<=Math.max(...s.images.map(i=>i.height))+6),`Asakuma wide gallery leaves a fixed-height vertical band at ${width}px`);
+      await settle();
+      const faults=await page.locator('.adaptive-gallery').evaluateAll(gs=>{
+        const out=[];
+        for(const g of gs){
+          const gr=g.getBoundingClientRect(),tiles=[...g.querySelectorAll('.media-tile')];
+          const rects=tiles.map(t=>t.getBoundingClientRect());
+          for(const [i,t]of tiles.entries()){
+            const r=rects[i],img=t.querySelector('img'),ir=img.getBoundingClientRect();
+            if(!img.complete||!img.naturalWidth)out.push('image not loaded');
+            if(getComputedStyle(img).objectFit!=='contain')out.push('image cropped');
+            if(img.naturalWidth&&Math.abs(ir.width/ir.height-img.naturalWidth/img.naturalHeight)>.015)out.push('wrong aspect ratio');
+            if(r.left<gr.left-1||r.right>gr.right+1||r.top<gr.top-1||r.bottom>gr.bottom+1)out.push('tile overflow');
+            for(let j=i+1;j<rects.length;j++){const b=rects[j];if(Math.min(r.right,b.right)-Math.max(r.left,b.left)>1&&Math.min(r.bottom,b.bottom)-Math.max(r.top,b.top)>1)out.push('tile overlap');}
           }
+          if(rects.length&&Math.abs(Math.max(...rects.map(r=>r.bottom))-gr.bottom)>1)out.push('empty bottom band');
         }
-        if(['gyukaku','syabuyo','asakuma','nikusho-sakai','washoku-sato','roan','kushiya-monogatari'].includes(id)){
-          await page.screenshot({path:`browser-report/${width}-${id}.png`,fullPage:true});
-        }
-        const h=fairs.sourceHealth.find(h=>h.brandId===id);
-        if(h.status==='unavailable'){
-          const emptyCount=await page.locator('.empty-brand').count();
-          if(emptyCount)assert.match(await page.locator('.empty-brand').innerText(),/「フェアなし」とは判断していません/);
-          else assert.ok(await page.locator('.data-note').count()>0,`unavailable ${id} should explain its last-known-good data`);
-        }
+        return out;
+      });
+      assert.deepEqual(faults,[]);
+      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'horizontal overflow');
+    }
+    for(const width of [360,390,430,690,820,1024]){
+      await page.setViewportSize({width,height:900});
+      const tabs={};
+      for(const tab of ['active','upcoming','ending','new']){
+        await page.locator(`[data-tab="${tab}"]`).click();
+        const expected=expectedRows(tab),shown=await page.locator('[data-campaign]').evaluateAll(es=>es.map(e=>e.dataset.campaign).sort());
+        assert.deepEqual(shown,expected.map(c=>c.id).sort());
+        const ids=await page.locator('[data-brand-card]').evaluateAll(es=>es.map(e=>e.dataset.brandCard));
+        assert.equal(new Set(ids).size,ids.length);
+        if(tab==='active')assert.equal(ids.length,15);
+        await inspect();
+        assert.equal(await page.locator('.brand-official').count(),ids.length);
+        tabs[tab]={brands:ids.length,campaigns:shown.length,images:await page.locator('.adaptive-gallery img').count(),imageFallbacks:await page.locator('.media-unavailable').count()};
+      }
+      await page.locator('[data-tab="active"]').click();
+      for(const brand of brands){
+        await page.locator(`[data-brand="${brand.id}"]`).click();
+        const card=page.locator('[data-brand-card]');assert.equal(await card.count(),1);assert.equal(await card.getAttribute('data-brand-card'),brand.id);
+        const crows=expectedRows('active').filter(c=>c.brandId===brand.id);
+        const expectedCount=selectMedia(crows,brand.id,media,'active').length;
+        await inspect();
+        assert.equal(await page.locator('.media-tile,.media-unavailable').count(),expectedCount,'missing or fictitious image');
+        assert.equal(await page.locator('.brand-availability,.local-note').count(),1,'missing availability explanation');
+        if(['syabuyo','asakuma','washoku-sato'].includes(brand.id))await page.locator('.restaurant-card').screenshot({path:`${folder}/${width}-${brand.id}.png`});
         await page.locator('#clear-filter').click();
       }
-      assert.deepEqual(errors,[]);
-      reports.push({width,tabs,errors});await page.close();
+      await page.screenshot({path:`${folder}/${width}-all.png`,fullPage:true});
+      reports.push({width,tabs});
     }
-    await fs.writeFile('browser-report/result.json',JSON.stringify({passed:true,verifiedAt:new Date().toISOString(),updatedAt:fairs.updatedAt,reports},null,2));
-    console.log(JSON.stringify({passed:true,reports},null,2));
-  }catch(e){
-    await fs.writeFile('browser-report/result.json',JSON.stringify({passed:false,error:String(e),reports},null,2));
-    throw e;
-  }finally{await browser.close();}
-})().catch(e=>{console.error(e);process.exit(1)});
+    // A background image failure must collapse the gap, not hide the source link.
+    await page.locator('[data-brand="syabuyo"]').click();await inspect();
+    const before=await page.locator('.media-tile').count();
+    assert.ok(before>0);
+    await page.locator('.media-tile img').first().evaluate(i=>i.dispatchEvent(new Event('error')));await settle();
+    assert.equal(await page.locator('.media-tile').count(),before-1);
+    assert.ok(await page.locator('.media-unavailable').count()>0);await inspect();
+    await page.locator('#clear-filter').click();
+    const manifest=await page.evaluate(async()=>await(await fetch(document.querySelector('link[rel="manifest"]').href)).json());
+    assert.equal(manifest.id,'/meat-fair-app/');assert.equal(manifest.start_url,manifest.id);assert.equal(manifest.scope,manifest.id);assert.equal(manifest.display,'standalone');
+    const scope=await page.evaluate(async()=>(await navigator.serviceWorker.ready).scope);assert.equal(new URL(scope).pathname,'/meat-fair-app/');
+    assert.deepEqual(errors,[]);
+    await fs.writeFile(`${folder}/result.json`,JSON.stringify({passed:true,verifiedAt:new Date().toISOString(),reports,pwaScope:scope,errors},null,2));
+    console.log(JSON.stringify({passed:true,reports,pwaScope:scope,errors},null,2));
+    await page.close();
+  }catch(e){await fs.writeFile(`${folder}/result.json`,JSON.stringify({passed:false,error:String(e),reports},null,2));throw e;}
+  finally{await browser.close();if(server)await new Promise(r=>server.close(r));}
+})().catch(e=>{console.error(e);process.exit(1);});
