@@ -1,5 +1,6 @@
 import {planGallery} from './gallery-plan.mjs';
 const DAY=86400000;
+const MEDIA_ORDER={campaign:0,detail:1,menu:2};
 const html=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const url=v=>{try{const u=new URL(v);return /^https?:$/.test(u.protocol)?u.href:'';}catch{return '';}};
 export function selectMedia(rows,brandId,data={},tab='active',now=new Date()){
@@ -19,7 +20,9 @@ export function selectMedia(rows,brandId,data={},tab='active',now=new Date()){
     const age=+now-Date.parse(a.checkedAt);
     if(age>=0&&age<=2*DAY)push(a);
   }
-  return selected.sort((a,b)=>(a.rank??30)-(b.rank??30));
+  // Category order also applies to last-known-good records with older rank values.
+  // Keep the main fair and its food ahead of unrelated lunch/banquet promotions.
+  return selected.sort((a,b)=>(MEDIA_ORDER[a.kind]??3)-(MEDIA_ORDER[b.kind]??3)||(a.rank??30)-(b.rank??30));
 }
 export function renderGallery(rows,brand,data,tab){
   const assets=selectMedia(rows,brand.id,data,tab);
