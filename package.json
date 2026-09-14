@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "update": "node scripts/update-fairs.mjs",
+    "update": "node scripts/update-fairs-all.mjs",
     "quality-gate": "node scripts/quality-gate.mjs --self-test",
     "verify": "node scripts/verify-data.mjs"
   },
