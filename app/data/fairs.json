@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-14T13:17:48.400Z",
+  "updatedAt": "2026-09-14T13:22:51.378Z",
   "timezone": "Asia/Tokyo",
   "statusRules": {
     "newDays": 7,
@@ -39,8 +39,8 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:18:30.561Z",
-      "fetchedAt": "2026-09-14T13:17:48.400Z",
-      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
+      "fetchedAt": "2026-09-14T13:22:51.378Z",
+      "lastVerifiedAt": "2026-09-14T13:22:51.378Z",
       "confidence": 0.9,
       "contentHash": "a6535357e0a494d804c1be5d4776510257750cd1cea1d5fca9c6e24dbc96744e",
       "secondarySources": []
@@ -80,8 +80,8 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:18:30.561Z",
-      "fetchedAt": "2026-09-14T13:17:48.400Z",
-      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
+      "fetchedAt": "2026-09-14T13:22:51.378Z",
+      "lastVerifiedAt": "2026-09-14T13:22:51.378Z",
       "confidence": 0.9,
       "contentHash": "5c963f614cefcc05e220b100614767ee552f0f61bc4c901cf1a9f63792c1ade0",
       "secondarySources": [
@@ -136,8 +136,8 @@
       "lifecycleStatus": "ended_official",
       "staleAfterDays": null,
       "firstSeenAt": "2026-09-14T08:19:13.075Z",
-      "fetchedAt": "2026-09-14T13:17:48.400Z",
-      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
+      "fetchedAt": "2026-09-14T13:22:51.378Z",
+      "lastVerifiedAt": "2026-09-14T13:22:51.378Z",
       "confidence": 0.9,
       "contentHash": "d4fc49248a31f476a2112aab45f87610be62b89516df6792dfd43a78c310809a",
       "secondarySources": []
@@ -174,8 +174,8 @@
       "lifecycleStatus": "ended_official",
       "staleAfterDays": null,
       "firstSeenAt": "2026-09-14T08:19:13.075Z",
-      "fetchedAt": "2026-09-14T13:17:48.400Z",
-      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
+      "fetchedAt": "2026-09-14T13:22:51.378Z",
+      "lastVerifiedAt": "2026-09-14T13:22:51.378Z",
       "confidence": 0.9,
       "contentHash": "ba9c094c70149c62b14231da3333121b3833feb9b194337e2be82705d07bbfbf",
       "secondarySources": []
@@ -216,8 +216,8 @@
       "lifecycleStatus": "ended_official",
       "staleAfterDays": null,
       "firstSeenAt": "2026-09-14T08:19:13.075Z",
-      "fetchedAt": "2026-09-14T13:17:48.400Z",
-      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
+      "fetchedAt": "2026-09-14T13:22:51.378Z",
+      "lastVerifiedAt": "2026-09-14T13:22:51.378Z",
       "confidence": 0.9,
       "contentHash": "7c7f010414c39144e387953eb53e7121702b1dc231a255542cf224a5426778d7",
       "secondarySources": []
@@ -256,8 +256,8 @@
       "lifecycleStatus": "ended_official",
       "staleAfterDays": null,
       "firstSeenAt": "2026-09-14T08:19:13.075Z",
-      "fetchedAt": "2026-09-14T13:17:48.400Z",
-      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
+      "fetchedAt": "2026-09-14T13:22:51.378Z",
+      "lastVerifiedAt": "2026-09-14T13:22:51.378Z",
       "confidence": 0.9,
       "contentHash": "d5ffefd4396375f12fa6560f7a036ac1c095bfdea2b04a41ecf5328762dae9d9",
       "secondarySources": []
@@ -295,8 +295,8 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:33:12.796Z",
-      "fetchedAt": "2026-09-14T13:17:48.400Z",
-      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
+      "fetchedAt": "2026-09-14T13:22:51.378Z",
+      "lastVerifiedAt": "2026-09-14T13:22:51.378Z",
       "confidence": 0.9,
       "contentHash": "1c758518c46de6da3c7459b17bed58622e6488ac1297731349ec850937e33436",
       "secondarySources": []
@@ -337,8 +337,8 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:10:00.000Z",
-      "fetchedAt": "2026-09-14T13:17:48.400Z",
-      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
+      "fetchedAt": "2026-09-14T13:22:51.378Z",
+      "lastVerifiedAt": "2026-09-14T13:22:51.378Z",
       "confidence": 0.9,
       "contentHash": "a689ec758cbbfc8a898c92c5fcc083c5ae09f376441e2619792d4831d5cdca50",
       "secondarySources": []
@@ -374,8 +374,8 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 30,
       "firstSeenAt": "2026-09-14T08:15:09.064Z",
-      "fetchedAt": "2026-09-14T13:17:48.400Z",
-      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
+      "fetchedAt": "2026-09-14T13:22:51.378Z",
+      "lastVerifiedAt": "2026-09-14T13:22:51.378Z",
       "confidence": 0.9,
       "contentHash": "efaa05d281dffa28a6e5df1454e2266b8fda35a9428d153483bbde213db55e90",
       "secondarySources": []
@@ -418,8 +418,8 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:15:09.064Z",
-      "fetchedAt": "2026-09-14T13:17:48.400Z",
-      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
+      "fetchedAt": "2026-09-14T13:22:51.378Z",
+      "lastVerifiedAt": "2026-09-14T13:22:51.378Z",
       "confidence": 0.9,
       "contentHash": "ef16855faf19369dc39620fb1b88214086c59b725ff7433f06ffd0b8d5007595",
       "secondarySources": []
@@ -455,8 +455,8 @@
       "lifecycleStatus": "stale_unverified",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:15:09.064Z",
-      "fetchedAt": "2026-09-14T13:17:48.400Z",
-      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
+      "fetchedAt": "2026-09-14T13:22:51.378Z",
+      "lastVerifiedAt": "2026-09-14T13:22:51.378Z",
       "confidence": 0.9,
       "contentHash": "35351b12e8dc4c74477392990abbee78f723f3930300385529b4c3077fa3fe8e",
       "secondarySources": []
