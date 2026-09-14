@@ -13,5 +13,7 @@ test('dated and regional news are never relabelled as an evergreen local menu',(
 });
 test('an upcoming linked promotion and non-food decorations cannot become current-fair details',()=>{
  const scope=parseHtml('<main><a href="/future/"><img src="future.jpg" alt="9月16日から 鴨しゃぶ食べ放題"></a><img src="wall.jpg" alt="フェア限定 壁紙ダウンロード"><img src="coupon.jpg" alt="食べ放題クーポン QR スクリーンショット"><img src="beef.jpg" alt="黒毛和牛 食べ放題 ￥3,399"><img src="stock.jpg" alt="ポルチーニ鶏だし"></main>');
- const rows=detailAssets(scope,base,{id:'c',contentHash:'h'});assert.equal(rows.length,2);assert.equal(rows[0].rank,20);assert.equal(rows[1].rank,50);
+ const rows=detailAssets(scope,base,{id:'c',contentHash:'h'});assert.equal(rows.length,2);assert.equal(rows[0].rank,20);assert.equal(rows[1].rank,30);
+ const menus=menuAssets('<main><a href="/lunch/"><img src="lunch.jpg" alt="牛肉ランチ"></a></main>',base);
+ assert.ok(rows.every(row=>row.rank<menus[0].rank),'fair food must be ordered before related lunch menus');
 });
