@@ -10,6 +10,8 @@ on:
       - '.github/workflows/update-fairs.yml'
 permissions:
   contents: write
+  pages: write
+  id-token: write
 concurrency:
   group: fair-data-refresh
   cancel-in-progress: true
@@ -37,3 +39,43 @@ jobs:
           git add app/data
           git commit -m "chore: refresh fair data"
           git push origin HEAD:main
+
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: app
+      - id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Verify refreshed public app
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          curl --fail --location --retry 10 --retry-delay 6 --retry-all-errors "${PAGE_URL}" -o /tmp/index.html
+          curl --fail --location --retry 10 --retry-delay 6 --retry-all-errors "${PAGE_URL}data/brands.json" -o /tmp/brands.json
+          curl --fail --location --retry 10 --retry-delay 6 --retry-all-errors "${PAGE_URL}data/fairs.json" -o /tmp/fairs.json
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          const local=JSON.parse(fs.readFileSync('app/data/fairs.json','utf8'));
+          const fairs=JSON.parse(fs.readFileSync('/tmp/fairs.json','utf8'));
+          const brands=JSON.parse(fs.readFileSync('/tmp/brands.json','utf8'));
+          if(!Array.isArray(fairs.campaigns)) throw new Error('public campaigns is not an array');
+          if(!Array.isArray(brands.brands)||brands.brands.length!==15) throw new Error(`public brand count=${brands.brands?.length}`);
+          if(local.updatedAt!==fairs.updatedAt) throw new Error(`public data is stale: local=${local.updatedAt} public=${fairs.updatedAt}`);
+          for(const [i,c] of fairs.campaigns.entries()) for(const k of ['id','brandId','title','officialUrl']) if(!c?.[k]) throw new Error(`public campaign ${i} missing ${k}`);
+          console.log(`public refresh verify ok: ${brands.brands.length} brands, ${fairs.campaigns.length} campaigns, updatedAt=${fairs.updatedAt}`);
+          NODE
