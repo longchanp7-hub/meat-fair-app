@@ -21,7 +21,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
   const media=JSON.parse(await fs.readFile('app/data/gallery.json','utf8'));
   const brands=JSON.parse(await fs.readFile('app/data/brands.json','utf8')).brands;
   const stores=JSON.parse(await fs.readFile('app/data/stores.json','utf8'));
-  assert.equal(new Set(stores.stores.map(s=>s.brandId)).size,15);
+  assert.equal(new Set(stores.stores.map(s=>s.brandId===undefined?'':s.brandId)).size,15);
   const folder='browser-report';await fs.mkdir(folder,{recursive:true});
   const browser=await chromium.launch({headless:true});const reports=[];
   try{
@@ -106,6 +106,8 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
     assert.equal(await page.locator('.media-tile').count(),before-1);
     assert.ok(await page.locator('.media-unavailable').count()>0);await inspect();
     await page.locator('#clear-filter').click();
+    const liveChanges=await require('./gallery-live-resize.cjs')({page,inspect,settle});
+    reports.push({liveChanges});console.log('Image-count changes and live Fold resizing passed:',JSON.stringify(liveChanges));
     const manifest=await page.evaluate(async()=>await(await fetch(document.querySelector('link[rel="manifest"]').href)).json());
     assert.equal(manifest.id,'/meat-fair-app/');assert.equal(manifest.start_url,manifest.id);assert.equal(manifest.scope,manifest.id);assert.equal(manifest.display,'standalone');
     const scope=await page.evaluate(async()=>(await navigator.serviceWorker.ready).scope);assert.equal(new URL(scope).pathname,'/meat-fair-app/');
