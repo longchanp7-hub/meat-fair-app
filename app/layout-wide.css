@@ -9,8 +9,7 @@ main{
 #campaign-list{width:100%}
 .restaurant-card{width:100%}
 
-/* Two-image brand galleries should size from the images instead of a fixed-height box.
-   This avoids the large empty bands seen around the Asakuma posters. */
+/* Two-image brand galleries should size from the images instead of a fixed-height box. */
 .gallery-2{
   height:auto;
   min-height:0;
@@ -33,9 +32,86 @@ main{
   background:#fff;
 }
 
-/* Single-fair cards such as Shabu-yo should use the full inner width.
-   Do not crop the official artwork. */
+/* Single-fair cards normally use the full inner width without cropping. */
 .gallery-1,.gallery-1 .gallery-item,.gallery-1 img{width:100%}
+
+/* Shabu-yo: the official fair page currently promotes the duck/mushroom fair together
+   with Kyushu Kurobuta and Kuroge Wagyu. Use those two real menu highlights to fill
+   the dead side space instead of stretching or cropping the main official visual. */
+[data-brand-card="syabuyo"] .gallery-1{
+  display:grid;
+  grid-template-columns:minmax(0,1.65fr) minmax(118px,.9fr);
+  grid-template-rows:minmax(0,1fr) minmax(0,1fr);
+  gap:6px;
+  height:auto;
+  min-height:0;
+  max-height:none;
+  padding:6px;
+  background:#fff;
+  align-items:stretch;
+}
+[data-brand-card="syabuyo"] .gallery-1 .gallery-item.main{
+  grid-column:1;
+  grid-row:1/3;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
+}
+[data-brand-card="syabuyo"] .gallery-1 .gallery-item.main img{
+  width:100%;
+  height:100%;
+  min-height:100%;
+  max-height:none;
+  object-fit:contain;
+  background:#fff;
+}
+[data-brand-card="syabuyo"] .gallery-1::before,
+[data-brand-card="syabuyo"] .gallery-1::after{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  white-space:pre-line;
+  border-radius:11px;
+  padding:10px 7px;
+  line-height:1.4;
+  font-size:clamp(.72rem,2.7vw,.98rem);
+  font-weight:800;
+  box-shadow:inset 0 0 0 1px #ffffff88;
+}
+[data-brand-card="syabuyo"] .gallery-1::before{
+  content:"期間限定\A九州黒豚 食べ放題\A税込2,639円〜";
+  grid-column:2;
+  grid-row:1;
+  color:#6b2c15;
+  background:linear-gradient(145deg,#fff9ec,#f8dfb6);
+  border:1px solid #e9bf7d;
+}
+[data-brand-card="syabuyo"] .gallery-1::after{
+  content:"黒毛和牛 食べ放題\A税込3,739円〜";
+  grid-column:2;
+  grid-row:2;
+  color:#52221e;
+  background:linear-gradient(145deg,#fff6f1,#efd0c4);
+  border:1px solid #dba99a;
+}
+
+/* Asakuma: on a portrait phone the two landscape posters became too thin side-by-side.
+   Stack them vertically; wide screens keep the existing two-column treatment. */
+@media (max-width:759px){
+  [data-brand-card="asakuma"] .gallery-2{
+    grid-template-columns:1fr;
+    gap:6px;
+    background:#fff;
+  }
+  [data-brand-card="asakuma"] .gallery-2 .gallery-item,
+  [data-brand-card="asakuma"] .gallery-2 .gallery-item img{
+    width:100%;
+    height:auto;
+    max-height:none;
+  }
+}
 
 @media (min-width:760px){
   main{
