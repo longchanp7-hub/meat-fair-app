@@ -1,0 +1,61 @@
+/* Responsive finishing pass for wide phones / Fold / desktop.
+   Keep a visible red frame, but let the white chain cards use the available canvas. */
+main{
+  width:100%;
+  max-width:1440px;
+  padding-left:10px;
+  padding-right:10px;
+}
+#campaign-list{width:100%}
+.restaurant-card{width:100%}
+
+/* Two-image brand galleries should size from the images instead of a fixed-height box.
+   This avoids the large empty bands seen around the Asakuma posters. */
+.gallery-2{
+  height:auto;
+  min-height:0;
+  max-height:none;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  grid-auto-rows:auto;
+  align-items:start;
+  background:#fff;
+}
+.gallery-2 .gallery-item{
+  align-self:start;
+  background:#fff;
+}
+.gallery-2 .gallery-item img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:none;
+  object-fit:contain;
+  background:#fff;
+}
+
+/* Single-fair cards such as Shabu-yo should use the full inner width.
+   Do not crop the official artwork. */
+.gallery-1,.gallery-1 .gallery-item,.gallery-1 img{width:100%}
+
+@media (min-width:760px){
+  main{
+    width:100%;
+    max-width:1440px;
+    padding-left:16px;
+    padding-right:16px;
+  }
+}
+
+@media (min-width:1100px){
+  main{
+    max-width:1600px;
+    padding-left:20px;
+    padding-right:20px;
+  }
+  #campaign-list{gap:32px}
+}
+
+/* On very wide displays keep the red frame visible without wasting the sides. */
+@media (min-width:1500px){
+  main{max-width:calc(100vw - 48px)}
+}
