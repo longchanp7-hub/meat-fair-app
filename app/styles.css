@@ -8,3 +8,19 @@
 .gallery-1 .gallery-item img{height:auto;max-height:560px;object-fit:contain}
 .gallery-3,.gallery-4{grid-template-rows:minmax(0,1fr) minmax(0,1fr)}
 @media(min-width:760px){.gallery{height:clamp(300px,40vw,460px)}.gallery-1{height:auto;min-height:0;max-height:none}.gallery-1 .gallery-item img{max-height:680px}}
+
+/* Stronger visual separation between chain/company cards. */
+:root{background:#ece8e3;--line:#d8d1c9}
+body{background:#ece8e3}
+main{padding-top:16px}
+#status-tabs{background:#ece8e3;padding:10px 0 12px}
+.grid{gap:10px}
+.brand{border-color:#d4ccc3;box-shadow:0 2px 7px #3f302515}
+#campaign-list{display:grid;gap:28px}
+.restaurant-card{margin:0;border:1px solid #cfc6bd;border-top:4px solid var(--accent);box-shadow:0 7px 22px #3a2b201a;background:#fff}
+.restaurant-head{background:#faf7f3;border-bottom:1px solid #ddd5cd;padding-top:14px}
+.restaurant-head h3{font-size:1.32rem}
+.restaurant-body{background:#fff}
+.brand-rank{background:#fff;border-color:#d8cfc7;color:#8b8178}
+#list-title{margin-top:30px;margin-bottom:13px}
+@media(min-width:760px){main{padding-top:20px}.grid{gap:12px}#campaign-list{gap:34px}.restaurant-card{box-shadow:0 8px 26px #3a2b201c}.restaurant-head{padding-top:16px}}
