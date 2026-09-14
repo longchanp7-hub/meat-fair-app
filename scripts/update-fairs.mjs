@@ -8,7 +8,10 @@ import {extractPage,discoverLinks,allowedDetail,datesFor,selectImage,dedupCampai
 
 const OUT=new URL('../app/data/fairs.json',import.meta.url);
 const AUDIT=new URL('../app/data/candidates.json',import.meta.url);
-const catalog=JSON.parse(await fs.readFile(new URL('./reviewed-campaigns.json',import.meta.url),'utf8'));
+const primaryCatalog=JSON.parse(await fs.readFile(new URL('./reviewed-campaigns.json',import.meta.url),'utf8'));
+let roanCatalog={reviews:[]};
+try{roanCatalog=JSON.parse(await fs.readFile(new URL('./reviewed-campaigns-roan.json',import.meta.url),'utf8'))}catch(e){if(e.code!=='ENOENT')throw e;}
+const catalog={...primaryCatalog,reviews:[...(primaryCatalog.reviews||[]),...(roanCatalog.reviews||[])]};
 const now=new Date(),stamp=now.toISOString(),today=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);
 const DAY=86400000;
 let current={schemaVersion:1,timezone:'Asia/Tokyo',statusRules:{newDays:7,endingSoonDays:7},campaigns:[]};
@@ -41,7 +44,9 @@ async function processBrand(brand){
     try{
       const result=await fetchPage(source.url,brand);roots.push(source.url);
       if(['campaign_detail','current_menu'].includes(source.type)){
-        const u=httpUrl(result.finalUrl,source.url);listed.set(u,true);queue.set(u,{url:u,title:source.campaignTitle||'',sourceUrl:source.url,type:source.type});
+        const u=httpUrl(result.finalUrl,source.url);
+        if(source.type==='current_menu')listed.set(u,true);
+        queue.set(u,{url:u,title:source.campaignTitle||'',sourceUrl:source.url,type:source.type});
       }
       for(const l of discoverLinks(brand,result.html,source.url)){
         listed.set(l.url,true);
