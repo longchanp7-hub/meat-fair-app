@@ -1,3 +1,5 @@
+// Supplemental official URLs are retained from the concurrent rollout.
+// Factual overrides live only in reviewed-campaigns.json with a content-hash guard.
 export const SOURCES = [
   { brandId:'yakiniku-king', name:'焼肉きんぐ', category:'yakiniku', priority:1, sources:[
     { type:'news_index', url:'https://www.yakiniku-king.jp/news/', primary:true },
@@ -29,42 +31,42 @@ export const SOURCES = [
   ]},
   { brandId:'roan', name:'露菴', category:'buffet', priority:8, sources:[
     { type:'brand_top', url:'https://www.good-promise.co.jp/roan/', primary:true },
-    { type:'campaign_detail', url:'https://www.good-promise.co.jp/roan/price02/', campaignTitle:'【極み大海鮮フェア】大ホタテ・大赤海老・しゃぶしゃぶ食べ放題', price:3980, priceText:'大人 税込3,980円', allYouCanEat:true, targetAreas:['toyokawa'], regionScope:'store_limited', primary:false }
+    { type:'reference_detail', url:'https://www.good-promise.co.jp/roan/price02/', primary:false }
   ]},
   { brandId:'kalubi-taisho', name:'カルビ大将', category:'yakiniku', priority:9, sources:[
     { type:'campaign_index', url:'https://www.kalubi-taisho.com/campaign/', primary:true },
-    { type:'campaign_detail', url:'https://www.kalubi-taisho.com/campaign/4605/', campaignTitle:'7/14(火）～メキシカンフェアスタート！', startDate:'2026-07-14', primary:false }
+    { type:'reference_detail', url:'https://www.kalubi-taisho.com/campaign/4605/', primary:false }
   ]},
   { brandId:'stamina-taro', name:'すたみな太郎', category:'buffet', priority:10, sources:[
     { type:'brand_top', url:'https://staminataro.jp/', primary:true },
     { type:'year_index', url:'https://staminataro.jp/2026/', primary:false },
-    { type:'campaign_detail', url:'https://staminataro.jp/2026/09/10/ninnikufair20260918/', campaignTitle:'9/18（金）～「すたみな太郎のザ・ニンニクフェア第2弾」', startDate:'2026-09-18', endDateText:'各店在庫なくなり次第終了', primary:false }
+    { type:'reference_detail', url:'https://staminataro.jp/2026/09/10/ninnikufair20260918/', primary:false }
   ]},
   { brandId:'asakuma', name:'ステーキのあさくま', category:'steak', priority:11, sources:[
     { type:'brand_top', url:'https://www.asakuma.co.jp/', primary:true },
-    { type:'campaign_detail', url:'https://www.asakuma.co.jp/fair_house-steak.html', campaignTitle:'【期間限定】あさくまハウスステーキ《サラダバー付》', startDate:'2026-04-03', primary:false }
+    { type:'reference_detail', url:'https://www.asakuma.co.jp/fair_house-steak.html', primary:false }
   ]},
   { brandId:'nikusho-sakai', name:'肉匠坂井', category:'yakiniku', priority:12, sources:[
     { type:'news_index', url:'https://www.yakiniku.jp/nikushou_sakai/news/', primary:true },
     { type:'brand_top', url:'https://www.yakiniku.jp/nikushou_sakai/', primary:false }
   ]},
   { brandId:'jukusei-ichiban', name:'熟成焼肉いちばん', category:'yakiniku', priority:13, sources:[
-    { type:'news_index', url:'https://www.jukusei-ichiban.jp/jp/news/2026.html', primary:true },
-    { type:'campaign_detail', url:'https://www.jukusei-ichiban.jp/jp/menu/cat5.html', campaignTitle:'「和の旨み味わう」秋の焼肉フェア', startDate:'2026-09-01', primary:false }
+    { type:'current_menu', url:'https://www.jukusei-ichiban.jp/jp/menu/cat5.html', primary:true },
+    { type:'news_index', url:'https://www.jukusei-ichiban.jp/jp/news/2026.html', primary:false }
   ]},
   { brandId:'anrakutei', name:'安楽亭', category:'yakiniku', priority:14, sources:[
     { type:'fair_index', url:'https://anrakutei.jp/fair/', primary:true },
-    { type:'campaign_detail', url:'https://anrakutei.jp/fair/290yenthanks/', campaignTitle:'9月まるっと「290円クーポン感謝祭」', startDate:'2026-09-01', endDate:'2026-09-30', primary:false }
+    { type:'reference_detail', url:'https://anrakutei.jp/fair/290yenthanks/', primary:false }
   ]},
   { brandId:'kushiya-monogatari', name:'串家物語', category:'buffet', priority:15, sources:[
-    { type:'news_index', url:'https://www.kushi-ya.com/news/', primary:true },
-    { type:'brand_top', url:'https://www.kushi-ya.com/', primary:false },
-    { type:'campaign_detail', url:'https://www.kushi-ya.com/news/2026/09/post-136.html', campaignTitle:'「串の日キャンペーン」', startDate:'2026-09-04', endDate:'2026-09-30', priceText:'ディナー限定 食べ放題＋ドリンクバー価格から20％引き', allYouCanEat:true, primary:false }
+    { type:'brand_top', url:'https://www.kushi-ya.com/', primary:true },
+    { type:'news_index', url:'https://www.kushi-ya.com/news/', primary:false },
+    { type:'reference_detail', url:'https://www.kushi-ya.com/news/2026/09/post-136.html', primary:false }
   ]}
 ];
 
 export const INCLUDE_KEYWORDS = [
-  'フェア','フェス','期間限定','食べ放題','限定','キャンペーン','新メニュー','コラボ','半額','OFF','割引','お値打ち','ナイト割','感謝祭','牛たん','牛タン','黒毛和牛','かに','カニ','蟹','海鮮','韓国','台湾','北海道','九州','デザート','飲み放題','価格改定','ニンニク','ポルチーニ','鴨しゃぶ'
+  'フェア','フェス','期間限定','食べ放題','限定','キャンペーン','新メニュー','コラボ','半額','OFF','割引','お値打ち','ナイト割','牛たん','牛タン','黒毛和牛','かに','カニ','蟹','海鮮','韓国','台湾','北海道','九州','デザート','飲み放題','価格改定','感謝祭','ニンニク','ポルチーニ','鴨しゃぶ'
 ];
 
 export const EXCLUDE_KEYWORDS = [

@@ -1,7 +1,13 @@
 name: Deploy Pages
 on:
-  push:
-    branches: [main]
+  workflow_call:
+    inputs:
+      ref:
+        type: string
+        required: true
+      verify_browser:
+        type: boolean
+        default: false
   workflow_dispatch:
 permissions:
   contents: read
@@ -9,38 +15,47 @@ permissions:
   id-token: write
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
         with:
-          enablement: true
+          ref: ${{ inputs.ref || 'main' }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm test && npm run quality-gate && npm run verify
+      - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: app
       - id: deployment
         uses: actions/deploy-pages@v4
-      - name: Verify public app
+      - name: Verify published files match the deployed commit
         env:
           PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: node scripts/verify-public.mjs
+      - name: Install browser test tools
+        if: inputs.verify_browser || github.event_name == 'workflow_dispatch'
         run: |
-          curl --fail --location --retry 10 --retry-delay 6 --retry-all-errors "${PAGE_URL}" -o /tmp/index.html
-          curl --fail --location --retry 10 --retry-delay 6 --retry-all-errors "${PAGE_URL}data/brands.json" -o /tmp/brands.json
-          curl --fail --location --retry 10 --retry-delay 6 --retry-all-errors "${PAGE_URL}data/fairs.json" -o /tmp/fairs.json
-          node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          const local=JSON.parse(fs.readFileSync('app/data/fairs.json','utf8'));
-          const fairs=JSON.parse(fs.readFileSync('/tmp/fairs.json','utf8'));
-          const brands=JSON.parse(fs.readFileSync('/tmp/brands.json','utf8'));
-          if(!Array.isArray(fairs.campaigns)) throw new Error('public campaigns is not an array');
-          if(!Array.isArray(brands.brands)||brands.brands.length!==15) throw new Error(`public brand count=${brands.brands?.length}`);
-          if(local.updatedAt!==fairs.updatedAt) throw new Error(`public data is stale: local=${local.updatedAt} public=${fairs.updatedAt}`);
-          for(const [i,c] of fairs.campaigns.entries()) for(const k of ['id','brandId','title','officialUrl']) if(!c?.[k]) throw new Error(`public campaign ${i} missing ${k}`);
-          console.log(`public verify ok: ${brands.brands.length} brands, ${fairs.campaigns.length} campaigns, updatedAt=${fairs.updatedAt}`);
-          NODE
+          npm install --prefix /tmp/meat-browser --no-save --package-lock=false playwright@1.55.1
+          /tmp/meat-browser/node_modules/.bin/playwright install --with-deps chromium
+      - name: Verify live mobile and desktop app
+        if: inputs.verify_browser || github.event_name == 'workflow_dispatch'
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+          PLAYWRIGHT_MODULE: /tmp/meat-browser/node_modules/playwright
+        run: node tests/browser-public.cjs
+      - uses: actions/upload-artifact@v4
+        if: always() && (inputs.verify_browser || github.event_name == 'workflow_dispatch')
+        with:
+          name: public-browser-report
+          path: browser-report
+          retention-days: 7

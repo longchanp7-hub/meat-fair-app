@@ -4,10 +4,14 @@ on:
   schedule:
     - cron: '0 0 * * *' # 09:00 JST
   push:
+    branches: [main]
     paths:
+      - 'app/**'
       - 'scripts/**'
+      - 'tests/**'
       - 'package.json'
       - '.github/workflows/update-fairs.yml'
+      - '.github/workflows/deploy-pages.yml'
 permissions:
   contents: write
   pages: write
@@ -19,75 +23,42 @@ jobs:
   update:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    outputs:
+      commit: ${{ steps.save.outputs.commit }}
     steps:
       - uses: actions/checkout@v4
         with:
           ref: main
           fetch-depth: 0
-      - name: Sync latest main
-        run: git pull --ff-only origin main
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - run: npm run quality-gate
-      - run: npm run update
-      - run: npm run verify
-      - name: Commit data changes
+      - name: Sync main and run regression checks
         run: |
-          if git diff --quiet; then exit 0; fi
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add app/data
-          git commit -m "chore: refresh fair data"
-          git pull --rebase origin main
-          git push origin HEAD:main
-
+          git pull --ff-only origin main
+          npm test
+          npm run quality-gate
+      - name: Refresh all fifteen official sources
+        run: npm run update
+      - name: Verify generated public data
+        run: npm run verify
+      - name: Commit refreshed data without overwriting concurrent edits
+        id: save
+        run: |
+          if ! git diff --quiet -- app/data; then
+            git config user.name github-actions[bot]
+            git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+            git add app/data
+            git commit -m "chore: refresh all fifteen official fair sources"
+            git pull --rebase origin main
+            npm test
+            npm run verify
+            git push origin HEAD:main
+          fi
+          echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
   deploy:
     needs: update
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    concurrency:
-      group: pages
-      cancel-in-progress: true
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: main
-      - uses: actions/configure-pages@v5
-        with:
-          enablement: true
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: app
-      - id: deployment
-        uses: actions/deploy-pages@v4
-      - name: Verify refreshed public app
-        env:
-          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
-        run: |
-          curl --fail --location --retry 10 --retry-delay 6 --retry-all-errors "${PAGE_URL}" -o /tmp/index.html
-          curl --fail --location --retry 10 --retry-delay 6 --retry-all-errors "${PAGE_URL}data/brands.json" -o /tmp/brands.json
-          for attempt in $(seq 1 12); do
-            curl --fail --location --retry 3 --retry-delay 3 --retry-all-errors "${PAGE_URL}data/fairs.json?verify=${GITHUB_RUN_ID}-${attempt}" -o /tmp/fairs.json
-            if node --input-type=module <<'NODE'
-          import fs from 'node:fs';
-          const local=JSON.parse(fs.readFileSync('app/data/fairs.json','utf8'));
-          const fairs=JSON.parse(fs.readFileSync('/tmp/fairs.json','utf8'));
-          const brands=JSON.parse(fs.readFileSync('/tmp/brands.json','utf8'));
-          if(!Array.isArray(fairs.campaigns)) throw new Error('public campaigns is not an array');
-          if(!Array.isArray(brands.brands)||brands.brands.length!==15) throw new Error(`public brand count=${brands.brands?.length}`);
-          if(local.updatedAt!==fairs.updatedAt) throw new Error(`public data is stale: local=${local.updatedAt} public=${fairs.updatedAt}`);
-          for(const [i,c] of fairs.campaigns.entries()) for(const k of ['id','brandId','title','officialUrl']) if(!c?.[k]) throw new Error(`public campaign ${i} missing ${k}`);
-          console.log(`public refresh verify ok: ${brands.brands.length} brands, ${fairs.campaigns.length} campaigns, updatedAt=${fairs.updatedAt}`);
-          NODE
-            then
-              exit 0
-            fi
-            echo "Pages propagation pending (${attempt}/12)"
-            sleep 6
-          done
-          echo "Pages did not expose the latest fairs.json in time"
-          exit 1
+    uses: ./.github/workflows/deploy-pages.yml
+    with:
+      ref: ${{ needs.update.outputs.commit }}
+      verify_browser: true
