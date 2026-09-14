@@ -1,6 +1,6 @@
 {
   "schemaVersion": 12,
-  "updatedAt": "2026-09-14T13:29:26.403Z",
+  "updatedAt": "2026-09-14T13:34:26.084Z",
   "campaigns": [
     {
       "id": "cb22f0559595bcaf",
@@ -34,8 +34,8 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:18:30.561Z",
-      "fetchedAt": "2026-09-14T13:29:26.403Z",
-      "lastVerifiedAt": "2026-09-14T13:29:26.403Z",
+      "fetchedAt": "2026-09-14T13:34:26.084Z",
+      "lastVerifiedAt": "2026-09-14T13:34:26.084Z",
       "confidence": 0.9,
       "contentHash": "a6535357e0a494d804c1be5d4776510257750cd1cea1d5fca9c6e24dbc96744e",
       "secondarySources": []
@@ -75,8 +75,8 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:18:30.561Z",
-      "fetchedAt": "2026-09-14T13:29:26.403Z",
-      "lastVerifiedAt": "2026-09-14T13:29:26.403Z",
+      "fetchedAt": "2026-09-14T13:34:26.084Z",
+      "lastVerifiedAt": "2026-09-14T13:34:26.084Z",
       "confidence": 0.9,
       "contentHash": "5c963f614cefcc05e220b100614767ee552f0f61bc4c901cf1a9f63792c1ade0",
       "secondarySources": [
@@ -131,8 +131,8 @@
       "lifecycleStatus": "ended_official",
       "staleAfterDays": null,
       "firstSeenAt": "2026-09-14T08:19:13.075Z",
-      "fetchedAt": "2026-09-14T13:29:26.403Z",
-      "lastVerifiedAt": "2026-09-14T13:29:26.403Z",
+      "fetchedAt": "2026-09-14T13:34:26.084Z",
+      "lastVerifiedAt": "2026-09-14T13:34:26.084Z",
       "confidence": 0.9,
       "contentHash": "d4fc49248a31f476a2112aab45f87610be62b89516df6792dfd43a78c310809a",
       "secondarySources": []
@@ -169,8 +169,8 @@
       "lifecycleStatus": "ended_official",
       "staleAfterDays": null,
       "firstSeenAt": "2026-09-14T08:19:13.075Z",
-      "fetchedAt": "2026-09-14T13:29:26.403Z",
-      "lastVerifiedAt": "2026-09-14T13:29:26.403Z",
+      "fetchedAt": "2026-09-14T13:34:26.084Z",
+      "lastVerifiedAt": "2026-09-14T13:34:26.084Z",
       "confidence": 0.9,
       "contentHash": "ba9c094c70149c62b14231da3333121b3833feb9b194337e2be82705d07bbfbf",
       "secondarySources": []
@@ -211,8 +211,8 @@
       "lifecycleStatus": "ended_official",
       "staleAfterDays": null,
       "firstSeenAt": "2026-09-14T08:19:13.075Z",
-      "fetchedAt": "2026-09-14T13:29:26.403Z",
-      "lastVerifiedAt": "2026-09-14T13:29:26.403Z",
+      "fetchedAt": "2026-09-14T13:34:26.084Z",
+      "lastVerifiedAt": "2026-09-14T13:34:26.084Z",
       "confidence": 0.9,
       "contentHash": "7c7f010414c39144e387953eb53e7121702b1dc231a255542cf224a5426778d7",
       "secondarySources": []
@@ -251,8 +251,8 @@
       "lifecycleStatus": "ended_official",
       "staleAfterDays": null,
       "firstSeenAt": "2026-09-14T08:19:13.075Z",
-      "fetchedAt": "2026-09-14T13:29:26.403Z",
-      "lastVerifiedAt": "2026-09-14T13:29:26.403Z",
+      "fetchedAt": "2026-09-14T13:34:26.084Z",
+      "lastVerifiedAt": "2026-09-14T13:34:26.084Z",
       "confidence": 0.9,
       "contentHash": "d5ffefd4396375f12fa6560f7a036ac1c095bfdea2b04a41ecf5328762dae9d9",
       "secondarySources": []
@@ -290,8 +290,8 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:33:12.796Z",
-      "fetchedAt": "2026-09-14T13:29:26.403Z",
-      "lastVerifiedAt": "2026-09-14T13:29:26.403Z",
+      "fetchedAt": "2026-09-14T13:34:26.084Z",
+      "lastVerifiedAt": "2026-09-14T13:34:26.084Z",
       "confidence": 0.9,
       "contentHash": "1c758518c46de6da3c7459b17bed58622e6488ac1297731349ec850937e33436",
       "secondarySources": []
@@ -332,8 +332,8 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:10:00.000Z",
-      "fetchedAt": "2026-09-14T13:29:26.403Z",
-      "lastVerifiedAt": "2026-09-14T13:29:26.403Z",
+      "fetchedAt": "2026-09-14T13:34:26.084Z",
+      "lastVerifiedAt": "2026-09-14T13:34:26.084Z",
       "confidence": 0.9,
       "contentHash": "a689ec758cbbfc8a898c92c5fcc083c5ae09f376441e2619792d4831d5cdca50",
       "secondarySources": []
@@ -369,8 +369,8 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 30,
       "firstSeenAt": "2026-09-14T08:15:09.064Z",
-      "fetchedAt": "2026-09-14T13:29:26.403Z",
-      "lastVerifiedAt": "2026-09-14T13:29:26.403Z",
+      "fetchedAt": "2026-09-14T13:34:26.084Z",
+      "lastVerifiedAt": "2026-09-14T13:34:26.084Z",
       "confidence": 0.9,
       "contentHash": "efaa05d281dffa28a6e5df1454e2266b8fda35a9428d153483bbde213db55e90",
       "secondarySources": []
@@ -413,8 +413,8 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:15:09.064Z",
-      "fetchedAt": "2026-09-14T13:29:26.403Z",
-      "lastVerifiedAt": "2026-09-14T13:29:26.403Z",
+      "fetchedAt": "2026-09-14T13:34:26.084Z",
+      "lastVerifiedAt": "2026-09-14T13:34:26.084Z",
       "confidence": 0.9,
       "contentHash": "ef16855faf19369dc39620fb1b88214086c59b725ff7433f06ffd0b8d5007595",
       "secondarySources": []
@@ -450,8 +450,8 @@
       "lifecycleStatus": "stale_unverified",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:15:09.064Z",
-      "fetchedAt": "2026-09-14T13:29:26.403Z",
-      "lastVerifiedAt": "2026-09-14T13:29:26.403Z",
+      "fetchedAt": "2026-09-14T13:34:26.084Z",
+      "lastVerifiedAt": "2026-09-14T13:34:26.084Z",
       "confidence": 0.9,
       "contentHash": "35351b12e8dc4c74477392990abbee78f723f3930300385529b4c3077fa3fe8e",
       "secondarySources": []
@@ -484,9 +484,9 @@
       "imageUrl": "https://amiyakitei.jp/atsugirifes_no_coupon/img/amiyakitei_atsugiri_LP_0firstview_260903.png",
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
-      "firstSeenAt": "2026-09-14T13:29:26.403Z",
-      "fetchedAt": "2026-09-14T13:29:26.403Z",
-      "lastVerifiedAt": "2026-09-14T13:29:26.403Z",
+      "firstSeenAt": "2026-09-14T13:34:26.084Z",
+      "fetchedAt": "2026-09-14T13:34:26.084Z",
+      "lastVerifiedAt": "2026-09-14T13:34:26.084Z",
       "confidence": 0.9,
       "contentHash": "e3bf316679566e6e9a2230fcc79f7ef582462d6a754864d804db04d964f6080b",
       "secondarySources": []
@@ -499,8 +499,8 @@
       "officialUrl": "https://amiyakitei.jp/topics/12878/",
       "sourceUrl": "https://amiyakitei.jp/topics/",
       "sourceType": "topics_index",
-      "campaignType": "discount",
-      "priority": "P2",
+      "campaignType": "all_you_can_eat",
+      "priority": "P1",
       "startDate": "2025-11-01",
       "startDateText": null,
       "endDate": "2026-01-18",
@@ -521,9 +521,9 @@
       "imageUrl": null,
       "lifecycleStatus": "ended_by_date",
       "staleAfterDays": null,
-      "firstSeenAt": "2026-09-14T13:29:26.403Z",
-      "fetchedAt": "2026-09-14T13:29:26.403Z",
-      "lastVerifiedAt": "2026-09-14T13:29:26.403Z",
+      "firstSeenAt": "2026-09-14T13:34:26.084Z",
+      "fetchedAt": "2026-09-14T13:34:26.084Z",
+      "lastVerifiedAt": "2026-09-14T13:34:26.084Z",
       "confidence": 0.9,
       "contentHash": "9ab7e025a8b5350db50c9a309aad86d377c38562174380f4a4cf7773f623d389",
       "secondarySources": [
@@ -533,7 +533,7 @@
           "title": "【公式】 ブランドサイト｜焼肉食べ放題"
         },
         {
-          "url": "https://amiyakitei.jp/topics/category/news/",
+          "url": "https://amiyakitei.jp/topics/12912/",
           "type": "topics_index",
           "title": "【公式】 ブランドサイト｜焼肉食べ放題"
         },
@@ -548,32 +548,12 @@
           "title": "【公式】 ブランドサイト｜焼肉食べ放題"
         },
         {
-          "url": "https://amiyakitei.jp/topics/12912/",
-          "type": "topics_index",
-          "title": "【公式】 ブランドサイト｜焼肉食べ放題"
-        },
-        {
           "url": "https://amiyakitei.jp/topics/12910/",
           "type": "topics_index",
           "title": "【公式】 ブランドサイト｜焼肉食べ放題"
         },
         {
           "url": "https://amiyakitei.jp/topics/13000/",
-          "type": "topics_index",
-          "title": "【公式】 ブランドサイト｜焼肉食べ放題"
-        },
-        {
-          "url": "https://amiyakitei.jp/topics/date/2025/12/",
-          "type": "topics_index",
-          "title": "【公式】 ブランドサイト｜焼肉食べ放題"
-        },
-        {
-          "url": "https://amiyakitei.jp/topics/date/2025/11/",
-          "type": "topics_index",
-          "title": "【公式】 ブランドサイト｜焼肉食べ放題"
-        },
-        {
-          "url": "https://amiyakitei.jp/topics/date/2025/09/",
           "type": "topics_index",
           "title": "【公式】 ブランドサイト｜焼肉食べ放題"
         }
@@ -587,8 +567,8 @@
       "officialUrl": "https://www.yakiniku.jp/nikushou_sakai/news/taiwan_gourmet/",
       "sourceUrl": "https://www.yakiniku.jp/nikushou_sakai/",
       "sourceType": "brand_top",
-      "campaignType": "discount",
-      "priority": "P2",
+      "campaignType": "fair",
+      "priority": "P1",
       "startDate": null,
       "startDateText": null,
       "endDate": null,
@@ -609,9 +589,9 @@
       "imageUrl": "https://www.yakiniku.jp/nikushou_sakai/wp-content/uploads/2026/08/%E5%8F%B0%E6%B9%BE%E3%82%B0%E3%83%AB%E3%83%A1%E3%83%95%E3%82%A7%E3%82%A22026.jpg",
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
-      "firstSeenAt": "2026-09-14T13:29:26.403Z",
-      "fetchedAt": "2026-09-14T13:29:26.403Z",
-      "lastVerifiedAt": "2026-09-14T13:29:26.403Z",
+      "firstSeenAt": "2026-09-14T13:34:26.084Z",
+      "fetchedAt": "2026-09-14T13:34:26.084Z",
+      "lastVerifiedAt": "2026-09-14T13:34:26.084Z",
       "confidence": 0.9,
       "contentHash": "bb590e938d4ec6b0da83118f349fe11457770ecef4f5b803acf2ea1c38a54646",
       "secondarySources": []
@@ -643,12 +623,12 @@
       ],
       "weekdayCondition": null,
       "conditions": [],
-      "imageUrl": "https://www.yakiniku.jp/nikushou_sakai/wp-content/uploads/2018/08/interview06_05-592x410.jpg",
+      "imageUrl": "https://www.yakiniku.jp/nikushou_sakai/wp-content/uploads/2019/05/2018-11-20_01-02-20_505603-592x410.jpg",
       "lifecycleStatus": "ended_by_date",
       "staleAfterDays": null,
-      "firstSeenAt": "2026-09-14T13:29:26.403Z",
-      "fetchedAt": "2026-09-14T13:29:26.403Z",
-      "lastVerifiedAt": "2026-09-14T13:29:26.403Z",
+      "firstSeenAt": "2026-09-14T13:34:26.084Z",
+      "fetchedAt": "2026-09-14T13:34:26.084Z",
+      "lastVerifiedAt": "2026-09-14T13:34:26.084Z",
       "confidence": 0.9,
       "contentHash": "8363cbf38f16c58215bbd81e69713a242a63cfabff7f13d80bcbb57da25d0192",
       "secondarySources": []
@@ -661,8 +641,8 @@
       "officialUrl": "https://www.yakiniku.jp/nikushou_sakai/news/nagoya_cuisine2026/",
       "sourceUrl": "https://www.yakiniku.jp/nikushou_sakai/news/",
       "sourceType": "news_index",
-      "campaignType": "discount",
-      "priority": "P2",
+      "campaignType": "fair",
+      "priority": "P1",
       "startDate": null,
       "startDateText": null,
       "endDate": null,
@@ -684,9 +664,9 @@
       "imageUrl": "https://www.yakiniku.jp/nikushou_sakai/wp-content/uploads/2026/06/%E5%90%8D%E5%8F%A4%E5%B1%8B%E3%82%81%E3%81%97%E3%83%95%E3%82%A7%E3%82%A2.jpg",
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
-      "firstSeenAt": "2026-09-14T13:29:26.403Z",
-      "fetchedAt": "2026-09-14T13:29:26.403Z",
-      "lastVerifiedAt": "2026-09-14T13:29:26.403Z",
+      "firstSeenAt": "2026-09-14T13:34:26.084Z",
+      "fetchedAt": "2026-09-14T13:34:26.084Z",
+      "lastVerifiedAt": "2026-09-14T13:34:26.084Z",
       "confidence": 0.9,
       "contentHash": "07918890640c811aa96c44354fcbf4836841ab289c530255084229423719ae32",
       "secondarySources": []
@@ -699,8 +679,8 @@
       "officialUrl": "https://www.yakiniku.jp/nikushou_sakai/news/european_fair/",
       "sourceUrl": "https://www.yakiniku.jp/nikushou_sakai/news/",
       "sourceType": "news_index",
-      "campaignType": "discount",
-      "priority": "P2",
+      "campaignType": "fair",
+      "priority": "P1",
       "startDate": null,
       "startDateText": null,
       "endDate": null,
@@ -721,26 +701,15 @@
       "imageUrl": "https://www.yakiniku.jp/nikushou_sakai/wp-content/uploads/2026/02/%E3%83%89%E3%83%A9%E3%82%B4%E3%83%B3%E3%82%AB%E3%83%AB%E3%83%93_%E3%81%BE%E3%81%BB%E3%82%B9%E3%83%91_%E5%8D%81%E5%8B%9D%E3%83%81%E3%82%A7%E3%83%80%E3%83%BC%E3%83%81%E3%83%BC%E3%82%BA.jpg",
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
-      "firstSeenAt": "2026-09-14T13:29:26.403Z",
-      "fetchedAt": "2026-09-14T13:29:26.403Z",
-      "lastVerifiedAt": "2026-09-14T13:29:26.403Z",
+      "firstSeenAt": "2026-09-14T13:34:26.084Z",
+      "fetchedAt": "2026-09-14T13:34:26.084Z",
+      "lastVerifiedAt": "2026-09-14T13:34:26.084Z",
       "confidence": 0.9,
       "contentHash": "e9f1983274f97b660ccacfc988e1b44da8203cbe674db7286bc0916ada2db73f",
       "secondarySources": []
     }
   ],
-  "errors": [
-    {
-      "brandId": "amiyakitei",
-      "url": "https://amiyakitei.jp/topics/tag/",
-      "error": "HTTP 404"
-    },
-    {
-      "brandId": "nikusho-sakai",
-      "url": "https://www.yakiniku.jp/nikushou_sakai/news/page/",
-      "error": "HTTP 404"
-    }
-  ],
+  "errors": [],
   "sourceHealth": [
     {
       "brandId": "yakiniku-king",
