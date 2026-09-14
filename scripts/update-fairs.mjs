@@ -6,7 +6,7 @@ import { linksFromHtml,rawDetailUrls,relevantTitle,allowedPath,campaignId,textFr
 
 const OUT=new URL('../app/data/fairs.json',import.meta.url);
 const CANDIDATE=new URL('../app/data/candidates.json',import.meta.url);
-async function fetchText(url){const r=await fetch(url,{headers:{'user-agent':'meat-fair-app/0.2 (+github-actions)'}});if(!r.ok)throw new Error(`HTTP ${r.status}`);return await r.text()}
+async function fetchText(url){const r=await fetch(url,{headers:{'user-agent':'meat-fair-app/0.2 (+github-actions)'},signal:AbortSignal.timeout(12000)});if(!r.ok)throw new Error(`HTTP ${r.status}`);return await r.text()}
 
 const nowIso=new Date().toISOString();const now=new Date();
 let current={schemaVersion:1,updatedAt:null,timezone:'Asia/Tokyo',statusRules:{newDays:7,endingSoonDays:7},campaigns:[]};
@@ -19,7 +19,7 @@ for(const brand of SOURCES.slice(0,4)){
     try{
       const indexHtml=await fetchText(source.url);sourceOk.add(brand.brandId);
       const map=new Map();const discovered=[...linksFromHtml(indexHtml,source.url),...rawDetailUrls(brand.brandId,indexHtml,source.url)];for(const l of discovered){if(allowedPath(brand.brandId,l.url)&&!map.has(l.url))map.set(l.url,l)}
-      for(const link of [...map.values()].slice(0,40)){
+      for(const link of [...map.values()].slice(0,24)){
         try{
           const html=await fetchText(link.url);const text=textFromHtml(html);const detailTitle=titleFromHtml(html)||link.title;if(!relevantTitle(detailTitle))continue;
           const d=dateFields(text);const x=deriveFields(detailTitle,text);const publishedDate=firstDate(text);const life=lifecycleFields({text,startDate:d.startDate,endDate:d.endDate,publishedDate,campaignType:x.campaignType,now});const officialUrl=canonicalUrl(link.url);const old=previous.get(`${brand.brandId}|${officialUrl}`);
