@@ -21,7 +21,7 @@ export function rawRolloutUrls(brandId,html,base){
     'washoku-sato':[/\/news\/20\d{2}\/\d{2}\/\d+\.html/g],
     'amiyakitei':[/\/atsugirifes(?:_no_coupon)?\//g,/\/topics\/\d+\//g],
     'onyasai':[/\/lp\/20\d{4}_[A-Za-z0-9_\-]+\//g],
-    'nikusho-sakai':[/\/nikushou_sakai\/news\/[A-Za-z0-9_\-]+\//g]
+    'nikusho-sakai':[/\/nikushou_sakai\/news\/(?!feed\/|page\/)[A-Za-z0-9_\-]+\//g]
   }[brandId]||[];
   const out=[];
   for(const re of patterns){for(const m of html.matchAll(re)){const url=canonicalUrl(absolute(base,m[0]));if(url)out.push({title:'',url})}}
@@ -33,7 +33,7 @@ export function allowedRolloutPath(brandId,url){
   if(brandId==='washoku-sato')return u.hostname==='sato-res.com'&&/^\/news\/20\d{2}\/\d{2}\/\d+\.html$/.test(p);
   if(brandId==='amiyakitei')return u.hostname==='amiyakitei.jp'&&(/^\/atsugirifes(?:_no_coupon)?\/$/.test(p)||/^\/topics\/\d+\/$/.test(p));
   if(brandId==='onyasai')return u.hostname==='www.onyasai.com'&&/^\/lp\/20\d{4}_[A-Za-z0-9_\-]+\/$/.test(p);
-  if(brandId==='nikusho-sakai')return u.hostname==='www.yakiniku.jp'&&/^\/nikushou_sakai\/news\/[A-Za-z0-9_\-]+\/$/.test(p)&&!p.endsWith('/page/');
+  if(brandId==='nikusho-sakai')return u.hostname==='www.yakiniku.jp'&&/^\/nikushou_sakai\/news\/[A-Za-z0-9_\-]+\/$/.test(p)&&!p.endsWith('/page/')&&!p.endsWith('/feed/');
   return false;
 }
 
