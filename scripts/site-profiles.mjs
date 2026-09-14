@@ -87,7 +87,18 @@ export function selectImage(page,url,title){
 }
 export function discoverLinks(brand,html,url){
   const doc=parseHtml(html);
-  return links(doc,url).filter(x=>allowedDetail(brand,x.url)).map(x=>({url:x.url,title:x.title,sourceUrl:url}));
+  const found=links(doc,url).filter(x=>allowedDetail(brand,x.url)).map(x=>({url:x.url,title:x.title,sourceUrl:url}));
+  // Ameba's entry-list HTML can expose article URLs outside the simplified anchor tree.
+  // Recover those first-party article URLs directly without widening other brand scopes.
+  if(brand.brandId==='roan'){
+    const seen=new Set(found.map(x=>x.url));
+    for(const m of html.matchAll(/(?:https?:\/\/ameblo\.jp)?\/0141roan\/entry-\d+\.html(?:\?[^"'<> ]*)?/g)){
+      const raw=httpUrl(m[0],url);if(!raw)continue;
+      const u=new URL(raw);u.search='';u.hash='';const clean=u.href;
+      if(!seen.has(clean)&&allowedDetail(brand,clean)){seen.add(clean);found.push({url:clean,title:'',sourceUrl:url});}
+    }
+  }
+  return found;
 }
 function topicKey(c){
   return c.title.normalize('NFKC')
