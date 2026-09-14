@@ -31,6 +31,8 @@ export const SOURCES = [
   ]},
   { brandId:'roan', name:'露菴', category:'buffet', priority:8, sources:[
     { type:'official_blog', url:'https://ameblo.jp/0141roan/entrylist.html', primary:true },
+    { type:'campaign_detail', url:'https://ameblo.jp/0141roan/entry-12970963402.html', campaignTitle:'麻辣湯食べ放題 全時間帯で提供中！', primary:false },
+    { type:'campaign_detail', url:'https://ameblo.jp/0141roan/entry-12953365343.html', campaignTitle:'大赤海老も！大ホタテも食べ放題！第2弾！極み大海鮮フェア開催！！', primary:false },
     { type:'brand_top', url:'https://www.good-promise.co.jp/roan/', primary:false },
     { type:'reference_detail', url:'https://www.good-promise.co.jp/roan/price02/', primary:false }
   ]},
