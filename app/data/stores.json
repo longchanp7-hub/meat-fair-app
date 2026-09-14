@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-09-14T08:30:00.000Z",
+  "areas": ["toyohashi","toyokawa","gamagori","okazaki","hamamatsu"],
+  "stores": [
+    {"id":"king-akebono","brandId":"yakiniku-king","name":"焼肉きんぐ 曙店","area":"toyohashi","city":"豊橋","officialUrl":"https://www.yakiniku-king.jp/shop/2174","campaignOverrides":[{"match":"ハワイ","available":false,"note":"店舗公式ページでハワイフェア非販売"},{"match":"韓国市場","available":true,"note":"店舗公式ページで韓国市場フェア販売を明記"}]},
+    {"id":"king-toyokawa","brandId":"yakiniku-king","name":"焼肉きんぐ 豊川店","area":"toyokawa","city":"豊川","officialUrl":"https://www.yakiniku-king.jp/shop/2286/","campaignOverrides":[]},
+    {"id":"king-okazaki-kamoda","brandId":"yakiniku-king","name":"焼肉きんぐ 鴨田店","area":"okazaki","city":"岡崎","officialUrl":"https://www.yakiniku-king.jp/shop/2002","campaignOverrides":[]},
+    {"id":"king-hamamatsu-kamijima","brandId":"yakiniku-king","name":"焼肉きんぐ 上島店","area":"hamamatsu","city":"浜松","officialUrl":"https://www.yakiniku-king.jp/shop/1004/","campaignOverrides":[]},
+    {"id":"king-hamamatsu-shitoro","brandId":"yakiniku-king","name":"焼肉きんぐ 志都呂店","area":"hamamatsu","city":"浜松","officialUrl":"https://www.yakiniku-king.jp/shop/2281/","campaignOverrides":[]},
+    {"id":"king-hamamatsu-hamakita","brandId":"yakiniku-king","name":"焼肉きんぐ 浜北店","area":"hamamatsu","city":"浜松","officialUrl":"https://www.yakiniku-king.jp/shop/2349","campaignOverrides":[]},
+
+    {"id":"gyukaku-toyohashi-oiwa","brandId":"gyukaku","name":"牛角 豊橋大岩店","area":"toyohashi","city":"豊橋","officialUrl":"https://map.reins.co.jp/gyukaku/detail/532412929","campaignOverrides":[]},
+    {"id":"gyukaku-okazaki-hane","brandId":"gyukaku","name":"牛角 岡崎羽根店","area":"okazaki","city":"岡崎","officialUrl":"https://map.reins.co.jp/gyukaku/detail/564595529","campaignOverrides":[]},
+    {"id":"gyukaku-hamamatsu-mall","brandId":"gyukaku","name":"牛角 浜松モール街店","area":"hamamatsu","city":"浜松","officialUrl":"https://map.reins.co.jp/gyukaku/detail/534592911","campaignOverrides":[]},
+    {"id":"gyukaku-hamamatsu-hatsuoi","brandId":"gyukaku","name":"牛角 初生店","area":"hamamatsu","city":"浜松","officialUrl":"https://map.reins.co.jp/gyukaku/detail/534148929","campaignOverrides":[]},
+    {"id":"gyukaku-hamamatsu-aritama","brandId":"gyukaku","name":"牛角 浜松有玉店","area":"hamamatsu","city":"浜松","officialUrl":"https://map.reins.co.jp/gyukaku/detail/535453629","campaignOverrides":[]},
+    {"id":"gyukaku-hamamatsu-irino","brandId":"gyukaku","name":"牛角 入野店","area":"hamamatsu","city":"浜松","officialUrl":"https://map.reins.co.jp/gyukaku/detail/534452929","campaignOverrides":[]},
+    {"id":"gyukaku-hamamatsu-mukojuku","brandId":"gyukaku","name":"牛角 向宿店","area":"hamamatsu","city":"浜松","officialUrl":"https://map.reins.co.jp/gyukaku/detail/534019299","campaignOverrides":[]},
+    {"id":"gyukaku-hamamatsu-ichino","brandId":"gyukaku","name":"牛角 市野店","area":"hamamatsu","city":"浜松","officialUrl":"https://map.reins.co.jp/gyukaku/detail/534114129","campaignOverrides":[]},
+
+    {"id":"syabuyo-toyohashi-hanada","brandId":"syabuyo","name":"しゃぶ葉 豊橋花田店","area":"toyohashi","city":"豊橋","officialUrl":"https://store-info.skylark.co.jp/syabuyo/map/198412/","campaignOverrides":[]},
+    {"id":"syabuyo-okazaki","brandId":"syabuyo","name":"しゃぶ葉 岡崎店","area":"okazaki","city":"岡崎","officialUrl":"https://store-info.skylark.co.jp/syabuyo/map/198146/","campaignOverrides":[]},
+    {"id":"syabuyo-hamamatsu-irino","brandId":"syabuyo","name":"しゃぶ葉 浜松入野店","area":"hamamatsu","city":"浜松","officialUrl":"https://store-info.skylark.co.jp/syabuyo/map/198388/","campaignOverrides":[]},
+    {"id":"syabuyo-hamamatsu-wada","brandId":"syabuyo","name":"しゃぶ葉 浜松和田店","area":"hamamatsu","city":"浜松","officialUrl":"https://store-info.skylark.co.jp/skylark/map/199906/","campaignOverrides":[]},
+
+    {"id":"yuzuan-toyohashi-shinsakae","brandId":"yuzuan","name":"ゆず庵 豊橋新栄店","area":"toyohashi","city":"豊橋","officialUrl":"https://www.shabu-yuzuan.jp/shop/4205/","campaignOverrides":[]},
+    {"id":"yuzuan-okazaki","brandId":"yuzuan","name":"ゆず庵 岡崎店","area":"okazaki","city":"岡崎","officialUrl":"https://www.shabu-yuzuan.jp/shop/4153/","campaignOverrides":[]},
+    {"id":"yuzuan-hamamatsu-kamijima","brandId":"yuzuan","name":"ゆず庵 浜松上島店","area":"hamamatsu","city":"浜松","officialUrl":"https://www.shabu-yuzuan.jp/shop/4170/","campaignOverrides":[]},
+    {"id":"yuzuan-hamamatsu-irino","brandId":"yuzuan","name":"ゆず庵 浜松入野店","area":"hamamatsu","city":"浜松","officialUrl":"https://www.shabu-yuzuan.jp/shop/4107/","campaignOverrides":[]}
+  ]
+}
