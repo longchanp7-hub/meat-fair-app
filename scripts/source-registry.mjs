@@ -4,7 +4,8 @@ export const SOURCES = [
     { type:'seasonal_index', url:'https://www.yakiniku-king.jp/menu_all/season', primary:true }
   ]},
   { brandId:'gyukaku', name:'牛角', category:'yakiniku', priority:2, sources:[
-    { type:'news_index', url:'https://www.gyukaku.ne.jp/news/', primary:true }
+    { type:'brand_top', url:'https://www.gyukaku.ne.jp/', primary:true },
+    { type:'news_index', url:'https://www.gyukaku.ne.jp/news/', primary:false }
   ]},
   { brandId:'syabuyo', name:'しゃぶ葉', category:'shabu', priority:3, sources:[
     { type:'brand_top', url:'https://www.skylark.co.jp/syabuyo/', primary:true }
