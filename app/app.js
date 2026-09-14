@@ -11,7 +11,8 @@ const CAT_LABEL={yakiniku:'焼肉',shabu:'しゃぶしゃぶ',buffet:'ビュッ�
 let tab='active',brandFilter=null;
 
 function esc(v=''){return String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function status(c){if(['ended_official','ended_by_date','stale_unverified'].includes(c.lifecycleStatus))return'ended';const now=new Date(),today=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Tokyo'}));today.setHours(0,0,0,0);const s=c.startDate?new Date(c.startDate+'T00:00:00+09:00'):null,e=c.endDate?new Date(c.endDate+'T23:59:59+09:00'):null;if(s&&s>today)return'upcoming';if(e&&e<today)return'ended';return'active'}
+function todayJst(){const parts=new Intl.DateTimeFormat('en',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());const get=t=>parts.find(x=>x.type===t)?.value;return`${get('year')}-${get('month')}-${get('day')}`}
+function status(c){if(['ended_official','ended_by_date','stale_unverified'].includes(c.lifecycleStatus))return'ended';const today=todayJst();if(c.startDate&&c.startDate>today)return'upcoming';if(c.endDate&&c.endDate<today)return'ended';return'active'}
 function isNew(c){const f=c.firstSeenAt?new Date(c.firstSeenAt):null;if(!f)return false;const age=(Date.now()-f)/DAY;return age>=0&&age<=7}
 function ending(c){if(status(c)!=='active'||!c.endDate)return false;const e=new Date(c.endDate+'T23:59:59+09:00');const left=(e-Date.now())/DAY;return left>=0&&left<=7}
 function matchesTab(c){if(tab==='new')return isNew(c)&&status(c)!=='ended';if(tab==='ending')return ending(c);return status(c)===tab}
