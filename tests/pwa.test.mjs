@@ -8,6 +8,10 @@ test('PWA identity, launch URL and scope stay inside the meat app', async () => 
   const manifest = JSON.parse(await fs.readFile(new URL('../app/manifest.webmanifest', import.meta.url)));
   for (const field of ['id', 'start_url', 'scope']) assert.equal(new URL(manifest[field], base).href, base);
   assert.equal(manifest.display, 'standalone');
+  assert.equal(manifest.theme_color, '#e53935');
+  assert.equal(manifest.background_color, manifest.theme_color);
+  const index = await fs.readFile(new URL('../app/index.html', import.meta.url), 'utf8');
+  assert.match(index, new RegExp(`<meta name="theme-color" content="${manifest.theme_color}">`));
   for (const icon of manifest.icons) {
     const data = await fs.readFile(new URL('../app/' + icon.src, import.meta.url));
     assert.equal(data.readUInt32BE(16), Number(icon.sizes.split('x')[0]));
