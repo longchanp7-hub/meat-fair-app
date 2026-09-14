@@ -9,7 +9,7 @@ const read=async name=>JSON.parse(await fs.readFile(new URL(name,root),'utf8'));
 const fairs=await read('fairs.json'),brands=(await read('brands.json')).brands;
 let previous={assets:[]};try{previous=await read('gallery.json');}catch(e){if(e.code!=='ENOENT')throw e;}
 const cache=new Map(),probes=new Map(),errors=[];
-async function request(url,limit){
+async function request(url,limit,headerOnly=false){
   if(!publicUrl(url))throw Error('Unsafe asset/source URL');
   const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),12000);
   try{
@@ -21,7 +21,7 @@ async function request(url,limit){
     }
     if(!r.ok)throw Error(`HTTP ${r.status}`);
     const reader=r.body.getReader(),chunks=[];let size=0;
-    try{while(size<limit){const {done,value}=await reader.read();if(done)break;const take=value.subarray(0,limit-size);chunks.push(take);size+=take.length;}}finally{await reader.cancel();}
+    try{while(size<limit){const {done,value}=await reader.read();if(done)break;const take=value.subarray(0,limit-size);chunks.push(take);size+=take.length;if(headerOnly&&dimensions(Buffer.concat(chunks)))break;}}finally{await reader.cancel();}
     return{bytes:Buffer.concat(chunks),finalUrl:current};
   }finally{clearTimeout(timeout);}
 }
@@ -32,7 +32,9 @@ async function page(url){
   }));return cache.get(url);
 }
 async function probe(url){
-  if(!probes.has(url))probes.set(url,request(url,512_000).then(({bytes})=>{
+  // Stop as soon as dimensions are known. A bounded larger budget handles JPEGs
+  // with large ICC profiles without downloading every complete image.
+  if(!probes.has(url))probes.set(url,request(url,8_000_000,true).then(({bytes})=>{
     const d=dimensions(bytes);if(!d)throw Error('Unsupported image signature: '+bytes.subarray(0,16).toString('hex'));if(d.width<100||d.height<65||d.width/d.height>8||d.height/d.width>5)throw Error('Non-card image or unsupported dimensions');return d;
   }));return probes.get(url);
 }
