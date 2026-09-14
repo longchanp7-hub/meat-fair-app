@@ -9,6 +9,8 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
   const {campaignStatus}=await import(pathToFileURL(path.resolve('app/status.mjs')));
   const fairs=JSON.parse(await fs.readFile('app/data/fairs.json','utf8'));
   const brandIds=JSON.parse(await fs.readFile('app/data/brands.json','utf8')).brands.map(b=>b.id);
+  const stores=JSON.parse(await fs.readFile('app/data/stores.json','utf8'));
+  assert.equal(new Set(stores.stores.map(s=>s.brandId)).size,15,'store registry must cover all brands');
   await fs.mkdir('browser-report',{recursive:true});
   const browser=await chromium.launch({headless:true});
   const reports=[];
@@ -54,7 +56,9 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
         await page.locator(`button[data-brand="${id}"]`).click();
         assert.equal(await page.locator('[data-brand-card]').count(),1);
         assert.equal(await page.locator('[data-brand-card]').getAttribute('data-brand-card'),id);
-        if(['gyukaku','nikusho-sakai','washoku-sato'].includes(id)){
+        assert.equal(await page.locator('.brand-availability').count(),1,`missing local availability for ${id}`);
+        assert.ok(await page.locator('.brand-availability .area-chip').count()>0,`missing local area chips for ${id}`);
+        if(['gyukaku','nikusho-sakai','washoku-sato','roan','kushiya-monogatari'].includes(id)){
           for(const image of await page.locator('.gallery img').all()){await image.scrollIntoViewIfNeeded();await image.evaluate(img=>img.decode());}
           await page.screenshot({path:`browser-report/${width}-${id}.png`,fullPage:true});
         }
