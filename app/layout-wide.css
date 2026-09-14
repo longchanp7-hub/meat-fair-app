@@ -36,8 +36,8 @@ main{
 .gallery-1,.gallery-1 .gallery-item,.gallery-1 img{width:100%}
 
 /* Shabu-yo: the official fair page currently promotes the duck/mushroom fair together
-   with Kyushu Kurobuta and Kuroge Wagyu. Use those two real menu highlights to fill
-   the dead side space instead of stretching or cropping the main official visual. */
+   with Kyushu Kurobuta and Kuroge Wagyu. Fill the right column with the actual
+   official mobile artwork instead of text-only placeholders. */
 [data-brand-card="syabuyo"] .gallery-1{
   display:grid;
   grid-template-columns:minmax(0,1.65fr) minmax(118px,.9fr);
@@ -68,33 +68,26 @@ main{
 }
 [data-brand-card="syabuyo"] .gallery-1::before,
 [data-brand-card="syabuyo"] .gallery-1::after{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  white-space:pre-line;
+  content:"";
+  display:block;
   border-radius:11px;
-  padding:10px 7px;
-  line-height:1.4;
-  font-size:clamp(.72rem,2.7vw,.98rem);
-  font-weight:800;
-  box-shadow:inset 0 0 0 1px #ffffff88;
+  background-color:#fff;
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain;
+  box-shadow:inset 0 0 0 1px #d9d3cc;
+  min-width:0;
+  min-height:0;
 }
 [data-brand-card="syabuyo"] .gallery-1::before{
-  content:"期間限定\A九州黒豚 食べ放題\A税込2,639円〜";
   grid-column:2;
   grid-row:1;
-  color:#6b2c15;
-  background:linear-gradient(145deg,#fff9ec,#f8dfb6);
-  border:1px solid #e9bf7d;
+  background-image:url("https://www.skylark.co.jp/syabuyo/menu/fair_sep/images/ss_0901_sp_07.jpg");
 }
 [data-brand-card="syabuyo"] .gallery-1::after{
-  content:"黒毛和牛 食べ放題\A税込3,739円〜";
   grid-column:2;
   grid-row:2;
-  color:#52221e;
-  background:linear-gradient(145deg,#fff6f1,#efd0c4);
-  border:1px solid #dba99a;
+  background-image:url("https://www.skylark.co.jp/syabuyo/menu/fair_sep/images/ss_0901_sp_14.jpg");
 }
 
 /* Asakuma: on a portrait phone the two landscape posters became too thin side-by-side.
