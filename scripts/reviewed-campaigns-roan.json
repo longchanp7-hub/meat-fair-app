@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "reviews": [
+    {
+      "brandId": "roan",
+      "officialUrl": "https://ameblo.jp/0141roan/entry-12970963402.html",
+      "reviewedAt": "2026-09-15T00:58:00+09:00",
+      "contentHash": "f01798b457b165ba3c8fbb3a1a8df8e3f9f86fc69950f4dc43b1193ac3b87de5",
+      "fields": {
+        "title": "麻辣湯食べ放題",
+        "startDate": null,
+        "endDate": null,
+        "price": null,
+        "priceText": null,
+        "allYouCanEat": true,
+        "campaignType": "fair",
+        "priority": "P1",
+        "targetCourses": ["麻辣湯コース（土日ランチ・ディナー）"],
+        "limitedIngredients": ["麻辣湯"],
+        "conditions": [
+          "平日ランチはビュッフェ料金で利用できます。",
+          "土日ランチ・ディナーは麻辣湯コースで利用できます。",
+          "仕入れ状況などにより内容が変更・終了する場合があります。"
+        ],
+        "imageUrl": "https://stat.ameba.jp/user_images/20260610/13/0141roan/f1/d4/p/o1254111915791440159.png?caw=800"
+      },
+      "requiresListing": true
+    },
+    {
+      "brandId": "roan",
+      "officialUrl": "https://ameblo.jp/0141roan/entry-12953365343.html",
+      "reviewedAt": "2026-09-15T00:58:00+09:00",
+      "contentHash": "668f6b2ef122dee2fe0dd96342a9a76dd0a69bc248c5b287e8f86167af62b6b4",
+      "fields": {
+        "title": "極み大海鮮フェア 第2弾",
+        "startDate": null,
+        "endDate": null,
+        "price": 3980,
+        "priceText": "大人 3,980円",
+        "allYouCanEat": true,
+        "campaignType": "fair",
+        "priority": "P1",
+        "targetCourses": ["海鮮食べ放題コース"],
+        "limitedIngredients": ["大赤海老", "北海道産大ホタテ", "本ずわい蟹"],
+        "conditions": [
+          "子供（小学生）は税込1,990円、幼児（3歳以上）は税込500円。",
+          "期間限定価格。ラストオーダーは90分後で、詳細は店舗確認。"
+        ],
+        "imageUrl": "https://stat.ameba.jp/user_images/20260114/09/0141roan/5d/80/j/o2482350915740739044.jpg?caw=800"
+      },
+      "requiresListing": true
+    }
+  ]
+}
