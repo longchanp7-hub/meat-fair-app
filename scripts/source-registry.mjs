@@ -1,6 +1,7 @@
 export const SOURCES = [
   { brandId:'yakiniku-king', name:'焼肉きんぐ', category:'yakiniku', priority:1, sources:[
-    { type:'news_index', url:'https://www.yakiniku-king.jp/news/', primary:true }
+    { type:'news_index', url:'https://www.yakiniku-king.jp/news/', primary:true },
+    { type:'seasonal_index', url:'https://www.yakiniku-king.jp/menu_all/season', primary:true }
   ]},
   { brandId:'gyukaku', name:'牛角', category:'yakiniku', priority:2, sources:[
     { type:'news_index', url:'https://www.gyukaku.ne.jp/news/', primary:true }
