@@ -2,8 +2,15 @@ import fs from 'node:fs/promises';
 import crypto from 'node:crypto';
 import { SOURCES } from './source-registry.mjs';
 import { validateDataset, validateCampaign } from './quality-gate.mjs';
-import { linksFromHtml, rawDetailUrls, relevantTitle, allowedPath, campaignId, textFromHtml, titleFromHtml, dateFields, imageCandidatesFromHtml, deriveFields, canonicalUrl, firstDate, lifecycleFields, targetCoursesFromText } from './fair-utils.mjs';
-import { NEXT_ROLLOUT_IDS, rawRolloutUrls, allowedRolloutPath, rolloutTitleRelevant, adjustRolloutFields } from './rollout-utils.mjs';
+import {
+  linksFromHtml, rawDetailUrls, relevantTitle, allowedPath, campaignId,
+  textFromHtml, titleFromHtml, dateFields, imageCandidatesFromHtml,
+  deriveFields, canonicalUrl, firstDate, lifecycleFields, targetCoursesFromText
+} from './fair-utils.mjs';
+import {
+  NEXT_ROLLOUT_IDS, rawRolloutUrls, allowedRolloutPath,
+  rolloutTitleRelevant, adjustRolloutFields
+} from './rollout-utils.mjs';
 
 const OUT = new URL('../app/data/fairs.json', import.meta.url);
 const CANDIDATE = new URL('../app/data/candidates.json', import.meta.url);
@@ -11,14 +18,14 @@ const CANDIDATE = new URL('../app/data/candidates.json', import.meta.url);
 const BASE_IDS = SOURCES.slice(0, 4).map(x => x.brandId);
 const DISCOVERY_IDS = new Set([...BASE_IDS, ...NEXT_ROLLOUT_IDS]);
 const DISCOVERY_SOURCES = SOURCES.filter(x => DISCOVERY_IDS.has(x.brandId));
-const PROMOTE_IDS = new Set(BASE_IDS);
+const PROMOTE_IDS = new Set(BASE_IDS); // next four remain candidate-only until this audit passes
 
 const NON_FOOD = /(?:アンケート|Q\d|学生|食育|啓発|採用|求人|抽選会|大抽選|スピードくじ|ポイント山分け|プレゼント|アプリ会員.{0,12}(?:突破|記念)|アプリプレゼント|SNS|フォロー|リポスト|グッズ|キャンペーン開催記念|テイクアウト|お持ち帰り|d払い|PayPay|映画|プリキュア|キッズ|おこさま|改装|オープン|休業|営業時間)/i;
 const FOOD_SIGNAL = /(?:フェア|フェス|期間限定|季節|食べ放題|半額|OFF|割引|お値打ち|ナイト割|お得|敬老|キャンペーン|特別価格|コース|メニュー|牛タン|牛たん|カルビ|焼肉|しゃぶ|鴨|きのこ|松茸|寿司|サーモン|秋刀魚|蟹|かに|肉|デザート|台湾|ポルチーニ|コムタン|海鮮チゲ)/i;
 
 async function fetchText(url) {
   const r = await fetch(url, {
-    headers: { 'user-agent': 'meat-fair-app/0.6 (+github-actions)' },
+    headers: { 'user-agent': 'meat-fair-app/0.7 (+github-actions)' },
     signal: AbortSignal.timeout(12000)
   });
   if (!r.ok) throw new Error(`HTTP ${r.status}`);
@@ -50,17 +57,15 @@ function cleanTitle(brandId, title = '') {
   let t = String(title)
     .replace(/^\s*20\d{2}[.\-/]\d{1,2}[.\-/]\d{1,2}\s*/, '')
     .replace(/\s*\|\s*焼肉なら「牛角」\s*$/, '')
-    .replace(/\s*\|\s*国産牛焼肉食べ放題\s*$/, '')
+    .replace(/\s*[|｜]\s*(?:国産牛)?焼肉食べ放題.*$/i, '')
+    .replace(/\s*[|｜]\s*$/, '')
     .replace(/\s*｜\s*[^｜]{0,30}公式サイト.*$/, '')
     .trim();
 
   const brand = DISCOVERY_SOURCES.find(x => x.brandId === brandId);
   for (const name of [
-    brand?.name,
-    'あみやき亭Plus',
-    'あみやき亭',
-    'しゃぶしゃぶ温野菜',
-    '国産牛焼肉食べ放題 肉匠坂井'
+    brand?.name, 'あみやき亭Plus', 'あみやき亭',
+    'しゃぶしゃぶ温野菜', '国産牛焼肉食べ放題 肉匠坂井'
   ].filter(Boolean)) t = t.split(name).join(' ');
 
   t = t.replace(/\s+/g, ' ').trim();
@@ -68,7 +73,9 @@ function cleanTitle(brandId, title = '') {
     const m = t.match(/^(.{3,}?)\s+\1$/);
     if (m) t = m[1].trim();
   }
-  if (brandId === 'yakiniku-king' && /韓国市場/.test(t)) return '期間限定 韓国市場（カンコクシジャン）';
+  if (brandId === 'yakiniku-king' && /韓国市場/.test(t)) {
+    return '期間限定 韓国市場（カンコクシジャン）';
+  }
   return t || title;
 }
 
@@ -77,7 +84,9 @@ function rawCampaignTitle(brandId, html, link) {
   const meta = metaTitle(html);
   const anchor = link.title || '';
   if (NEXT_ROLLOUT_IDS.includes(brandId)) {
-    for (const t of [anchor, meta, page]) if (t && rolloutTitleRelevant(brandId, t)) return t;
+    for (const t of [anchor, meta, page]) {
+      if (t && rolloutTitleRelevant(brandId, t)) return t;
+    }
     return anchor || meta || page;
   }
   return page || meta || anchor;
@@ -135,47 +144,64 @@ function yearForMonth(publishedDate, url) {
   return publishedDate ? Number(publishedDate.slice(0, 4)) : null;
 }
 
+function rangeFromMatch(m, yearHint) {
+  if (!m || !yearHint) return null;
+  const sm = Number(m[1]), sd = Number(m[2]), em = Number(m[3]), ed = Number(m[4]);
+  let ey = yearHint;
+  if (em < sm) ey++;
+  return {
+    startDate: iso(yearHint, sm, sd),
+    endDate: iso(ey, em, ed),
+    endDateText: null
+  };
+}
+
 function partialDates(text = '', yearHint) {
   if (!yearHint) return null;
-  let m = text.match(/(\d{1,2})月\s*(\d{1,2})日[^0-9]{0,30}[～〜~\-][^0-9]{0,30}(\d{1,2})月\s*(\d{1,2})日/);
-  if (m) {
-    const sy = yearHint;
-    const sm = Number(m[1]), sd = Number(m[2]), em = Number(m[3]), ed = Number(m[4]);
-    let ey = sy;
-    if (em < sm) ey++;
-    return { startDate: iso(sy, sm, sd), endDate: iso(ey, em, ed), endDateText: null };
-  }
+  let m = text.match(/(\d{1,2})月\s*(\d{1,2})日[^0-9]{0,30}[～〜~\-－—][^0-9]{0,30}(\d{1,2})月\s*(\d{1,2})日/);
+  if (m) return rangeFromMatch(m, yearHint);
+
   m = text.match(/(\d{1,2})月\s*(\d{1,2})日/);
-  if (m) {
-    return {
-      startDate: iso(yearHint, Number(m[1]), Number(m[2])),
-      endDate: null,
-      endDateText: /なくなり次第終了/.test(text) ? 'なくなり次第終了' : null
-    };
+  if (!m) return null;
+  return {
+    startDate: iso(yearHint, Number(m[1]), Number(m[2])),
+    endDate: null,
+    endDateText: /なくなり次第終了/.test(text) ? 'なくなり次第終了' : null
+  };
+}
+
+function labelledPeriodDates(text = '', yearHint) {
+  if (!yearHint) return null;
+  const labels = ['販売期間', '開催期間', '実施期間', '提供期間', 'フェア期間'];
+  for (const label of labels) {
+    const idx = text.indexOf(label);
+    if (idx < 0) continue;
+    const chunk = text.slice(idx, idx + 260);
+    const m = chunk.match(/(\d{1,2})月\s*(\d{1,2})日[\s\S]{0,45}?[～〜~\-－—][\s\S]{0,45}?(\d{1,2})月\s*(\d{1,2})日/);
+    if (m) return rangeFromMatch(m, yearHint);
   }
   return null;
 }
 
 function campaignDates(title, text, html, url, publishedDate) {
   const titleFull = dateFields(title);
-  if (titleFull.startDate || titleFull.endDate) return titleFull;
+  if (titleFull.startDate && titleFull.endDate) return titleFull;
 
   const yearHint = yearForMonth(publishedDate, url);
   const titlePartial = partialDates(title, yearHint);
+  const labelled = labelledPeriodDates(text, yearHint);
   const bodyFull = dateFields(text);
   const bodyPartial = partialDates(text, yearHint);
 
-  if (titlePartial) {
-    const matchingBody =
-      bodyFull.startDate === titlePartial.startDate ? bodyFull :
-      bodyPartial?.startDate === titlePartial.startDate ? bodyPartial :
-      null;
+  if (titlePartial?.startDate) {
+    const matching = [labelled, bodyFull, bodyPartial].find(x => x?.startDate === titlePartial.startDate);
     return {
       startDate: titlePartial.startDate,
-      endDate: titlePartial.endDate || matchingBody?.endDate || null,
-      endDateText: titlePartial.endDateText || matchingBody?.endDateText || null
+      endDate: titlePartial.endDate || matching?.endDate || null,
+      endDateText: titlePartial.endDateText || matching?.endDateText || null
     };
   }
+  if (labelled) return labelled;
   if (bodyFull.startDate || bodyFull.endDate) return bodyFull;
   if (bodyPartial) return bodyPartial;
   return { startDate: null, startDateText: null, endDate: null, endDateText: null };
@@ -319,7 +345,7 @@ function foodRelevant(c) {
 
 function richer(a, b) {
   const score = c =>
-    (c.sourceType === 'seasonal_index' || c.sourceType === 'campaign_detail' ? 6 : 0) +
+    (['seasonal_index', 'campaign_detail'].includes(c.sourceType) ? 6 : 0) +
     (c.endDate ? 3 : 0) +
     (c.startDate ? 2 : 0) +
     (c.imageUrl ? 2 : 0) +
@@ -361,6 +387,13 @@ function semanticDedup(list) {
 
 function isLiveish(c) {
   return !['ended_official', 'ended_by_date', 'stale_unverified'].includes(c.lifecycleStatus);
+}
+
+function applyRolloutStaleRule(brandId, life, d, now) {
+  if (!NEXT_ROLLOUT_IDS.includes(brandId)) return life;
+  if (!d.startDate || d.endDate || life.lifecycleStatus !== 'current') return life;
+  const age = (now - new Date(`${d.startDate}T00:00:00+09:00`)) / 86400000;
+  return age > 45 ? { lifecycleStatus: 'stale_unverified', staleAfterDays: 45 } : life;
 }
 
 const nowIso = new Date().toISOString();
@@ -411,6 +444,7 @@ for (const brand of DISCOVERY_SOURCES) {
           const rawTitle = rawCampaignTitle(brand.brandId, html, link);
           const detailTitle = cleanTitle(brand.brandId, rawTitle);
           const rollout = NEXT_ROLLOUT_IDS.includes(brand.brandId);
+
           if ((rollout ? !rolloutTitleRelevant(brand.brandId, rawTitle) : !relevantTitle(rawTitle)) || NON_FOOD.test(detailTitle)) continue;
 
           const publishedDate = publishedDateFromHtml(html, link.url, text, rawTitle);
@@ -427,6 +461,7 @@ for (const brand of DISCOVERY_SOURCES) {
           if (/※?\s*終了しました|終了いたしました/.test(detailTitle)) {
             life = { lifecycleStatus: 'ended_official', staleAfterDays: null };
           }
+          life = applyRolloutStaleRule(brand.brandId, life, d, now);
 
           const officialUrl = canonicalUrl(link.url);
           const old = previous.get(`${brand.brandId}|${officialUrl}`);
@@ -506,6 +541,7 @@ for (const brand of DISCOVERY_SOURCES) {
       });
     }
   }
+
   sourceHealth.push({
     brandId: brand.brandId,
     sourceOk: sourceOk.has(brand.brandId),
@@ -522,7 +558,7 @@ if (gate.length) throw new Error(`quality gate failed: ${gate.join(', ')}`);
 
 await fs.writeFile(OUT, JSON.stringify(next, null, 2));
 await fs.writeFile(CANDIDATE, JSON.stringify({
-  schemaVersion: 14,
+  schemaVersion: 15,
   updatedAt: nowIso,
   campaigns: dedup,
   errors,
