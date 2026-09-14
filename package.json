@@ -1,12 +1,15 @@
 {
   "name": "meat-fair-app",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "update": "node scripts/update-fairs-all.mjs",
+    "update": "node scripts/update-fairs.mjs",
     "quality-gate": "node scripts/quality-gate.mjs --self-test",
-    "verify": "node scripts/verify-data.mjs"
+    "verify": "node scripts/verify-data.mjs",
+    "test": "node --test tests/regression.test.mjs"
   },
-  "engines": {"node": ">=20"}
+  "engines": {
+    "node": ">=20"
+  }
 }

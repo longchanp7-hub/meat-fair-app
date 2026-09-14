@@ -1,3 +1,4 @@
+import {validDate} from './site-profiles.mjs';
 const REQUIRED=['id','brandId','title','officialUrl'];
 const VALID_PRIORITIES=new Set(['P1','P2','P3','P4']);
 const VALID_LIFECYCLE=new Set(['current','ended_official','ended_by_date','stale_unverified']);
@@ -10,8 +11,8 @@ export function validateCampaign(c){
   for(const k of REQUIRED)if(!c?.[k])errors.push(`missing:${k}`);
   if(c?.officialUrl&&!validHttpUrl(c.officialUrl))errors.push('official_url_invalid');
   if(c?.imageUrl&&!validHttpUrl(c.imageUrl))errors.push('image_url_invalid');
-  if(c?.startDate&&!ISO_DATE.test(c.startDate))errors.push('start_date_invalid');
-  if(c?.endDate&&!ISO_DATE.test(c.endDate))errors.push('end_date_invalid');
+  if(c?.startDate&&!validDate(c.startDate))errors.push('start_date_invalid');
+  if(c?.endDate&&!validDate(c.endDate))errors.push('end_date_invalid');
   if(c?.startDate&&c?.endDate&&c.startDate>c.endDate)errors.push('date_order_invalid');
   if(c?.priority&&!VALID_PRIORITIES.has(c.priority))errors.push('priority_invalid');
   if(c?.lifecycleStatus&&!VALID_LIFECYCLE.has(c.lifecycleStatus))errors.push('lifecycle_invalid');
