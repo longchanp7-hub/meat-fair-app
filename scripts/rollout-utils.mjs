@@ -41,12 +41,12 @@ export function adjustRolloutFields(brandId,title,text,base){
   if(!NEXT_ROLLOUT_IDS.includes(brandId))return base;
   let {campaignType,priority}=base;
   const all=`${title} ${text}`;
-  const major=/フェア|フェス|期間限定|秋しゃぶ|韓国鍋|ポルチーニ|鴨しゃぶ/.test(title);
+  const themed=/フェア|フェス|秋しゃぶ|韓国鍋|ポルチーニ|鴨しゃぶ|松茸|サーモン|台湾|厚切り/.test(title);
   const ayce=/食べ放題/.test(title);
   const discount=/(?:\d+\s*%\s*OFF|半額|割引|お値打ち|ナイト割|お会計から\s*\d+\s*%)/i.test(all);
-  if(major){campaignType='fair';priority='P1'}
+  if(themed){campaignType='fair';priority='P1'}
   if(ayce){campaignType='all_you_can_eat';priority='P1'}
-  if(!major&&!ayce&&discount){campaignType='discount';priority='P2'}
+  if(!themed&&!ayce&&discount){campaignType='discount';priority='P2'}
   if(/学生/.test(title))priority='P3';
   return {...base,campaignType,priority,allYouCanEat:base.allYouCanEat||/食べ放題/.test(all)};
 }
