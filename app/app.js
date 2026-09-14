@@ -38,7 +38,6 @@ function storeState(c,s){
  if(override)return override.available?'yes':'no';
  if((c.targetStores||[]).includes(s.id))return'yes';
  if((c.targetAreas||[]).includes(s.area))return'yes';
- // No positive store assertion from chain-wide marketing language alone.
  return'unknown';
 }
 function brandAvailability(brandId,rows){
@@ -73,6 +72,11 @@ function renderList(){
  document.querySelector('#campaign-list').innerHTML=brands.length?brands.map(b=>brandCard(b,rows.filter(c=>c.brandId===b.id))).join(''):'<div class="empty">この条件で表示できるフェアはありません。</div>';
  enhanceGalleries();
 }
+function renderHeader(){
+ const checked=fairsData.sourceHealth?.filter(h=>h.sourceOk).length||0;
+ document.querySelector('#data-status').textContent=`全${brandsData.brands.length}チェーンを確認対象に設定 ・ 公式情報取得 ${checked}/${brandsData.brands.length}チェーン`;
+ document.querySelector('#updated-at').textContent=fairsData.updatedAt?'最終取得：'+new Intl.DateTimeFormat('ja-JP',{timeZone:'Asia/Tokyo',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}).format(new Date(fairsData.updatedAt))+'（日本時間）':'';
+}
 async function getJson(path){const r=await fetch(path,{cache:'no-cache'});if(!r.ok)throw Error('データを取得できませんでした');return r.json();}
 try{
  [brandsData,fairsData,storesData,mediaData]=await Promise.all([getJson('./data/brands.json'),getJson('./data/fairs.json'),getJson('./data/stores.json').catch(()=>({stores:[]})),getJson('./data/gallery.json').catch(()=>({assets:[]}))]);
@@ -80,8 +84,36 @@ try{
  document.querySelectorAll('#status-tabs button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.tab===tab)));
  document.querySelectorAll('#status-tabs button').forEach(b=>b.onclick=()=>{tab=b.dataset.tab;document.querySelectorAll('#status-tabs button').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b));});renderList();});
  document.querySelector('#clear-filter').onclick=()=>{brandFilter=null;renderBrands();renderList();};
- const checked=fairsData.sourceHealth?.filter(h=>h.sourceOk).length||0;
- document.querySelector('#data-status').textContent=`全${brandsData.brands.length}チェーンを確認対象に設定 ・ 公式情報取得 ${checked}/${brandsData.brands.length}チェーン`;
- document.querySelector('#updated-at').textContent=fairsData.updatedAt?'最終取得：'+new Intl.DateTimeFormat('ja-JP',{timeZone:'Asia/Tokyo',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}).format(new Date(fairsData.updatedAt))+'（日本時間）':'';
+ renderHeader();
  renderBrands();renderList();document.body.dataset.ready='true';
+ startAutomaticRefresh();
 }catch(e){document.querySelector('#campaign-list').textContent='データを読み込めませんでした。通信状況を確認して再読み込みしてください。';document.body.dataset.ready='error';console.error(e);}
+
+// Refresh the installed app when it returns to the foreground, and every five
+// minutes while visible. Preserve the reader's position within a chain card.
+function startAutomaticRefresh(){
+ let busy=false,lastCheck=Date.now();
+ const signature=()=>JSON.stringify([fairsData.updatedAt,mediaData?.updatedAt,fairsData.campaigns.map(getState),(Array.isArray(mediaData?.assets)?mediaData.assets:[]).map(a=>Date.now()-Date.parse(a.checkedAt)<=172800000)]);
+ let rendered=signature();
+ const update=async()=>{
+  if(document.hidden||busy||Date.now()-lastCheck<60000)return;
+  busy=true;lastCheck=Date.now();
+  const anchor=[...document.querySelectorAll('[data-brand-card]')].find(el=>el.getBoundingClientRect().bottom>80);
+  const anchorId=anchor?.id,anchorTop=anchor?.getBoundingClientRect().top;
+  try{
+   const [nextFairs,nextMedia]=await Promise.all([getJson('./data/fairs.json'),getJson('./data/gallery.json').catch(()=>mediaData)]);
+   if(!Array.isArray(nextFairs?.campaigns))throw Error('Invalid refreshed data');
+   fairsData=nextFairs;mediaData=nextMedia;
+   renderHeader();
+  }catch(error){console.warn('最新データを取得できないため前回の情報を表示します',error);}
+  finally{
+   const next=signature();if(next===rendered){busy=false;return;}rendered=next;
+   renderBrands();renderList();
+   if(anchorId)requestAnimationFrame(()=>{const current=document.getElementById(anchorId);if(current)window.scrollBy(0,current.getBoundingClientRect().top-anchorTop);});
+   busy=false;
+  }
+ };
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)update();});
+ window.addEventListener('pageshow',update);
+ setInterval(update,300000);
+}

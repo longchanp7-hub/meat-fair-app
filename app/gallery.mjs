@@ -3,7 +3,7 @@ const DAY=86400000;
 const html=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const url=v=>{try{const u=new URL(v);return /^https?:$/.test(u.protocol)?u.href:'';}catch{return '';}};
 export function selectMedia(rows,brandId,data={},tab='active',now=new Date()){
-  const available=(data.assets||[]).filter(a=>a.brandId===brandId);
+  const available=(Array.isArray(data?.assets)?data.assets:[]).filter(a=>a.brandId===brandId);
   const selected=[], seen=new Set();
   const push=a=>{const u=url(a.imageUrl),href=url(a.officialUrl);if(!u||!href||seen.has(u))return;seen.add(u);selected.push({...a,imageUrl:u,officialUrl:href});};
   for(const [i,c] of rows.entries()){

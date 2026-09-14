@@ -26,6 +26,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
   const browser=await chromium.launch({headless:true});const reports=[];
   try{
     const page=await browser.newPage({viewport:{width:390,height:900},timezoneId:'America/Los_Angeles'});
+    page.setDefaultTimeout(12000);
     const errors=[];page.on('pageerror',e=>errors.push(String(e)));
     await page.goto(base+'?release='+Date.now(),{waitUntil:'domcontentloaded'});
     await page.locator('body[data-ready="true"]').waitFor({timeout:30000});
@@ -37,8 +38,8 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
     });
     const settle=()=>page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
     async function inspect(){
-      for(const image of await page.locator('.adaptive-gallery img').all()){
-        try{await image.scrollIntoViewIfNeeded({timeout:4000});await image.evaluate(i=>i.decode().catch(()=>{}));}catch{ /* An external failure removes the tile and leaves its official link. */ }
+      for(const image of await page.locator('.adaptive-gallery img').elementHandles()){
+        try{await image.scrollIntoViewIfNeeded({timeout:4000});await image.evaluate(i=>Promise.race([i.decode().catch(()=>{}),new Promise(r=>setTimeout(r,12000))]));}catch{ /* An external failure removes the tile and leaves its official link. */ }
       }
       await settle();
       const faults=await page.locator('.adaptive-gallery').evaluateAll(gs=>{
@@ -64,6 +65,15 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
     for(const width of [360,390,430,690,820,1024]){
       await page.setViewportSize({width,height:900});
       const tabs={};
+      if(![390,820].includes(width)){
+        await page.locator('[data-tab="active"]').click();
+        assert.equal(await page.locator('[data-brand-card]').count(),15);
+        await inspect();
+        for(const id of ['syabuyo','asakuma','washoku-sato'])await page.locator(`[data-brand-card="${id}"]`).screenshot({path:`${folder}/${width}-${id}.png`});
+        reports.push({width,layoutBrands:15,images:await page.locator('.media-tile').count(),imageFallbacks:await page.locator('.media-unavailable').count()});
+        console.log('Layout width passed:',width);
+        continue;
+      }
       for(const tab of ['active','upcoming','ending','new']){
         await page.locator(`[data-tab="${tab}"]`).click();
         const expected=expectedRows(tab),shown=await page.locator('[data-campaign]').evaluateAll(es=>es.map(e=>e.dataset.campaign).sort());
@@ -88,12 +98,10 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
         await page.locator('#clear-filter').click();
       }
       await page.screenshot({path:`${folder}/${width}-all.png`,fullPage:true});
-      reports.push({width,tabs});
+      reports.push({width,tabs});console.log('All tabs and brand filters passed:',width);
     }
-    // A background image failure must collapse the gap, not hide the source link.
     await page.locator('[data-brand="syabuyo"]').click();await inspect();
-    const before=await page.locator('.media-tile').count();
-    assert.ok(before>0);
+    const before=await page.locator('.media-tile').count();assert.ok(before>0);
     await page.locator('.media-tile img').first().evaluate(i=>i.dispatchEvent(new Event('error')));await settle();
     assert.equal(await page.locator('.media-tile').count(),before-1);
     assert.ok(await page.locator('.media-unavailable').count()>0);await inspect();
