@@ -56,10 +56,17 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
         await page.locator(`button[data-brand="${id}"]`).click();
         assert.equal(await page.locator('[data-brand-card]').count(),1);
         assert.equal(await page.locator('[data-brand-card]').getAttribute('data-brand-card'),id);
+        const cardWidth=await page.locator('[data-brand-card]').evaluate(el=>el.getBoundingClientRect().width);
+        const minimum=width<760?width-24:width-64;
+        assert.ok(cardWidth>=minimum,`brand card wastes too much horizontal space for ${id}: ${cardWidth}px at ${width}px`);
         assert.equal(await page.locator('.brand-availability').count(),1,`missing local availability for ${id}`);
         assert.ok(await page.locator('.brand-availability .area-chip').count()>0,`missing local area chips for ${id}`);
-        if(['gyukaku','nikusho-sakai','washoku-sato','roan','kushiya-monogatari'].includes(id)){
-          for(const image of await page.locator('.gallery img').all()){await image.scrollIntoViewIfNeeded();await image.evaluate(img=>img.decode());}
+        for(const image of await page.locator('.gallery img').all()){await image.scrollIntoViewIfNeeded();await image.evaluate(img=>img.decode());}
+        if(id==='asakuma'){
+          const stats=await page.locator('.gallery-2').evaluateAll(gs=>gs.map(g=>{const h=g.getBoundingClientRect().height;const max=Math.max(0,...[...g.querySelectorAll('img')].map(i=>i.getBoundingClientRect().height));return{h,max}}));
+          assert.ok(stats.every(s=>s.h<=s.max+6),`Asakuma two-image gallery leaves a fixed-height vertical band at ${width}px`);
+        }
+        if(['gyukaku','syabuyo','asakuma','nikusho-sakai','washoku-sato','roan','kushiya-monogatari'].includes(id)){
           await page.screenshot({path:`browser-report/${width}-${id}.png`,fullPage:true});
         }
         const h=fairs.sourceHealth.find(h=>h.brandId===id);
