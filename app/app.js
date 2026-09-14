@@ -1,4 +1,4 @@
-import {renderGallery,enhanceGalleries} from './gallery.mjs';
+import {renderGallery,enhanceGalleries} from './gallery.mjs?v=20260915-auto2';
 import {campaignStatus} from './status.mjs';
 const AREA_ORDER=['toyohashi','toyokawa','gamagori','okazaki','hamamatsu'];
 const AREA_LABEL={toyohashi:'豊橋',toyokawa:'豊川',gamagori:'蒲郡',okazaki:'岡崎',hamamatsu:'浜松'};
