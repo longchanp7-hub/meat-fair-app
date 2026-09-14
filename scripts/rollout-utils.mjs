@@ -13,7 +13,7 @@ export function rolloutTitleRelevant(brandId,title=''){
   if(!NEXT_ROLLOUT_IDS.includes(brandId))return false;
   if(EXCLUDE[brandId]?.test(title))return false;
   if(brandId==='washoku-sato'&&!title.includes('和食さと'))return false;
-  return /フェア|フェス|期間限定|食べ放題|半額|OFF|割引|お値打ち|ナイト割|松茸|サーモン|台湾|厚切り|敬老/.test(title);
+  return /フェア|フェス|期間限定|食べ放題|半額|OFF|割引|お値打ち|ナイト割|松茸|サーモン|台湾|厚切り|敬老|秋しゃぶ|ポルチーニ|鴨しゃぶ|韓国鍋|海鮮チゲ|コムタン/.test(title);
 }
 
 export function rawRolloutUrls(brandId,html,base){
@@ -41,7 +41,7 @@ export function adjustRolloutFields(brandId,title,text,base){
   if(!NEXT_ROLLOUT_IDS.includes(brandId))return base;
   let {campaignType,priority}=base;
   const all=`${title} ${text}`;
-  const major=/フェア|フェス|期間限定/.test(title);
+  const major=/フェア|フェス|期間限定|秋しゃぶ|韓国鍋|ポルチーニ|鴨しゃぶ/.test(title);
   const ayce=/食べ放題/.test(title);
   const discount=/(?:\d+\s*%\s*OFF|半額|割引|お値打ち|ナイト割|お会計から\s*\d+\s*%)/i.test(all);
   if(major){campaignType='fair';priority='P1'}
