@@ -33,7 +33,7 @@ async function page(url){
 }
 async function probe(url){
   if(!probes.has(url))probes.set(url,request(url,512_000).then(({bytes})=>{
-    const d=dimensions(bytes);if(!d||d.width<100||d.height<65||d.width/d.height>8||d.height/d.width>5)throw Error('Non-card image or unsupported dimensions');return d;
+    const d=dimensions(bytes);if(!d)throw Error('Unsupported image signature: '+bytes.subarray(0,16).toString('hex'));if(d.width<100||d.height<65||d.width/d.height>8||d.height/d.width>5)throw Error('Non-card image or unsupported dimensions');return d;
   }));return probes.get(url);
 }
 async function enrich(brand){

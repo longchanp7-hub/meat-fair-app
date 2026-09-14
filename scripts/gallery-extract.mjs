@@ -17,7 +17,7 @@ function candidates(node,base){
     const a=img.attrs,title=(a.alt||'').replace(/\s+/g,' ').trim();
     const raw=a['data-src']||a.src||a['data-original']||a.srcset?.split(/[ ,]/)[0];
     const imageUrl=publicUrl(raw,base);
-    if(!imageUrl||!raw||! /\.(?:jpe?g|png|webp)(?:[?#]|$)/i.test(imageUrl)||DECORATION.test(new URL(imageUrl).pathname))continue;
+    if(!imageUrl||!raw||! /\.(?:jpe?g|png|webp|gif|avif)(?:[?#]|$)/i.test(imageUrl)||DECORATION.test(new URL(imageUrl).pathname))continue;
     if((a.width&&Number(a.width)<100)||(a.height&&Number(a.height)<65))continue;
     images.push({imageUrl,title,node:img});
   }
@@ -52,7 +52,6 @@ export function menuAssets(html,base,campaignUrls=[]){
   for(const link of links(root,base)){
     if(!link.node.attrs.href||link.node.attrs.href.startsWith('#'))continue;
     const target=publicUrl(link.url,base);if(!target||new URL(target).origin!==origin||campaignSet.has(httpUrl(target,base)))continue;
-    // Menus can be undated; independent dated events remain the campaign scraper's job.
     if(/\/(?:news|topic|fair)(?:s)?\/|\/20\d{2}\//i.test(new URL(target).pathname))continue;
     if(/肉の日|感謝祭|\d{1,2}[月/]\d{1,2}[^。]{0,24}[～〜~－-]\s*\d{1,2}/.test(link.title))continue;
     if(/[都道府県]/.test(link.title)&&!/愛知|静岡/.test(link.title))continue;
@@ -69,6 +68,12 @@ export function menuAssets(html,base,campaignUrls=[]){
   return [...byTarget.values()].slice(0,8);
 }
 export function dimensions(b){
+  // Honor the actual image signature, which may differ from the URL extension.
+  if(b.length>=10&&/^GIF8[79]a$/.test(b.toString('ascii',0,6)))return{width:b.readUInt16LE(6),height:b.readUInt16LE(8)};
+  if(b.length>=32&&b.toString('ascii',4,8)==='ftyp'&&/avif|avis|mif1/.test(b.toString('ascii',8,32))){
+    const at=b.indexOf(Buffer.from('ispe'));
+    if(at>=4&&at+16<=b.length&&b.readUInt32BE(at-4)>=20)return{width:b.readUInt32BE(at+8),height:b.readUInt32BE(at+12)};
+  }
   if(b.length>=24&&b.toString('hex',0,8)==='89504e470d0a1a0a')return{width:b.readUInt32BE(16),height:b.readUInt32BE(20)};
   if(b.length>=30&&b.toString('ascii',0,4)==='RIFF'&&b.toString('ascii',8,12)==='WEBP'){
     const type=b.toString('ascii',12,16);
