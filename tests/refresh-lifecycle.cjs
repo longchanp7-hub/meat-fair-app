@@ -9,10 +9,16 @@ module.exports=async function checkRefreshLifecycle({page,inspect,settle}){
   const brandId='syabuyo',card=`[data-brand-card="${brandId}"]`;
   await page.locator('[data-tab="active"]').click();
   const clear=page.locator('#clear-filter');if(await clear.isVisible())await clear.click();
+  await page.setViewportSize({width:390,height:900});
   await page.locator(`[data-brand="${brandId}"]`).click();await inspect();
   const originalImages=await page.locator(card+' .media-tile').count();
   const originalRows=await page.locator(card+' [data-campaign]').count();
   assert.ok(originalRows>0&&originalImages>1,'current official fair required');
+  const courses=page.locator(card+' [data-group="course"]'),meals=page.locator(card+' [data-group="related-meal"]');
+  if(originalRows===1&&await courses.count()===2&&await meals.count()===2){
+    const lead=await page.locator(card+' .media-tile[data-kind="campaign"]').first().boundingBox();
+    assert.ok(lead.width>=175,'portrait fair lead became too small');
+  }
   let next=original.fairs,failGallery=false;
   const fairRoute=route=>route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(next)});
   const mediaRoute=route=>failGallery?route.fulfill({status:503,contentType:'text/plain',body:'test-only temporary unavailability'}):route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(original.media)});

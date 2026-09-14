@@ -28,3 +28,14 @@ export function bindMenus(assets,campaigns,sourceHash) {
   if(!parents.length)return [];
   return assets.map(a=>({...a,parents,sourceHash}));
 }
+
+// Prefer a same-fair, in-page overview to an OGP/social preview. Never compare
+// by month or brand alone: require a shared distinctive phrase in the official
+// captions and matching parent evidence. Individual dishes cannot replace a fair.
+export function pageOverview(campaign,main,details) {
+  if(!/(?:^|[\/_-])(?:ogp|ogimage|og_image|og-image|ogp_image)(?:[_.-]|$)/i.test(String(main?.imageUrl||campaign.imageUrl||'')))return null;
+  const meaningful=String(campaign.title||'').replace(/[【\[].*?[】\]]/g,'').replace(/フェア|キャンペーン|期間限定|平日|土日|アプリ|会員|限定|開催|半額|割引|食べ放題|お得/g,'');
+  const phrases=[...meaningful.matchAll(/[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}ー]{3,}/gu)].flatMap(m=>Array.from({length:m[0].length-2},(_,i)=>m[0].slice(i,i+3)));
+  if(!phrases.length)return null;
+  return details.find(a=>a.campaignId===campaign.id&&a.parentHash===campaign.contentHash&&/フェア|キャンペーン/.test(a.title||'')&&!/抽選|プレゼント|アンケート|フォロー/.test(a.title||'')&&phrases.some(p=>a.title.includes(p)))||null;
+}

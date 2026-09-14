@@ -1,5 +1,5 @@
 import {planGallery} from './gallery-plan.mjs?v=20260915-semantic1';
-import {hasCurrentParent} from './gallery-semantics.mjs';
+import {hasCurrentParent,pageOverview} from './gallery-semantics.mjs';
 import {campaignStatus} from './status.mjs';
 const DAY=86400000;
 const MEDIA_ORDER={campaign:0,detail:1,menu:2};
@@ -35,7 +35,7 @@ export function selectMedia(rows,brandId,data={},tab='active',now=new Date()){
     const assets=available.filter(a=>a.campaignId===c.id&&a.parentHash===c.contentHash);
     const main=assets.find(a=>a.kind==='campaign');
     const extras=assets.filter(a=>a.kind==='detail'&&fresh(a)&&isSupplementaryPhoto(a.imageUrl));
-    const representative=main||(!c.imageUrl?(extras.find(a=>/フェア|キャンペーン|割引|OFF/.test(a.title))||extras[0]):null);
+    const representative=pageOverview(c,main,extras)||main||(!c.imageUrl?(extras.find(a=>/フェア|キャンペーン|割引|OFF/.test(a.title))||extras[0]):null);
     const imageUrl=representative?.imageUrl||c.imageUrl;
     if(imageUrl)push({...representative,brandId,campaignId:c.id,kind:'campaign',priority:0,group:'campaign',visualWeight:2,campaignType:c.campaignType,imageUrl,officialUrl:c.officialUrl,title:c.title,rank:i===0?0:10});
   }
