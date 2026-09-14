@@ -30,3 +30,14 @@ main{padding-top:16px}
 body{background:var(--page-bg)}
 #status-tabs{background:var(--page-bg)}
 main>section>h2,.filter-heading h2,#list-title{color:#fff;text-shadow:0 1px 1px #5f1018aa}
+
+/* Reference layout: a vivid red canvas visibly frames each white chain card. */
+:root{background:#e53935;--page-bg:#e53935}
+html,body{background:var(--page-bg)}
+main{padding-left:14px;padding-right:14px}
+#status-tabs{background:var(--page-bg);padding-left:0;padding-right:0}
+#campaign-list{gap:24px}
+.restaurant-card{background:#fff;border:2px solid #2d2928;border-top-width:2px;border-radius:16px;box-shadow:0 4px 12px #6117142b}
+.restaurant-head{background:#fff;border-bottom:1px solid #e3ddd7}
+.restaurant-body{background:#fff}
+@media(min-width:760px){main{padding-left:24px;padding-right:24px}#campaign-list{gap:30px}.restaurant-card{border-radius:18px}}
