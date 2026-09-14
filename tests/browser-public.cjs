@@ -63,9 +63,21 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
         assert.ok(await page.locator('.brand-availability .area-chip').count()>0,`missing local area chips for ${id}`);
         for(const image of await page.locator('.gallery img').all()){await image.scrollIntoViewIfNeeded();await image.evaluate(img=>img.decode());}
         if(id==='syabuyo'){
-          const promo=await page.locator('.gallery-1').evaluate(g=>`${getComputedStyle(g,'::before').content} ${getComputedStyle(g,'::after').content}`);
-          assert.match(promo,/九州黒豚/,'Shabu-yo should use its current Kyushu Kurobuta highlight');
-          assert.match(promo,/黒毛和牛/,'Shabu-yo should use its current Kuroge Wagyu highlight');
+          const promo=await page.locator('.gallery-1').evaluate(async g=>{
+            const backgrounds=['::before','::after'].map(p=>getComputedStyle(g,p).backgroundImage);
+            const urls=backgrounds.map(v=>v.match(/^url\(["']?(.*?)["']?\)$/)?.[1]||'');
+            return await Promise.all(urls.map(url=>new Promise(resolve=>{
+              if(!url)return resolve({url,width:0,height:0});
+              const img=new Image();
+              img.onload=()=>resolve({url,width:img.naturalWidth,height:img.naturalHeight});
+              img.onerror=()=>resolve({url,width:0,height:0});
+              img.src=url;
+            })));
+          });
+          assert.equal(promo.length,2,'Shabu-yo should show two official side highlights');
+          assert.match(promo[0].url,/ss_0901_sp_07\.jpg$/,'Shabu-yo should use current official Kyushu Kurobuta artwork');
+          assert.match(promo[1].url,/ss_0901_sp_14\.jpg$/,'Shabu-yo should use current official Kuroge Wagyu artwork');
+          assert.ok(promo.every(x=>x.width>0&&x.height>0),'Shabu-yo side artwork failed to load');
         }
         if(id==='asakuma'){
           const stats=await page.locator('.gallery-2').evaluateAll(gs=>gs.map(g=>{
