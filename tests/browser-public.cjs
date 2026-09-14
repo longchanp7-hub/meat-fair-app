@@ -62,9 +62,25 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
         assert.equal(await page.locator('.brand-availability').count(),1,`missing local availability for ${id}`);
         assert.ok(await page.locator('.brand-availability .area-chip').count()>0,`missing local area chips for ${id}`);
         for(const image of await page.locator('.gallery img').all()){await image.scrollIntoViewIfNeeded();await image.evaluate(img=>img.decode());}
+        if(id==='syabuyo'){
+          const promo=await page.locator('.gallery-1').evaluate(g=>`${getComputedStyle(g,'::before').content} ${getComputedStyle(g,'::after').content}`);
+          assert.match(promo,/九州黒豚/,'Shabu-yo should use its current Kyushu Kurobuta highlight');
+          assert.match(promo,/黒毛和牛/,'Shabu-yo should use its current Kuroge Wagyu highlight');
+        }
         if(id==='asakuma'){
-          const stats=await page.locator('.gallery-2').evaluateAll(gs=>gs.map(g=>{const h=g.getBoundingClientRect().height;const max=Math.max(0,...[...g.querySelectorAll('img')].map(i=>i.getBoundingClientRect().height));return{h,max}}));
-          assert.ok(stats.every(s=>s.h<=s.max+6),`Asakuma two-image gallery leaves a fixed-height vertical band at ${width}px`);
+          const stats=await page.locator('.gallery-2').evaluateAll(gs=>gs.map(g=>{
+            const r=g.getBoundingClientRect();
+            const imgs=[...g.querySelectorAll('img')].map(i=>i.getBoundingClientRect());
+            return{h:r.height,images:imgs.map(x=>({top:x.top,bottom:x.bottom,height:x.height,left:x.left,right:x.right}))};
+          }));
+          assert.ok(stats.every(s=>s.images.length===2),'Asakuma should show both current official posters');
+          if(width<760){
+            assert.ok(stats.every(s=>s.images[1].top>=s.images[0].bottom-1),`Asakuma posters should stack vertically at ${width}px`);
+            assert.ok(stats.every(s=>s.h<=s.images[0].height+s.images[1].height+12),`Asakuma stacked gallery leaves an unnecessary vertical band at ${width}px`);
+          }else{
+            assert.ok(stats.every(s=>Math.abs(s.images[0].top-s.images[1].top)<=1),`Asakuma posters should remain side-by-side on wide screens at ${width}px`);
+            assert.ok(stats.every(s=>s.h<=Math.max(...s.images.map(i=>i.height))+6),`Asakuma wide gallery leaves a fixed-height vertical band at ${width}px`);
+          }
         }
         if(['gyukaku','syabuyo','asakuma','nikusho-sakai','washoku-sato','roan','kushiya-monogatari'].includes(id)){
           await page.screenshot({path:`browser-report/${width}-${id}.png`,fullPage:true});
