@@ -30,7 +30,8 @@ export const SOURCES = [
     { type:'campaign_detail', url:'https://www.onyasai.com/lp/202609_kamoshabu_porcini/', campaignTitle:'秋しゃぶ 豆乳ポルチーニしゃぶしゃぶ・鴨しゃぶ', primary:false }
   ]},
   { brandId:'roan', name:'露菴', category:'buffet', priority:8, sources:[
-    { type:'brand_top', url:'https://www.good-promise.co.jp/roan/', primary:true },
+    { type:'official_blog', url:'https://ameblo.jp/0141roan/entrylist.html', primary:true },
+    { type:'brand_top', url:'https://www.good-promise.co.jp/roan/', primary:false },
     { type:'reference_detail', url:'https://www.good-promise.co.jp/roan/price02/', primary:false }
   ]},
   { brandId:'kalubi-taisho', name:'カルビ大将', category:'yakiniku', priority:9, sources:[
