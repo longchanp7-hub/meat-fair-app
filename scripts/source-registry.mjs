@@ -14,13 +14,16 @@ export const SOURCES = [
     { type:'news_index', url:'https://www.shabu-yuzuan.jp/news/', primary:true }
   ]},
   { brandId:'washoku-sato', name:'和食さと', category:'shabu', priority:5, sources:[
-    { type:'brand_top', url:'https://sato-res.com/sato/', primary:true }
+    { type:'brand_news', url:'https://sato-res.com/news/brand/sato/', primary:true },
+    { type:'brand_top', url:'https://sato-res.com/sato/', primary:false }
   ]},
   { brandId:'amiyakitei', name:'あみやき亭／あみやき亭Plus', category:'yakiniku', priority:6, sources:[
-    { type:'brand_top', url:'https://amiyakitei.jp/', primary:true }
+    { type:'brand_top', url:'https://amiyakitei.jp/', primary:true },
+    { type:'topics_index', url:'https://amiyakitei.jp/topics/', primary:false }
   ]},
   { brandId:'onyasai', name:'しゃぶしゃぶ温野菜', category:'shabu', priority:7, sources:[
-    { type:'brand_top', url:'https://www.onyasai.com/', primary:true }
+    { type:'brand_top', url:'https://www.onyasai.com/', primary:true },
+    { type:'news_index', url:'https://www.onyasai.com/news/index.php?year=2026', primary:false }
   ]},
   { brandId:'roan', name:'露菴', category:'buffet', priority:8, sources:[
     { type:'brand_top', url:'https://www.good-promise.co.jp/roan/', primary:true }
@@ -35,7 +38,8 @@ export const SOURCES = [
     { type:'brand_top', url:'https://www.asakuma.co.jp/', primary:true }
   ]},
   { brandId:'nikusho-sakai', name:'肉匠坂井', category:'yakiniku', priority:12, sources:[
-    { type:'brand_top', url:'https://www.yakiniku.jp/nikushou_sakai/', primary:true }
+    { type:'news_index', url:'https://www.yakiniku.jp/nikushou_sakai/news/', primary:true },
+    { type:'brand_top', url:'https://www.yakiniku.jp/nikushou_sakai/', primary:false }
   ]},
   { brandId:'jukusei-ichiban', name:'熟成焼肉いちばん', category:'yakiniku', priority:13, sources:[
     { type:'news_index', url:'https://www.jukusei-ichiban.jp/jp/news/', primary:true }
@@ -49,7 +53,7 @@ export const SOURCES = [
 ];
 
 export const INCLUDE_KEYWORDS = [
-  'フェア','期間限定','食べ放題','限定','キャンペーン','新メニュー','コラボ','半額','OFF','牛たん','牛タン','黒毛和牛','かに','カニ','蟹','海鮮','韓国','台湾','北海道','九州','デザート','飲み放題','価格改定'
+  'フェア','フェス','期間限定','食べ放題','限定','キャンペーン','新メニュー','コラボ','半額','OFF','割引','お値打ち','ナイト割','牛たん','牛タン','黒毛和牛','かに','カニ','蟹','海鮮','韓国','台湾','北海道','九州','デザート','飲み放題','価格改定'
 ];
 
 export const EXCLUDE_KEYWORDS = [
