@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": null,
+  "timezone": "Asia/Tokyo",
+  "statusRules": {"newDays": 7, "endingSoonDays": 7},
+  "campaigns": []
+}
