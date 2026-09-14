@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import crypto from 'node:crypto';
 import { SOURCES } from './source-registry.mjs';
 import { validateDataset, validateCampaign } from './quality-gate.mjs';
-import { linksFromHtml,relevantTitle,allowedPath,campaignId,textFromHtml,titleFromHtml,dateFields,imageFromHtml,deriveFields,canonicalUrl,firstDate,lifecycleFields,targetCoursesFromText } from './fair-utils.mjs';
+import { linksFromHtml,rawDetailUrls,relevantTitle,allowedPath,campaignId,textFromHtml,titleFromHtml,dateFields,imageFromHtml,deriveFields,canonicalUrl,firstDate,lifecycleFields,targetCoursesFromText } from './fair-utils.mjs';
 
 const OUT=new URL('../app/data/fairs.json',import.meta.url);
 const CANDIDATE=new URL('../app/data/candidates.json',import.meta.url);
@@ -18,8 +18,8 @@ for(const brand of SOURCES.slice(0,4)){
   for(const source of brand.sources){
     try{
       const indexHtml=await fetchText(source.url);sourceOk.add(brand.brandId);
-      const map=new Map();for(const l of linksFromHtml(indexHtml,source.url)){if(allowedPath(brand.brandId,l.url)&&!map.has(l.url))map.set(l.url,l)}
-      for(const link of [...map.values()].slice(0,30)){
+      const map=new Map();const discovered=[...linksFromHtml(indexHtml,source.url),...rawDetailUrls(brand.brandId,indexHtml,source.url)];for(const l of discovered){if(allowedPath(brand.brandId,l.url)&&!map.has(l.url))map.set(l.url,l)}
+      for(const link of [...map.values()].slice(0,40)){
         try{
           const html=await fetchText(link.url);const text=textFromHtml(html);const detailTitle=titleFromHtml(html)||link.title;if(!relevantTitle(detailTitle))continue;
           const d=dateFields(text);const x=deriveFields(detailTitle,text);const publishedDate=firstDate(text);const life=lifecycleFields({text,startDate:d.startDate,endDate:d.endDate,publishedDate,campaignType:x.campaignType,now});const officialUrl=canonicalUrl(link.url);const old=previous.get(`${brand.brandId}|${officialUrl}`);
