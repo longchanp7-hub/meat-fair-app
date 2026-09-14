@@ -24,8 +24,8 @@ export const SOURCES = [
   { brandId:'onyasai', name:'しゃぶしゃぶ温野菜', category:'shabu', priority:7, sources:[
     { type:'brand_top', url:'https://www.onyasai.com/', primary:true },
     { type:'news_index', url:'https://www.onyasai.com/news/index.php?year=2026', primary:false },
-    { type:'campaign_detail', url:'https://www.onyasai.com/lp/202607_korea/', primary:false },
-    { type:'campaign_detail', url:'https://www.onyasai.com/lp/202609_kamoshabu_porcini/', primary:false }
+    { type:'campaign_detail', url:'https://www.onyasai.com/lp/202607_korea/', campaignTitle:'夏のごちそう韓国鍋 海鮮チゲ鍋・コムタン鍋', primary:false },
+    { type:'campaign_detail', url:'https://www.onyasai.com/lp/202609_kamoshabu_porcini/', campaignTitle:'秋しゃぶ 豆乳ポルチーニしゃぶしゃぶ・鴨しゃぶ', primary:false }
   ]},
   { brandId:'roan', name:'露菴', category:'buffet', priority:8, sources:[
     { type:'brand_top', url:'https://www.good-promise.co.jp/roan/', primary:true }
