@@ -39,6 +39,10 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
           await image.scrollIntoViewIfNeeded();
           await image.evaluate(img=>img.decode());
           assert.ok(await image.evaluate(img=>img.naturalWidth>0&&getComputedStyle(img).objectFit==='contain'));
+          assert.ok(await image.evaluate(img=>{
+            const r=img.getBoundingClientRect(),g=img.closest('.gallery').getBoundingClientRect();
+            return r.top>=g.top-1&&r.bottom<=g.bottom+1&&r.left>=g.left-1&&r.right<=g.right+1;
+          }),'the visible gallery clips the image despite object-fit:contain');
         }
         assert.equal(await page.locator('.image-unavailable').count(),0,'image request failed');
         assert.equal(await page.locator('.brand-official').count(),cards.length,'repeated official-site buttons');
