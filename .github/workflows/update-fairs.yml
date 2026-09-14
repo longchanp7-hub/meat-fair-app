@@ -3,6 +3,11 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * *' # 09:00 JST
+  push:
+    paths:
+      - 'scripts/**'
+      - 'package.json'
+      - '.github/workflows/update-fairs.yml'
 permissions:
   contents: write
 jobs:
