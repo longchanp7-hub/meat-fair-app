@@ -44,7 +44,6 @@ async function enrich(brand){
     if(c.imageUrl)raw.push({kind:'campaign',rank:order?10:0,imageUrl:c.imageUrl,title:c.title,officialUrl:c.officialUrl,sourceUrl:c.officialUrl,campaignId:c.id,parentHash:c.contentHash,checkedAt:c.lastVerifiedAt||stamp});
     try{
       const p=extractPage(profile,await page(c.officialUrl),c.officialUrl,c.title);pagesRead++;
-      // Do not marry a changed/new page to a previous campaign's approved text.
       if(p.hash!==c.contentHash){errors.push({brandId:brand.id,url:c.officialUrl,error:'content_changed_pending_campaign_review'});continue;}
       raw.push(...detailAssets(p.scope,c.officialUrl,c).map(a=>({...a,checkedAt:stamp})));
     }catch(e){
@@ -58,11 +57,9 @@ async function enrich(brand){
   for(const a of raw.sort((a,b)=>a.rank-b.rank)){
     if(!publicUrl(a.imageUrl)||!publicUrl(a.officialUrl))continue;
     const key=imageKey(a.imageUrl);if(seen.has(key))continue;seen.add(key);
-    try{const d=await probe(a.imageUrl);assets.push({...a,...d,brandId:brand.id,id:crypto.createHash('sha256').update(brand.id+'|'+a.imageUrl).digest('hex').slice(0,16)});}
+    try{const d=await probe(a.imageUrl);if(a.kind==='detail'&&d.width/d.height>4)continue;assets.push({...a,...d,brandId:brand.id,id:crypto.createHash('sha256').update(brand.id+'|'+a.imageUrl).digest('hex').slice(0,16)});}
     catch(e){
       errors.push({brandId:brand.id,url:a.imageUrl,error:e.message});
-      // Main images remain available through the campaign fallback in the UI.
-      // A failed decorative/menu image never produces a reserved empty rectangle.
       const old=previous.assets.find(x=>x.brandId===brand.id&&x.imageUrl===a.imageUrl&&x.parentHash===a.parentHash&&Date.now()-Date.parse(x.checkedAt)<172800000);
       if(old)assets.push(old);
     }

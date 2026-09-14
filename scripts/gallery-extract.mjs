@@ -1,6 +1,6 @@
 import {parseHtml,all,one,text,links,httpUrl} from './html-document.mjs';
 // Only actual image elements from an official page are eligible. No generated URLs.
-const NONFOOD=/求人|採用|アンケート|ポイント|プレゼント|抽選|グッズ|学生|学割|キッズ|お子さま|お子様|ドリンクバー|アルコール|飲み放題のみ|アレルギー|原産地|栄養成分|料金表|価格表|お支払い|営業時間|店舗検索|ご予約承ります/i;
+const NONFOOD=/求人|採用|アンケート|ポイント|プレゼント|抽選|グッズ|学生|学割|キッズ|お子さま|お子様|ドリンクバー|アルコール|飲み放題のみ|アレルギー|原産地|栄養成分|料金表|価格表|お支払い|営業時間|店舗検索|壁紙|ダウンロード|QR|クーポン|スクリーンショット|有効期間|対象コースを|コース紹介|コース内容|詳しくはこちら|サワー|ハイボール|ビール|ワイン|茶ハイ|ウーロンハイ|焼酎|日本酒/i;
 const DECORATION=/(?:logo|icon|qrcode|qr_|button|btn_|arrow|sprite|footer|header|bg[_.-]|spacer|loading)/i;
 const FOOD=/食べ放題|ランチ|宴会|コース|フェア|豚|牛|鴨|鶏|ステーキ|ハンバーグ|ビュッフェ|しゃぶしゃぶ/;
 export function publicUrl(raw,base){
@@ -23,6 +23,16 @@ function candidates(node,base){
   }
   return images;
 }
+function belongsToPage(node,scope,base){
+  for(let n=node.parent;n&&n!==scope;n=n.parent){
+    if(['header','footer','nav','aside'].includes(n.tag))return false;
+    if(n.tag==='a'&&n.attrs?.href){
+      const target=publicUrl(n.attrs.href,base);
+      if(!target||httpUrl(target,base)!==httpUrl(base,base))return false;
+    }
+  }
+  return true;
+}
 function uniqueVariants(items){
   const map=new Map();
   for(const item of items){const key=imageKey(item.imageUrl),old=map.get(key);if(!old||/([_/-])(sp|mobile)(?=[_./-])/i.test(item.imageUrl))map.set(key,item);}
@@ -30,10 +40,10 @@ function uniqueVariants(items){
 }
 export function detailAssets(scope,base,campaign){
   const mainKey=campaign.imageUrl?imageKey(campaign.imageUrl):null;
-  return uniqueVariants(candidates(scope,base)).filter(a=>imageKey(a.imageUrl)!==mainKey&&a.title.length>=4&&a.title.length<=200&&FOOD.test(a.title)&&!NONFOOD.test(a.title)&&!/^コースは|^土[・日]|^おすすめ.*アレンジ|^ワクワク|^豪華.*コース/.test(a.title)).slice(0,8).map(a=>{
+  return uniqueVariants(candidates(scope,base)).filter(a=>belongsToPage(a.node,scope,base)&&imageKey(a.imageUrl)!==mainKey&&a.title.length>=4&&a.title.length<=200&&FOOD.test(a.title)&&!NONFOOD.test(a.title)&&!/^コースは|^土[・日]|^おすすめ.*アレンジ|^ワクワク|^豪華.*コース/.test(a.title)).slice(0,8).map(a=>{
     let href=base;
     for(let n=a.node.parent;n&&n!==scope;n=n.parent)if(n.attrs?.id){href=new URL('#'+n.attrs.id,base).href;break;}
-    return {imageUrl:a.imageUrl,title:a.title,officialUrl:href,sourceUrl:base,kind:'detail',rank:/豚|牛|鴨|鶏|ステーキ/.test(a.title)?20:25,campaignId:campaign.id,parentHash:campaign.contentHash};
+    return {imageUrl:a.imageUrl,title:a.title,officialUrl:href,sourceUrl:base,kind:'detail',rank:/食べ放題/.test(a.title)&&/[￥円]/.test(a.title)?20:50,campaignId:campaign.id,parentHash:campaign.contentHash};
   });
 }
 export function menuAssets(html,base,campaignUrls=[]){
@@ -43,6 +53,9 @@ export function menuAssets(html,base,campaignUrls=[]){
     if(!link.node.attrs.href||link.node.attrs.href.startsWith('#'))continue;
     const target=publicUrl(link.url,base);if(!target||new URL(target).origin!==origin||campaignSet.has(httpUrl(target,base)))continue;
     // Menus can be undated; independent dated events remain the campaign scraper's job.
+    if(/\/(?:news|topic|fair)(?:s)?\/|\/20\d{2}\//i.test(new URL(target).pathname))continue;
+    if(/肉の日|感謝祭|\d{1,2}[月/]\d{1,2}[^。]{0,24}[～〜~－-]\s*\d{1,2}/.test(link.title))continue;
+    if(/[都道府県]/.test(link.title)&&!/愛知|静岡/.test(link.title))continue;
     if(!/ランチ|宴会|食べ放題コース/.test(link.title)||/フェア|期間限定|終了しました|販売終了|販売中止/.test(link.title)||NONFOOD.test(link.title))continue;
     let banned=false;for(let n=link.node.parent;n&&n!==root;n=n.parent)if(['header','footer','nav','aside'].includes(n.tag))banned=true;
     if(banned)continue;

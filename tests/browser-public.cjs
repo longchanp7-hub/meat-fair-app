@@ -26,7 +26,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
   const browser=await chromium.launch({headless:true});const reports=[];
   try{
     const page=await browser.newPage({viewport:{width:390,height:900},timezoneId:'America/Los_Angeles'});
-    page.setDefaultTimeout(12000);
+    page.setDefaultTimeout(12000);await page.emulateMedia({reducedMotion:'reduce'});
     const errors=[];page.on('pageerror',e=>errors.push(String(e)));
     await page.goto(base+'?release='+Date.now(),{waitUntil:'domcontentloaded'});
     await page.locator('body[data-ready="true"]').waitFor({timeout:30000});
@@ -38,9 +38,9 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
     });
     const settle=()=>page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
     async function inspect(){
-      for(const image of await page.locator('.adaptive-gallery img').elementHandles()){
-        try{await image.scrollIntoViewIfNeeded({timeout:4000});await image.evaluate(i=>Promise.race([i.decode().catch(()=>{}),new Promise(r=>setTimeout(r,12000))]));}catch{ /* An external failure removes the tile and leaves its official link. */ }
-      }
+      await page.locator('.adaptive-gallery img').evaluateAll(images=>images.forEach(i=>i.loading='eager'));
+      await page.waitForFunction(()=>[...document.querySelectorAll('.adaptive-gallery img')].every(i=>i.complete),{},{timeout:20000});
+      await page.locator('.adaptive-gallery img').evaluateAll(images=>Promise.all(images.map(i=>i.decode().catch(()=>{}))));
       await settle();
       const faults=await page.locator('.adaptive-gallery').evaluateAll(gs=>{
         const out=[];
@@ -62,42 +62,42 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
       assert.deepEqual(faults,[]);
       assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'horizontal overflow');
     }
+    async function screenshotCard(id,width){
+      await page.locator('#status-tabs').evaluate(e=>e.style.visibility='hidden');
+      try{await page.locator(`[data-brand-card="${id}"]`).screenshot({path:`${folder}/${width}-${id}.png`});}
+      finally{await page.locator('#status-tabs').evaluate(e=>e.style.visibility='');}
+    }
     for(const width of [360,390,430,690,820,1024]){
       await page.setViewportSize({width,height:900});
       const tabs={};
       if(![390,820].includes(width)){
         await page.locator('[data-tab="active"]').click();
-        assert.equal(await page.locator('[data-brand-card]').count(),15);
-        await inspect();
-        for(const id of ['syabuyo','asakuma','washoku-sato'])await page.locator(`[data-brand-card="${id}"]`).screenshot({path:`${folder}/${width}-${id}.png`});
+        assert.equal(await page.locator('[data-brand-card]').count(),15);await inspect();
+        for(const id of ['syabuyo','asakuma','washoku-sato'])await screenshotCard(id,width);
         reports.push({width,layoutBrands:15,images:await page.locator('.media-tile').count(),imageFallbacks:await page.locator('.media-unavailable').count()});
-        console.log('Layout width passed:',width);
-        continue;
+        console.log('Layout width passed:',width);continue;
       }
       for(const tab of ['active','upcoming','ending','new']){
         await page.locator(`[data-tab="${tab}"]`).click();
         const expected=expectedRows(tab),shown=await page.locator('[data-campaign]').evaluateAll(es=>es.map(e=>e.dataset.campaign).sort());
         assert.deepEqual(shown,expected.map(c=>c.id).sort());
         const ids=await page.locator('[data-brand-card]').evaluateAll(es=>es.map(e=>e.dataset.brandCard));
-        assert.equal(new Set(ids).size,ids.length);
-        if(tab==='active')assert.equal(ids.length,15);
-        await inspect();
-        assert.equal(await page.locator('.brand-official').count(),ids.length);
+        assert.equal(new Set(ids).size,ids.length);if(tab==='active')assert.equal(ids.length,15);
+        await inspect();assert.equal(await page.locator('.brand-official').count(),ids.length);
         tabs[tab]={brands:ids.length,campaigns:shown.length,images:await page.locator('.adaptive-gallery img').count(),imageFallbacks:await page.locator('.media-unavailable').count()};
       }
       await page.locator('[data-tab="active"]').click();
       for(const brand of brands){
         await page.locator(`[data-brand="${brand.id}"]`).click();
         const card=page.locator('[data-brand-card]');assert.equal(await card.count(),1);assert.equal(await card.getAttribute('data-brand-card'),brand.id);
-        const crows=expectedRows('active').filter(c=>c.brandId===brand.id);
-        const expectedCount=selectMedia(crows,brand.id,media,'active').length;
+        const crows=expectedRows('active').filter(c=>c.brandId===brand.id),expectedCount=selectMedia(crows,brand.id,media,'active').length;
         await inspect();
         assert.equal(await page.locator('.media-tile,.media-unavailable').count(),expectedCount,'missing or fictitious image');
         assert.equal(await page.locator('.brand-availability,.local-note').count(),1,'missing availability explanation');
-        if(['syabuyo','asakuma','washoku-sato'].includes(brand.id))await page.locator('.restaurant-card').screenshot({path:`${folder}/${width}-${brand.id}.png`});
+        if(['syabuyo','asakuma','washoku-sato'].includes(brand.id))await screenshotCard(brand.id,width);
         await page.locator('#clear-filter').click();
       }
-      await page.screenshot({path:`${folder}/${width}-all.png`,fullPage:true});
+      await inspect();await page.screenshot({path:`${folder}/${width}-all.png`,fullPage:true});
       reports.push({width,tabs});console.log('All tabs and brand filters passed:',width);
     }
     await page.locator('[data-brand="syabuyo"]').click();await inspect();
@@ -111,8 +111,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
     const scope=await page.evaluate(async()=>(await navigator.serviceWorker.ready).scope);assert.equal(new URL(scope).pathname,'/meat-fair-app/');
     assert.deepEqual(errors,[]);
     await fs.writeFile(`${folder}/result.json`,JSON.stringify({passed:true,verifiedAt:new Date().toISOString(),reports,pwaScope:scope,errors},null,2));
-    console.log(JSON.stringify({passed:true,reports,pwaScope:scope,errors},null,2));
-    await page.close();
+    console.log(JSON.stringify({passed:true,reports,pwaScope:scope,errors},null,2));await page.close();
   }catch(e){await fs.writeFile(`${folder}/result.json`,JSON.stringify({passed:false,error:String(e),reports},null,2));throw e;}
   finally{await browser.close();if(server)await new Promise(r=>server.close(r));}
 })().catch(e=>{console.error(e);process.exit(1);});
