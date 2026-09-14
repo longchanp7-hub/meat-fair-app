@@ -2,14 +2,28 @@ import fs from 'node:fs/promises';
 import crypto from 'node:crypto';
 import { SOURCES } from './source-registry.mjs';
 import { validateDataset, validateCampaign } from './quality-gate.mjs';
-import { linksFromHtml,rawDetailUrls,relevantTitle,allowedPath,campaignId,textFromHtml,titleFromHtml,dateFields,imageFromHtml,deriveFields,canonicalUrl,firstDate,lifecycleFields,targetCoursesFromText } from './fair-utils.mjs';
+import { linksFromHtml,rawDetailUrls,relevantTitle,allowedPath,campaignId,textFromHtml,titleFromHtml,dateFields,imageCandidatesFromHtml,deriveFields,canonicalUrl,firstDate,lifecycleFields,targetCoursesFromText } from './fair-utils.mjs';
 
 const OUT=new URL('../app/data/fairs.json',import.meta.url);
 const CANDIDATE=new URL('../app/data/candidates.json',import.meta.url);
 async function fetchText(url){const r=await fetch(url,{headers:{'user-agent':'meat-fair-app/0.2 (+github-actions)'},signal:AbortSignal.timeout(12000)});if(!r.ok)throw new Error(`HTTP ${r.status}`);return await r.text()}
 const auxCache=new Map();
 async function fetchCached(url){if(!auxCache.has(url))auxCache.set(url,fetchText(url));return await auxCache.get(url)}
-async function selectFoodImage(brandId,html,officialUrl,title){let image=imageFromHtml(html,officialUrl,{title});if(image)return image;const links=linksFromHtml(html,officialUrl);const fallback=brandId==='yuzuan'?links.find(x=>new URL(x.url).pathname==='/seasonal/'||new URL(x.url).pathname.startsWith('/seasonal/')):brandId==='yakiniku-king'?links.find(x=>/\/menu_all\/season\/[A-Za-z0-9_-]+\/?$/.test(new URL(x.url).pathname)):null;if(!fallback)return null;try{const linkedHtml=await fetchCached(fallback.url);image=imageFromHtml(linkedHtml,fallback.url,{title});return image||null}catch{return null}}
+async function selectFoodImage(brandId,html,officialUrl,title){
+  const candidates=imageCandidatesFromHtml(html,officialUrl,{title}).map(c=>({...c,source:'detail'}));
+  const links=linksFromHtml(html,officialUrl);
+  const extras=[];
+  if(brandId==='yuzuan'){
+    for(const x of links.filter(x=>new URL(x.url).pathname==='/seasonal/'||new URL(x.url).pathname.startsWith('/seasonal/')).slice(0,2))extras.push(x.url);
+  }else if(brandId==='yakiniku-king'&&!new URL(officialUrl).pathname.startsWith('/menu_all/season/')){
+    const x=links.find(x=>/\/menu_all\/season\/[A-Za-z0-9_-]+\/?$/.test(new URL(x.url).pathname));if(x)extras.push(x.url);
+  }
+  for(const url of [...new Set(extras)]){
+    try{const linkedHtml=await fetchCached(url);for(const c of imageCandidatesFromHtml(linkedHtml,url,{title}))candidates.push({...c,score:c.score+5,source:'campaign-page'})}catch{}
+  }
+  const bestByUrl=new Map();for(const c of candidates){const old=bestByUrl.get(c.url);if(!old||c.score>old.score)bestByUrl.set(c.url,c)}
+  const best=[...bestByUrl.values()].sort((a,b)=>b.score-a.score)[0];return best&&best.score>=5?best.url:null;
+}
 function titleKey(s=''){return s.replace(/20\d{2}年\d{1,2}月\d{1,2}日[^「『]*/g,'').replace(/焼肉きんぐ|牛角|しゃぶ葉|ゆず庵/g,'').replace(/期間限定|販売開始|発売開始|開催します|開催|フェア/g,'').replace(/[\s　!！?？。、・「」『』（）()\-~〜～]/g,'').trim()}
 function richer(a,b){const score=c=>(c.sourceType==='seasonal_index'?5:0)+(c.endDate?3:0)+(c.startDate?2:0)+(c.imageUrl?1:0)+(c.targetCourses?.length||0)+(c.limitedIngredients?.length||0)/10;return score(a)>=score(b)?a:b}
 function semanticDedup(list){const out=[];for(const c of list){let hit=-1;for(let i=0;i<out.length;i++){const x=out[i];if(x.brandId!==c.brandId||!x.startDate||x.startDate!==c.startDate)continue;if(!['P1','P2'].includes(x.priority)||!['P1','P2'].includes(c.priority))continue;const a=titleKey(x.title),b=titleKey(c.title);if(a.length>=4&&b.length>=4&&(a.includes(b)||b.includes(a))){hit=i;break}}if(hit<0){out.push({...c,secondarySources:c.secondarySources||[]});continue}const old=out[hit],keep=richer(old,c),other=keep===old?c:old;const secondary=[...(keep.secondarySources||[]),{url:other.officialUrl,type:other.sourceType,title:other.title},...(other.secondarySources||[])];out[hit]={...keep,secondarySources:[...new Map(secondary.map(s=>[s.url,s])).values()]}}return out}
@@ -39,7 +53,7 @@ for(const brand of SOURCES.slice(0,4)){
 
 const urlDedup=[...new Map(candidates.map(c=>[`${c.brandId}|${c.officialUrl}`,c])).values()];
 const dedup=semanticDedup(urlDedup);
-await fs.writeFile(CANDIDATE,JSON.stringify({schemaVersion:5,updatedAt:nowIso,campaigns:dedup,errors},null,2));
+await fs.writeFile(CANDIDATE,JSON.stringify({schemaVersion:6,updatedAt:nowIso,campaigns:dedup,errors},null,2));
 let production=[...(current.campaigns||[])];
 for(const brand of SOURCES.slice(0,4)){
   const fresh=dedup.filter(c=>c.brandId===brand.brandId&&c.confidence>=0.72);
