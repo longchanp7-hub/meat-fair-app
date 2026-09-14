@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-14T08:33:57.583Z",
+  "updatedAt": "2026-09-14T08:35:55.656Z",
   "timezone": "Asia/Tokyo",
   "statusRules": {
     "newDays": 7,
@@ -42,10 +42,11 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:18:30.561Z",
-      "fetchedAt": "2026-09-14T08:33:57.583Z",
-      "lastVerifiedAt": "2026-09-14T08:33:57.583Z",
+      "fetchedAt": "2026-09-14T08:35:55.656Z",
+      "lastVerifiedAt": "2026-09-14T08:35:55.656Z",
       "confidence": 0.9,
-      "contentHash": "f54848d45ca0cf375c00f34af1f3e3d983aa7daa4b17e4c76281697785cdd808"
+      "contentHash": "f54848d45ca0cf375c00f34af1f3e3d983aa7daa4b17e4c76281697785cdd808",
+      "secondarySources": []
     },
     {
       "id": "602e61cb0e08d9cb",
@@ -83,10 +84,17 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:18:30.561Z",
-      "fetchedAt": "2026-09-14T08:33:57.583Z",
-      "lastVerifiedAt": "2026-09-14T08:33:57.583Z",
+      "fetchedAt": "2026-09-14T08:35:55.656Z",
+      "lastVerifiedAt": "2026-09-14T08:35:55.656Z",
       "confidence": 0.9,
-      "contentHash": "6ef7373bfe80da25768f8bb86a5ff78708bf6f175794081606e8f84eaef760e0"
+      "contentHash": "6ef7373bfe80da25768f8bb86a5ff78708bf6f175794081606e8f84eaef760e0",
+      "secondarySources": [
+        {
+          "url": "https://www.yakiniku-king.jp/news/6811/",
+          "type": "news_index",
+          "title": "2026年9月16日(水)より期間限定フェア「韓国市場(カンコクシジャン)」を開催します。"
+        }
+      ]
     },
     {
       "id": "3c35b3776728e54b",
@@ -124,10 +132,11 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 30,
       "firstSeenAt": "2026-09-14T08:19:13.075Z",
-      "fetchedAt": "2026-09-14T08:33:57.583Z",
-      "lastVerifiedAt": "2026-09-14T08:33:57.583Z",
+      "fetchedAt": "2026-09-14T08:35:55.656Z",
+      "lastVerifiedAt": "2026-09-14T08:35:55.656Z",
       "confidence": 0.9,
-      "contentHash": "a7a388475c5d8078839cefd49c467ab6c3fc55f32b30c2287a9c37163791c469"
+      "contentHash": "a7a388475c5d8078839cefd49c467ab6c3fc55f32b30c2287a9c37163791c469",
+      "secondarySources": []
     },
     {
       "id": "a83a4453222e1107",
@@ -165,10 +174,11 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 30,
       "firstSeenAt": "2026-09-14T08:19:13.075Z",
-      "fetchedAt": "2026-09-14T08:33:57.583Z",
-      "lastVerifiedAt": "2026-09-14T08:33:57.583Z",
+      "fetchedAt": "2026-09-14T08:35:55.656Z",
+      "lastVerifiedAt": "2026-09-14T08:35:55.656Z",
       "confidence": 0.9,
-      "contentHash": "c987a57bc3660e8428b4b4b81d6875b3b4ffe1c832983e4c6d08fc606ec8bf39"
+      "contentHash": "c987a57bc3660e8428b4b4b81d6875b3b4ffe1c832983e4c6d08fc606ec8bf39",
+      "secondarySources": []
     },
     {
       "id": "6eaab53e2d79c143",
@@ -205,51 +215,11 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 30,
       "firstSeenAt": "2026-09-14T08:19:13.075Z",
-      "fetchedAt": "2026-09-14T08:33:57.583Z",
-      "lastVerifiedAt": "2026-09-14T08:33:57.583Z",
+      "fetchedAt": "2026-09-14T08:35:55.656Z",
+      "lastVerifiedAt": "2026-09-14T08:35:55.656Z",
       "confidence": 0.9,
-      "contentHash": "76dd72c50453714c107042fa899ac35afa4c72d5e72ded2b0a4d0948635f9b9a"
-    },
-    {
-      "id": "eed16b1556dce6b9",
-      "brandId": "yakiniku-king",
-      "brandName": "焼肉きんぐ",
-      "title": "2026年9月16日(水)より期間限定フェア「韓国市場(カンコクシジャン)」を開催します。",
-      "officialUrl": "https://www.yakiniku-king.jp/news/6811/",
-      "sourceUrl": "https://www.yakiniku-king.jp/news/",
-      "sourceType": "news_index",
-      "campaignType": "fair",
-      "priority": "P1",
-      "startDate": "2026-09-16",
-      "startDateText": null,
-      "endDate": null,
-      "endDateText": null,
-      "publishedDate": "2026-09-16",
-      "price": null,
-      "priceText": null,
-      "allYouCanEat": true,
-      "targetCourses": [
-        "きんぐコース",
-        "プレミアムコース"
-      ],
-      "targetStores": [],
-      "targetAreas": [],
-      "regionScope": "unknown",
-      "limitedIngredients": [
-        "黒毛和牛",
-        "海鮮",
-        "韓国"
-      ],
-      "weekdayCondition": null,
-      "conditions": [],
-      "imageUrl": "https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/img/og.webp?202412",
-      "lifecycleStatus": "current",
-      "staleAfterDays": 60,
-      "firstSeenAt": "2026-09-14T08:19:13.075Z",
-      "fetchedAt": "2026-09-14T08:33:57.583Z",
-      "lastVerifiedAt": "2026-09-14T08:33:57.583Z",
-      "confidence": 0.9,
-      "contentHash": "de0f0f89f81eea23d047daaf8990d6b0542f040e9fcb8023be7f1c8288cee306"
+      "contentHash": "76dd72c50453714c107042fa899ac35afa4c72d5e72ded2b0a4d0948635f9b9a",
+      "secondarySources": []
     },
     {
       "id": "086a9cfe748470bd",
@@ -287,10 +257,11 @@
       "lifecycleStatus": "ended_official",
       "staleAfterDays": null,
       "firstSeenAt": "2026-09-14T08:19:13.075Z",
-      "fetchedAt": "2026-09-14T08:33:57.583Z",
-      "lastVerifiedAt": "2026-09-14T08:33:57.583Z",
+      "fetchedAt": "2026-09-14T08:35:55.656Z",
+      "lastVerifiedAt": "2026-09-14T08:35:55.656Z",
       "confidence": 0.9,
-      "contentHash": "7c6596fc712c485097195fe777c168d0a695353b73fc02a77f55daafa05b2959"
+      "contentHash": "7c6596fc712c485097195fe777c168d0a695353b73fc02a77f55daafa05b2959",
+      "secondarySources": []
     },
     {
       "id": "ce6a845dccd9b667",
@@ -327,10 +298,11 @@
       "lifecycleStatus": "ended_official",
       "staleAfterDays": null,
       "firstSeenAt": "2026-09-14T08:19:13.075Z",
-      "fetchedAt": "2026-09-14T08:33:57.583Z",
-      "lastVerifiedAt": "2026-09-14T08:33:57.583Z",
+      "fetchedAt": "2026-09-14T08:35:55.656Z",
+      "lastVerifiedAt": "2026-09-14T08:35:55.656Z",
       "confidence": 0.9,
-      "contentHash": "f89cfb5cf72f1db183914cc64e589c1ccfc30444c31fa363fd24d11b3603c894"
+      "contentHash": "f89cfb5cf72f1db183914cc64e589c1ccfc30444c31fa363fd24d11b3603c894",
+      "secondarySources": []
     },
     {
       "id": "bb7eb0fc81856b2a",
@@ -370,10 +342,11 @@
       "lifecycleStatus": "ended_official",
       "staleAfterDays": null,
       "firstSeenAt": "2026-09-14T08:19:13.075Z",
-      "fetchedAt": "2026-09-14T08:33:57.583Z",
-      "lastVerifiedAt": "2026-09-14T08:33:57.583Z",
+      "fetchedAt": "2026-09-14T08:35:55.656Z",
+      "lastVerifiedAt": "2026-09-14T08:35:55.656Z",
       "confidence": 0.9,
-      "contentHash": "e61a118d491eb292a15ccbf23978971af0899e511cb1a43dda70a985dfc8160f"
+      "contentHash": "e61a118d491eb292a15ccbf23978971af0899e511cb1a43dda70a985dfc8160f",
+      "secondarySources": []
     },
     {
       "id": "d0dfa7b063ebdb7f",
@@ -411,10 +384,11 @@
       "lifecycleStatus": "ended_official",
       "staleAfterDays": null,
       "firstSeenAt": "2026-09-14T08:19:13.075Z",
-      "fetchedAt": "2026-09-14T08:33:57.583Z",
-      "lastVerifiedAt": "2026-09-14T08:33:57.583Z",
+      "fetchedAt": "2026-09-14T08:35:55.656Z",
+      "lastVerifiedAt": "2026-09-14T08:35:55.656Z",
       "confidence": 0.9,
-      "contentHash": "72c68a70e04d705b8e51e99969fc3f92961d5ec586f4477eda5279746f371f35"
+      "contentHash": "72c68a70e04d705b8e51e99969fc3f92961d5ec586f4477eda5279746f371f35",
+      "secondarySources": []
     },
     {
       "id": "046bfc99f0e4828a",
@@ -449,10 +423,11 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:33:12.796Z",
-      "fetchedAt": "2026-09-14T08:33:57.583Z",
-      "lastVerifiedAt": "2026-09-14T08:33:57.583Z",
+      "fetchedAt": "2026-09-14T08:35:55.656Z",
+      "lastVerifiedAt": "2026-09-14T08:35:55.656Z",
       "confidence": 0.9,
-      "contentHash": "1c758518c46de6da3c7459b17bed58622e6488ac1297731349ec850937e33436"
+      "contentHash": "1c758518c46de6da3c7459b17bed58622e6488ac1297731349ec850937e33436",
+      "secondarySources": []
     },
     {
       "id": "70b9262f62e83cf7",
@@ -485,10 +460,11 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:33:12.796Z",
-      "fetchedAt": "2026-09-14T08:33:57.583Z",
-      "lastVerifiedAt": "2026-09-14T08:33:57.583Z",
+      "fetchedAt": "2026-09-14T08:35:55.656Z",
+      "lastVerifiedAt": "2026-09-14T08:35:55.656Z",
       "confidence": 0.9,
-      "contentHash": "a3880db5245430f03efad028d026943b2a6e42238cdaa6a59682b9e3b2bafff2"
+      "contentHash": "a3880db5245430f03efad028d026943b2a6e42238cdaa6a59682b9e3b2bafff2",
+      "secondarySources": []
     },
     {
       "id": "cbf88a2345e6cadf",
@@ -521,10 +497,11 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 30,
       "firstSeenAt": "2026-09-14T08:33:12.796Z",
-      "fetchedAt": "2026-09-14T08:33:57.583Z",
-      "lastVerifiedAt": "2026-09-14T08:33:57.583Z",
+      "fetchedAt": "2026-09-14T08:35:55.656Z",
+      "lastVerifiedAt": "2026-09-14T08:35:55.656Z",
       "confidence": 0.72,
-      "contentHash": "6c5a0787c1fe8ad1f320ce0dcae53d406a5f077f66473edb16e2dffabc74425f"
+      "contentHash": "6c5a0787c1fe8ad1f320ce0dcae53d406a5f077f66473edb16e2dffabc74425f",
+      "secondarySources": []
     },
     {
       "id": "f90e5eb56df4310b",
@@ -557,10 +534,11 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:33:12.796Z",
-      "fetchedAt": "2026-09-14T08:33:57.583Z",
-      "lastVerifiedAt": "2026-09-14T08:33:57.583Z",
+      "fetchedAt": "2026-09-14T08:35:55.656Z",
+      "lastVerifiedAt": "2026-09-14T08:35:55.656Z",
       "confidence": 0.72,
-      "contentHash": "4beb723d4fc0477e26a2e1c5105d97a9ee6b8af3b68edc925fab2e0582c59d0a"
+      "contentHash": "4beb723d4fc0477e26a2e1c5105d97a9ee6b8af3b68edc925fab2e0582c59d0a",
+      "secondarySources": []
     },
     {
       "id": "e6f5af4e87e2c229",
@@ -599,10 +577,11 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 30,
       "firstSeenAt": "2026-09-14T08:33:12.796Z",
-      "fetchedAt": "2026-09-14T08:33:57.583Z",
-      "lastVerifiedAt": "2026-09-14T08:33:57.583Z",
+      "fetchedAt": "2026-09-14T08:35:55.656Z",
+      "lastVerifiedAt": "2026-09-14T08:35:55.656Z",
       "confidence": 0.72,
-      "contentHash": "4c56fb5e7ddc35d479f8bcb5ade8ed52e419b6cf3fc027c296b8afe543c9aabe"
+      "contentHash": "4c56fb5e7ddc35d479f8bcb5ade8ed52e419b6cf3fc027c296b8afe543c9aabe",
+      "secondarySources": []
     },
     {
       "id": "0136c50e7917ca4d",
@@ -640,10 +619,11 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:10:00.000Z",
-      "fetchedAt": "2026-09-14T08:33:57.583Z",
-      "lastVerifiedAt": "2026-09-14T08:33:57.583Z",
+      "fetchedAt": "2026-09-14T08:35:55.656Z",
+      "lastVerifiedAt": "2026-09-14T08:35:55.656Z",
       "confidence": 0.9,
-      "contentHash": "a689ec758cbbfc8a898c92c5fcc083c5ae09f376441e2619792d4831d5cdca50"
+      "contentHash": "a689ec758cbbfc8a898c92c5fcc083c5ae09f376441e2619792d4831d5cdca50",
+      "secondarySources": []
     },
     {
       "id": "b667293631907d7c",
@@ -676,10 +656,11 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 30,
       "firstSeenAt": "2026-09-14T08:15:09.064Z",
-      "fetchedAt": "2026-09-14T08:33:57.583Z",
-      "lastVerifiedAt": "2026-09-14T08:33:57.583Z",
+      "fetchedAt": "2026-09-14T08:35:55.656Z",
+      "lastVerifiedAt": "2026-09-14T08:35:55.656Z",
       "confidence": 0.9,
-      "contentHash": "43660b1ff1a9e455bc10b08b559db9493182274046b3591cd5242b91cf86b6ca"
+      "contentHash": "43660b1ff1a9e455bc10b08b559db9493182274046b3591cd5242b91cf86b6ca",
+      "secondarySources": []
     },
     {
       "id": "a428d31e595a41cf",
@@ -719,10 +700,11 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:15:09.064Z",
-      "fetchedAt": "2026-09-14T08:33:57.583Z",
-      "lastVerifiedAt": "2026-09-14T08:33:57.583Z",
+      "fetchedAt": "2026-09-14T08:35:55.656Z",
+      "lastVerifiedAt": "2026-09-14T08:35:55.656Z",
       "confidence": 0.9,
-      "contentHash": "68b6dc964e0255d4309baa72a016a48d327c09e96971371c531d8511dfd2b8f2"
+      "contentHash": "68b6dc964e0255d4309baa72a016a48d327c09e96971371c531d8511dfd2b8f2",
+      "secondarySources": []
     },
     {
       "id": "e5b97de82a4bdfad",
@@ -753,10 +735,11 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 30,
       "firstSeenAt": "2026-09-14T08:15:09.064Z",
-      "fetchedAt": "2026-09-14T08:33:57.583Z",
-      "lastVerifiedAt": "2026-09-14T08:33:57.583Z",
+      "fetchedAt": "2026-09-14T08:35:55.656Z",
+      "lastVerifiedAt": "2026-09-14T08:35:55.656Z",
       "confidence": 0.9,
-      "contentHash": "54ae057de2c75e3446b2816f98da2f8735d30ab0e52b434d5958db085f36ec76"
+      "contentHash": "54ae057de2c75e3446b2816f98da2f8735d30ab0e52b434d5958db085f36ec76",
+      "secondarySources": []
     },
     {
       "id": "3c586ff82d30313f",
@@ -789,10 +772,11 @@
       "lifecycleStatus": "stale_unverified",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:15:09.064Z",
-      "fetchedAt": "2026-09-14T08:33:57.583Z",
-      "lastVerifiedAt": "2026-09-14T08:33:57.583Z",
+      "fetchedAt": "2026-09-14T08:35:55.656Z",
+      "lastVerifiedAt": "2026-09-14T08:35:55.656Z",
       "confidence": 0.9,
-      "contentHash": "135e576786046d27284afd350e811ed7657d63f755beb1b6730384e8a52b8d97"
+      "contentHash": "135e576786046d27284afd350e811ed7657d63f755beb1b6730384e8a52b8d97",
+      "secondarySources": []
     }
   ]
 }
