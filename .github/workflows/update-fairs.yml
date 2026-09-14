@@ -67,8 +67,9 @@ jobs:
         run: |
           curl --fail --location --retry 10 --retry-delay 6 --retry-all-errors "${PAGE_URL}" -o /tmp/index.html
           curl --fail --location --retry 10 --retry-delay 6 --retry-all-errors "${PAGE_URL}data/brands.json" -o /tmp/brands.json
-          curl --fail --location --retry 10 --retry-delay 6 --retry-all-errors "${PAGE_URL}data/fairs.json" -o /tmp/fairs.json
-          node --input-type=module <<'NODE'
+          for attempt in $(seq 1 12); do
+            curl --fail --location --retry 3 --retry-delay 3 --retry-all-errors "${PAGE_URL}data/fairs.json?verify=${GITHUB_RUN_ID}-${attempt}" -o /tmp/fairs.json
+            if node --input-type=module <<'NODE'
           import fs from 'node:fs';
           const local=JSON.parse(fs.readFileSync('app/data/fairs.json','utf8'));
           const fairs=JSON.parse(fs.readFileSync('/tmp/fairs.json','utf8'));
@@ -79,3 +80,11 @@ jobs:
           for(const [i,c] of fairs.campaigns.entries()) for(const k of ['id','brandId','title','officialUrl']) if(!c?.[k]) throw new Error(`public campaign ${i} missing ${k}`);
           console.log(`public refresh verify ok: ${brands.brands.length} brands, ${fairs.campaigns.length} campaigns, updatedAt=${fairs.updatedAt}`);
           NODE
+            then
+              exit 0
+            fi
+            echo "Pages propagation pending (${attempt}/12)"
+            sleep 6
+          done
+          echo "Pages did not expose the latest fairs.json in time"
+          exit 1
