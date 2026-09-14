@@ -13,11 +13,12 @@ permissions:
   pages: write
   id-token: write
 concurrency:
-  group: fair-data-refresh
+  group: fair-data-refresh-v2
   cancel-in-progress: true
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
@@ -44,6 +45,7 @@ jobs:
   deploy:
     needs: update
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     concurrency:
       group: pages
       cancel-in-progress: true
