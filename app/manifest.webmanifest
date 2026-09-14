@@ -1,0 +1,17 @@
+{
+  "id": "/meat-fair-app/",
+  "name": "食べ放題・肉フェア",
+  "short_name": "肉フェア",
+  "description": "焼肉・しゃぶしゃぶ・ビュッフェ15チェーンの公式フェア情報",
+  "lang": "ja",
+  "start_url": "/meat-fair-app/",
+  "scope": "/meat-fair-app/",
+  "display": "standalone",
+  "theme_color": "#b33227",
+  "background_color": "#f5f4f1",
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
