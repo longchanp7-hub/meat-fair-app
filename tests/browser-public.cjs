@@ -53,6 +53,11 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
             if(getComputedStyle(img).objectFit!=='contain')out.push('image cropped');
             if(img.naturalWidth&&Math.abs(ir.width/ir.height-img.naturalWidth/img.naturalHeight)>.015)out.push('wrong aspect ratio');
             if(r.left<gr.left-1||r.right>gr.right+1||r.top<gr.top-1||r.bottom>gr.bottom+1)out.push('tile overflow');
+            const caption=t.querySelector('.media-caption'),cr=caption.getBoundingClientRect();
+            if(cr.top<ir.bottom-1||cr.bottom>r.bottom+1)out.push('caption overlaps or clips');
+            for(const child of caption.children){const c=child.getBoundingClientRect();if(c.top<cr.top-1||c.bottom>cr.bottom+1)out.push('caption text vertically clipped');}
+            const price=t.querySelector('.media-price');
+            if(price&&price.scrollWidth>price.clientWidth+1)out.push('tax-inclusive price clipped');
             for(let j=i+1;j<rects.length;j++){const b=rects[j];if(Math.min(r.right,b.right)-Math.max(r.left,b.left)>1&&Math.min(r.bottom,b.bottom)-Math.max(r.top,b.top)>1)out.push('tile overlap');}
           }
           if(rects.length&&Math.abs(Math.max(...rects.map(r=>r.bottom))-gr.bottom)>1)out.push('empty bottom band');
@@ -100,6 +105,13 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
       await inspect();await page.screenshot({path:`${folder}/${width}-all.png`,fullPage:true});
       reports.push({width,tabs});console.log('All tabs and brand filters passed:',width);
     }
+    // Caption size changes must trigger re-layout without a viewport change.
+    await page.setViewportSize({width:390,height:900});
+    for(const percent of [125,150,200]){
+      await page.evaluate(p=>document.documentElement.style.fontSize=p+'%',percent);
+      await inspect();reports.push({width:390,textSizePercent:percent,captionAndPriceClipping:false});
+    }
+    await page.evaluate(()=>document.documentElement.style.fontSize='');await inspect();
     await page.locator('[data-brand="syabuyo"]').click();await inspect();
     const before=await page.locator('.media-tile').count();assert.ok(before>0);
     await page.locator('.media-tile img').first().evaluate(i=>i.dispatchEvent(new Event('error')));await settle();
