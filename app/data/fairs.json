@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-14T13:01:59.293Z",
+  "updatedAt": "2026-09-14T13:17:48.400Z",
   "timezone": "Asia/Tokyo",
   "statusRules": {
     "newDays": 7,
@@ -11,7 +11,7 @@
       "id": "cb22f0559595bcaf",
       "brandId": "yakiniku-king",
       "brandName": "焼肉きんぐ",
-      "title": "焼肉きんぐ ハワイフェア 焼肉きんぐ ハワイフェア",
+      "title": "ハワイフェア",
       "officialUrl": "https://www.yakiniku-king.jp/menu_all/season/2606_hawaii/",
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/season",
       "sourceType": "seasonal_index",
@@ -32,27 +32,24 @@
       "targetStores": [],
       "targetAreas": [],
       "regionScope": "unknown",
-      "limitedIngredients": [
-        "黒毛和牛",
-        "海鮮"
-      ],
+      "limitedIngredients": [],
       "weekdayCondition": null,
       "conditions": [],
       "imageUrl": "https://www.yakiniku-king.jp/wp-content/uploads/2026/06/king2101_Hawaii_1500x1500_04.jpg",
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:18:30.561Z",
-      "fetchedAt": "2026-09-14T13:01:59.293Z",
-      "lastVerifiedAt": "2026-09-14T13:01:59.293Z",
+      "fetchedAt": "2026-09-14T13:17:48.400Z",
+      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
       "confidence": 0.9,
-      "contentHash": "f54848d45ca0cf375c00f34af1f3e3d983aa7daa4b17e4c76281697785cdd808",
+      "contentHash": "a6535357e0a494d804c1be5d4776510257750cd1cea1d5fca9c6e24dbc96744e",
       "secondarySources": []
     },
     {
       "id": "602e61cb0e08d9cb",
       "brandId": "yakiniku-king",
       "brandName": "焼肉きんぐ",
-      "title": "焼肉きんぐ 期間限定 韓国市場（カンコクシジャン）",
+      "title": "期間限定 韓国市場（カンコクシジャン）",
       "officialUrl": "https://www.yakiniku-king.jp/menu_all/season/2609_koreanfair/",
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/season",
       "sourceType": "seasonal_index",
@@ -74,7 +71,6 @@
       "targetAreas": [],
       "regionScope": "unknown",
       "limitedIngredients": [
-        "黒毛和牛",
         "海鮮",
         "韓国"
       ],
@@ -84,15 +80,25 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:18:30.561Z",
-      "fetchedAt": "2026-09-14T13:01:59.293Z",
-      "lastVerifiedAt": "2026-09-14T13:01:59.293Z",
+      "fetchedAt": "2026-09-14T13:17:48.400Z",
+      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
       "confidence": 0.9,
-      "contentHash": "6ef7373bfe80da25768f8bb86a5ff78708bf6f175794081606e8f84eaef760e0",
+      "contentHash": "5c963f614cefcc05e220b100614767ee552f0f61bc4c901cf1a9f63792c1ade0",
       "secondarySources": [
+        {
+          "url": "https://www.yakiniku-king.jp/news/6836/",
+          "type": "news_index",
+          "title": "期間限定 韓国市場（カンコクシジャン）"
+        },
+        {
+          "url": "https://www.yakiniku-king.jp/news/6835/",
+          "type": "news_index",
+          "title": "期間限定 韓国市場（カンコクシジャン）"
+        },
         {
           "url": "https://www.yakiniku-king.jp/news/6811/",
           "type": "news_index",
-          "title": "2026年9月16日(水)より期間限定フェア「韓国市場(カンコクシジャン)」を開催します。"
+          "title": "期間限定 韓国市場（カンコクシジャン）"
         }
       ]
     },
@@ -122,8 +128,6 @@
       "targetAreas": [],
       "regionScope": "unknown",
       "limitedIngredients": [
-        "黒毛和牛",
-        "海鮮",
         "韓国"
       ],
       "weekdayCondition": null,
@@ -132,10 +136,10 @@
       "lifecycleStatus": "ended_official",
       "staleAfterDays": null,
       "firstSeenAt": "2026-09-14T08:19:13.075Z",
-      "fetchedAt": "2026-09-14T13:01:59.293Z",
-      "lastVerifiedAt": "2026-09-14T13:01:59.293Z",
+      "fetchedAt": "2026-09-14T13:17:48.400Z",
+      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
       "confidence": 0.9,
-      "contentHash": "7c6596fc712c485097195fe777c168d0a695353b73fc02a77f55daafa05b2959",
+      "contentHash": "d4fc49248a31f476a2112aab45f87610be62b89516df6792dfd43a78c310809a",
       "secondarySources": []
     },
     {
@@ -163,27 +167,24 @@
       "targetStores": [],
       "targetAreas": [],
       "regionScope": "unknown",
-      "limitedIngredients": [
-        "黒毛和牛",
-        "海鮮"
-      ],
+      "limitedIngredients": [],
       "weekdayCondition": null,
       "conditions": [],
       "imageUrl": "https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/img/menu/season/2602_okinawafair/fv_uzumaki_5.webp",
       "lifecycleStatus": "ended_official",
       "staleAfterDays": null,
       "firstSeenAt": "2026-09-14T08:19:13.075Z",
-      "fetchedAt": "2026-09-14T13:01:59.293Z",
-      "lastVerifiedAt": "2026-09-14T13:01:59.293Z",
+      "fetchedAt": "2026-09-14T13:17:48.400Z",
+      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
       "confidence": 0.9,
-      "contentHash": "f89cfb5cf72f1db183914cc64e589c1ccfc30444c31fa363fd24d11b3603c894",
+      "contentHash": "ba9c094c70149c62b14231da3333121b3833feb9b194337e2be82705d07bbfbf",
       "secondarySources": []
     },
     {
       "id": "bb7eb0fc81856b2a",
       "brandId": "yakiniku-king",
       "brandName": "焼肉きんぐ",
-      "title": "焼肉きんぐ 公式サイト｜期間限定 | 北海道フェア",
+      "title": "公式サイト｜期間限定 | 北海道フェア",
       "officialUrl": "https://www.yakiniku-king.jp/menu_all/season/2511_hokkaidofair/",
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/season",
       "sourceType": "seasonal_index",
@@ -205,10 +206,8 @@
       "targetAreas": [],
       "regionScope": "unknown",
       "limitedIngredients": [
-        "黒毛和牛",
         "かに",
         "カニ",
-        "海鮮",
         "北海道"
       ],
       "weekdayCondition": null,
@@ -217,17 +216,17 @@
       "lifecycleStatus": "ended_official",
       "staleAfterDays": null,
       "firstSeenAt": "2026-09-14T08:19:13.075Z",
-      "fetchedAt": "2026-09-14T13:01:59.293Z",
-      "lastVerifiedAt": "2026-09-14T13:01:59.293Z",
+      "fetchedAt": "2026-09-14T13:17:48.400Z",
+      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
       "confidence": 0.9,
-      "contentHash": "e61a118d491eb292a15ccbf23978971af0899e511cb1a43dda70a985dfc8160f",
+      "contentHash": "7c7f010414c39144e387953eb53e7121702b1dc231a255542cf224a5426778d7",
       "secondarySources": []
     },
     {
       "id": "d0dfa7b063ebdb7f",
       "brandId": "yakiniku-king",
       "brandName": "焼肉きんぐ",
-      "title": "焼肉きんぐ 公式サイト｜期間限定 | 韓国フェア",
+      "title": "公式サイト｜期間限定 | 韓国フェア",
       "officialUrl": "https://www.yakiniku-king.jp/menu_all/season/2509_koreanfair/",
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/season",
       "sourceType": "seasonal_index",
@@ -249,8 +248,6 @@
       "targetAreas": [],
       "regionScope": "unknown",
       "limitedIngredients": [
-        "黒毛和牛",
-        "海鮮",
         "韓国"
       ],
       "weekdayCondition": null,
@@ -259,17 +256,17 @@
       "lifecycleStatus": "ended_official",
       "staleAfterDays": null,
       "firstSeenAt": "2026-09-14T08:19:13.075Z",
-      "fetchedAt": "2026-09-14T13:01:59.293Z",
-      "lastVerifiedAt": "2026-09-14T13:01:59.293Z",
+      "fetchedAt": "2026-09-14T13:17:48.400Z",
+      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
       "confidence": 0.9,
-      "contentHash": "72c68a70e04d705b8e51e99969fc3f92961d5ec586f4477eda5279746f371f35",
+      "contentHash": "d5ffefd4396375f12fa6560f7a036ac1c095bfdea2b04a41ecf5328762dae9d9",
       "secondarySources": []
     },
     {
       "id": "046bfc99f0e4828a",
       "brandId": "gyukaku",
       "brandName": "牛角",
-      "title": "【平日限定】アプリ会員限定 牛タン半額 | 焼肉なら「牛角」",
+      "title": "【平日限定】アプリ会員限定 牛タン半額",
       "officialUrl": "https://www.gyukaku.ne.jp/lp/202609_cp/tanfair/",
       "sourceUrl": "https://www.gyukaku.ne.jp/",
       "sourceType": "brand_top",
@@ -298,8 +295,8 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:33:12.796Z",
-      "fetchedAt": "2026-09-14T13:01:59.293Z",
-      "lastVerifiedAt": "2026-09-14T13:01:59.293Z",
+      "fetchedAt": "2026-09-14T13:17:48.400Z",
+      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
       "confidence": 0.9,
       "contentHash": "1c758518c46de6da3c7459b17bed58622e6488ac1297731349ec850937e33436",
       "secondarySources": []
@@ -340,8 +337,8 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:10:00.000Z",
-      "fetchedAt": "2026-09-14T13:01:59.293Z",
-      "lastVerifiedAt": "2026-09-14T13:01:59.293Z",
+      "fetchedAt": "2026-09-14T13:17:48.400Z",
+      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
       "confidence": 0.9,
       "contentHash": "a689ec758cbbfc8a898c92c5fcc083c5ae09f376441e2619792d4831d5cdca50",
       "secondarySources": []
@@ -373,14 +370,14 @@
       ],
       "weekdayCondition": null,
       "conditions": [],
-      "imageUrl": "https://www.shabu-yuzuan.jp/wp-content/uploads/2026/09/web_sushi_1500x1000_2609.webp",
+      "imageUrl": null,
       "lifecycleStatus": "current",
       "staleAfterDays": 30,
       "firstSeenAt": "2026-09-14T08:15:09.064Z",
-      "fetchedAt": "2026-09-14T13:01:59.293Z",
-      "lastVerifiedAt": "2026-09-14T13:01:59.293Z",
+      "fetchedAt": "2026-09-14T13:17:48.400Z",
+      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
       "confidence": 0.9,
-      "contentHash": "43660b1ff1a9e455bc10b08b559db9493182274046b3591cd5242b91cf86b6ca",
+      "contentHash": "efaa05d281dffa28a6e5df1454e2266b8fda35a9428d153483bbde213db55e90",
       "secondarySources": []
     },
     {
@@ -400,7 +397,7 @@
       "publishedDate": "2026-09-08",
       "price": null,
       "priceText": null,
-      "allYouCanEat": true,
+      "allYouCanEat": false,
       "targetCourses": [],
       "targetStores": [],
       "targetAreas": [],
@@ -421,10 +418,10 @@
       "lifecycleStatus": "current",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:15:09.064Z",
-      "fetchedAt": "2026-09-14T13:01:59.293Z",
-      "lastVerifiedAt": "2026-09-14T13:01:59.293Z",
+      "fetchedAt": "2026-09-14T13:17:48.400Z",
+      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
       "confidence": 0.9,
-      "contentHash": "68b6dc964e0255d4309baa72a016a48d327c09e96971371c531d8511dfd2b8f2",
+      "contentHash": "ef16855faf19369dc39620fb1b88214086c59b725ff7433f06ffd0b8d5007595",
       "secondarySources": []
     },
     {
@@ -458,10 +455,10 @@
       "lifecycleStatus": "stale_unverified",
       "staleAfterDays": 60,
       "firstSeenAt": "2026-09-14T08:15:09.064Z",
-      "fetchedAt": "2026-09-14T13:01:59.293Z",
-      "lastVerifiedAt": "2026-09-14T13:01:59.293Z",
+      "fetchedAt": "2026-09-14T13:17:48.400Z",
+      "lastVerifiedAt": "2026-09-14T13:17:48.400Z",
       "confidence": 0.9,
-      "contentHash": "135e576786046d27284afd350e811ed7657d63f755beb1b6730384e8a52b8d97",
+      "contentHash": "35351b12e8dc4c74477392990abbee78f723f3930300385529b4c3077fa3fe8e",
       "secondarySources": []
     }
   ]
