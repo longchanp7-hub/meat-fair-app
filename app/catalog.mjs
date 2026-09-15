@@ -36,7 +36,7 @@ function shortConditions(e){
 }
 function labelFor(e){
   if(e.context?.subBrand)return e.context.subBrand;
-  if(e.kind==='drink')return /ソフト|ドリンクバー/.test(e.title)?'ソフトドリンク':/アルコール|生ビール|酒/.test(e.title)?'アルコール':'飲み放題';
+  if(e.kind==='drink')return /ソフト|ドリンクバー|さとカフェ/.test(e.title)?'ソフトドリンク':/アルコール|生ビール|酒|さとバル/.test(e.title)?'アルコール':'飲み放題';
   return /ランチ/.test(e.title)?'ランチ':'コース';
 }
 function priceText(e){
@@ -47,7 +47,7 @@ function priceText(e){
 }
 function textTile(e){
   const conditions=shortConditions(e),known=knownPrice(e);
-  return `<a class="catalog-card compact-card" data-catalog-id="${esc(e.id)}" data-catalog-kind="${esc(e.kind)}" data-price="${known?e.price.amount:''}" data-context="${esc(e.comparisonKey||e.sourceUrl)}" href="${esc(safe(e.officialUrl))}" target="_blank" rel="noopener noreferrer"><span class="catalog-label">${esc(labelFor(e))}</span><span class="compact-main"><b>${esc(e.title)}</b><strong class="catalog-price${known?'':' unconfirmed'}">${esc(priceText(e))}</strong></span>${conditions.length?`<small class="catalog-terms">${esc(conditions.join(' · '))}</small>`:''}${e.verificationState==='last_known_good'?'<small class="catalog-stale">前回確認情報</small>':''}</a>`;
+  return `<a class="catalog-card compact-card" data-catalog-id="${esc(e.id)}" data-catalog-kind="${esc(e.kind)}" data-price="${known?e.price.amount:''}" data-context="${esc(e.comparisonKey||e.sourceUrl)}" href="${esc(safe(e.officialUrl))}" target="_blank" rel="noopener noreferrer"><span class="catalog-label">${esc(labelFor(e))}</span><span class="compact-main"><b>${esc(e.title)}</b><strong class="catalog-price${known?'':' unconfirmed'}">${esc(priceText(e))}</strong></span>${conditions.length?`<small class="catalog-terms">${esc(conditions.join(' · '))}</small>`:''}${e.verificationState==='last_known_good'?'<small class="catalog-stale">前回の確認情報</small>':''}</a>`;
 }
 function photoTile(e,kind){
   const known=knownPrice(e),w=Number(e.width)||0,h=Number(e.height)||0;
@@ -77,7 +77,7 @@ function renderSection(brand,entries,kind,shownImages){
   if(brand.id==='yuzuan'&&photos.length)textRows=textRows.filter(e=>/ランチ/.test(e.title)&&!photoIds.has(e.id));
   const photoHtml=photos.length?`<div class="catalog-photo-stack" data-photo-stack="${kind}">${photos.map(e=>photoTile(e,kind)).join('')}</div>`:'';
   const textHtml=textRows.length?`<div class="catalog-stack">${textRows.map(textTile).join('')}</div>`:'';
-  const empty=kind==='drink'?'飲み放題の有無・料金は公式案内で確認':'料金は公式メニューで確認';
+  const empty=kind==='drink'?'飲み放題プランの有無・料金は公式案内で確認':'料金は公式メニューで確認';
   return `<section class="catalog-section" data-catalog-section="${kind}"><h4>${title}</h4>${photoHtml}${textHtml}${!photos.length&&!textRows.length?`<p class="catalog-empty"><a href="${esc(safe(brand.homeUrl))}" target="_blank" rel="noopener noreferrer">${empty} ↗</a></p>`:''}</section>`;
 }
 export function renderCatalog(brand,data,fairs,media,now=new Date(),offersData=null){
