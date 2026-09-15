@@ -43,11 +43,17 @@ function uniqueVariants(items){
 export function detailAssets(scope,base,campaign){
   const mainKey=campaign.imageUrl?imageKey(campaign.imageUrl):null;
   const observed=uniqueVariants(candidates(scope,base)).filter(a=>belongsToPage(a.node,scope,base));
-  return officialPhotoCandidates(observed).filter(a=>imageKey(a.imageUrl)!==mainKey&&a.title.length>=4&&a.title.length<=200&&FOOD.test(a.title)&&!NONFOOD.test(a.title)&&!/^コースは|^土[・日]|^おすすめ.*アレンジ|^ワクワク|^豪華.*コース/.test(a.title)).map(a=>{
+  const discountPosters=campaign.campaignType==='discount'?observed.filter(a=>{
+    const title=String(a.title||'').replace(/[^\p{L}\p{N}]/gu,'');
+    const name=String(campaign.title||'').replace(/[^\p{L}\p{N}]/gu,'');
+    return title.length>=3&&Array.from({length:title.length-2},(_,i)=>title.slice(i,i+3)).some(t=>!/^\d+$/.test(t)&&name.includes(t))&&!/抽選|プレゼント|アンケート|フォロー/.test(a.title);
+  }).map(a=>({imageUrl:a.imageUrl,title:campaign.title,officialUrl:base,sourceUrl:base,kind:'detail',rank:10,campaignId:campaign.id,parentHash:campaign.contentHash})):[];
+  const food=officialPhotoCandidates(observed).filter(a=>imageKey(a.imageUrl)!==mainKey&&a.title.length>=4&&a.title.length<=200&&FOOD.test(a.title)&&!NONFOOD.test(a.title)&&!/^コースは|^土[・日]|^おすすめ.*アレンジ|^ワクワク|^豪華.*コース/.test(a.title)).map(a=>{
     let href=base;
     for(let n=a.node.parent;n&&n!==scope;n=n.parent)if(n.attrs?.id){href=new URL('#'+n.attrs.id,base).href;break;}
     return mediaSemantics({imageUrl:a.imageUrl,title:a.title,officialUrl:href,sourceUrl:base,kind:'detail',rank:/食べ放題/.test(a.title)&&/[￥円]/.test(a.title)?20:30,campaignId:campaign.id,parentHash:campaign.contentHash});
   });
+  return [...discountPosters,...food];
 }
 export function menuAssets(html,base,campaignUrls=[]){
   const doc=parseHtml(html),root=one(doc,'main,.area-contents,body')||doc,origin=new URL(base).origin;

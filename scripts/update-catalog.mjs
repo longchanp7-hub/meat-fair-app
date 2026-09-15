@@ -2,6 +2,8 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {extractCatalogPage,discoverCatalogLinks,dedupCatalog,contentHash} from './catalog-extract.mjs';
 import {publicUrl,dimensions} from './gallery-extract.mjs';
+import {markup} from './html-document.mjs';
+import {CATALOG_SOURCES} from './catalog-sources.mjs';
 import {SOURCES} from './source-registry.mjs';
 import {extractPage} from './site-profiles.mjs';
 import {campaignStatus} from '../app/status.mjs';
@@ -47,6 +49,7 @@ async function collectBrand(brand){
   const queue=[{url:brand.homeUrl,depth:0,rank:-1}],visited=new Set(),entries=[],sources=[],errors=[];
   const profile=SOURCES.find(s=>s.brandId===brand.id);
   // Existing registry URLs are already observed official sources, not guesses.
+  for(const url of CATALOG_SOURCES[brand.id]||[])queue.push({url,depth:0,rank:-.5});
   for(const s of profile.sources)if(/price|menu|course/.test(s.url)&&new URL(s.url).origin===new URL(brand.homeUrl).origin)queue.push({url:s.url,depth:0,rank:0});
   const live=fairs.campaigns.filter(c=>c.brandId===brand.id&&['P1','P2'].includes(c.priority)&&campaignStatus(c,new Date(now)).state!=='ended');
   for(const c of live)queue.push({url:c.officialUrl,campaign:c,depth:2,rank:3});
@@ -61,12 +64,13 @@ async function collectBrand(brand){
         const current=extractPage(profile,received.html,url,item.campaign.title);
         if(current.hash!==item.campaign.contentHash)throw Error('campaign_content_changed_pending_review');
       }
-      const extracted=extractCatalogPage(received.html,received.url,brand,{checkedAt:stamp,campaign:item.campaign||null});
+      const scopedHtml=item.campaign?markup(extractPage(profile,received.html,url,item.campaign.title).scope):received.html;
+      const extracted=extractCatalogPage(scopedHtml,received.url,brand,{checkedAt:stamp,campaign:item.campaign||null});
       // The fair key visual belongs in the fair gallery, never a duplicate menu.
       const mainImages=new Set(live.map(c=>c.imageUrl).filter(Boolean));
       entries.push(...extracted.items.filter(e=>!mainImages.has(e.imageUrl)));
       sources.push({...extracted.source,brandId:brand.id,requestedUrl:url});
-      if(item.depth<2&&!item.campaign)for(const l of discoverCatalogLinks(received.html,received.url,brand))if(!visited.has(l.url))queue.push({...l,depth:item.depth+1,rank:l.rank+item.depth*.5});
+      if(item.depth<2||item.campaign)for(const l of discoverCatalogLinks(received.html,received.url,brand))if(!visited.has(l.url))queue.push({...l,depth:item.campaign?1:item.depth+1,rank:l.rank+item.depth*.5});
     }catch(e){
       errors.push({brandId:brand.id,url,error:e.message});
       sources.push({brandId:brand.id,sourceUrl:url,checkedAt:null,status:'unavailable',error:e.message});
@@ -93,7 +97,7 @@ async function collectBrand(brand){
 }
 const results=[];
 for(let i=0;i<brands.length;i+=3)results.push(...await Promise.all(brands.slice(i,i+3).map(collectBrand)));
-const catalog={schemaVersion:1,policyVersion:1,updatedAt:stamp,fairsUpdatedAt:fairs.updatedAt,galleryUpdatedAt:gallery.updatedAt,ttlHours:48,entries:results.flatMap(r=>r.entries),sources:results.flatMap(r=>r.sources),sourceHealth:results.map(r=>r.health),errors:results.flatMap(r=>r.errors)};
+const catalog={schemaVersion:1,policyVersion:2,updatedAt:stamp,fairsUpdatedAt:fairs.updatedAt,galleryUpdatedAt:gallery.updatedAt,ttlHours:48,entries:results.flatMap(r=>r.entries),sources:results.flatMap(r=>r.sources),sourceHealth:results.map(r=>r.health),errors:results.flatMap(r=>r.errors)};
 await fs.writeFile(new URL('catalog.json',root),JSON.stringify(catalog,null,2)+'\n');
 if(capture)await fs.writeFile(path.join(capture,'index.json'),JSON.stringify(catalog,null,2));
 console.log(JSON.stringify({catalogEntries:catalog.entries.length,sourceHealth:catalog.sourceHealth,warnings:catalog.errors.length},null,2));

@@ -1,10 +1,11 @@
-import {renderGallery,enhanceGalleries} from './gallery.mjs?v=20260915-semantic1';
+import {renderGallery,enhanceGalleries} from './gallery.mjs?v=20260915-catalog1';
+import {renderCatalog} from './catalog.mjs?v=20260915-catalog1';
 import {campaignStatus} from './status.mjs';
 const AREA_ORDER=['toyohashi','toyokawa','gamagori','okazaki','hamamatsu'];
 const AREA_LABEL={toyohashi:'豊橋',toyokawa:'豊川',gamagori:'蒲郡',okazaki:'岡崎',hamamatsu:'浜松'};
 const CAT_LABEL={yakiniku:'焼肉',shabu:'しゃぶしゃぶ',buffet:'ビュッフェ',steak:'ステーキ'};
 const TAB_LABEL={active:'開催中',new:'新着',upcoming:'近日開始',ending:'終了間近'};
-let tab='active',brandFilter=null,brandsData,fairsData,storesData,mediaData;
+let tab='active',brandFilter=null,brandsData,fairsData,storesData,mediaData,catalogData;
 function esc(v=''){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
 function safeUrl(v){try{const u=new URL(v);return /^https?:$/.test(u.protocol)?u.href:'#'}catch{return'#'}}
 function getState(c){return campaignStatus(c,new Date(),fairsData.statusRules?.newDays||7,fairsData.statusRules?.endingSoonDays||7);}
@@ -24,9 +25,7 @@ function fmtDate(c){
 function renderBrands(){
  const g=document.querySelector('#brand-grid');
  g.innerHTML=[...brandsData.brands].sort((a,b)=>a.order-b.order).map(b=>{
-  const a=countFor(b.id,'active'),u=countFor(b.id,'upcoming'),h=health(b.id);
-  const note=a?`開催中 ${a}件${u?` ・ 近日 ${u}件`:''}`:u?`近日開始 ${u}件`:'開催状況 要確認';
-  return`<button class="brand ${brandFilter===b.id?'selected':''}" data-brand="${esc(b.id)}" aria-pressed="${brandFilter===b.id}"><b>${esc(b.name)}</b><span class="meta">${esc(note)}${h.status==='partial'?' ・ 一部要確認':''}</span></button>`;
+  return`<button class="brand ${brandFilter===b.id?'selected':''}" data-brand="${esc(b.id)}" aria-pressed="${brandFilter===b.id}"><b>${esc(b.name)}</b></button>`;
  }).join('');
  document.querySelectorAll('.brand').forEach(el=>el.onclick=()=>{
   brandFilter=brandFilter===el.dataset.brand?null:el.dataset.brand;renderBrands();renderList();document.querySelector('#list-title')?.scrollIntoView({behavior:'smooth',block:'start'});
@@ -54,15 +53,16 @@ function campaignRow(c){
  const tags=[c.allYouCanEat?'食べ放題':null,...(c.limitedIngredients||[]).slice(0,4)].filter(Boolean);
  const conditions=[c.weekdayCondition,...(c.conditions||[])].filter(Boolean);
  const state=status(c);
- return`<div class="fair-row" data-campaign="${esc(c.id)}" data-state="${state}"><div class="fair-row-main"><div class="fair-row-title"><a href="${esc(safeUrl(c.officialUrl))}" target="_blank" rel="noopener noreferrer">${esc(c.title)}</a><span class="priority ${c.priority==='P1'?'p1':'p2'}">${state==='upcoming'?'近日開始':c.campaignType==='discount'?'割引':'フェア'}</span></div><div class="fair-row-meta"><span>${esc(fmtDate(c))}</span>${c.priceText?`<strong>${esc(c.priceText)}</strong>`:''}</div>${c.targetCourses?.length?`<div class="courses">対象コース：${esc(c.targetCourses.join(' / '))}</div>`:''}${tags.length?`<div class="tags">${tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div>`:''}${conditions.length?`<div class="conditions">${conditions.map(t=>`<p>${esc(t)}</p>`).join('')}</div>`:''}${c.verificationState==='last_known_good'?'<p class="data-note">取得ができなかったため、前回確認できた情報を表示しています。</p>':''}</div></div>`;
+ return`<div class="fair-row${c.campaignType==='discount'?' discount-tile':''}" data-campaign="${esc(c.id)}" data-state="${state}"><div class="fair-row-main"><div class="fair-row-title"><a href="${esc(safeUrl(c.officialUrl))}" target="_blank" rel="noopener noreferrer">${esc(c.title)}</a><span class="priority ${c.priority==='P1'?'p1':'p2'}">${state==='upcoming'?'近日開始':c.campaignType==='discount'?'割引':'フェア'}</span></div>${/ネット予約/.test([c.title,...conditions].join(' '))?'<span class="reservation-badge">ネット予約限定</span>':''}<div class="fair-row-meta"><span>${esc(fmtDate(c))}</span>${c.priceText?`<strong>${esc(c.priceText)}</strong>`:''}</div>${c.targetCourses?.length?`<div class="courses">対象コース：${esc(c.targetCourses.join(' / '))}</div>`:''}${tags.length?`<div class="tags">${tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div>`:''}${conditions.length?`<div class="conditions">${conditions.map(t=>`<p>${esc(t)}</p>`).join('')}</div>`:''}${c.verificationState==='last_known_good'?'<p class="data-note">取得ができなかったため、前回確認できた情報を表示しています。</p>':''}</div></div>`;
 }
 function brandCard(brand,rows){
- const sorted=sortCampaigns(rows),a=sorted.filter(c=>status(c)==='active').length,u=sorted.filter(c=>status(c)==='upcoming').length;
- const h=health(brand.id),summary=[a?`開催中 ${a}件`:null,u?`近日開始 ${u}件`:null].filter(Boolean).join(' ・ ');
+ const sorted=sortCampaigns(rows),h=health(brand.id);
+ const upcoming=tab==='active'?sortCampaigns(fairsData.campaigns.filter(c=>c.brandId===brand.id&&important(c)&&status(c)==='upcoming')):[];
+ const preview=upcoming.length?`<aside class="upcoming-preview"><h4>近日開始の予告</h4>${upcoming.map(c=>`<p data-preview="${esc(c.id)}"><span class="preview-date">${esc(c.startDate||'開始日要確認')}～</span><a href="${esc(safeUrl(c.officialUrl))}" target="_blank" rel="noopener noreferrer">${esc(c.title)} ↗</a></p>`).join('')}</aside>`:'';
  let body='';
- if(sorted.length)body=`<div class="section-title"><span>${TAB_LABEL[tab]}のフェア</span><small>${sorted.length}件</small></div><div class="fair-list">${sorted.map(campaignRow).join('')}</div>${h.status==='partial'?'<p class="data-note">一部の公式情報は再確認が必要です。</p>':''}${brandAvailability(brand.id,sorted)}`;
+ if(sorted.length)body=`<div class="section-title"><span>${TAB_LABEL[tab]}のフェア</span></div><div class="fair-list">${sorted.map(campaignRow).join('')}</div>${h.status==='partial'?'<p class="data-note">一部の公式情報は再確認が必要です。</p>':''}${brandAvailability(brand.id,sorted)}`;
  else{const upcoming=countFor(brand.id,'upcoming');body=`<div class="empty-brand"><b>${h.status==='unavailable'?'公式情報の取得に制限があります':upcoming?'近日開始のフェアがあります':'この条件のフェアは未確認です'}</b><p>${h.status==='unavailable'?'「フェアなし」とは判断していません。開催状況は公式サイトで確認してください。':upcoming?'上の「近日開始」タブで確認できます。':'取得済みの情報に、この条件の開催フェアはありません。最新情報は公式サイトで確認してください。'}</p></div>`;}
- return`<article class="restaurant-card" id="brand-${esc(brand.id)}" data-brand-card="${esc(brand.id)}"><div class="restaurant-head"><div><div class="category">${esc(CAT_LABEL[brand.category]||'レストラン')}</div><h3>${esc(brand.name)}</h3><div class="restaurant-summary">${esc(summary||'開催状況 要確認')}</div></div><span class="brand-rank">${String(brand.order).padStart(2,'0')}</span></div>${renderGallery(sorted,brand,mediaData,tab)}<div class="restaurant-body">${body}${!sorted.length?brandAvailability(brand.id,[]):''}<a class="brand-official" href="${esc(safeUrl(brand.homeUrl))}" target="_blank" rel="noopener noreferrer">${esc(brand.name)} 公式サイトへ <span>↗</span></a></div></article>`;
+ return`<article class="restaurant-card" id="brand-${esc(brand.id)}" data-brand-card="${esc(brand.id)}"><div class="restaurant-head"><div><div class="category">${esc(CAT_LABEL[brand.category]||'レストラン')}</div><h3>${esc(brand.name)}</h3></div><span class="brand-rank">${String(brand.order).padStart(2,'0')}</span></div>${renderGallery(sorted,brand,mediaData,tab)}<div class="restaurant-body">${body}${preview}${tab==='active'?renderCatalog(brand,catalogData,fairsData,mediaData):''}${!sorted.length?brandAvailability(brand.id,[]):''}<a class="brand-official" href="${esc(safeUrl(brand.homeUrl))}" target="_blank" rel="noopener noreferrer">${esc(brand.name)} 公式サイトへ <span>↗</span></a></div></article>`;
 }
 function renderList(){
  const suffix=brandFilter?` ・ ${brandsData.brands.find(b=>b.id===brandFilter)?.name||''}`:'';
@@ -79,7 +79,8 @@ function renderHeader(){
 }
 async function getJson(path){const r=await fetch(path,{cache:'no-cache'});if(!r.ok)throw Error('データを取得できませんでした');return r.json();}
 try{
- [brandsData,fairsData,storesData,mediaData]=await Promise.all([getJson('./data/brands.json'),getJson('./data/fairs.json'),getJson('./data/stores.json').catch(()=>({stores:[]})),getJson('./data/gallery.json').catch(()=>({assets:[]}))]);
+ [brandsData,fairsData,storesData,mediaData,catalogData]=await Promise.all([getJson('./data/brands.json'),getJson('./data/fairs.json'),getJson('./data/stores.json').catch(()=>({stores:[]})),getJson('./data/gallery.json').catch(()=>({assets:[]})),getJson('./data/catalog.json').catch(()=>null)]);
+ mediaData=consistentMedia(mediaData,fairsData);
  if(!Array.isArray(brandsData.brands)||!Array.isArray(fairsData.campaigns))throw Error('データの形式が不正です');
  document.querySelectorAll('#status-tabs button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.tab===tab)));
  document.querySelectorAll('#status-tabs button').forEach(b=>b.onclick=()=>{tab=b.dataset.tab;document.querySelectorAll('#status-tabs button').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b));});renderList();});
@@ -93,7 +94,7 @@ try{
 // minutes while visible. Preserve the reader's position within a chain card.
 function startAutomaticRefresh(){
  let busy=false,lastCheck=Date.now();
- const signature=()=>JSON.stringify([fairsData.updatedAt,mediaData?.updatedAt,fairsData.campaigns.map(getState),(Array.isArray(mediaData?.assets)?mediaData.assets:[]).map(a=>Date.now()-Date.parse(a.checkedAt)<=172800000)]);
+ const signature=()=>JSON.stringify([fairsData.updatedAt,mediaData?.updatedAt,catalogData?.updatedAt,(catalogData?.entries||[]).map(e=>Date.now()-Date.parse(e.checkedAt)<=172800000),fairsData.campaigns.map(getState),(Array.isArray(mediaData?.assets)?mediaData.assets:[]).map(a=>Date.now()-Date.parse(a.checkedAt)<=172800000)]);
  let rendered=signature();
  const update=async()=>{
   if(document.hidden||busy||Date.now()-lastCheck<60000)return;
@@ -101,9 +102,10 @@ function startAutomaticRefresh(){
   const anchor=[...document.querySelectorAll('[data-brand-card]')].find(el=>el.getBoundingClientRect().bottom>80);
   const anchorId=anchor?.id,anchorTop=anchor?.getBoundingClientRect().top;
   try{
-   const [nextFairs,nextMedia]=await Promise.all([getJson('./data/fairs.json'),getJson('./data/gallery.json').catch(()=>mediaData)]);
+   const [nextFairs,nextMedia,nextCatalog]=await Promise.all([getJson('./data/fairs.json'),getJson('./data/gallery.json').catch(()=>mediaData),getJson('./data/catalog.json').catch(()=>catalogData)]);
    if(!Array.isArray(nextFairs?.campaigns))throw Error('Invalid refreshed data');
-   fairsData=nextFairs;mediaData=nextMedia;
+   fairsData=nextFairs;mediaData=consistentMedia(nextMedia,nextFairs);
+   if(nextCatalog?.schemaVersion===1&&Array.isArray(nextCatalog.entries))catalogData=nextCatalog;
    renderHeader();
   }catch(error){console.warn('最新データを取得できないため前回の情報を表示します',error);}
   finally{
@@ -116,4 +118,9 @@ function startAutomaticRefresh(){
  document.addEventListener('visibilitychange',()=>{if(!document.hidden)update();});
  window.addEventListener('pageshow',update);
  setInterval(update,300000);
+}
+
+// A partially propagated deployment cannot join a new fair with old images.
+function consistentMedia(media,fairs){
+ return media?.fairsUpdatedAt===fairs.updatedAt?media:{assets:[],updatedAt:media?.updatedAt||null,fairsUpdatedAt:fairs.updatedAt};
 }

@@ -20,6 +20,7 @@ test('catalog: actual HTML images and neighboring course prices are scoped, with
   assert.equal(items.length,2);assert.deepEqual(items.map(e=>e.price.amount),[3300,4400]);
   assert.ok(items.every(e=>e.campaignId===null&&e.sourceHash&&e.evidenceHash));
   assert.equal(items[0].imageUrl,'https://example.com/menu/standard.jpg');
+  assert.equal(items[0].officialUrl,'https://example.com/brand/menu/');
 });
 test('catalog: drink plans survive even with unknown image-only prices; do not infer a drink plan from a drink URL',()=>{
   const {items}=extractCatalogPage(doc('<p>ソフトドリンク飲み放題は全員同一プランでのご注文が必要です。</p>'),'https://example.com/brand/menu/',brand);
@@ -40,4 +41,10 @@ test('catalog: unsafe, cross-brand and fabricated URLs cannot enter menu discove
 });
 test('catalog: challenges and unreadable pages fail closed, not confirmed empty',()=>{
   assert.throws(()=>extractCatalogPage('Access denied','https://example.com/brand/',brand));
+});
+
+test('catalog: a course including drinks must not become a standalone drink-plan price',()=>{
+ const {items}=extractCatalogPage(doc('<section><h3>飲み放題付きプレミアムコース</h3><p>大人ディナー 税込6000円</p></section>'),'https://example.com/brand/menu/',brand);
+ assert.equal(items[0].kind,'course');
+ assert.equal(items.filter(e=>e.kind==='drink'&&e.price.amount===6000).length,0);
 });

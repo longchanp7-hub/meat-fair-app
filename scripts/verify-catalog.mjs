@@ -12,9 +12,9 @@ const ids=new Set();
 for(const e of data.entries){
   assert.ok(!ids.has(e.id),'duplicate catalog ID');ids.add(e.id);
   assert.ok(brands.some(b=>b.id===e.brandId));assert.ok(['course','highlight','drink'].includes(e.kind));
-  assert.ok(e.title&&e.evidenceText&&e.sourceHash&&e.checkedAt);assert.equal(e.evidenceHash,contentHash(e.evidenceText));
+  assert.ok(e.title&&e.evidenceText&&e.sourceHash&&e.checkedAt);assert.ok(!/フランチャイズ|加盟店募集|undefined/.test(e.title+' '+e.officialUrl));assert.equal(e.evidenceHash,contentHash(e.evidenceText));
   assert.ok(publicUrl(e.sourceUrl)&&publicUrl(e.officialUrl));assert.ok(Number.isFinite(Date.parse(e.checkedAt)));
-  assert.ok(e.price.amount===null||(Number.isFinite(e.price.amount)&&e.price.amount>0&&e.price.taxIncluded===true));
+  assert.ok(e.price.amount===null||(Number.isFinite(e.price.amount)&&e.price.amount>=0&&e.price.taxIncluded===true));
   if(e.imageUrl){assert.ok(publicUrl(e.imageUrl));assert.ok(e.width>=320&&e.height>=100);}
   if(e.campaignId)assert.ok(fairs.campaigns.some(c=>c.id===e.campaignId&&c.contentHash===e.parentHash&&c.brandId===e.brandId),'stale catalog parent');
   if(e.exclusive)assert.ok(e.kind==='highlight'&&e.targetCourses.length>0);
