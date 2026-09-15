@@ -34,7 +34,6 @@ function cost(tree, width, gap, primary=true) {
       const goal=Math.min(width, width<500?250:300);
       score += 65*Math.max(0,(goal-b.width)/goal)**2;
       if(width<500){const readableLead=Math.min(width*.55,180);score+=160*Math.max(0,(readableLead-b.width)/readableLead)**2;}
-      // A tall poster can dominate by area without an abrupt 180px cutoff.
       const largestOther=Math.max(0,...boxes.filter(x=>x.index!==b.index).map(x=>x.width*x.imageHeight));
       const goalArea=largestOther*Math.min(1.5,b.visualWeight||1);
       if(goalArea)score+=45*Math.max(0,(goalArea-b.width*b.imageHeight)/goalArea)**2;
@@ -42,16 +41,19 @@ function cost(tree, width, gap, primary=true) {
   }
   return score;
 }
-// Do not pair a featured course with an unrelated lunch or individual dish.
 const sameGroup=nodes=>new Set(nodes.map(n=>n.group).filter(Boolean)).size<=1;
+// Two landscape creatives beside each other become postcard-thin on a portrait
+// phone. Stack them there; wider Fold/tablet cards may still place them together.
+const tooThinLandscapeRow=(nodes,width)=>width<500&&nodes.length>1&&nodes.every(n=>n.a<.78);
 function rows(nodes,width,gap,primary=true){
   if(!nodes.length)return null;
   const dp=Array(nodes.length+1);dp[nodes.length]={score:0,groups:[]};
   for(let i=nodes.length-1;i>=0;i--){
     let best;
     for(let n=1;n<=Math.min(width<500?2:3,nodes.length-i);n++){
-      if(!sameGroup(nodes.slice(i,i+n)))continue;
-      const row=group('h',nodes.slice(i,i+n),gap), score=cost(row,width,gap,primary)+dp[i+n].score;
+      const part=nodes.slice(i,i+n);
+      if(!sameGroup(part)||tooThinLandscapeRow(part,width))continue;
+      const row=group('h',part,gap), score=cost(row,width,gap,primary)+dp[i+n].score;
       if(!best||score<best.score)best={score,groups:[row,...dp[i+n].groups]};
     }
     dp[i]=best;
@@ -68,8 +70,6 @@ export function planGallery(items,width,gap=6){
   width=Math.max(1,finite(width,1));gap=Math.max(0,finite(gap,6));
   if(!items.length)return {height:0,boxes:[],mode:'empty'};
   const nodes=items.map(leaf);
-  // Only portrait leads benefit from a side panel. The desired companion count
-  // is derived from semantic weights; it is never a fixed four-image template.
   let companions=0;
   if(nodes[0].kind==='campaign'&&nodes[0].a>1.18){
     for(const n of nodes.slice(1)){if(n.kind==='campaign'||n.visualWeight<=1)break;companions++;}
@@ -78,7 +78,6 @@ export function planGallery(items,width,gap=6){
   let best=rows(nodes,width,gap), bestCost=cost(best,width,gap)+semanticCost(0), mode='rows';
   if(items.length>=3){
     const counts=new Set(Array.from({length:Math.min(6,nodes.length-1)-1},(_,i)=>i+2));
-    // Large groups use polynomial row packing rather than exponential partitions.
     if(companions>6)counts.add(companions);
     for(const n of counts){
       const previous=nodes[n],next=nodes[n+1];
