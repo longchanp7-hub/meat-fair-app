@@ -6,6 +6,7 @@ import {markup} from './html-document.mjs';
 import {CATALOG_SOURCES} from './catalog-sources.mjs';
 import {SOURCES} from './source-registry.mjs';
 import {extractPage} from './site-profiles.mjs';
+import {reviewedSatoCatalog} from './sato-reviewed-catalog.mjs';
 import {campaignStatus} from '../app/status.mjs';
 
 const root=new URL('../app/data/',import.meta.url),stamp=new Date().toISOString(),now=Date.parse(stamp),TTL=172800000;
@@ -48,7 +49,6 @@ function usableParent(entry){return !entry.campaignId||fairs.campaigns.some(c=>c
 async function collectBrand(brand){
   const queue=[{url:brand.homeUrl,depth:0,rank:-1}],visited=new Set(),entries=[],sources=[],errors=[];
   const profile=SOURCES.find(s=>s.brandId===brand.id);
-  // Existing registry URLs are already observed official sources, not guesses.
   for(const url of CATALOG_SOURCES[brand.id]||[])queue.push({url,depth:0,rank:-.5});
   for(const s of profile.sources)if(/price|menu|course/.test(s.url)&&new URL(s.url).origin===new URL(brand.homeUrl).origin)queue.push({url:s.url,depth:0,rank:0});
   const live=fairs.campaigns.filter(c=>c.brandId===brand.id&&['P1','P2'].includes(c.priority)&&campaignStatus(c,new Date(now)).state!=='ended');
@@ -66,15 +66,14 @@ async function collectBrand(brand){
       }
       const scopedHtml=item.campaign?markup(extractPage(profile,received.html,url,item.campaign.title).scope):received.html;
       const extracted=extractCatalogPage(scopedHtml,received.url,brand,{checkedAt:stamp,campaign:item.campaign||null});
-      // The fair key visual belongs in the fair gallery, never a duplicate menu.
       const mainImages=new Set(live.map(c=>c.imageUrl).filter(Boolean));
       entries.push(...extracted.items.filter(e=>!mainImages.has(e.imageUrl)));
+      if(brand.id==='washoku-sato'&&!item.campaign)entries.push(...reviewedSatoCatalog(received.url,received.html,stamp));
       sources.push({...extracted.source,brandId:brand.id,requestedUrl:url});
       if(item.depth<2||item.campaign)for(const l of discoverCatalogLinks(received.html,received.url,brand))if(!visited.has(l.url))queue.push({...l,depth:item.campaign?1:item.depth+1,rank:l.rank+item.depth*.5});
     }catch(e){
       errors.push({brandId:brand.id,url,error:e.message});
       sources.push({brandId:brand.id,sourceUrl:url,checkedAt:null,status:'unavailable',error:e.message});
-      // A failure does not mean a course ended, but cannot extend its TTL.
       entries.push(...previous.entries.filter(e=>e.brandId===brand.id&&e.sourceUrl===url&&now-Date.parse(e.checkedAt)>=0&&now-Date.parse(e.checkedAt)<=TTL&&usableParent(e)).map(e=>({...e,verificationState:'last_known_good'})));
     }
   }
@@ -84,8 +83,6 @@ async function collectBrand(brand){
     if(e.imageUrl){
       try{
         const d=await probe(e.imageUrl);
-        // Tiny navigation artwork is not a content photo. Keep useful official
-        // text, but do not enlarge its black/blank lower navigation panel.
         if(d.width<320||d.height<100||d.width/d.height>8||d.height/d.width>6)e.imageUrl=null;
         else Object.assign(e,d);
       }catch(err){errors.push({brandId:brand.id,url:e.imageUrl,error:err.message});e.imageUrl=null;}
