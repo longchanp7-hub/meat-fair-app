@@ -1,4 +1,4 @@
-import {planGallery} from './gallery-plan.mjs?v=20260915-semantic1';
+import {planGallery} from './gallery-plan.mjs?v=20260915-final2';
 import {hasCurrentParent,pageOverview} from './gallery-semantics.mjs';
 import {campaignStatus} from './status.mjs';
 const DAY=86400000;
@@ -13,8 +13,6 @@ export function isSupplementaryPhoto(value){
 }
 export function mediaCaption(value){
   const original=String(value??'').replace(/\s+/g,' ').trim();
-  // Extract only an explicitly tax-inclusive amount. Never calculate tax, infer
-  // a missing price, or turn an add-on charge into the price of a course.
   const match=original.match(/(?:(?:[￥¥]\s*\d[\d,]*|\d[\d,]*\s*円)\s*)?[（(]\s*税込\s*[:：]?\s*[￥¥]?\s*(\d[\d,]*)\s*円?\s*[）)]\s*([〜～~])?/u);
   if(!match)return {title:original,price:''};
   let before=original.slice(0,match.index).trim(),after=original.slice(match.index+match[0].length).trim();
@@ -37,7 +35,7 @@ export function selectMedia(rows,brandId,data={},tab='active',now=new Date()){
     const extras=assets.filter(a=>a.kind==='detail'&&fresh(a)&&isSupplementaryPhoto(a.imageUrl));
     const representative=pageOverview(c,main,extras)||main||(!c.imageUrl?(extras.find(a=>/フェア|キャンペーン|割引|OFF/.test(a.title))||extras[0]):null);
     const imageUrl=representative?.imageUrl||c.imageUrl;
-    if(imageUrl)push({...representative,brandId,campaignId:c.id,kind:'campaign',priority:0,group:'campaign',visualWeight:2,campaignType:c.campaignType,imageUrl,officialUrl:c.officialUrl,title:c.title,rank:i===0?0:10});
+    if(imageUrl)push({...representative,brandId,campaignId:c.id,kind:'campaign',priority:0,group:'campaign',visualWeight:2.2,campaignType:c.campaignType,imageUrl,officialUrl:c.officialUrl,title:c.title,rank:i===0?0:10});
   }
   for(const c of rows)for(const a of available.filter(a=>a.campaignId===c.id&&a.parentHash===c.contentHash&&a.kind==='detail')){
     if(fresh(a)&&isSupplementaryPhoto(a.imageUrl))push(a);
@@ -45,8 +43,6 @@ export function selectMedia(rows,brandId,data={},tab='active',now=new Date()){
   if(tab==='active')for(const a of available.filter(a=>a.kind==='menu')){
     if(fresh(a)&&hasCurrentParent(a,rows,now)&&isSupplementaryPhoto(a.imageUrl))push(a);
   }
-  // Explicit semantic priority precedes legacy category order. Fair counts are
-  // still exclusively derived from rows, never from supplementary assets.
   const priority=a=>Number.isFinite(a.priority)?a.priority:(MEDIA_ORDER[a.kind]??3)*20;
   return selected.sort((a,b)=>priority(a)-priority(b)||(a.rank??30)-(b.rank??30));
 }
@@ -58,7 +54,7 @@ export function renderGallery(rows,brand,data,tab){
     const label=a.kind==='campaign'?(a.campaignType==='discount'?'割引・キャンペーン':'フェア'):a.kind==='detail'?'フェア内メニュー':'公式メニュー';
     const caption=mediaCaption(a.title);
     return `<a class="gallery-item media-tile ${i===0?'main':''}" href="${html(a.officialUrl)}" target="_blank" rel="noopener noreferrer" data-ratio="${ratio}" data-kind="${html(a.kind)}" data-group="${html(a.group||'')}" data-visual-weight="${Number(a.visualWeight)||1}" title="${html(a.title)}" aria-label="${html(a.title)}：公式ページを開く"><img src="${html(a.imageUrl)}" alt="${html(a.title)}" ${w&&h?`width="${w}" height="${h}"`:''} loading="lazy" decoding="async" referrerpolicy="no-referrer"><span class="media-caption${caption.price?' has-price':''}"><small>${label}</small><span class="media-title">${html(caption.title)}</span>${caption.price?`<strong class="media-price">${html(caption.price)}</strong>`:''}</span></a>`;
-  }).join('')}</div><div class="media-fallbacks" aria-live="polite"></div>${assets.some(a=>a.kind==='menu')?'<p class="media-disclaimer">関連メニューはフェア件数に含めていません。店舗・曜日・料金などの条件は各画像の公式ページで確認してください。</p>':''}</div>`;
+  }).join('')}</div><div class="media-fallbacks" aria-live="polite"></div>${assets.some(a=>a.kind==='menu')?'<p class="media-disclaimer">関連メニューはフェア情報とは別枠です。店舗・曜日・料金などの条件は各画像の公式ページで確認してください。</p>':''}</div>`;
 }
 let cleanups=[];
 export function enhanceGalleries(root=document){
@@ -69,7 +65,6 @@ export function enhanceGalleries(root=document){
       frame=0;if(disposed||!gallery.isConnected)return;
       const tiles=[...gallery.querySelectorAll('.media-tile')];
       const width=gallery.clientWidth;if(!width)return;
-      // Larger accessibility text also needs wider tiles, not merely taller captions.
       const scale=Math.max(1,(parseFloat(getComputedStyle(document.documentElement).fontSize)||16)/16);
       const items=tiles.map(t=>{
         const caption=t.querySelector('.media-caption'),style=getComputedStyle(caption),price=t.querySelector('.media-price');
