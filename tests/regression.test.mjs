@@ -50,8 +50,8 @@ test('restrict sources to official detail hosts, not feeds/archive/assets',()=>{
  assert.equal(allowedDetail(brand('amiyakitei'),'https://amiyakitei.jp/topics/category/news/'),false);
  assert.equal(allowedDetail(brand('gyukaku'),'https://evil.example/lp/test/'),false);
 });
-test('current rollout has 15 distinct source definitions and audited imagery',()=>{
- assert.equal(SOURCES.length,15);assert.equal(new Set(SOURCES.map(b=>b.brandId)).size,15);
+test('current rollout has 14 distinct source definitions and audited imagery',()=>{
+ assert.equal(SOURCES.length,14);assert.equal(new Set(SOURCES.map(b=>b.brandId)).size,14);
  const r=JSON.parse(fs.readFileSync(new URL('../scripts/reviewed-campaigns.json',import.meta.url))).reviews;
  assert.equal(new Set(r.map(x=>x.officialUrl)).size,r.length);
  const find=x=>r.find(c=>c.officialUrl.includes(x));
