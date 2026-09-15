@@ -1,29 +1,45 @@
-/* Shared course and drink tiles; no brand-specific layout. */
-.brand{min-height:48px;display:flex;align-items:center;justify-content:center}
-.brand b{line-height:1.4}
-.brand-catalog{min-width:0;margin-top:20px}
-.catalog-section{border-top:1px solid #eadbd6;padding-top:14px;margin-top:18px;min-width:0}
-.catalog-section h4,.upcoming-preview h4{margin:0 0 10px;font-size:1rem;color:#8c3024}
-.catalog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:6px;margin:6px 0;align-items:start}
-.catalog-card{min-width:0;border:1px solid #eadbd6;border-radius:8px;padding:10px;background:#fffafa;overflow-wrap:anywhere}
-.catalog-card h5{font-size:.9375rem;line-height:1.45;margin:5px 0 7px}
-.catalog-card a{color:inherit;text-decoration:none}
-.catalog-card a:hover{text-decoration:underline}
-.catalog-label{font-size:.6875rem;font-weight:700;color:#8c3024}
-.catalog-price{display:block;font-size:1.125rem;line-height:1.4;color:#a12724;overflow-wrap:anywhere}
-.catalog-price.unconfirmed{font-size:.75rem;font-weight:500;color:#6f625d}
-.catalog-terms,.catalog-stale{margin:6px 0 0;font-size:.75rem;line-height:1.5}
+/* Compact Sakai-style catalog: photo-backed course panels first, then small stacked facts. */
+.brand{min-height:52px;display:flex;align-items:center;justify-content:center;position:relative;gap:4px;flex-direction:column}
+.brand b{line-height:1.35;text-align:center}
+.featured-mark{display:inline-flex;align-items:center;gap:4px;font-size:.65rem;font-weight:800;color:#a12724;background:#fff0ed;border:1px solid #efc4bc;border-radius:999px;padding:2px 6px;line-height:1.2}
+.featured-mark::before{content:'●';font-size:.55rem}
+.brand-catalog{min-width:0;margin-top:16px}
+.catalog-section{border-top:1px solid #eadbd6;padding-top:12px;margin-top:14px;min-width:0}
+.catalog-section h4,.upcoming-preview h4{margin:0 0 8px;font-size:.95rem;color:#8c3024}
+.catalog-photo-stack{display:flex;flex-direction:column;gap:7px;margin:6px 0}
+.catalog-photo-card{display:grid;grid-template-columns:minmax(0,1fr);border:1px solid #dfd4cd;border-radius:10px;overflow:hidden;background:#fff;color:#222;text-decoration:none;box-shadow:0 1px 3px #0000000a}
+.catalog-photo-frame{display:flex;align-items:center;justify-content:center;background:#faf7f3;min-height:120px;max-height:235px;overflow:hidden}
+.catalog-photo-frame img{display:block;width:100%;height:100%;max-height:235px;object-fit:contain;background:#faf7f3}
+.catalog-photo-caption{display:flex;flex-direction:column;gap:2px;padding:8px 10px 9px;border-top:1px solid #eee5de}
+.catalog-photo-caption small,.catalog-label{font-size:.66rem;font-weight:800;color:#8c3024}
+.catalog-photo-caption b{font-size:.88rem;line-height:1.4}
+.catalog-stack{display:flex;flex-direction:column;gap:5px;margin:6px 0}
+.catalog-card.compact-card{display:flex;flex-direction:column;gap:3px;min-width:0;border:1px solid #e4d9d2;border-radius:8px;padding:8px 10px;background:#fffafa;color:#222;text-decoration:none;overflow-wrap:anywhere}
+.compact-main{display:flex;align-items:baseline;justify-content:space-between;gap:10px;min-width:0}
+.compact-main b{font-size:.83rem;line-height:1.35;min-width:0}
+.catalog-price{display:block;font-size:1rem;line-height:1.25;color:#a12724;font-weight:800;overflow-wrap:anywhere;white-space:nowrap}
+.catalog-price.unconfirmed{font-size:.72rem;font-weight:500;color:#6f625d;white-space:normal;text-align:right}
+.catalog-terms,.catalog-stale{font-size:.68rem;line-height:1.35;color:#756c64}
 .catalog-stale{color:#8c5f22}
-.catalog-details{margin-top:8px;font-size:.75rem;line-height:1.65;overflow-wrap:anywhere}
-.catalog-details summary{cursor:pointer;min-height:32px;color:#77483b}
-.catalog-details p{margin:5px 0}
-.catalog-note,.catalog-empty{font-size:.75rem;line-height:1.65;color:#756c64;margin:8px 0}
+.catalog-note,.catalog-empty{font-size:.7rem;line-height:1.55;color:#756c64;margin:7px 0}
 .catalog-empty a{color:inherit}
-.catalog-section .media-section{padding:0;margin-bottom:8px}
-.upcoming-preview{border:1px solid #edc9a0;border-radius:8px;padding:12px;background:#fff9ed;margin:15px 0}
-.upcoming-preview p{display:flex;gap:6px;flex-direction:column;font-size:.875rem;line-height:1.5;margin:8px 0}
+.upcoming-preview{border:1px solid #edc9a0;border-radius:8px;padding:10px;background:#fff9ed;margin:12px 0}
+.upcoming-preview p{display:flex;gap:5px;flex-direction:column;font-size:.82rem;line-height:1.45;margin:7px 0}
 .upcoming-preview a{color:#754026}
-.preview-date{font-size:.75rem;font-weight:700}
-.fair-row.discount-tile{border:1px solid #edbbb5;border-radius:8px;padding:12px;background:#fff6f5;margin:8px 0}
-.reservation-badge{display:inline-block;background:#a12724;color:#fff;font-weight:700;font-size:.75rem;border-radius:5px;padding:4px 7px;margin:6px 0}
-@media(min-width:600px){.catalog-grid{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}}
+.preview-date{font-size:.7rem;font-weight:700}
+.fair-row.discount-tile{border:1px solid #edbbb5;border-radius:8px;padding:10px;background:#fff6f5;margin:7px 0}
+.reservation-badge{display:inline-block;background:#a12724;color:#fff;font-weight:700;font-size:.7rem;border-radius:5px;padding:3px 6px;margin:5px 0}
+@media(max-width:430px){
+  .catalog-photo-frame{height:clamp(135px,40vw,180px)}
+  .catalog-photo-frame img{height:100%;max-height:none}
+  .compact-main{align-items:flex-start}
+  .compact-main b{font-size:.81rem}
+  .catalog-price{font-size:.94rem}
+}
+@media(min-width:690px){
+  .catalog-photo-stack{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .catalog-photo-card{height:100%}
+  .catalog-photo-frame{height:220px}
+  .catalog-photo-frame img{height:100%;max-height:none}
+  .catalog-stack{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+}
