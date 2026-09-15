@@ -18,7 +18,8 @@ export function reviewedCatalogFallbacks(data,brandId,current=[],now=new Date())
   if(current.some(e=>e.kind===o.kind&&e.sourceUrl===o.sourceUrl&&normalize(e.title)===normalize(o.title)&&e.price?.amount!==null))continue;
   const evidence=String(o.rawText||[o.title,label,...o.conditions||[]].join(' '));
   const conditions=Array.isArray(o.conditions)?o.conditions:[];
-  result.push({id:(reviewed?'reviewed-':'explicit-')+o.id,brandId,kind:o.kind,title:o.title,
+  const title=currentExplicit?'【平日ディナー限定】宴会コース':o.title;
+  result.push({id:(reviewed?'reviewed-':'explicit-')+o.id,brandId,kind:o.kind,title,
    officialUrl:o.officialUrl,sourceUrl:o.sourceUrl,checkedAt:o.checkedAt||o.reviewedAt,
    evidenceText:evidence,conditions,targetCourses:[],exclusive:false,
    price:{amount,text:label||null,taxIncluded:amount!==null?true:null,from:/[〜～]/.test(label),included},
