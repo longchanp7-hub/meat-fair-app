@@ -1,6 +1,6 @@
 import {planGallery} from './gallery-plan.mjs?v=20260915-sakai1';
 import {hasCurrentParent,pageOverview} from './gallery-semantics.mjs';
-import {fairAssetVisible} from './presentation.mjs?v=20260915-sakai1';
+import {fairAssetVisible} from './presentation.mjs?v=20260915-cleanup1';
 import {campaignStatus} from './status.mjs';
 const DAY=86400000;
 const MEDIA_ORDER={campaign:0,detail:1,menu:2};
