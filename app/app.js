@@ -24,9 +24,7 @@ function fmtDate(c){
 function renderBrands(){
  const g=document.querySelector('#brand-grid');
  g.innerHTML=[...brandsData.brands].sort((a,b)=>a.order-b.order).map(b=>{
-  const a=countFor(b.id,'active'),u=countFor(b.id,'upcoming'),h=health(b.id);
-  const note=a?`開催中 ${a}件${u?` ・ 近日 ${u}件`:''}`:u?`近日開始 ${u}件`:'開催状況 要確認';
-  return`<button class="brand ${brandFilter===b.id?'selected':''}" data-brand="${esc(b.id)}" aria-pressed="${brandFilter===b.id}"><b>${esc(b.name)}</b><span class="meta">${esc(note)}${h.status==='partial'?' ・ 一部要確認':''}</span></button>`;
+  return`<button class="brand ${brandFilter===b.id?'selected':''}" data-brand="${esc(b.id)}" aria-pressed="${brandFilter===b.id}"><b>${esc(b.name)}</b></button>`;
  }).join('');
  document.querySelectorAll('.brand').forEach(el=>el.onclick=()=>{
   brandFilter=brandFilter===el.dataset.brand?null:el.dataset.brand;renderBrands();renderList();document.querySelector('#list-title')?.scrollIntoView({behavior:'smooth',block:'start'});
@@ -57,10 +55,10 @@ function campaignRow(c){
  return`<div class="fair-row" data-campaign="${esc(c.id)}" data-state="${state}"><div class="fair-row-main"><div class="fair-row-title"><a href="${esc(safeUrl(c.officialUrl))}" target="_blank" rel="noopener noreferrer">${esc(c.title)}</a><span class="priority ${c.priority==='P1'?'p1':'p2'}">${state==='upcoming'?'近日開始':c.campaignType==='discount'?'割引':'フェア'}</span></div><div class="fair-row-meta"><span>${esc(fmtDate(c))}</span>${c.priceText?`<strong>${esc(c.priceText)}</strong>`:''}</div>${c.targetCourses?.length?`<div class="courses">対象コース：${esc(c.targetCourses.join(' / '))}</div>`:''}${tags.length?`<div class="tags">${tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div>`:''}${conditions.length?`<div class="conditions">${conditions.map(t=>`<p>${esc(t)}</p>`).join('')}</div>`:''}${c.verificationState==='last_known_good'?'<p class="data-note">取得ができなかったため、前回確認できた情報を表示しています。</p>':''}</div></div>`;
 }
 function brandCard(brand,rows){
- const sorted=sortCampaigns(rows),a=sorted.filter(c=>status(c)==='active').length,u=sorted.filter(c=>status(c)==='upcoming').length;
- const h=health(brand.id),summary=[a?`開催中 ${a}件`:null,u?`近日開始 ${u}件`:null].filter(Boolean).join(' ・ ');
+ const sorted=sortCampaigns(rows);
+ const h=health(brand.id),summary=[sorted.some(c=>status(c)==='active')?'開催中':null,sorted.some(c=>status(c)==='upcoming')?'近日開始':null].filter(Boolean).join(' ・ ');
  let body='';
- if(sorted.length)body=`<div class="section-title"><span>${TAB_LABEL[tab]}のフェア</span><small>${sorted.length}件</small></div><div class="fair-list">${sorted.map(campaignRow).join('')}</div>${h.status==='partial'?'<p class="data-note">一部の公式情報は再確認が必要です。</p>':''}${brandAvailability(brand.id,sorted)}`;
+ if(sorted.length)body=`<div class="section-title"><span>${TAB_LABEL[tab]}のフェア</span></div><div class="fair-list">${sorted.map(campaignRow).join('')}</div>${h.status==='partial'?'<p class="data-note">一部の公式情報は再確認が必要です。</p>':''}${brandAvailability(brand.id,sorted)}`;
  else{const upcoming=countFor(brand.id,'upcoming');body=`<div class="empty-brand"><b>${h.status==='unavailable'?'公式情報の取得に制限があります':upcoming?'近日開始のフェアがあります':'この条件のフェアは未確認です'}</b><p>${h.status==='unavailable'?'「フェアなし」とは判断していません。開催状況は公式サイトで確認してください。':upcoming?'上の「近日開始」タブで確認できます。':'取得済みの情報に、この条件の開催フェアはありません。最新情報は公式サイトで確認してください。'}</p></div>`;}
  return`<article class="restaurant-card" id="brand-${esc(brand.id)}" data-brand-card="${esc(brand.id)}"><div class="restaurant-head"><div><div class="category">${esc(CAT_LABEL[brand.category]||'レストラン')}</div><h3>${esc(brand.name)}</h3><div class="restaurant-summary">${esc(summary||'開催状況 要確認')}</div></div><span class="brand-rank">${String(brand.order).padStart(2,'0')}</span></div>${renderGallery(sorted,brand,mediaData,tab)}<div class="restaurant-body">${body}${!sorted.length?brandAvailability(brand.id,[]):''}<a class="brand-official" href="${esc(safeUrl(brand.homeUrl))}" target="_blank" rel="noopener noreferrer">${esc(brand.name)} 公式サイトへ <span>↗</span></a></div></article>`;
 }
