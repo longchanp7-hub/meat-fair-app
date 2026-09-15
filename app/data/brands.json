@@ -17,7 +17,6 @@
     {"id":"asakuma","name":"ステーキのあさくま","category":"steak","order":11,"homeUrl":"https://www.asakuma.co.jp/"},
     {"id":"nikusho-sakai","name":"肉匠坂井","category":"yakiniku","order":12,"homeUrl":"https://www.yakiniku.jp/nikushou_sakai/"},
     {"id":"jukusei-ichiban","name":"熟成焼肉いちばん","category":"yakiniku","order":13,"homeUrl":"https://www.jukusei-ichiban.jp/jp/"},
-    {"id":"anrakutei","name":"安楽亭","category":"yakiniku","order":14,"homeUrl":"https://anrakutei.jp/"},
-    {"id":"kushiya-monogatari","name":"串家物語","category":"buffet","order":15,"homeUrl":"https://www.kushi-ya.com/"}
+    {"id":"anrakutei","name":"安楽亭","category":"yakiniku","order":14,"homeUrl":"https://anrakutei.jp/"}
   ]
 }
