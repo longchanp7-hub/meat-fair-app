@@ -9,6 +9,10 @@ const reviews=[
  {imageUrl:'https://www.jukusei-ichiban.jp/jp/img/top/mainVisual/nib_gland_03_202604_pc.jpg',title:'いちばん熟成 上カルビ',courses:[],exclusive:false}
 ];
 export function reviewCatalogImage(candidate,url,hash){
+ // Keep priced options visible in the title, not only inside collapsed terms.
+ // This uses the price's own evidence, never a neighbouring store's conditions.
+ const qualifier=String(candidate.priceEvidence||'').match(/サラダバー(?:付|別)/)?.[0];
+ if(qualifier&&!candidate.title.includes(qualifier))candidate={...candidate,title:candidate.title+'（'+qualifier+'）'};
  if(url!==sourceUrl||hash!==sourceHash)return candidate;
  const review=reviews.find(r=>r.imageUrl===candidate.image?.imageUrl);
  if(!review)return candidate;if(review.omit)return null;

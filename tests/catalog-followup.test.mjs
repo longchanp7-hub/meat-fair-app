@@ -28,3 +28,10 @@ test('Stamina time-band menu buttons and dinner signature dishes are not missed'
  const {items}=extractCatalogPage(doc('<div class="menu-toggle-btn">平日ランチ</div><div class="menu-toggle-btn">ディナー&amp;土日祝ランチ</div><div class="menu-card"><p class="m-yasumi">牛タン ※加工肉です。大垣店対象外。</p></div>'),'https://example.com/menu/',{...brand,id:'stamina-taro'});
  assert.equal(items.filter(e=>e.kind==='course').length,2);const dish=items.find(e=>e.kind==='highlight');assert.equal(dish.title,'牛タン');assert.equal(dish.exclusive,false);assert.ok(dish.conditions.some(x=>x.includes('加工肉')));
 });
+
+test('a salad-bar included price cannot look identical to a main-dish-only price',async()=>{
+ const {reviewCatalogImage}=await import('../scripts/catalog-reviewed-images.mjs');
+ const a=reviewCatalogImage({title:'ランチ',priceEvidence:'サラダバー付 税込1925円'},'https://example.com/','hash');
+ const b=reviewCatalogImage({title:'ランチ',priceEvidence:'サラダバー別 税込1155円'},'https://example.com/','hash');
+ assert.match(a.title,/サラダバー付/);assert.match(b.title,/サラダバー別/);assert.notEqual(a.title,b.title);
+});
