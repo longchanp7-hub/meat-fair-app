@@ -1,14 +1,19 @@
 import {campaignStatus} from './status.mjs';
 
 // Describe content, not a brand or a filename. Geometry remains in the planner.
+// These roles are shared by all chains so a new fair can rearrange without CSS edits.
 export function mediaSemantics(asset) {
   const title=String(asset.title||'');
   let group='dish',priority=60,visualWeight=1;
-  if(asset.kind==='campaign') {group='campaign';priority=0;visualWeight=2;}
-  else if(asset.kind==='menu') {group='related-meal';priority=30;visualWeight=1.25;}
-  else if(/食べ放題/.test(title)&&/牛|豚|和牛|黒豚|肉|蟹|かに|海鮮/.test(title)&&! /だし|つけだれ|以上をご注文|追加料金/.test(title)) {
+  if(asset.kind==='campaign') {group='campaign';priority=0;visualWeight=2.2;}
+  else if(/食べ放題/.test(title)&&/牛|豚|和牛|黒豚|肉|蟹|かに|海鮮|コース/.test(title)&&!/だし|つけだれ|以上をご注文|追加料金/.test(title)) {
     group='course';priority=20;visualWeight=1.5;
   }
+  else if(/ランチ|宴会|パーティ|会食/.test(title)) {
+    group='support';priority=/ランチ/.test(title)?30:31;visualWeight=1.25;
+  }
+  else if(/飲み放題|ドリンクバー/.test(title)) {group='drink';priority=50;visualWeight=1;}
+  else if(asset.kind==='menu') {group='related-meal';priority=40;visualWeight=1.1;}
   return {...asset,group,priority,visualWeight};
 }
 
