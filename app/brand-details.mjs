@@ -37,7 +37,11 @@ export function activeOffers(data,brandId,kind,now=new Date()){
   const priced=rows.filter(x=>x.priceText);
   const pool=priced.length?priced:rows;
   const seen=new Set();
-  return pool.sort((a,b)=>offerScore(b,kind)-offerScore(a,kind)||(a.rank??999)-(b.rank??999)||String(a.title||'').localeCompare(String(b.title||''),'ja')).filter(x=>{
+  return pool.sort((a,b)=>{
+    const score=offerScore(b,kind)-offerScore(a,kind);if(score)return score;
+    if(a.comparisonKey&&a.comparisonKey===b.comparisonKey&&Number.isFinite(a.price)&&Number.isFinite(b.price)&&a.price!==b.price)return a.price-b.price;
+    return (a.rank??999)-(b.rank??999)||String(a.title||'').localeCompare(String(b.title||''),'ja');
+  }).filter(x=>{
     const key=String(x.title||'').replace(/\s+/g,' ').replace(/[!！。]/g,'').trim();
     if(seen.has(key))return false;seen.add(key);return true;
   });
