@@ -7,14 +7,14 @@ import {campaignStatus} from '../app/status.mjs';
 const brands=JSON.parse(await fs.readFile(new URL('../app/data/brands.json',import.meta.url),'utf8'));
 const fairs=JSON.parse(await fs.readFile(new URL('../app/data/fairs.json',import.meta.url),'utf8'));
 const stores=JSON.parse(await fs.readFile(new URL('../app/data/stores.json',import.meta.url),'utf8'));
-const known=new Set(brands.brands?.map(b=>b.id));
-if(brands.brands?.length!==15||known.size!==15)throw Error('Expected 15 distinct brands');
-if(SOURCES.length!==15||SOURCES.some(b=>!known.has(b.brandId)))throw Error('Source registry and UI brands disagree');
+const known=new Set(brands.brands?.map(b=>b.id)),expected=14;
+if(brands.brands?.length!==expected||known.size!==expected)throw Error(`Expected ${expected} distinct brands`);
+if(SOURCES.length!==expected||SOURCES.some(b=>!known.has(b.brandId)))throw Error('Source registry and UI brands disagree');
 if(fairs.schemaVersion!==2||fairs.timezone!=='Asia/Tokyo')throw Error('Invalid public schema or timezone');
 if(!Number.isFinite(Date.parse(fairs.updatedAt)))throw Error('Missing update timestamp');
 const gate=validateDataset(fairs);if(gate.length)throw Error('Invalid campaigns: '+gate.join(', '));
 const health=fairs.sourceHealth||[],healthIds=new Set(health.map(h=>h.brandId));
-if(health.length!==15||healthIds.size!==15||health.some(h=>!known.has(h.brandId)))throw Error('Incomplete source health');
+if(health.length!==expected||healthIds.size!==expected||health.some(h=>!known.has(h.brandId)))throw Error('Incomplete source health');
 for(const h of health){
   if(!['ok','partial','unavailable','needs_review'].includes(h.status))throw Error('Unknown source status');
   if(typeof h.sourceOk!=='boolean'||!Number.isFinite(Date.parse(h.checkedAt)))throw Error('Invalid source check');
@@ -41,10 +41,7 @@ for(const s of storeRows){
   if(!Array.isArray(s.campaignOverrides))throw Error(`Invalid store overrides: ${s.id}`);
 }
 const storeBrandIds=new Set(storeRows.map(s=>s.brandId));
-if(storeBrandIds.size!==15||[...known].some(id=>!storeBrandIds.has(id)))throw Error('Local store registry does not cover all 15 brands');
+if(storeBrandIds.size!==expected||[...known].some(id=>!storeBrandIds.has(id)))throw Error(`Local store registry does not cover all ${expected} brands`);
 
-const states=fairs.campaigns.map(c=>({...c,...campaignStatus(c)}));
-const live=states.filter(c=>c.state!=='ended');
-console.log(JSON.stringify({verified:true,brands:known.size,readableSources:health.filter(h=>h.sourceOk).length,
-  campaigns:fairs.campaigns.length,active:states.filter(c=>c.state==='active').length,upcoming:states.filter(c=>c.state==='upcoming').length,
-  brandsWithLiveData:new Set(live.map(c=>c.brandId)).size,localStores:storeRows.length,storeBrands:storeBrandIds.size,updatedAt:fairs.updatedAt}));
+const states=fairs.campaigns.map(c=>({...c,...campaignStatus(c)})),live=states.filter(c=>c.state!=='ended');
+console.log(JSON.stringify({verified:true,brands:known.size,readableSources:health.filter(h=>h.sourceOk).length,campaigns:fairs.campaigns.length,active:states.filter(c=>c.state==='active').length,upcoming:states.filter(c=>c.state==='upcoming').length,brandsWithLiveData:new Set(live.map(c=>c.brandId)).size,localStores:storeRows.length,storeBrands:storeBrandIds.size,updatedAt:fairs.updatedAt}));
