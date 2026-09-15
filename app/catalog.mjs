@@ -1,12 +1,13 @@
 import {reviewedCatalogFallbacks} from './catalog-reviewed-bridge.mjs?v=20260915-sakai2';
 import {campaignStatus} from './status.mjs';
 import {selectMedia} from './gallery.mjs?v=20260915-sakai1';
-import {presentationFor,catalogEntryVisible} from './presentation.mjs?v=20260915-sakai1';
+import {presentationFor,catalogEntryVisible} from './presentation.mjs?v=20260915-cleanup1';
 const TTL=48*60*60*1000;
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const safe=v=>{try{const u=new URL(v);return u.protocol==='https:'?u.href:'';}catch{return '';}};
 const knownPrice=e=>Number.isFinite(e.price?.amount)&&e.price?.taxIncluded===true;
 const priceOf=e=>knownPrice(e)?e.price.amount:Infinity;
+const norm=v=>String(v||'').normalize('NFKC').replace(/\s+/g,' ').trim();
 
 export function catalogEntryCurrent(e,fairs,now=new Date(),generationMatches=true){
   const age=+now-Date.parse(e.checkedAt);
@@ -68,16 +69,28 @@ function sortedGroups(rows,brandId){
       const al=a.some(e=>/ランチ/.test(e.title)),bl=b.some(e=>/ランチ/.test(e.title));
       if(al!==bl)return al?1:-1;
     }
-    if(brandId==='nikusho-sakai'){
-      const ao=Math.min(...a.map(e=>sakaiOrder(e.title))),bo=Math.min(...b.map(e=>sakaiOrder(e.title)));
-      if(ao!==bo)return ao-bo;
-    }
     return min(a)-min(b)||(a[0]?.rank??100)-(b[0]?.rank??100);
   });
 }
 function sectionRows(entries,kind,brandId){
   const rows=entries.filter(e=>e.kind===kind);
+  if(kind==='course'&&brandId==='nikusho-sakai')return [...rows].sort((a,b)=>sakaiOrder(a.title)-sakaiOrder(b.title)||(a.rank??100)-(b.rank??100));
   return kind==='course'?sortedGroups(rows,brandId).flat():rows.sort((a,b)=>priceOf(a)-priceOf(b)||(a.rank??100)-(b.rank??100));
+}
+function semanticKey(e){
+  const c=e.context||{};
+  return [e.kind,norm(e.title),knownPrice(e)?e.price.amount:priceText(e),norm(c.service),norm(c.days),norm(c.audience)].join('|');
+}
+function semanticScore(e){
+  return (knownPrice(e)?8:0)+(e.imageUrl?4:0)+(e.verificationState==='confirmed'?3:e.verificationState==='last_known_good'?1:0)+(e.sourceMethod?.includes('review')?1:0);
+}
+function dedupeSemantic(entries){
+  const map=new Map();
+  for(const e of entries){
+    const key=semanticKey(e),old=map.get(key);
+    if(!old||semanticScore(e)>semanticScore(old))map.set(key,e);
+  }
+  return [...map.values()];
 }
 function reviewedSatoVersionRows(entries){
   const marker=entries.find(e=>e.brandId==='washoku-sato'&&e.kind==='course'&&/ayce-260616\.jpg/.test(String(e.imageUrl||''))&&e.verificationState==='confirmed');
@@ -88,17 +101,35 @@ function reviewedSatoVersionRows(entries){
     {...base,id:'sato-suki-ayce-260616',title:'さとすき 食べ放題（大人）',officialUrl:'https://sato-res.com/satosuki/',sourceUrl:marker.sourceUrl,price:{amount:2189,text:'税込2,189円〜6,039円',taxIncluded:true,from:true},context:{...marker.context,service:'ディナー',audience:'大人',scope:'sato-suki-current'},comparisonKey:'sato-suki|ayce-260616',comparisonEvidence:'official-current-menu-version-ayce-260616',evidenceText:'公式食べ放題メニュー ayce-260616 の確認済み料金帯'}
   ];
 }
+function roanRange(entries,pattern,title,service,id){
+  const rows=entries.filter(e=>e.kind==='course'&&pattern.test(String(e.title||''))&&knownPrice(e));
+  if(!rows.length)return null;
+  const amounts=[...new Set(rows.map(e=>e.price.amount))].sort((a,b)=>a-b),base=rows.sort((a,b)=>priceOf(a)-priceOf(b))[0];
+  const text=amounts.length>1?`税込${amounts[0].toLocaleString('ja-JP')}〜${amounts.at(-1).toLocaleString('ja-JP')}円`:`税込${amounts[0].toLocaleString('ja-JP')}円`;
+  return {...base,id,title,price:{...base.price,amount:amounts[0],text,from:amounts.length>1},context:{...base.context,service,days:'平日・土日祝',audience:'大人'},comparisonKey:`roan-compact|${id}`,comparisonEvidence:'reviewed-toyokawa-price-table',imageUrl:null,width:null,height:null};
+}
+function compactRoan(entries){
+  const merged=[
+    roanRange(entries,/旬菜ビュッフェ ランチ/,'旬菜ビュッフェ ランチ','ランチ','lunch'),
+    roanRange(entries,/三元豚しゃぶと旬菜ビュッフェ/,'三元豚しゃぶと旬菜ビュッフェ','ディナー','pork-dinner'),
+    roanRange(entries,/厳選牛しゃぶと旬菜ビュッフェ/,'厳選牛しゃぶと旬菜ビュッフェ','ディナー','beef-dinner')
+  ].filter(Boolean);
+  const reviewedDrinks=entries.filter(e=>e.kind==='drink'&&/（豊川店）/.test(String(e.title||'')));
+  const drinks=reviewedDrinks.length?reviewedDrinks:entries.filter(e=>e.kind==='drink');
+  return [...merged,...drinks];
+}
 function reviewedLayoutEntries(brandId,current,fallback){
-  let entries=[...current,...fallback];
+  let entries=dedupeSemantic([...current,...fallback]);
   if(brandId==='washoku-sato'){
     const reviewed=reviewedSatoVersionRows(entries);
     if(reviewed.length)entries=entries.filter(e=>!/しゃぶしゃぶ・すき焼き.*さと式焼肉/.test(String(e.title||''))).concat(reviewed);
   }
   if(brandId==='syabuyo'){
-    const pricedDinner=entries.find(e=>knownPrice(e)&&e.price.amount===3000&&/平日ディナー/.test(String(e.title||'')));
-    if(pricedDinner)entries=entries.filter(e=>e===pricedDinner||!(/平日ディナー/.test(String(e.title||''))&&!knownPrice(e)));
+    const priced=entries.filter(e=>knownPrice(e)&&/平日ディナー/.test(String(e.title||'')));
+    if(priced.length)entries=entries.filter(e=>!(/平日ディナー/.test(String(e.title||''))&&!knownPrice(e)));
   }
-  return entries;
+  if(brandId==='roan')entries=compactRoan(entries);
+  return dedupeSemantic(entries);
 }
 function renderSection(brand,entries,kind,shownImages){
   const p=presentationFor(brand.id),title=kind==='course'?'コース・料金':'飲み放題',rows=sectionRows(entries,kind,brand.id);
@@ -107,6 +138,7 @@ function renderSection(brand,entries,kind,shownImages){
   const photoIds=new Set(photos.map(e=>e.id));
   let textRows=rows.filter(e=>!photoIds.has(e.id)||p.hideTextWhenPhoto===false);
   if(brand.id==='yuzuan'&&photos.length)textRows=textRows.filter(e=>/ランチ/.test(e.title)&&!photoIds.has(e.id));
+  if(brand.id==='anrakutei'&&kind==='drink'&&photos.length)textRows=[];
   const photoHtml=photos.length?`<div class="catalog-photo-stack" data-photo-stack="${kind}">${photos.map(e=>photoTile(e,kind)).join('')}</div>`:'';
   const textHtml=textRows.length?`<div class="catalog-stack">${textRows.map(textTile).join('')}</div>`:'';
   const empty=kind==='drink'?'飲み放題プランの有無・料金は公式案内で確認':'料金は公式メニューで確認';
