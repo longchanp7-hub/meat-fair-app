@@ -30,7 +30,7 @@ export function reviewedSatoCatalog(url,html,checkedAt){
     out.push(entry({title:'さと式焼肉 牛＆豚プレミアムコース',amount:4279,text:'税込4,279円',sourceUrl:url,checkedAt,evidence:'公式さと式焼肉 menu-260409-01：牛＆豚プレミアムコース 税込4,279円',scope:'sato-yakiniku-current'}));
     out.push(entry({title:'さと式焼肉 黒毛和牛コース',amount:6369,text:'税込6,369円',sourceUrl:url,checkedAt,evidence:'公式さと式焼肉 menu-260409-01：黒毛和牛コース 税込6,369円',scope:'sato-yakiniku-current'}));
   }
-  if(p==='/sato/bar/'&&/1,978\s*[（(]税込/.test(body))){
+  if(p==='/sato/bar/'&&/1,978\s*[（(]税込/.test(body)){
     out.push(entry({title:'さとバル 120分飲み放題',kind:'drink',amount:1978,text:'税込1,978円',sourceUrl:url,checkedAt,evidence:'公式さとカフェ＆さとバル：料理とセット 1,978（税込）、120分',service:'通常',scope:'sato-bar-current'}));
   }
   if(p==='/sato/en/menu/'&&/3,949\s*yen/.test(body)){
