@@ -99,8 +99,8 @@ export const BRAND_PRESENTATION={
   anrakutei:{
     ...BASE,coursePhotos:true,drinkPhotos:true,
     courseAllow:/コース/i,
-    drinkAllow:/飲み放題|ドリンクバー/i,
-    note:'写真付きパネルを優先し下の重複テキストは出さない'
+    drinkAllow:/ドリンクバー/i,
+    note:'写真付きコースを優先。飲み物は価格確認できるドリンクバーパネルだけを表示し、重複・未確認パネルは出さない'
   }
 };
 
