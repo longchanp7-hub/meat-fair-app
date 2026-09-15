@@ -29,9 +29,15 @@
 .preview-date{font-size:.7rem;font-weight:700}
 .fair-row.discount-tile{border:1px solid #edbbb5;border-radius:8px;padding:10px;background:#fff6f5;margin:7px 0}
 .reservation-badge{display:inline-block;background:#a12724;color:#fff;font-weight:700;font-size:.7rem;border-radius:5px;padding:3px 6px;margin:5px 0}
+/* The four Ichiban course source images have very different native aspect ratios.
+   Equal-height, top-aligned thumbnails keep the cards balanced; the exact title
+   and price remain in the caption below and the full official image is one tap away. */
+.brand-catalog[data-catalog-brand="jukusei-ichiban"] [data-photo-stack="course"] .catalog-photo-frame{height:170px;min-height:170px;max-height:170px}
+.brand-catalog[data-catalog-brand="jukusei-ichiban"] [data-photo-stack="course"] .catalog-photo-frame img{object-fit:cover;object-position:center top;max-height:none}
 @media(max-width:430px){
   .catalog-photo-frame{height:clamp(135px,40vw,180px)}
   .catalog-photo-frame img{height:100%;max-height:none}
+  .brand-catalog[data-catalog-brand="jukusei-ichiban"] [data-photo-stack="course"] .catalog-photo-frame{height:170px}
   .compact-main{align-items:flex-start}
   .compact-main b{font-size:.81rem}
   .catalog-price{font-size:.94rem}
@@ -41,5 +47,6 @@
   .catalog-photo-card{height:100%}
   .catalog-photo-frame{height:220px}
   .catalog-photo-frame img{height:100%;max-height:none}
+  .brand-catalog[data-catalog-brand="jukusei-ichiban"] [data-photo-stack="course"] .catalog-photo-frame{height:220px;min-height:220px;max-height:220px}
   .catalog-stack{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
 }
