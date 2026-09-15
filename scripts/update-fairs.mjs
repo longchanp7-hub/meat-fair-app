@@ -137,9 +137,9 @@ for(let i=0;i<SOURCES.length;i+=3)results.push(...await Promise.all(SOURCES.slic
 const production=dedupCampaigns(results.flatMap(r=>r.rows));
 const next={...current,schemaVersion:2,updatedAt:stamp,timezone:'Asia/Tokyo',sourceHealth:results.map(r=>r.health),campaigns:production};
 const gate=validateDataset(next);if(gate.length)throw Error('Quality gate: '+gate.join(', '));
-if(next.sourceHealth.length!==15)throw Error('Incomplete source coverage');
+if(next.sourceHealth.length!==SOURCES.length)throw Error('Incomplete source coverage');
 const sourceSuccess=next.sourceHealth.filter(h=>h.sourceOk).length;
 if(sourceSuccess===0)throw Error('All official sources unavailable; refusing to overwrite published data');
 await fs.writeFile(OUT,JSON.stringify(next,null,2)+'\n');
 await fs.writeFile(AUDIT,JSON.stringify({schemaVersion:16,updatedAt:stamp,campaigns:results.flatMap(r=>r.candidates),errors:results.flatMap(r=>r.errors),sourceHealth:next.sourceHealth},null,2)+'\n');
-console.log(JSON.stringify({productionCount:production.length,sourceSuccess,sourceTotal:15,sourceHealth:next.sourceHealth},null,2));
+console.log(JSON.stringify({productionCount:production.length,sourceSuccess,sourceTotal:SOURCES.length,sourceHealth:next.sourceHealth},null,2));
