@@ -59,16 +59,17 @@ export const BRAND_PRESENTATION={
   },
   roan:{
     ...BASE,
-    courseAllow:/ビュッフェ|しゃぶ|麻辣湯|海鮮/i,
+    courseAllow:/旬菜ビュッフェ|三元豚しゃぶ|厳選牛しゃぶ/i,
+    courseDeny:/麻辣湯|海鮮/i,
     drinkAllow:/飲み放題|ドリンクバー/i,
-    note:'現在のシンプルさを維持'
+    note:'フェアは上で見せ、通常料金はランチ／三元豚ディナー／厳選牛ディナー／飲み放題だけに集約'
   },
   'kalubi-taisho':{
     ...BASE,
-    courseAllow:/コース/i,
-    courseDeny:/全メニュー|メニュー一覧/i,
+    courseAllow:/^(?:よくばりコース|大将スペシャルコース|特選プレミアムコース)$/i,
+    courseDeny:/追加オプション|カジュアル|全メニュー|メニュー一覧/i,
     drinkAllow:/飲み放題/i,
-    note:'全メニュー画像は出さずコース料金と飲み放題の有無・金額'
+    note:'よくばり→大将スペシャル→特選プレミアムの3コースだけ。全メニュー画像・追加オプションは出さない'
   },
   'stamina-taro':{
     ...BASE,
@@ -78,10 +79,10 @@ export const BRAND_PRESENTATION={
   },
   asakuma:{
     ...BASE,
-    courseAllow:/サラダバー/i,
-    courseDeny:/アボカド|カレー|スープ|通常コース/i,
+    courseAllow:/^45品目!!食べ放題サラダバー!?/i,
+    courseDeny:/アボカド|カレー|スープ|通常コース|ハンバーグ|チキン|ランチメニュー|グランドメニュー/i,
     drinkAllow:/飲み放題/i,
-    note:'上部フェア3枚を主役にし、下はサラダバー情報だけ'
+    note:'上部フェアを主役にし、下はサラダバーがあることだけ。個別メニューは出さない'
   },
   'nikusho-sakai':{
     ...BASE,coursePhotos:true,drinkPhotos:true,
@@ -98,7 +99,7 @@ export const BRAND_PRESENTATION={
   anrakutei:{
     ...BASE,coursePhotos:true,drinkPhotos:true,
     courseAllow:/コース/i,
-    drinkAllow:/飲み放題|ドリンク/i,
+    drinkAllow:/飲み放題|ドリンクバー/i,
     note:'写真付きパネルを優先し下の重複テキストは出さない'
   }
 };
@@ -124,7 +125,7 @@ export function fairAssetVisible(brandId,asset){
 }
 
 export function catalogEntryVisible(brandId,entry){
-  if(!BRAND_PRESENTATION[brandId])return entry.kind!=='highlight'||true;
+  if(!BRAND_PRESENTATION[brandId])return true;
   const p=presentationFor(brandId);
   if(entry.kind==='highlight')return p.showHighlights===true;
   if(entry.kind==='course')return matchesRule(entry.title,p.courseAllow,p.courseDeny);
