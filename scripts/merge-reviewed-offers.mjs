@@ -14,7 +14,12 @@ for(const o of data.offers||[]){
   if(!byBrand.has(o.brandId))byBrand.set(o.brandId,[]);
   byBrand.get(o.brandId).push(o);
 }
-for(const [brandId,rows] of Object.entries(Object.groupBy(reviewed.offers,o=>o.brandId))){
+const reviewedByBrand=new Map();
+for(const o of reviewed.offers){
+  if(!reviewedByBrand.has(o.brandId))reviewedByBrand.set(o.brandId,[]);
+  reviewedByBrand.get(o.brandId).push(o);
+}
+for(const [brandId,rows] of reviewedByBrand){
   const health=(data.sourceHealth||[]).find(h=>h.brandId===brandId);
   if((byBrand.get(brandId)||[]).length||health?.status==='ok')continue;
   const fresh=rows.filter(o=>{const t=Date.parse(o.reviewedAt||'');return Number.isFinite(t)&&now-t>=0&&now-t<=MAX_REVIEW_AGE;});
