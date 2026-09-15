@@ -41,10 +41,10 @@ export const BRAND_PRESENTATION={
   },
   'washoku-sato':{
     ...BASE,
-    courseAllow:/さとしゃぶ|さとすき|さと焼肉/i,
+    courseAllow:/さとしゃぶ|さとすき|さと式?焼肉/i,
     courseDeny:/宴席|ランチメニュー|通常メニュー|さとカフェ|さとバル/i,
-    drinkAllow:/飲み放題|さとバル|アルコール/i,
-    note:'さとしゃぶ／さとすき／さと焼肉を分けて料金表示。宴席・通常メニュー写真は非表示'
+    drinkAllow:/飲み放題|さとバル|さとカフェ|アルコール/i,
+    note:'さとしゃぶ／さとすき／さと式焼肉を分けて料金表示。宴席・通常メニュー写真は非表示'
   },
   amiyakitei:{
     ...BASE,fairGallery:'amiyakitei',coursePhotos:true,hideTextWhenPhoto:false,
@@ -112,6 +112,10 @@ export function matchesRule(value,allow,deny){
 }
 
 export function fairAssetVisible(brandId,asset){
+  // Tests and future chains without an explicit presentation policy retain the
+  // generic verified gallery behavior. The 14 reviewed chains below are the
+  // only ones intentionally trimmed for the compact Sakai-style UI.
+  if(!BRAND_PRESENTATION[brandId])return true;
   const p=presentationFor(brandId);
   if(asset.kind==='campaign')return true;
   if(p.fairGallery==='amiyakitei')return asset.kind==='detail'&&asset.group!=='drink';
@@ -120,6 +124,7 @@ export function fairAssetVisible(brandId,asset){
 }
 
 export function catalogEntryVisible(brandId,entry){
+  if(!BRAND_PRESENTATION[brandId])return entry.kind!=='highlight'||true;
   const p=presentationFor(brandId);
   if(entry.kind==='highlight')return p.showHighlights===true;
   if(entry.kind==='course')return matchesRule(entry.title,p.courseAllow,p.courseDeny);
