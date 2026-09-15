@@ -1,11 +1,13 @@
 const DAY=86400000;
 const PREMIUM=/黒毛和牛|霜降り|和牛|牛タン|厚切り|骨付き|国産牛|上カルビ|特選|プレミアム|大海老|大ホタテ|蟹|かに|カニ/;
 const LOW_VALUE=/だし|たれ|薬味|サラダ|スープ|ごはん|ライス|デザート|ドリンク|ソフトクリーム/;
-const OFFER_NOISE=/お知らせ|Previous|Next|価格改定|クーポン廃止|学生限定|学生専用|学生応援|キャンペーン|フェア|ご注意|おかわり|グループ全員|平素は|詳しくはこちら|こちらから|一覧/;
+const OFFER_NOISE=/お知らせ|Previous|Next|価格改定|クーポン廃止|学生限定|学生専用|学生応援|キャンペーン|フェア|ご注意|グループ全員|平素は|詳しくはこちら|こちらから|一覧|コース内容|メニューが異なります|実施中|お届け/;
+const HARD_OFFER_NOISE=/学生限定|学生専用|学生応援/;
+const HIGHLIGHT_NOISE=/ランチメニュー|宴会|ニュース|価格|料金|フェア|キャンペーン|アプリ|会員|半額|割引/;
 
 function usefulOffer(row,kind){
   const title=String(row.title||'').replace(/\s+/g,' ').trim();
-  if(!title||OFFER_NOISE.test(title))return false;
+  if(!title||HARD_OFFER_NOISE.test(title)||(!row.priceText&&OFFER_NOISE.test(title)))return false;
   if(kind==='course'){
     if(row.priceText)return title.length<=125;
     if(title.length>58)return false;
@@ -38,8 +40,8 @@ export function activeOffers(data,brandId,kind,now=new Date()){
   const pool=priced.length?priced:rows;
   const seen=new Set();
   return pool.sort((a,b)=>{
-    const score=offerScore(b,kind)-offerScore(a,kind);if(score)return score;
     if(a.comparisonKey&&a.comparisonKey===b.comparisonKey&&Number.isFinite(a.price)&&Number.isFinite(b.price)&&a.price!==b.price)return a.price-b.price;
+    const score=offerScore(b,kind)-offerScore(a,kind);if(score)return score;
     return (a.rank??999)-(b.rank??999)||String(a.title||'').localeCompare(String(b.title||''),'ja');
   }).filter(x=>{
     const key=String(x.title||'').replace(/\s+/g,' ').replace(/[!！。]/g,'').trim();
@@ -60,7 +62,7 @@ function currentAsset(asset,rows,now){
 export function selectHighlights(mediaData,brandId,rows,now=new Date(),limit=2){
   const seen=new Set();
   return (Array.isArray(mediaData?.assets)?mediaData.assets:[])
-    .filter(a=>a.brandId===brandId&&['detail','menu'].includes(a.kind)&&currentAsset(a,rows,now)&&PREMIUM.test(a.title||'')&&!LOW_VALUE.test(a.title||'')&&!/ランチメニュー|宴会|ニュース|価格|料金/.test(a.title||''))
+    .filter(a=>a.brandId===brandId&&['detail','menu'].includes(a.kind)&&currentAsset(a,rows,now)&&PREMIUM.test(a.title||'')&&!LOW_VALUE.test(a.title||'')&&!HIGHLIGHT_NOISE.test(a.title||''))
     .map(a=>{
       let score=a.kind==='menu'?40:20;
       if(/黒毛和牛|霜降り|牛タン|骨付き|厚切り/.test(a.title||''))score+=20;
