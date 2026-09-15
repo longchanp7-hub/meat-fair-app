@@ -1,4 +1,4 @@
-import {reviewedCatalogFallbacks} from './catalog-reviewed-bridge.mjs?v=20260915-sakai1';
+import {reviewedCatalogFallbacks} from './catalog-reviewed-bridge.mjs?v=20260915-sakai2';
 import {campaignStatus} from './status.mjs';
 import {selectMedia} from './gallery.mjs?v=20260915-sakai1';
 import {presentationFor,catalogEntryVisible} from './presentation.mjs?v=20260915-sakai1';
@@ -53,6 +53,13 @@ function photoTile(e,kind){
   const known=knownPrice(e),w=Number(e.width)||0,h=Number(e.height)||0;
   return `<a class="catalog-photo-card" data-catalog-photo="${esc(kind)}" data-catalog-id="${esc(e.id)}" data-price="${known?e.price.amount:''}" href="${esc(safe(e.officialUrl))}" target="_blank" rel="noopener noreferrer"><span class="catalog-photo-frame"><img src="${esc(safe(e.imageUrl))}" alt="${esc(e.title)}" ${w&&h?`width="${w}" height="${h}"`:''} loading="lazy" decoding="async" referrerpolicy="no-referrer"></span><span class="catalog-photo-caption"><small>${esc(labelFor(e))}</small><b>${esc(e.title)}</b><strong class="catalog-price${known?'':' unconfirmed'}">${esc(priceText(e))}</strong></span></a>`;
 }
+function sakaiOrder(title){
+  if(/お手軽/.test(title))return 1;
+  if(/ライト/.test(title))return 2;
+  if(/スペシャル/.test(title))return 3;
+  if(/贅沢|プレミアム/.test(title))return 4;
+  return 99;
+}
 function sortedGroups(rows,brandId){
   const groups=groupCoursePrices(rows);
   const min=g=>Math.min(...g.map(priceOf));
@@ -61,12 +68,37 @@ function sortedGroups(rows,brandId){
       const al=a.some(e=>/ランチ/.test(e.title)),bl=b.some(e=>/ランチ/.test(e.title));
       if(al!==bl)return al?1:-1;
     }
+    if(brandId==='nikusho-sakai'){
+      const ao=Math.min(...a.map(e=>sakaiOrder(e.title))),bo=Math.min(...b.map(e=>sakaiOrder(e.title)));
+      if(ao!==bo)return ao-bo;
+    }
     return min(a)-min(b)||(a[0]?.rank??100)-(b[0]?.rank??100);
   });
 }
 function sectionRows(entries,kind,brandId){
   const rows=entries.filter(e=>e.kind===kind);
   return kind==='course'?sortedGroups(rows,brandId).flat():rows.sort((a,b)=>priceOf(a)-priceOf(b)||(a.rank??100)-(b.rank??100));
+}
+function reviewedSatoVersionRows(entries){
+  const marker=entries.find(e=>e.brandId==='washoku-sato'&&e.kind==='course'&&/ayce-260616\.jpg/.test(String(e.imageUrl||''))&&e.verificationState==='confirmed');
+  if(!marker)return [];
+  const base={...marker,imageUrl:null,width:null,height:null,rank:-10,verificationState:'confirmed',sourceMethod:'reviewed-current-menu-version'};
+  return [
+    {...base,id:'sato-shabu-ayce-260616',title:'さとしゃぶ 食べ放題（大人）',officialUrl:'https://sato-res.com/satoshabu/',sourceUrl:marker.sourceUrl,price:{amount:2189,text:'税込2,189円〜6,039円',taxIncluded:true,from:true},context:{...marker.context,service:'ディナー',audience:'大人',scope:'sato-shabu-current'},comparisonKey:'sato-shabu|ayce-260616',comparisonEvidence:'official-current-menu-version-ayce-260616',evidenceText:'公式食べ放題メニュー ayce-260616 の確認済み料金帯'},
+    {...base,id:'sato-suki-ayce-260616',title:'さとすき 食べ放題（大人）',officialUrl:'https://sato-res.com/satosuki/',sourceUrl:marker.sourceUrl,price:{amount:2189,text:'税込2,189円〜6,039円',taxIncluded:true,from:true},context:{...marker.context,service:'ディナー',audience:'大人',scope:'sato-suki-current'},comparisonKey:'sato-suki|ayce-260616',comparisonEvidence:'official-current-menu-version-ayce-260616',evidenceText:'公式食べ放題メニュー ayce-260616 の確認済み料金帯'}
+  ];
+}
+function reviewedLayoutEntries(brandId,current,fallback){
+  let entries=[...current,...fallback];
+  if(brandId==='washoku-sato'){
+    const reviewed=reviewedSatoVersionRows(entries);
+    if(reviewed.length)entries=entries.filter(e=>!/しゃぶしゃぶ・すき焼き.*さと式焼肉/.test(String(e.title||''))).concat(reviewed);
+  }
+  if(brandId==='syabuyo'){
+    const pricedDinner=entries.find(e=>knownPrice(e)&&e.price.amount===3000&&/平日ディナー/.test(String(e.title||'')));
+    if(pricedDinner)entries=entries.filter(e=>e===pricedDinner||!(/平日ディナー/.test(String(e.title||''))&&!knownPrice(e)));
+  }
+  return entries;
 }
 function renderSection(brand,entries,kind,shownImages){
   const p=presentationFor(brand.id),title=kind==='course'?'コース・料金':'飲み放題',rows=sectionRows(entries,kind,brand.id);
@@ -83,7 +115,7 @@ function renderSection(brand,entries,kind,shownImages){
 export function renderCatalog(brand,data,fairs,media,now=new Date(),offersData=null){
   const current=selectCatalog(data,brand.id,fairs,now);
   const fallback=reviewedCatalogFallbacks(offersData,brand.id,current,now).filter(e=>catalogEntryVisible(brand.id,e));
-  const entries=[...current,...fallback];
+  const entries=reviewedLayoutEntries(brand.id,current,fallback);
   const currentFairs=(fairs.campaigns||[]).filter(c=>c.brandId===brand.id&&['P1','P2'].includes(c.priority)&&campaignStatus(c,now).state==='active');
   const shownImages=new Set(selectMedia(currentFairs,brand.id,media,'active',now).map(e=>e.imageUrl));
   const sections=[renderSection(brand,entries,'course',shownImages),renderSection(brand,entries,'drink',shownImages)];
