@@ -61,8 +61,8 @@ function offerTile(o,label){
  return`<a class="info-tile" href="${esc(safeUrl(o.officialUrl))}" target="_blank" rel="noopener noreferrer"><small>${esc(label)}</small><b>${esc(o.title)}</b>${o.priceText?`<strong>${esc(o.priceText)}</strong>`:'<span class="price-unknown">料金は公式で確認</span>'}${cond.length?`<span class="tile-conditions">${esc(cond.join('・'))}</span>`:''}<span class="tile-source">公式情報 ↗</span></a>`;
 }
 function promoTile(c){
- const conditions=[c.weekdayCondition,...(c.conditions||[])].filter(Boolean).slice(0,2);
- return`<a class="info-tile promo-tile" href="${esc(safeUrl(c.officialUrl))}" target="_blank" rel="noopener noreferrer"><small>お得情報</small><b>${esc(c.title)}</b>${c.priceText?`<strong>${esc(c.priceText)}</strong>`:''}<span class="tile-conditions">${esc(fmtDate(c))}${conditions.length?'・'+conditions.join('・'):''}</span><span class="tile-source">公式条件を確認 ↗</span></a>`;
+ const conditions=[c.weekdayCondition,...(c.conditions||[])].filter(Boolean).slice(0,2),state=status(c);
+ return`<a class="info-tile promo-tile" data-campaign="${esc(c.id)}" data-state="${state}" href="${esc(safeUrl(c.officialUrl))}" target="_blank" rel="noopener noreferrer"><small>お得情報</small><b>${esc(c.title)}</b>${c.priceText?`<strong>${esc(c.priceText)}</strong>`:''}<span class="tile-conditions">${esc(fmtDate(c))}${conditions.length?'・'+conditions.join('・'):''}</span><span class="tile-source">公式条件を確認 ↗</span></a>`;
 }
 function highlightTile(a){
  return`<a class="info-tile highlight-tile" href="${esc(safeUrl(a.officialUrl))}" target="_blank" rel="noopener noreferrer"><small>注目メニュー</small><b>${esc(a.title)}</b><span class="tile-source">公式メニュー ↗</span></a>`;
