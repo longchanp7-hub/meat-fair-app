@@ -1,4 +1,5 @@
 import crypto from 'node:crypto';
+import {reviewCatalogImage} from './catalog-reviewed-images.mjs';
 import {profileCatalog} from './catalog-profiles.mjs';
 import {parseHtml, all, one, text, links, httpUrl} from './html-document.mjs';
 import {publicUrl, imageKey} from './gallery-extract.mjs';
@@ -93,7 +94,8 @@ export function extractCatalogPage(html,sourceUrl,brand,{checkedAt=new Date().to
   const items=[],seen=new Set();
   const profile=profileCatalog(brand,root,sourceUrl,{photos:photoNodes,campaign});
   if(profile!==null){
-    for(const [rank,c] of profile.entries()){
+    for(const [rank,candidate] of profile.entries()){
+      const c=reviewCatalogImage(candidate,canonical,sourceHash);if(!c)continue;
       const evidence=clean(c.evidence||text(c.node));
       const title=clean(c.title);
       if(!title||NOISE.test(title)||!evidence||/販売終了|提供終了|終了しました/.test(evidence))continue;
@@ -213,7 +215,7 @@ export function discoverCatalogLinks(html,base,brand){
     if(t.origin!==allowed.origin)return false;
     // A corporate host may contain several unrelated brands.
     if(allowed.pathname!=='/'&&!t.pathname.startsWith(allowed.pathname))return false;
-    if(/\.(?:jpe?g|png|gif|svg|webp|avif|zip|exe|pdf)(?:$|\?)/i.test(t.pathname)||/\/news\/|\/topics?\/|\/20\d{2}\//.test(t.pathname))return false;
+    if(/\.(?:jpe?g|png|gif|webp|svg|avif|zip|exe|pdf)(?:$|\?)/i.test(t.pathname)||/\/news\/|\/topics?\/|\/20\d{2}\//.test(t.pathname))return false;
     if(NOISE.test(l.title)||/学生|学割|お子様|キッズ|予約する/.test(l.title))return false;
     return (/shop-list|shoplist/.test(new URL(base).pathname)&&/豊橋|豊川|蒲郡|岡崎|浜松/.test(l.title))||/menu|course|price|drink|lunch|dinner|enkai|buffet|tabehodai|tabehoudai|nomihodai|plan|all-you-can-eat|\/(?:qa|about)\//i.test(t.pathname+t.search)||COURSE.test(l.title)||DRINK.test(l.title);
   }).map(l=>({url:l.url,title:l.title,rank:DRINK.test(l.title)||/drink|nomihodai/.test(l.url)?0:/コース|食べ放題|料金|price|course/.test(l.title+l.url)?1:2})).sort((a,b)=>a.rank-b.rank);

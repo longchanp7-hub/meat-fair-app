@@ -30,9 +30,10 @@ export function groupCoursePrices(entries){
 }
 function shortConditions(e){
   const c=e.context||{},parts=[c.service,c.days,c.audience,c.channel==='通常掲載'?null:c.channel,c.charge==='追加料金'?'コースに追加する料金':null].filter(x=>x&&x!=='未確認'&&!/^公式/.test(x));
-  const duration=e.evidenceText?.match(/(?:制限時間|食べ放題|飲み放題)?\s*(\d{2,3})\s*分(?:制|間)?/u);
+  const evidence=(e.evidenceText||'').split('公式HTML画像 ')[0];
+  const duration=evidence.match(/(?:制限時間|食べ放題|飲み放題)?\s*(\d{2,3})\s*分(?:制|間)?/u);
   if(duration)parts.push(duration[0].trim());
-  const lo=e.evidenceText?.match(/(?:ラストオーダー|L\.?O\.?)\s*[^。]{0,25}/iu);if(lo)parts.push(lo[0]);
+  const lo=evidence.match(/(?:ラストオーダー|\bL\.?O\.?(?![A-Za-z]))\s*[^。]{0,25}/iu);if(lo)parts.push(lo[0]);
   return [...new Set(parts)];
 }
 function textTile(e){

@@ -231,8 +231,14 @@ export function profileCatalog(brand,root,url,{photos,campaign=null}={}){
     }
     case 'stamina-taro': {
       if(/\/menu\/?$/.test(p)){
-        for(const h of all(root,'h2,h3,h4')){const title=normal(text(h));if(/^(?:平日ランチ|ディナー.*ランチ)$/.test(title))add(title+' 食べ放題',h,{priceText:'',conditions:'店舗別の食べ放題料金は公式店舗ページで確認してください。',group:url+'|'+title});}
+        for(const h of all(root,'h2,h3,h4,.menu-toggle-btn')){const title=normal(text(h));if(/^(?:平日ランチ|ディナー.*ランチ)$/.test(title))add(title+' 食べ放題',h,{priceText:'',conditions:'店舗別の食べ放題料金は公式店舗ページで確認してください。',group:url+'|'+title});}
         dishes(root,'公式食べ放題メニュー');
+        for(const n of all(root,'.menu-card p')){
+          const t=normal(text(n)),name=t.split('※')[0].trim();
+          if(!/牛タン|中落カルビ/.test(name)||name.length>40)continue;
+          const limited=/(?:^|\s)m-yasumi(?:\s|$)/.test(n.attrs.class||'');
+          add(name,n,{kind:'highlight',priceText:'',courses:[limited?'ディナー・土日祝ランチ':'公式食べ放題メニュー'],conditions:text(n),exclusive:false});
+        }
         for(const n of all(root,'p,h2,h3,div')){
           const t=normal(text(n));if(t.length>220||!DRINK.test(t)||!tax(t)||all(n,'div,p,h2,h3').some(c=>c!==n&&DRINK.test(text(c))&&tax(text(c))))continue;
           add('ソフトドリンクバー',n,{kind:'drink',priceNode:n,group:url,conditions:'食事とは別売。店舗ごとの料金・提供状況を確認してください。'});
@@ -245,9 +251,19 @@ export function profileCatalog(brand,root,url,{photos,campaign=null}={}){
         const h=all(root,'h1,h2,h3').find(n=>/食べ放題サラダバー/.test(text(n)));
         if(h)add(text(h),h,{priceText:'',image:photos(root,url).find(i=>/サラダバー/.test(i.title))||null,conditions:'メイン料理の食べ放題ではありません。サラダバーのない店舗もあります。'});
         for(const img of photos(root,url))if(/コーンスープ|カレーライス/.test(img.title))add(img.title,img.node,{kind:'highlight',image:img,priceText:'',conditions:'公式サラダバー掲載メニュー。店舗により提供内容が異なります。'});
-      }else if(/menu_recommended-lunch-menu\.html$/.test(p)){
-        const h=all(root,'h1,h2,h3').find(n=>/ランチ/.test(text(n)));const img=photos(root,url).find(i=>/ランチ/.test(i.title));
-        if(h||img)add(text(h)||img.title,h||img.node,{image:img,priceText:'',conditions:'平日ランチの公式メニュー。メイン料理とサラダバーの提供範囲を確認してください。'});
+      }else if(/menu_recommended-lunch-menu(?:_without-sb)?\.html$/.test(p)){
+        const h=all(root,'h1,h2,h3').find(n=>/ランチ/.test(text(n))),pageName=text(h),shopList=text(one(root,'#shop'));
+        for(const box of all(root,'.box_menu')){
+          const name=text(one(box,'.ttl_menu')),priced=all(box,'p').find(n=>tax(text(n)));
+          if(!name||!priced)continue;
+          add(name+'（平日ランチ）',box,{image:photo(box),priceNode:priced,group:url+'|weekday-lunch',conditions:pageName+'。'+shopList+'。メイン料理の食べ放題ではありません。サラダバー別料金の店舗は、別料金用の公式メニューを確認してください。'});
+        }
+        if(!out.length&&h)add(pageName,h,{priceText:'',conditions:'平日ランチの公式メニュー。メイン料理とサラダバーの提供範囲を確認してください。'});
+      }else if(/\/menu\/(?:lunchmenu|grandmenu)-[^/]+\.html$/.test(p)){
+        const h=one(root,'h1'),shops=text(one(root,'.menu_shoplist_style'));
+        // Real menu boards contain the drink/salad-bar options even when those
+        // prices are image-only. Do not assert that every main dish includes them.
+        for(const img of photos(root,url))if(/ランチメニュー|人気セレクト|グランドメニュー/.test(img.title))add(img.title,img.node,{image:img,priceText:'',conditions:shops,group:url});
       }
       return out;
     }
