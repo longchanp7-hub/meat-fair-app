@@ -1,20 +1,17 @@
-import {planGallery} from './gallery-plan.mjs?v=20260915-integrated1';
+import {planGallery} from './gallery-plan.mjs?v=20260915-sakai1';
 import {hasCurrentParent,pageOverview} from './gallery-semantics.mjs';
+import {fairAssetVisible} from './presentation.mjs?v=20260915-sakai1';
 import {campaignStatus} from './status.mjs';
 const DAY=86400000;
 const MEDIA_ORDER={campaign:0,detail:1,menu:2};
 const html=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const url=v=>{try{const u=new URL(v);return /^https?:$/.test(u.protocol)?u.href:'';}catch{return '';}};
-// Heading/price-label fragments are not supplementary photographs. Verified
-// campaign posters are deliberately exempt; this policy only filters extras.
 export function isSupplementaryPhoto(value){
   try{return !/(?:^|[\/_-])(?:title|text|sign)(?:[_-](?:pc|sp|mobile|desktop|\d+))?\.(?:jpe?g|png|webp|gif|avif)$/i.test(decodeURIComponent(new URL(value).pathname));}
   catch{return false;}
 }
 export function mediaCaption(value){
   const original=String(value??'').replace(/\s+/g,' ').trim();
-  // Extract only an explicitly tax-inclusive amount. Never calculate tax, infer
-  // a missing price, or turn an add-on charge into the price of a course.
   const match=original.match(/(?:(?:[￥¥]\s*\d[\d,]*|\d[\d,]*\s*円)\s*)?[（(]\s*税込\s*[:：]?\s*[￥¥]?\s*(\d[\d,]*)\s*円?\s*[）)]\s*([〜～~])?/u);
   if(!match)return {title:original,price:''};
   let before=original.slice(0,match.index).trim(),after=original.slice(match.index+match[0].length).trim();
@@ -29,7 +26,7 @@ export function selectMedia(rows,brandId,data={},tab='active',now=new Date()){
   rows=rows.filter(c=>campaignStatus(c,now).state!=='ended');
   const available=(Array.isArray(data?.assets)?data.assets:[]).filter(a=>a.brandId===brandId);
   const fresh=a=>{const age=+now-Date.parse(a.checkedAt);return age>=0&&age<=2*DAY;};
-  const selected=[], seen=new Set();
+  const selected=[],seen=new Set();
   const push=a=>{const u=url(a.imageUrl),href=url(a.officialUrl);if(!u||!href||seen.has(u))return;seen.add(u);selected.push({...a,imageUrl:u,officialUrl:href});};
   for(const [i,c] of rows.entries()){
     const assets=available.filter(a=>a.campaignId===c.id&&a.parentHash===c.contentHash);
@@ -45,10 +42,8 @@ export function selectMedia(rows,brandId,data={},tab='active',now=new Date()){
   if(tab==='active')for(const a of available.filter(a=>a.kind==='menu')){
     if(fresh(a)&&hasCurrentParent(a,rows,now)&&isSupplementaryPhoto(a.imageUrl)&&!(a.width>0&&a.width<320))push(a);
   }
-  // Explicit semantic priority precedes legacy category order. Fair counts are
-  // still exclusively derived from rows, never from supplementary assets.
   const priority=a=>Number.isFinite(a.priority)?a.priority:(MEDIA_ORDER[a.kind]??3)*20;
-  return selected.sort((a,b)=>priority(a)-priority(b)||(a.rank??30)-(b.rank??30));
+  return selected.filter(a=>fairAssetVisible(brandId,a)).sort((a,b)=>priority(a)-priority(b)||(a.rank??30)-(b.rank??30));
 }
 export function renderGallery(rows,brand,data,tab){
   const assets=selectMedia(rows,brand.id,data,tab);
@@ -72,7 +67,6 @@ export function enhanceGalleries(root=document){
       frame=0;if(disposed||!gallery.isConnected)return;
       const tiles=[...gallery.querySelectorAll('.media-tile')];
       const width=gallery.clientWidth;if(!width)return;
-      // Larger accessibility text also needs wider tiles, not merely taller captions.
       const scale=Math.max(1,(parseFloat(getComputedStyle(document.documentElement).fontSize)||16)/16);
       const items=tiles.map(t=>{
         const caption=t.querySelector('.media-caption'),style=getComputedStyle(caption),price=t.querySelector('.media-price');
@@ -91,21 +85,13 @@ export function enhanceGalleries(root=document){
     const observer=typeof ResizeObserver==='function'?new ResizeObserver(entries=>{const w=entries[0].contentRect.width;if(Math.abs(w-oldWidth)>.5){oldWidth=w;schedule();}}):null;
     observer?.observe(gallery);
     const captionHeights=new WeakMap();
-    const captionObserver=typeof ResizeObserver==='function'?new ResizeObserver(entries=>{
-      let changed=false;
-      for(const e of entries){const h=e.contentRect.height;if(Math.abs(h-(captionHeights.get(e.target)??-1))>.5){captionHeights.set(e.target,h);changed=true;}}
-      if(changed)schedule();
-    }):null;
+    const captionObserver=typeof ResizeObserver==='function'?new ResizeObserver(entries=>{let changed=false;for(const e of entries){const h=e.contentRect.height;if(Math.abs(h-(captionHeights.get(e.target)??-1))>.5){captionHeights.set(e.target,h);changed=true;}}if(changed)schedule();}):null;
     for(const caption of gallery.querySelectorAll('.media-caption'))captionObserver?.observe(caption);
     if(!observer)window.addEventListener('resize',schedule);
     for(const tile of gallery.querySelectorAll('.media-tile')){
       const image=tile.querySelector('img');
       const loaded=()=>{if(image.naturalWidth){tile.dataset.ratio=String(image.naturalWidth/image.naturalHeight);schedule();}};
-      const failed=()=>{
-        if(disposed||!tile.isConnected)return;
-        const link=document.createElement('a');link.href=tile.href;link.target='_blank';link.rel='noopener noreferrer';link.textContent=`画像を取得できません：${image.alt} ↗`;link.className='media-unavailable';
-        gallery.parentElement.querySelector('.media-fallbacks').append(link);tile.remove();gallery.dataset.mediaCount=String(gallery.childElementCount);schedule();
-      };
+      const failed=()=>{if(disposed||!tile.isConnected)return;const link=document.createElement('a');link.href=tile.href;link.target='_blank';link.rel='noopener noreferrer';link.textContent=`画像を取得できません：${image.alt} ↗`;link.className='media-unavailable';gallery.parentElement.querySelector('.media-fallbacks').append(link);tile.remove();gallery.dataset.mediaCount=String(gallery.childElementCount);schedule();};
       image.addEventListener('load',loaded);image.addEventListener('error',failed,{once:true});
       if(image.complete){if(image.naturalWidth)loaded();else if(image.currentSrc)failed();}
       cleanups.push(()=>{image.removeEventListener('load',loaded);image.removeEventListener('error',failed);});
