@@ -1,6 +1,7 @@
-import {selectPromotions,selectFairRows} from './brand-details.mjs?v=20260915-integrated1';
-import {renderGallery,enhanceGalleries} from './gallery.mjs?v=20260915-integrated1';
-import {renderCatalog} from './catalog.mjs?v=20260915-integrated1';
+import {selectPromotions,selectFairRows} from './brand-details.mjs?v=20260915-sakai1';
+import {renderGallery,enhanceGalleries} from './gallery.mjs?v=20260915-sakai1';
+import {renderCatalog} from './catalog.mjs?v=20260915-sakai1';
+import {visibleBrand} from './presentation.mjs?v=20260915-sakai1';
 import {campaignStatus} from './status.mjs';
 const AREA_ORDER=['toyohashi','toyokawa','gamagori','okazaki','hamamatsu'];
 const AREA_LABEL={toyohashi:'豊橋',toyokawa:'豊川',gamagori:'蒲郡',okazaki:'岡崎',hamamatsu:'浜松'};
@@ -23,11 +24,13 @@ function fmtDate(c){
  if(c.startDateText)return c.startDateText;
  return c.endDateText||'開催中の掲載を確認／開始日・終了日は未確認';
 }
+function hasFeaturedFair(brandId){
+ return fairsData.campaigns.some(c=>c.brandId===brandId&&c.priority==='P1'&&c.campaignType!=='discount'&&status(c)==='active');
+}
 function renderBrands(){
  const g=document.querySelector('#brand-grid');
- g.innerHTML=[...brandsData.brands].sort((a,b)=>a.order-b.order).map(b=>{
-  return`<button class="brand ${brandFilter===b.id?'selected':''}" data-brand="${esc(b.id)}" aria-pressed="${brandFilter===b.id}"><b>${esc(b.name)}</b></button>`;
- }).join('');
+ const brands=[...brandsData.brands].filter(b=>visibleBrand(b.id)).sort((a,b)=>a.order-b.order);
+ g.innerHTML=brands.map(b=>`<button class="brand ${brandFilter===b.id?'selected':''}" data-brand="${esc(b.id)}" aria-pressed="${brandFilter===b.id}"><b>${esc(b.name)}</b>${hasFeaturedFair(b.id)?'<span class="featured-mark">注目フェア</span>':''}</button>`).join('');
  document.querySelectorAll('.brand').forEach(el=>el.onclick=()=>{
   brandFilter=brandFilter===el.dataset.brand?null:el.dataset.brand;renderBrands();renderList();document.querySelector('#list-title')?.scrollIntoView({behavior:'smooth',block:'start'});
  });
@@ -68,14 +71,15 @@ function brandCard(brand,rows){
 function renderList(){
  const suffix=brandFilter?` ・ ${brandsData.brands.find(b=>b.id===brandFilter)?.name||''}`:'';
  document.querySelector('#list-title').textContent=TAB_LABEL[tab]+suffix;
- const rows=fairsData.campaigns.filter(c=>important(c)&&matchesTab(c));
- const brands=[...brandsData.brands].sort((a,b)=>a.order-b.order).filter(b=>(!brandFilter||b.id===brandFilter)&&(tab==='active'||brandFilter||rows.some(c=>c.brandId===b.id)));
+ const rows=fairsData.campaigns.filter(c=>visibleBrand(c.brandId)&&important(c)&&matchesTab(c));
+ const brands=[...brandsData.brands].filter(b=>visibleBrand(b.id)).sort((a,b)=>a.order-b.order).filter(b=>(!brandFilter||b.id===brandFilter)&&(tab==='active'||brandFilter||rows.some(c=>c.brandId===b.id)));
  document.querySelector('#campaign-list').innerHTML=brands.length?brands.map(b=>brandCard(b,rows.filter(c=>c.brandId===b.id))).join(''):'<div class="empty">この条件で表示できるフェアはありません。</div>';
  enhanceGalleries();
 }
 function renderHeader(){
- const checked=fairsData.sourceHealth?.filter(h=>h.sourceOk).length||0;
- document.querySelector('#data-status').textContent=`全${brandsData.brands.length}チェーンを確認対象に設定 ・ 公式情報取得 ${checked}/${brandsData.brands.length}チェーン`;
+ const brands=brandsData.brands.filter(b=>visibleBrand(b.id)),ids=new Set(brands.map(b=>b.id));
+ const checked=fairsData.sourceHealth?.filter(h=>ids.has(h.brandId)&&h.sourceOk).length||0;
+ document.querySelector('#data-status').textContent=`全${brands.length}チェーンを確認対象に設定 ・ 公式情報取得 ${checked}/${brands.length}チェーン`;
  document.querySelector('#updated-at').textContent=fairsData.updatedAt?'最終取得：'+new Intl.DateTimeFormat('ja-JP',{timeZone:'Asia/Tokyo',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'}).format(new Date(fairsData.updatedAt))+'（日本時間）':'';
 }
 async function getJson(path){const r=await fetch(path,{cache:'no-cache'});if(!r.ok)throw Error('データを取得できませんでした');return r.json();}
@@ -86,13 +90,8 @@ try{
  document.querySelectorAll('#status-tabs button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.tab===tab)));
  document.querySelectorAll('#status-tabs button').forEach(b=>b.onclick=()=>{tab=b.dataset.tab;document.querySelectorAll('#status-tabs button').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',String(x===b));});renderList();});
  document.querySelector('#clear-filter').onclick=()=>{brandFilter=null;renderBrands();renderList();};
- renderHeader();
- renderBrands();renderList();document.body.dataset.ready='true';
- startAutomaticRefresh();
+ renderHeader();renderBrands();renderList();document.body.dataset.ready='true';startAutomaticRefresh();
 }catch(e){document.querySelector('#campaign-list').textContent='データを読み込めませんでした。通信状況を確認して再読み込みしてください。';document.body.dataset.ready='error';console.error(e);}
-
-// Refresh the installed app when it returns to the foreground, and every five
-// minutes while visible. Preserve the reader's position within a chain card.
 function startAutomaticRefresh(){
  let busy=false,lastCheck=Date.now();
  const signature=()=>JSON.stringify([fairsData.updatedAt,mediaData?.updatedAt,catalogData?.updatedAt,offersData?.updatedAt,(offersData?.offers||[]).map(o=>Date.now()-Date.parse(o.checkedAt)<=172800000),(catalogData?.entries||[]).map(e=>Date.now()-Date.parse(e.checkedAt)<=172800000),fairsData.campaigns.map(getState),(Array.isArray(mediaData?.assets)?mediaData.assets:[]).map(a=>Date.now()-Date.parse(a.checkedAt)<=172800000)]);
@@ -117,12 +116,6 @@ function startAutomaticRefresh(){
    busy=false;
   }
  };
- document.addEventListener('visibilitychange',()=>{if(!document.hidden)update();});
- window.addEventListener('pageshow',update);
- setInterval(update,300000);
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)update();});window.addEventListener('pageshow',update);setInterval(update,300000);
 }
-
-// A partially propagated deployment cannot join a new fair with old images.
-function consistentMedia(media,fairs){
- return media?.fairsUpdatedAt===fairs.updatedAt?media:{assets:[],updatedAt:media?.updatedAt||null,fairsUpdatedAt:fairs.updatedAt};
-}
+function consistentMedia(media,fairs){return media?.fairsUpdatedAt===fairs.updatedAt?media:{assets:[],updatedAt:media?.updatedAt||null,fairsUpdatedAt:fairs.updatedAt};}
