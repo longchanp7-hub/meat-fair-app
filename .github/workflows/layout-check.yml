@@ -29,6 +29,8 @@ jobs:
           node-version: '24'
       - run: npm test && npm run quality-gate
       - name: Collect current official images and dimensions
+        env:
+          CATALOG_CAPTURE_DIR: browser-report/catalog-sources
         run: npm run update && npm run verify
       - uses: actions/upload-artifact@v4
         with:
