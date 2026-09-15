@@ -1,30 +1,42 @@
 import fs from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
 import crypto from 'node:crypto';
-const base=process.env.PAGE_URL;
-if(!base||!base.startsWith('https://longchanp7-hub.github.io/meat-fair-app/'))throw Error('Unexpected public app URL');
-const root=new URL('../app/',import.meta.url);
-async function collect(prefix=''){
- const files=[];
- for(const e of await fs.readdir(new URL(prefix,root),{withFileTypes:true})){
-  if(e.name.startsWith('.')||e.name==='candidates.json')continue;
-  const name=prefix+e.name;if(e.isDirectory())files.push(...await collect(name+'/'));else files.push(name);
- }return files;
+export async function publishedFileNames(root='app',prefix=''){
+ const result=[];
+ for(const entry of await fs.readdir(path.join(root,prefix),{withFileTypes:true})){
+  const name=prefix?prefix+'/'+entry.name:entry.name;
+  if(entry.isDirectory())result.push(...await publishedFileNames(root,name));
+  else if(entry.isFile())result.push(name);
+ }
+ return result.sort();
 }
-const files=await collect(),hash=b=>crypto.createHash('sha256').update(b).digest('hex');
-let lastError;
-for(let attempt=1;attempt<=12;attempt++){
- try{
-  const verifiedFiles=[];
-  for(const file of files){
-   const r=await fetch(new URL(file+`?verify=${process.env.GITHUB_RUN_ID||'local'}-${attempt}`,base),{cache:'no-store',signal:AbortSignal.timeout(20000)});
-   if(!r.ok)throw Error(`${file}: HTTP ${r.status}`);
-   const expected=hash(await fs.readFile(new URL(file,root)));
-   if(hash(Buffer.from(await r.arrayBuffer()))!==expected)throw Error(`${file}: deployed content has not propagated`);
-   verifiedFiles.push({file,sha256:expected});
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+export async function verifyPublic(){
+ const base=process.env.PAGE_URL||'https://longchanp7-hub.github.io/meat-fair-app/';
+ if(base!=='https://longchanp7-hub.github.io/meat-fair-app/')throw Error('Unexpected publication target');
+ const files=await publishedFileNames(),expected=new Map();
+ for(const file of files)expected.set(file,hash(await fs.readFile(path.join('app',file))));
+ let failed=[];
+ for(let attempt=1;attempt<=12;attempt++){
+  failed=[];const verified=[];
+  for(let i=0;i<files.length;i+=4)await Promise.all(files.slice(i,i+4).map(async file=>{
+   try{
+    const response=await fetch(base+file+'?verify='+Date.now(),{cache:'no-store',signal:AbortSignal.timeout(20000)});
+    const actual=hash(Buffer.from(await response.arrayBuffer()));
+    if(!response.ok||actual!==expected.get(file))failed.push(file);
+    else verified.push({file,sha256:actual});
+   }catch{failed.push(file);}
+  }));
+  if(!failed.length){
+   const report={passed:true,url:base,verifiedAt:new Date().toISOString(),revision:process.env.GITHUB_SHA||null,files:verified.sort((a,b)=>a.file.localeCompare(b.file)),attempt};
+   await fs.mkdir('browser-report',{recursive:true});
+   await fs.writeFile('browser-report/public-byte-verification.json',JSON.stringify(report,null,2)+'\n');
+   console.log('Public code/data/icons match exact checkout:',JSON.stringify(report));return report;
   }
-  await fs.mkdir('browser-report',{recursive:true});
-  await fs.writeFile('browser-report/public-files.json',JSON.stringify({publicUrl:base,verifiedAt:new Date().toISOString(),files:verifiedFiles},null,2));
-  console.log(`Public app verified: all ${files.length} deployed files match their SHA256`);process.exit(0);
- }catch(e){lastError=e;console.log(`Public verification ${attempt}/12: ${e.message}`);if(attempt<12)await new Promise(r=>setTimeout(r,7000));}
+  console.log('Waiting for public propagation',attempt,failed.join(', '));
+  if(attempt<12)await new Promise(r=>setTimeout(r,10000));
+ }
+ throw Error('Public files are stale or unavailable: '+failed.join(', '));
 }
-throw lastError;
+if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url))await verifyPublic();
