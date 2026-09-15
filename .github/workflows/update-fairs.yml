@@ -38,7 +38,7 @@ jobs:
           git pull --ff-only origin main
           npm test
           npm run quality-gate
-      - name: Refresh all fifteen official sources
+      - name: Refresh all fourteen official sources
         run: npm run update
       - name: Verify generated public data
         run: npm run verify
@@ -49,7 +49,7 @@ jobs:
             git config user.name github-actions[bot]
             git config user.email 41898282+github-actions[bot]@users.noreply.github.com
             git add app/data
-            git commit -m "chore: refresh all fifteen official fair sources"
+            git commit -m "chore: refresh all fourteen official fair sources"
             git pull --rebase origin main
             npm test
             npm run verify
