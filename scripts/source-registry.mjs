@@ -60,11 +60,6 @@ export const SOURCES = [
   { brandId:'anrakutei', name:'安楽亭', category:'yakiniku', priority:14, sources:[
     { type:'fair_index', url:'https://anrakutei.jp/fair/', primary:true },
     { type:'reference_detail', url:'https://anrakutei.jp/fair/290yenthanks/', primary:false }
-  ]},
-  { brandId:'kushiya-monogatari', name:'串家物語', category:'buffet', priority:15, sources:[
-    { type:'brand_top', url:'https://www.kushi-ya.com/', primary:true },
-    { type:'news_index', url:'https://www.kushi-ya.com/news/', primary:false },
-    { type:'reference_detail', url:'https://www.kushi-ya.com/news/2026/09/post-136.html', primary:false }
   ]}
 ];
 
