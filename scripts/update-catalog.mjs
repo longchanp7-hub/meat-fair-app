@@ -8,6 +8,7 @@ import {SOURCES} from './source-registry.mjs';
 import {extractPage} from './site-profiles.mjs';
 import {reviewedSatoCatalog} from './sato-reviewed-catalog.mjs';
 import {campaignStatus} from '../app/status.mjs';
+import {withFetchRetries} from './retry-fetch.mjs';
 
 const root=new URL('../app/data/',import.meta.url),stamp=new Date().toISOString(),now=Date.parse(stamp),TTL=172800000;
 const read=async name=>JSON.parse(await fs.readFile(new URL(name,root),'utf8'));
@@ -18,30 +19,32 @@ if(capture)await fs.mkdir(capture,{recursive:true});
 const requests=new Map(),imageRequests=new Map();
 async function request(url,{image=false}={}){
   if(!publicUrl(url))throw Error('Unsafe source URL');
-  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000);
-  try{
-    let current=url,response;
-    for(let i=0;i<5;i++){
-      response=await fetch(current,{redirect:'manual',signal:controller.signal,headers:{'User-Agent':'meat-fair-app/1.1 (+https://github.com/longchanp7-hub/meat-fair-app)'}});
-      if(response.status>=300&&response.status<400){
-        const next=publicUrl(response.headers.get('location'),current);await response.body?.cancel();
-        if(!next||(!image&&new URL(next).origin!==new URL(url).origin))throw Error('Unexpected redirect');
-        current=next;continue;
+  return withFetchRetries(async()=>{
+    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000);
+    try{
+      let current=url,response;
+      for(let i=0;i<5;i++){
+        response=await fetch(current,{redirect:'manual',signal:controller.signal,headers:{'User-Agent':'meat-fair-app/1.1 (+https://github.com/longchanp7-hub/meat-fair-app)','Accept':image?'image/avif,image/webp,image/apng,image/*,*/*;q=0.8':'text/html,application/xhtml+xml','Accept-Language':'ja,en;q=0.8'}});
+        if(response.status>=300&&response.status<400){
+          const next=publicUrl(response.headers.get('location'),current);await response.body?.cancel();
+          if(!next||(!image&&new URL(next).origin!==new URL(url).origin))throw Error('Unexpected redirect');
+          current=next;continue;
+        }
+        break;
       }
-      break;
-    }
-    if(!response.ok)throw Error(`HTTP ${response.status}`);
-    const limit=image?8000000:2500000,reader=response.body.getReader(),chunks=[];let count=0,complete=false;
-    try{while(count<limit){const {done,value}=await reader.read();if(done){complete=true;break;}const b=value.subarray(0,limit-count);chunks.push(b);count+=b.length;if(image&&dimensions(Buffer.concat(chunks)))break;}}finally{await reader.cancel();}
-    const bytes=Buffer.concat(chunks);
-    if(image){const d=dimensions(bytes);if(!d)throw Error('Unsupported image signature');return d;}
-    if(!complete&&count>=limit)throw Error('Oversized source page');
-    const type=response.headers.get('content-type')||'';
-    if(!/html|text\//i.test(type))throw Error('Not an HTML page');
-    const charset=/charset\s*=\s*([^;\s]+)/i.exec(type)?.[1]||'utf-8';
-    let html;try{html=new TextDecoder(charset).decode(bytes);}catch{html=bytes.toString('utf8');}
-    return{html,url:current};
-  }finally{clearTimeout(timer);}
+      if(!response.ok)throw Error(`HTTP ${response.status}`);
+      const limit=image?8000000:2500000,reader=response.body.getReader(),chunks=[];let count=0,complete=false;
+      try{while(count<limit){const {done,value}=await reader.read();if(done){complete=true;break;}const b=value.subarray(0,limit-count);chunks.push(b);count+=b.length;if(image&&dimensions(Buffer.concat(chunks)))break;}}finally{await reader.cancel();}
+      const bytes=Buffer.concat(chunks);
+      if(image){const d=dimensions(bytes);if(!d)throw Error('Unsupported image signature');return d;}
+      if(!complete&&count>=limit)throw Error('Oversized source page');
+      const type=response.headers.get('content-type')||'';
+      if(!/html|text\//i.test(type))throw Error('Not an HTML page');
+      const charset=/charset\s*=\s*([^;\s]+)/i.exec(type)?.[1]||'utf-8';
+      let html;try{html=new TextDecoder(charset).decode(bytes);}catch{html=bytes.toString('utf8');}
+      return{html,url:current};
+    }finally{clearTimeout(timer);}
+  },{attempts:3,delayMs:300});
 }
 function page(url){if(!requests.has(url))requests.set(url,request(url));return requests.get(url);}
 function probe(url){if(!imageRequests.has(url))imageRequests.set(url,request(url,{image:true}));return imageRequests.get(url);}

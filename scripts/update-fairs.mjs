@@ -5,6 +5,7 @@ import {validateDataset,validateCampaign} from './quality-gate.mjs';
 import {campaignId} from './fair-utils.mjs';
 import {parseHtml,text,httpUrl,all} from './html-document.mjs';
 import {extractPage,discoverLinks,allowedDetail,datesFor,selectImage,dedupCampaigns,FOOD_TITLE,NON_FOOD,ENDED} from './site-profiles.mjs';
+import {withFetchRetries} from './retry-fetch.mjs';
 
 const OUT=new URL('../app/data/fairs.json',import.meta.url);
 const AUDIT=new URL('../app/data/candidates.json',import.meta.url);
@@ -18,8 +19,8 @@ let current={schemaVersion:1,timezone:'Asia/Tokyo',statusRules:{newDays:7,ending
 try{current=JSON.parse(await fs.readFile(OUT,'utf8'))}catch(e){if(e.code!=='ENOENT')throw e;}
 const cache=new Map();
 async function fetchPage(url,brand){
-  if(!cache.has(url))cache.set(url,(async()=>{
-    const r=await fetch(url,{headers:{'user-agent':'meat-fair-app/1.0 (+https://github.com/longchanp7-hub/meat-fair-app)'},signal:AbortSignal.timeout(15000)});
+  if(!cache.has(url))cache.set(url,withFetchRetries(async()=>{
+    const r=await fetch(url,{headers:{'user-agent':'meat-fair-app/1.0 (+https://github.com/longchanp7-hub/meat-fair-app)','accept':'text/html,application/xhtml+xml','accept-language':'ja,en;q=0.8'},signal:AbortSignal.timeout(15000)});
     if(!r.ok)throw Error(`HTTP ${r.status}`);
     const finalUrl=httpUrl(r.url||url,url);
     const hosts=new Set(brand.sources.map(s=>new URL(s.url).hostname));
@@ -27,7 +28,7 @@ async function fetchPage(url,brand){
     const html=await r.text();
     if(text(parseHtml(html)).length<50)throw Error('unreadable_or_script_only_page');
     return{html,finalUrl};
-  })());
+  },{attempts:3,delayMs:300}));
   return await cache.get(url);
 }
 function periodState(c){if(['ended_official','stale_unverified'].includes(c.lifecycleStatus))return c.lifecycleStatus;if(ENDED.test(c.title))return'ended_official';if(c.endDate&&c.endDate<today)return'ended_by_date';return'current';}

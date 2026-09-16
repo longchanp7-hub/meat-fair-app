@@ -52,6 +52,34 @@
         "imageUrl": "https://stat.ameba.jp/user_images/20260114/09/0141roan/5d/80/j/o2482350915740739044.jpg?caw=800"
       },
       "requiresListing": true
+    },
+    {
+      "brandId": "syabuyo",
+      "officialUrl": "https://www.skylark.co.jp/syabuyo/campaign/",
+      "reviewedAt": "2026-09-16T09:21:23+09:00",
+      "contentHash": "cad02fa9c0413c4993185d44f6703b15d19453a4ae6fe647b54363e32a5d1aa0",
+      "fields": {
+        "title": "シルバーウィークキャンペーン",
+        "startDate": "2026-09-19",
+        "endDate": "2026-09-27",
+        "price": null,
+        "priceText": "鴨しゃぶ＆黒毛和牛 食べ放題コース 税込200円引き／牛＆豚 しゃぶしゃぶ食べ放題コース 税込100円引き／アルコール飲み放題 税込1,099円",
+        "allYouCanEat": true,
+        "campaignType": "discount",
+        "priority": "P2",
+        "targetCourses": [
+          "鴨しゃぶ＆黒毛和牛 食べ放題コース",
+          "牛＆豚 しゃぶしゃぶ食べ放題コース"
+        ],
+        "limitedIngredients": ["鴨肉", "黒毛和牛"],
+        "conditions": [
+          "対象期間は2026年9月19日〜9月27日予定で、予告なく終了する場合があります。",
+          "食べ放題コースの割引はすかいらーく公式アプリの特別クーポンを利用します。",
+          "しゃぶ葉全店が対象ですが、マロニエゲート銀座2店・心斎橋パルコ店・ドン・キホーテ浅草店はメニュー・価格が一部異なります。",
+          "アルコール飲み放題は期間中税込1,099円。店舗・利用条件は公式案内を確認してください。"
+        ],
+        "imageUrl": "https://www.skylark.co.jp/syabuyo/campaign/images/silver_pc_01.jpg"
+      }
     }
   ]
 }
