@@ -52,6 +52,7 @@ test('restrict sources to official detail hosts, not feeds/archive/assets',()=>{
 });
 test('Shabuyo campaign index and food-campaign title are discoverable',()=>{
  const b=brand('syabuyo');
+ assert.ok(b.sources.some(s=>s.type==='campaign_detail'&&s.url==='https://www.skylark.co.jp/syabuyo/campaign/'));
  assert.equal(allowedDetail(b,'https://www.skylark.co.jp/syabuyo/campaign/'),true);
  assert.equal(allowedDetail(b,'https://www.skylark.co.jp/syabuyo/campaign/silverweek/'),true);
  assert.equal(allowedDetail(b,'https://www.skylark.co.jp/syabuyo/other/'),false);
