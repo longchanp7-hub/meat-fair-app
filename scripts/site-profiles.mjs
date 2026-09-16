@@ -20,7 +20,7 @@ export const PROFILE = {
   anrakutei:{scope:'article#contentsArea',head:'h3',paths:/^\/(?:fair|topic)\/[^/]+\/$/},
   'kushiya-monogatari':{scope:'.newsbox',head:'h2',paths:/^\/news\/20\d{2}\/\d{2}\/[^/]+\.html$/}
 };
-export const FOOD_TITLE=/フェア|フェス|期間限定|季節|食べ放題|半額|割引|OFF|お値打ち|ナイト割|厚切り|秋しゃぶ|感謝祭|肉祭|牛タン|牛たん|鴨しゃぶ|ポルチーニ|コムタン|海鮮チゲ|串の日|特選ジャンボ|ニンニク|麻辣湯|マーラータン|大海鮮/i;
+export const FOOD_TITLE=/フェア|フェス|キャンペーン|期間限定|季節|食べ放題|半額|割引|OFF|お値打ち|ナイト割|厚切り|秋しゃぶ|感謝祭|肉祭|牛タン|牛たん|鴨しゃぶ|ポルチーニ|コムタン|海鮮チゲ|串の日|特選ジャンボ|ニンニク|麻辣湯|マーラータン|大海鮮/i;
 export const NON_FOOD=/アンケート|Q\d|食育|啓発|採用|求人|抽選|スピードくじ|山分け|プレゼント|フォロー|リポスト|SNS|グッズ|福袋|テイクアウト|持ち帰り|d払い|PayPay|映画|プリキュア|学生専用|学生限定|学生応援|学割|キッズ|改装|オープン|休業|営業時間|価格改定|ドリンク飲み放題|飲み放題のみ/i;
 export const ENDED=/【終了|※\s*終了|終了しました|終了いたしました|販売を終了|販売終了いたしました|キャンペーンは終了/;
 export function allowedDetail(brand,url){const u=new URL(url);const hosts=new Set(brand.sources.map(s=>new URL(s.url).hostname));return hosts.has(u.hostname)&&PROFILE[brand.brandId]?.paths.test(u.pathname)&&!/[.](pdf|jpg|png|webp|css|js)$/i.test(u.pathname);}
