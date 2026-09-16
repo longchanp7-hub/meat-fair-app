@@ -6,7 +6,7 @@ import {resolveAnnouncements} from './campaign-aliases.mjs';
 export const PROFILE = {
   'yakiniku-king':{scope:'main,article',head:'h1',paths:/^\/(?:news\/\d+\/?|menu_all\/season\/[^/]+\/?)$/},
   gyukaku:{scope:'#contents,main,article',head:'h1',paths:/^\/lp\/.+|^\/news\/news\.php$/},
-  syabuyo:{scope:'.area-contents',head:'h1.mod-heading',paths:/^\/syabuyo\/(?:menu\/fair[^/]*\/|campaign\/.+)/},
+  syabuyo:{scope:'.area-contents',head:'h1.mod-heading',paths:/^\/syabuyo\/(?:menu\/fair[^/]*\/|campaign\/(?:.*)?)$/},
   yuzuan:{scope:'main',head:'h1',paths:/^\/news\/\d+\/$/},
   'washoku-sato':{scope:'article.news',head:'h3',paths:/^\/news\/20\d{2}\/\d{2}\/\d+\.html$/},
   amiyakitei:{scope:'main,.page_container_single',head:'h1.header-title,.page_container_single_title,h2',paths:/^\/atsugirifes(?:_no_coupon)?\/$|^\/topics\/\d+\/$/},
