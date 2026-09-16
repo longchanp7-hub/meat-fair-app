@@ -1,7 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {parseHtml,one,text} from '../scripts/html-document.mjs';
-import {extractPage,datesFor,parsePeriod,validDate,dedupCampaigns,allowedDetail,discoverLinks} from '../scripts/site-profiles.mjs';
+import {extractPage,datesFor,parsePeriod,validDate,dedupCampaigns,allowedDetail,discoverLinks,FOOD_TITLE} from '../scripts/site-profiles.mjs';
 import {campaignStatus} from '../app/status.mjs';
 import {validateDataset} from '../scripts/quality-gate.mjs';
 import {SOURCES} from '../scripts/source-registry.mjs';
@@ -50,11 +50,12 @@ test('restrict sources to official detail hosts, not feeds/archive/assets',()=>{
  assert.equal(allowedDetail(brand('amiyakitei'),'https://amiyakitei.jp/topics/category/news/'),false);
  assert.equal(allowedDetail(brand('gyukaku'),'https://evil.example/lp/test/'),false);
 });
-test('Shabuyo campaign index and nested campaign links are discoverable',()=>{
+test('Shabuyo campaign index and food-campaign title are discoverable',()=>{
  const b=brand('syabuyo');
  assert.equal(allowedDetail(b,'https://www.skylark.co.jp/syabuyo/campaign/'),true);
  assert.equal(allowedDetail(b,'https://www.skylark.co.jp/syabuyo/campaign/silverweek/'),true);
  assert.equal(allowedDetail(b,'https://www.skylark.co.jp/syabuyo/other/'),false);
+ assert.equal(FOOD_TITLE.test('シルバーウィークキャンペーン'),true);
  const found=discoverLinks(b,'<a href="/syabuyo/campaign/">シルバーウィークキャンペーン</a>','https://www.skylark.co.jp/syabuyo/');
  assert.equal(found.length,1);assert.equal(found[0].url,'https://www.skylark.co.jp/syabuyo/campaign/');
 });
