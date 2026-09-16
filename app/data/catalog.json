@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "policyVersion": 2,
-  "updatedAt": "2026-09-16T00:29:55.442Z",
-  "fairsUpdatedAt": "2026-09-16T00:28:40.433Z",
-  "galleryUpdatedAt": "2026-09-16T00:29:25.810Z",
+  "updatedAt": "2026-09-16T04:16:55.604Z",
+  "fairsUpdatedAt": "2026-09-16T04:15:15.994Z",
+  "galleryUpdatedAt": "2026-09-16T04:16:12.683Z",
   "ttlHours": 48,
   "entries": [
     {
@@ -14,7 +14,7 @@
       "officialUrl": "https://www.yakiniku-king.jp/menu_all/drink/",
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/drink/",
       "sourceHash": "076894caf4dfbb7d73f2d5af57df0009123bfac0abb7c01e3e5dca85a6ab6b63",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "全ドリンク飲み放題! ソフトドリンク + アルコール 飲み放題 お一人様 1,490 円 (税込1,639円)",
       "evidenceHash": "fb120eaddf0c9dd627443ad93dd2b82e505ad16a07728266ea22232fb51ca557",
       "price": {
@@ -55,7 +55,7 @@
       "officialUrl": "https://www.yakiniku-king.jp/menu_all/drink/",
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/drink/",
       "sourceHash": "076894caf4dfbb7d73f2d5af57df0009123bfac0abb7c01e3e5dca85a6ab6b63",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "2杯以上でお得! ソフトドリンク 飲み放題 お一人様 390 円 (税込429円) 幼児 無料 小学生 半額",
       "evidenceHash": "dc389285ef84326321c90428666ba9c22b31a2c63ad4149a53cdc7af71872c97",
       "price": {
@@ -97,10 +97,10 @@
       "title": "きんぐコース",
       "officialUrl": "https://www.yakiniku-king.jp/menu_all/free1/",
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/free1/",
-      "sourceHash": "06e7adea4f2eae38932c115f1a11c0cea4be4f87b1f91194e8c33873389768d6",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
-      "evidenceText": "きんぐコース 五大名物 裏名物 期間限定 幼児無料 小学生半額 60歳以上500円引き 3,480円~ (税込3,828円~) ※店舗により価格が異なります 五大名物 、 期間限定フェア 商品など、 「焼肉きんぐならでは」の商品が食べ放題! 食べ放題100分 五大名物 裏名物 期間限定 大人 3,480 円~ (税込3,828円) 幼児 無料 小学生 半額 60歳以上の方 500 円 引き ※通常価格の税込みより ラストオーダーは20分前となります 一部店舗では販売内容や価格が異なる場合がございます。 詳しくは こちら をご覧ください 公式HTML画像 https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/assets/img/menu/king/mv.webp?updated=1784020408",
-      "evidenceHash": "e17ce7af0492758b42a6cd03a4e90349c2a81018c0d01fec41a459d03933a8fd",
+      "sourceHash": "3910fab6f682abe89a813f49d42ef6a23320b3a2ab910a4e5f300c6e6d204968",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
+      "evidenceText": "きんぐコース 五大名物 裏名物 期間限定 幼児無料 小学生半額 60歳以上500円引き 3,480円~ (税込3,828円~) ※店舗により価格が異なります 五大名物 、 期間限定フェア 商品など、 「焼肉きんぐならでは」の商品が食べ放題! 食べ放題100分 五大名物 裏名物 期間限定 大人 3,480 円~ (税込3,828円) 幼児 無料 小学生 半額 60歳以上の方 500 円 引き ※通常価格の税込みより ラストオーダーは20分前となります 一部店舗では販売内容や価格が異なる場合がございます。 詳しくは こちら をご覧ください 公式HTML画像 https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/assets/img/menu/king/mv.webp?updated=1789555415",
+      "evidenceHash": "876caa400fa235d13bd543e511ff16bced04170de0303e8831bc9af3f8c259ad",
       "price": {
         "amount": 3828,
         "text": "税込3,828円〜",
@@ -126,7 +126,7 @@
       "targetCourses": [],
       "exclusive": false,
       "scopeLabel": null,
-      "imageUrl": "https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/assets/img/menu/king/mv.webp?updated=1784020408",
+      "imageUrl": "https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/assets/img/menu/king/mv.webp?updated=1789555415",
       "width": 1360,
       "height": 500,
       "rank": 0,
@@ -142,8 +142,8 @@
       "title": "【名物】きんぐカルビ",
       "officialUrl": "https://www.yakiniku-king.jp/menu_all/free1/",
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/free1/",
-      "sourceHash": "06e7adea4f2eae38932c115f1a11c0cea4be4f87b1f91194e8c33873389768d6",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "3910fab6f682abe89a813f49d42ef6a23320b3a2ab910a4e5f300c6e6d204968",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "【名物】きんぐカルビ 公式掲載コース:きんぐコース 公式HTML画像 https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/assets/img/menu/img_godai_king_karubi.webp",
       "evidenceHash": "bb5a6bac966852fcb5e168d417603027a7e45a3d4ef5fa1c78109780710c3f74",
       "price": {
@@ -188,8 +188,8 @@
       "title": "【名物】韓式ヤンニョムだれ 壺漬け一本シマチョウ",
       "officialUrl": "https://www.yakiniku-king.jp/menu_all/free1/",
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/free1/",
-      "sourceHash": "06e7adea4f2eae38932c115f1a11c0cea4be4f87b1f91194e8c33873389768d6",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "3910fab6f682abe89a813f49d42ef6a23320b3a2ab910a4e5f300c6e6d204968",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "【名物】韓式ヤンニョムだれ 壺漬け一本シマチョウ 公式掲載コース:きんぐコース 公式HTML画像 https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/assets/img/menu/img_godai_shimacho.webp",
       "evidenceHash": "f6cee80ce3a231f581c3c3006c3fd8d070d24b5d2f196bfe0d8a0483ca28e231",
       "price": {
@@ -234,8 +234,8 @@
       "title": "【名物】炙りミスジ ~ねぎ塩ポン酢~",
       "officialUrl": "https://www.yakiniku-king.jp/menu_all/free1/",
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/free1/",
-      "sourceHash": "06e7adea4f2eae38932c115f1a11c0cea4be4f87b1f91194e8c33873389768d6",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "3910fab6f682abe89a813f49d42ef6a23320b3a2ab910a4e5f300c6e6d204968",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "【名物】炙りミスジ ~ねぎ塩ポン酢~ 公式掲載コース:きんぐコース 公式HTML画像 https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/assets/img/menu/img_godai_misuji.webp",
       "evidenceHash": "a5526628d5d41afd3cce3f266599a54f163d5d0cd5fbb9e7ad3815fbee08a8e3",
       "price": {
@@ -280,8 +280,8 @@
       "title": "【名物】大判すだれ上カルビ",
       "officialUrl": "https://www.yakiniku-king.jp/menu_all/free1/",
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/free1/",
-      "sourceHash": "06e7adea4f2eae38932c115f1a11c0cea4be4f87b1f91194e8c33873389768d6",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "3910fab6f682abe89a813f49d42ef6a23320b3a2ab910a4e5f300c6e6d204968",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "【名物】大判すだれ上カルビ 公式掲載コース:きんぐコース 公式HTML画像 https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/assets/img/menu/img_godai_sudare.webp",
       "evidenceHash": "6e8cb76b8df4704285ad683496a5fd13af85d601747628aa7cf95cd9504af7a6",
       "price": {
@@ -326,8 +326,8 @@
       "title": "【名物】 超極厚ハラミ ~ガリバタ醤油~",
       "officialUrl": "https://www.yakiniku-king.jp/menu_all/free1/",
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/free1/",
-      "sourceHash": "06e7adea4f2eae38932c115f1a11c0cea4be4f87b1f91194e8c33873389768d6",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "3910fab6f682abe89a813f49d42ef6a23320b3a2ab910a4e5f300c6e6d204968",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "【名物】 超極厚ハラミ ~ガリバタ醤油~ 公式掲載コース:きんぐコース 公式HTML画像 https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/assets/img/menu/img_godai_atsugiri_jyorosu.webp",
       "evidenceHash": "22133c3064ec4590e2b4571aaafc318eec050e6d2db6f8d57a081f89afdfb404",
       "price": {
@@ -372,10 +372,10 @@
       "title": "プレミアムコース",
       "officialUrl": "https://www.yakiniku-king.jp/menu_all/free2/",
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/free2/",
-      "sourceHash": "8693509758e9c1b727cbadbcb0e116b8db1e89f5b0d118add4c354c6b63fc445",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
-      "evidenceText": "プレミアムコース 黒毛和牛 黒毛牛 特選 五大名物 裏名物 期間限定 幼児無料 小学生半額 60歳以上500円引き 4,580円~ (税込5,038円~) ※店舗により価格が異なります プレミアムコース限定メニュー 、 五大名物 、 期間限定フェア 商品など 焼肉きんぐの全商品が食べ放題! 食べ放題100分 黒毛和牛 黒毛牛 特選 五大名物 裏名物 期間限定 大人 4,580 円~ (税込5,038円~) 幼児 無料 小学生 半額 60歳以上の方 500 円 引き ※通常価格の税込みより ラストオーダーは20分前となります 一部店舗では販売内容や価格が異なる場合がございます。 詳しくは こちら をご覧ください 公式HTML画像 https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/assets/img/menu/premium/mv.webp?updated=1784020453",
-      "evidenceHash": "31d64dff358488b1b6d67f9ae6d59319e994d0db1bcdcd4d3bffb555eef28e3b",
+      "sourceHash": "03f44b4f25b94628a577dc1afb4763658712313fa95d92a276059761b6e84430",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
+      "evidenceText": "プレミアムコース 黒毛和牛 黒毛牛 特選 五大名物 裏名物 期間限定 幼児無料 小学生半額 60歳以上500円引き 4,580円~ (税込5,038円~) ※店舗により価格が異なります プレミアムコース限定メニュー 、 五大名物 、 期間限定フェア 商品など 焼肉きんぐの全商品が食べ放題! 食べ放題100分 黒毛和牛 黒毛牛 特選 五大名物 裏名物 期間限定 大人 4,580 円~ (税込5,038円~) 幼児 無料 小学生 半額 60歳以上の方 500 円 引き ※通常価格の税込みより ラストオーダーは20分前となります 一部店舗では販売内容や価格が異なる場合がございます。 詳しくは こちら をご覧ください 公式HTML画像 https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/assets/img/menu/premium/mv.webp?updated=1789555402",
+      "evidenceHash": "742593c34a36c1f4df10c401639c2b782f49124eaa37b04ef75d9af112e03cf0",
       "price": {
         "amount": 5038,
         "text": "税込5,038円〜",
@@ -401,7 +401,7 @@
       "targetCourses": [],
       "exclusive": false,
       "scopeLabel": null,
-      "imageUrl": "https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/assets/img/menu/premium/mv.webp?updated=1784020453",
+      "imageUrl": "https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/assets/img/menu/premium/mv.webp?updated=1789555402",
       "width": 1360,
       "height": 500,
       "rank": 0,
@@ -417,8 +417,8 @@
       "title": "【黒毛和牛】黒毛和牛上カルビ(タレ・塩)",
       "officialUrl": "https://www.yakiniku-king.jp/menu_all/free2/",
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/free2/",
-      "sourceHash": "8693509758e9c1b727cbadbcb0e116b8db1e89f5b0d118add4c354c6b63fc445",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "03f44b4f25b94628a577dc1afb4763658712313fa95d92a276059761b6e84430",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "【黒毛和牛】黒毛和牛上カルビ(タレ・塩) 公式掲載コース:プレミアムコース 公式HTML画像 https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/assets/img/menu/img_premium_kurogewagyu_jokarubi_tare.webp",
       "evidenceHash": "f26ee0b04d7c5cbde9e161f8db8fa974be4e88aa234029eb6d0cea9059e3a5ec",
       "price": {
@@ -463,8 +463,8 @@
       "title": "【黒毛和牛】黒毛和牛上カルビ(わさび醤油)",
       "officialUrl": "https://www.yakiniku-king.jp/menu_all/free2/",
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/free2/",
-      "sourceHash": "8693509758e9c1b727cbadbcb0e116b8db1e89f5b0d118add4c354c6b63fc445",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "03f44b4f25b94628a577dc1afb4763658712313fa95d92a276059761b6e84430",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "【黒毛和牛】黒毛和牛上カルビ(わさび醤油) 公式掲載コース:プレミアムコース 公式HTML画像 https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/assets/img/menu/img_premium_kurogewagyu_jokarubi_wasabi.webp",
       "evidenceHash": "acf14fdb9d94ac92324b5a8d1f39fe83b7526dc7a113a8a291ee56e9d81a2994",
       "price": {
@@ -509,8 +509,8 @@
       "title": "【黒毛牛】黒毛牛焼しゃぶカルビ",
       "officialUrl": "https://www.yakiniku-king.jp/menu_all/free2/",
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/free2/",
-      "sourceHash": "8693509758e9c1b727cbadbcb0e116b8db1e89f5b0d118add4c354c6b63fc445",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "03f44b4f25b94628a577dc1afb4763658712313fa95d92a276059761b6e84430",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "【黒毛牛】黒毛牛焼しゃぶカルビ 公式掲載コース:プレミアムコース 公式HTML画像 https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/assets/img/menu/img_premium_kuroge_yakishabu.webp",
       "evidenceHash": "95ce75bf6769306485b8198109d8b6605ce5c3451d8cc9ff3974d071e60e4c3e",
       "price": {
@@ -555,8 +555,8 @@
       "title": "【黒毛牛】黒毛牛ドでか!上ロース",
       "officialUrl": "https://www.yakiniku-king.jp/menu_all/free2/",
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/free2/",
-      "sourceHash": "8693509758e9c1b727cbadbcb0e116b8db1e89f5b0d118add4c354c6b63fc445",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "03f44b4f25b94628a577dc1afb4763658712313fa95d92a276059761b6e84430",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "【黒毛牛】黒毛牛ドでか!上ロース 公式掲載コース:プレミアムコース 公式HTML画像 https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/assets/img/menu/img_premium_kuroge_dodeka.webp",
       "evidenceHash": "a15174930ce7547b47b6afe5c974a0aadb41e8e5753edd1b3f6ebdc3738e73ef",
       "price": {
@@ -601,8 +601,8 @@
       "title": "【特選】厚切り牛タン",
       "officialUrl": "https://www.yakiniku-king.jp/menu_all/free2/",
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/free2/",
-      "sourceHash": "8693509758e9c1b727cbadbcb0e116b8db1e89f5b0d118add4c354c6b63fc445",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "03f44b4f25b94628a577dc1afb4763658712313fa95d92a276059761b6e84430",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "【特選】厚切り牛タン 公式掲載コース:プレミアムコース 公式HTML画像 https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/assets/img/menu/img_atsugiri_gyutan.jpg",
       "evidenceHash": "1973f040037361d16f9abea515d2511c681130459edf5314b55986f5a26470b6",
       "price": {
@@ -647,8 +647,8 @@
       "title": "【特選】ミノステーキ",
       "officialUrl": "https://www.yakiniku-king.jp/menu_all/free2/",
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/free2/",
-      "sourceHash": "8693509758e9c1b727cbadbcb0e116b8db1e89f5b0d118add4c354c6b63fc445",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "03f44b4f25b94628a577dc1afb4763658712313fa95d92a276059761b6e84430",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "【特選】ミノステーキ 公式掲載コース:プレミアムコース 公式HTML画像 https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/assets/img/menu/img_premium_tokusen_mino.webp",
       "evidenceHash": "2ca06b19186b4124345685026641bd4946f52098f49323aa117b6af3e1c6b5d3",
       "price": {
@@ -694,7 +694,7 @@
       "officialUrl": "https://www.yakiniku-king.jp/menu_all/free3/",
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/free3/",
       "sourceHash": "dd09ab0c709a53c841cf3eb353d9930c5d79c523b1c11861d15eaf4738bb9151",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "58品コース 幼児無料 小学生半額 60歳以上500円引き 2,980円~ (税込3,278円~) ※店舗により価格が異なります 焼肉はもちろん、海鮮、野菜、 デザートまで、 焼肉きんぐの食べ放題をお気軽に楽しめるコース。 食べ放題100分 大人 2,980 円~ (税込3,278円~) 幼児 無料 小学生 半額 60歳以上の方 500 円 引き ※通常価格の税込みより ラストオーダーは20分前となります 一部店舗では販売内容や価格が異なる場合がございます。 詳しくは こちら をご覧ください 五大名物・期間限定商品・裏名物は「きんぐコース」以上でご注文可能です 公式HTML画像 https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/assets/img/menu/58/mv.webp?updated=1784044782",
       "evidenceHash": "1d2701a1113cf3c71a32c8c27b979ce20a3691c45b0a99323f004e23d45ac2d2",
       "price": {
@@ -740,7 +740,7 @@
       "officialUrl": "https://www.yakiniku-king.jp/menu_all/lunch/",
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/lunch/",
       "sourceHash": "7d2fd0c14189c8de20c455b41a3e34ba8540dbbb8fc4ff480734be710fe74378",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "ランチ食べ放題コース 幼児無料 小学生半額 60歳以上300円引き 2,180円~ (税込2,398円~) ※店舗により価格が異なります オープン~15時入店の方限定! ランチも焼肉食べ放題したい! お手軽な食べ放題コース。 食べ放題時間は100分 大人 2,180 円~ (税込2,398円~) 幼児 無料 小学生 半額 60歳以上の方 300 円 引き ※通常価格の税込みより ラストオーダーは20分前となります ランチタイム時もすべての食べ放題コース及び飲み放題コースをご注文いただけます 一部店舗では平日もランチ営業を行なっております ランチ営業時間につきましては、 各店舗ページ にてご確認をお願いいたします 一部店舗では販売内容や価格が異なる場合がございます。 詳しくは こちら をご覧ください 浅草ROX店、川崎駅東口店、生田川店、千葉駅前店、仙台一番町店、中目黒店、成増駅前店、アトレ大森店、福岡天神店、南池袋店、新宿西口大ガード店、namBaHIPS店、町田駅前店、カメイドクロック店、マーヴ浦安店では、ランチ食べ放題コースは実施しておりません",
       "evidenceHash": "d26ead1350184e12ef8e1022d8d9fbc626fba43e20e15546fc857ce83af0fd70",
       "price": {
@@ -787,7 +787,7 @@
       "officialUrl": "https://www.gyukaku.ne.jp/menu/menu-drink.php",
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/menu-drink.php",
       "sourceHash": "de3aa8d3d199a02153ebc06a72eb490d79f9b5bba0c7677ae66df9c8cedd3851",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "飲み放題 ラインナップはこちら ビールも 飲める アルコール飲み放題 生ビール付き40品以上 お一人様 1,580円 (税込1,738円) ソフトドリンク飲み放題 小学生未満のお客様は無料 小学生のお客様は半額 お一人様 580円 (税込638円)",
       "evidenceHash": "4d7d1553abb6b52368ba4acccfa25922f3223e47c84007d6c19dedcaa621a2af",
       "price": {
@@ -831,7 +831,7 @@
       "officialUrl": "https://www.gyukaku.ne.jp/menu/menu-drink.php",
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/menu-drink.php",
       "sourceHash": "de3aa8d3d199a02153ebc06a72eb490d79f9b5bba0c7677ae66df9c8cedd3851",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "ビールも 飲める アルコール飲み放題 生ビール付き40品以上 お一人様 1,580円 (税込1,738円)",
       "evidenceHash": "04deb07e6fd75896b70129e83e298f7123d88378896816f03b71b95510ec27a9",
       "price": {
@@ -872,7 +872,7 @@
       "officialUrl": "https://www.gyukaku.ne.jp/menu/menu-drink.php",
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/menu-drink.php",
       "sourceHash": "de3aa8d3d199a02153ebc06a72eb490d79f9b5bba0c7677ae66df9c8cedd3851",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "ソフトドリンク飲み放題 小学生未満のお客様は無料 小学生のお客様は半額 お一人様 580円 (税込638円)",
       "evidenceHash": "7555834f035192278a43441bde8188c27d9d6c8e558b080e0bd77beadf9b4c54",
       "price": {
@@ -915,7 +915,7 @@
       "officialUrl": "https://www.gyukaku.ne.jp/menu/gyukaku-course.php",
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/gyukaku-course.php",
       "sourceHash": "c5b2c8ac6ddf98c3a57707cb8e4408f99b571308354912b8946b60d17b878c67",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "牛角コース 3,780円 (税込4,158円) 店舗によりメニュー・料金が異なる場合があります。 公式HTML画像 https://www.gyukaku.ne.jp/img/menu/gyukaku-course-menu.jpg?ver=260430",
       "evidenceHash": "4c532c8655068a8e9a634412f4fda77f2c3db4305a1bba3c6cf87cb918544eaa",
       "price": {
@@ -959,7 +959,7 @@
       "officialUrl": "https://www.gyukaku.ne.jp/menu/50item-course.php",
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/50item-course.php",
       "sourceHash": "1c465f600c6a205e30d6abdab5094b34bc2869846972a681dbe428b5e64c01b4",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "お気軽コース 2,780円 (税込3,058円) 店舗によりメニュー・料金が異なる場合があります。 公式HTML画像 https://www.gyukaku.ne.jp/img/menu/50-course-menu.jpg?ver=20260420",
       "evidenceHash": "53d904f9ead70e4699f22ab6f0c02959040ee5eabe520b5dddf6396af452cc6c",
       "price": {
@@ -1003,7 +1003,7 @@
       "officialUrl": "https://www.gyukaku.ne.jp/menu/70item-course.php",
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/70item-course.php",
       "sourceHash": "e41f37e4480c586dcf60d076a2a245770b2ec50059fc6ed09d16d3895c222136",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "焼肉堪能コース 3,380円 (税込3,718円) 店舗によりメニュー・料金が異なる場合があります。 公式HTML画像 https://www.gyukaku.ne.jp/img/menu/70-course-menu.jpg?ver=251014",
       "evidenceHash": "9ef6fb77423920da892e290c27470c2394f0b182be26cdf8b3571fbf76379ef5",
       "price": {
@@ -1047,7 +1047,7 @@
       "officialUrl": "https://www.gyukaku.ne.jp/menu/tannnou-course.php",
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/tannnou-course.php",
       "sourceHash": "a1b272e9282b130661144968d3d3e019abd95537a07d9b1304432219df695dc5",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "牛タンコース 4,980円 (税込5,478円) 店舗によりメニュー・料金が異なる場合があります。 公式HTML画像 https://www.gyukaku.ne.jp/img/menu/tannnou-course-menu.jpg?ver=20260420",
       "evidenceHash": "d490eb18290a8302a1fd048f1cad2633c470507d7f09d7e3b326c5a773be430a",
       "price": {
@@ -1091,7 +1091,7 @@
       "officialUrl": "https://www.gyukaku.ne.jp/menu/kurogewagyu-course.php",
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/kurogewagyu-course.php",
       "sourceHash": "e56b04e54c404d273807777c7942384e79a3b0fc23e1ae518dd9e8c66551b7ff",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "黒毛和牛コース 5,980 (税込6,578円) 店舗によりメニュー・料金が異なる場合があります。 公式HTML画像 https://www.gyukaku.ne.jp/img/menu/kurogewagyu-course-menu.jpg?20251022",
       "evidenceHash": "81986d3f4c13b8089bf4cb5b5600930e01ff3a94d112f9f3b024e197e0fa52c7",
       "price": {
@@ -1135,7 +1135,7 @@
       "officialUrl": "https://www.gyukaku.ne.jp/menu/kurogewagyu-course.php",
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/kurogewagyu-course.php",
       "sourceHash": "e56b04e54c404d273807777c7942384e79a3b0fc23e1ae518dd9e8c66551b7ff",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "カルビ ・黒毛和牛カルビ ・醤ダレカルビ ・王様カルビ ・厚切りカルビ ・ジューシーカルビ ・ガリバタカルビ ・豚カルビ ・ねぎ塩豚カルビ 公式掲載コース:黒毛和牛コース 公式HTML画像 https://www.gyukaku.ne.jp/img/menu/ousama-karubi.jpg?ver=251014",
       "evidenceHash": "dc4a947459a3668125b44008e02cca8d5452f05bd10ad5820af08b02d13a4afa",
       "price": {
@@ -1181,7 +1181,7 @@
       "officialUrl": "https://www.skylark.co.jp/syabuyo/",
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/",
       "sourceHash": "4d0c2c409a440df6e2c2230d8681027c426d6629e963c77a717b2a977b3dd4b9",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "平日限定¥999(税込¥1,099)豚肉2皿ランチ 公式HTML画像 https://www.skylark.co.jp/syabuyo/tgur9t0000001ab1-img/img_about_999_0618.jpg",
       "evidenceHash": "863b32027fef2fb785c741f185da51c2d83a00dae0011ea39f2c5c5ce9762fda",
       "price": {
@@ -1224,7 +1224,7 @@
       "officialUrl": "https://www.skylark.co.jp/syabuyo/",
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/",
       "sourceHash": "4d0c2c409a440df6e2c2230d8681027c426d6629e963c77a717b2a977b3dd4b9",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "【平日ディナー限定】宴会コース 公式HTML画像 https://www.skylark.co.jp/syabuyo/tgur9t0000001ab1-img/img_about_enkai_1120.jpg",
       "evidenceHash": "10d4a3b8d983fd81df007814dac25b8180f6337411748c5dec18a2fc401b8844",
       "price": {
@@ -1267,7 +1267,7 @@
       "officialUrl": "https://www.skylark.co.jp/syabuyo/menu/enkai/",
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/menu/enkai/",
       "sourceHash": "d24aff5bb5476e3a9de29e7437a3d50e934fc2a4fe3fd456e0e5ab4a69e1d3ab",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "しゃぶしゃぶ 寿司 飲み放題付き ご予約はこちら しゃぶしゃぶ寿司コース 食べ放題内容 ご予約はこちら ※ご利用店舗のお電話でも承っております。 店舗検索はこちら しゃぶしゃぶ 寿司 飲み放題付き 平日ディナー・事前予約などの条件は公式案内でご確認ください。 公式HTML画像 https://www.skylark.co.jp/syabuyo/menu/enkai/images/enkai_sp_03.jpg",
       "evidenceHash": "447cb1dcfc66a4e6bec395daafc129f9c1c59a3ef8e93f2a6078735b5cdc9f9a",
       "price": {
@@ -1312,7 +1312,7 @@
       "officialUrl": "https://www.skylark.co.jp/syabuyo/menu/enkai/",
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/menu/enkai/",
       "sourceHash": "d24aff5bb5476e3a9de29e7437a3d50e934fc2a4fe3fd456e0e5ab4a69e1d3ab",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "しゃぶしゃぶ食べ放題 しゃぶ葉TOP メニュー 【平日ディナー限定】宴会コース 【平日ディナー限定】宴会コース ※一部の店舗では実施しておりません。 詳しくはこちらをご覧ください。 ※豚肉は提供部位が異なる場合がございます。 しゃぶしゃぶ 寿司 飲み放題付き ご予約はこちら しゃぶしゃぶ寿司コース 食べ放題内容 ご予約はこちら ※ご利用店舗のお電話でも承っております。 店舗検索はこちら しゃぶしゃぶ 寿司 飲み放題付き ※一部の店舗では実施しておりません。 詳しくはこちらをご覧ください。 ※豚肉は提供部位が異なる場合がございます。 しゃぶしゃぶ 寿司 飲み放題付き ご予約はこちら しゃぶしゃぶ寿司コース 食べ放題内容 ご予約はこちら ※ご利用店舗のお電話でも承っております。 店舗検索はこちら しゃぶしゃぶ 寿司 飲み放題付き 飲み放題を含む宴会プランです。コース料金・予約条件は公式案内で確認してください。",
       "evidenceHash": "e949fd937821527e4008618d60a597de3d894a24564587963d8b94eed596f39a",
       "price": {
@@ -1361,7 +1361,7 @@
       "officialUrl": "https://www.skylark.co.jp/syabuyo/campaign/",
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/campaign/",
       "sourceHash": "cad02fa9c0413c4993185d44f6703b15d19453a4ae6fe647b54363e32a5d1aa0",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "「鴨しゃぶ&黒毛和牛食べ放題コース」税込200円引き 60歳以上は大人価格から最大750円お得に! 秋のきのこと鴨しゃぶフェア ※写真はイメージです。 公式HTML画像 https://www.skylark.co.jp/syabuyo/campaign/images/silver_sp_02.jpg",
       "evidenceHash": "aea19038e6299c96a47e9775f68a96dc3c481991ce876974a7f8657019d6ea10",
       "price": {
@@ -1404,7 +1404,7 @@
       "officialUrl": "https://www.skylark.co.jp/syabuyo/campaign/",
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/campaign/",
       "sourceHash": "cad02fa9c0413c4993185d44f6703b15d19453a4ae6fe647b54363e32a5d1aa0",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "大人気メニューが特別価格で!「牛&豚食べ放題コース」税込100円引き 最大440円お得に! COUPON 公式HTML画像 https://www.skylark.co.jp/syabuyo/campaign/images/silver_sp_03.jpg",
       "evidenceHash": "4d8970a2d4e4e8863334088147d1c7b89f0c5cea64f9a9640b6647fcb968377a",
       "price": {
@@ -1448,7 +1448,7 @@
       "officialUrl": "https://www.shabu-yuzuan.jp/menu/drink/",
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/drink/",
       "sourceHash": "a90cd9d79af781db360bb3acd5078102fb76322bf75ec68cece80fb71d77865a",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "アルコール+ソフトドリンク アルコール ソフトドリンク 飲み放題 1,390 円 (税込1,529円)",
       "evidenceHash": "d7e7d60f3892349a2b5c101ffaf295a01050ecd4a534c2f3986a2caabcc2317a",
       "price": {
@@ -1489,7 +1489,7 @@
       "officialUrl": "https://www.shabu-yuzuan.jp/menu/drink/",
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/drink/",
       "sourceHash": "a90cd9d79af781db360bb3acd5078102fb76322bf75ec68cece80fb71d77865a",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "ソフトドリンク ソフトドリンク 飲み放題 15:00まで 390 円 (税込429円) 通常料金 490 円 (税込539円) 幼児 無料 小学生 半額 ※通常価格の税込より値引きいたします",
       "evidenceHash": "e7b827d2497f35529aa4dfd26c16d4b67f8bcdfb179494b4e9e9ca05d7ac8666",
       "price": {
@@ -1532,7 +1532,7 @@
       "officialUrl": "https://www.shabu-yuzuan.jp/menu/drink/",
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/drink/",
       "sourceHash": "a90cd9d79af781db360bb3acd5078102fb76322bf75ec68cece80fb71d77865a",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "ソフトドリンク ソフトドリンク 飲み放題 15:00まで 390 円 (税込429円) 通常料金 490 円 (税込539円) 幼児 無料 小学生 半額 ※通常価格の税込より値引きいたします",
       "evidenceHash": "e7b827d2497f35529aa4dfd26c16d4b67f8bcdfb179494b4e9e9ca05d7ac8666",
       "price": {
@@ -1575,7 +1575,7 @@
       "officialUrl": "https://www.shabu-yuzuan.jp/menu/lunch/tabehodai/",
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/lunch/tabehodai/",
       "sourceHash": "837e537632750c7ea6bc4cae48f11d1c05ce98580f9f2c003553a2056595bde5",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "ランチ食べ放題 2,580 円 (税込 2,838 円) 寿司、しゃぶしゃぶを中心に、気軽に楽しめるお得なランチ食べ放題をご用意しております。 ランチ食べ放題 2,580 円 (税込 2,838 円) 寿司、しゃぶしゃぶを中心に、気軽に楽しめるお得なランチ食べ放題をご用意しております。 幼児 無料 小学生 半額 ※通常価格の税込より値引きいたします ※15時までのご利用となります ※食べ放題の内容はお手軽コースと同様です。15時までは、お手軽コースをランチ食べ放題コースとして2,580円(税込2,838円)で販売いたします ※65歳以上の方の500円引きは対象外です 公式HTML画像 https://www.shabu-yuzuan.jp/wp-content/uploads/2025/11/tabehoudai-lunch.jpg",
       "evidenceHash": "5e36d762c5e84fc294d18ca8f8682ae08ca8b544f92ccfd89c024734606f5de5",
       "price": {
@@ -1620,7 +1620,7 @@
       "officialUrl": "https://www.shabu-yuzuan.jp/menu/course/otegaru/",
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/course/otegaru/",
       "sourceHash": "48b332f7fb1d64a7cdb7a9b08658b085f423d3f32fe9e50248a41d1ccc6e6c12",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "お手軽コース 2,980 円 (税込 3,278 円) しゃぶしゃぶやお寿司、天ぷらまで。和の贅沢を気軽に楽しめるコースです。 お手軽コース 2,980 円 (税込 3,278 円) しゃぶしゃぶやお寿司、天ぷらまで。和の贅沢を気軽に楽しめるコースです。 幼児 無料 小学生 半額 65歳 以上 500 円引き ※通常価格の税込より値引きいたします 公式HTML画像 https://www.shabu-yuzuan.jp/wp-content/uploads/2025/11/tabehoudai-lunch-1.jpg",
       "evidenceHash": "eb50ca866cc48d349b19f71f3642fd355cd0e24153aa2c9b3a9e0adc1907ab5f",
       "price": {
@@ -1668,7 +1668,7 @@
       "officialUrl": "https://www.shabu-yuzuan.jp/menu/course/yuzuan/",
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/course/yuzuan/",
       "sourceHash": "52ece447b486f1dfdb3fac84db4b2e16f8b65ad6f871168d0c6897197e24c33c",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "季節のゆず庵コース 3,480 円 (税込 3,828 円) 熟成牛のしゃぶしゃぶやすき焼きに、旬の素材を使ったお寿司や天ぷら、甘味まで。「今だけの美味しさ」が一度に味わえる、一番人気のコースです。 季節のゆず庵コース 3,480 円 (税込 3,828 円) 熟成牛のしゃぶしゃぶやすき焼きに、旬の素材を使ったお寿司や天ぷら、甘味まで。「今だけの美味しさ」が一度に味わえる、一番人気のコースです。 幼児 無料 小学生 半額 65歳 以上 500 円引き ※通常価格の税込より値引きいたします ※一部店舗では、3,680円(税込4,048円)で提供させていただきます。詳細は こちら をご確認ください 公式HTML画像 https://www.shabu-yuzuan.jp/wp-content/uploads/2025/11/course-kisetsunoyuzuan-1.jpg",
       "evidenceHash": "6fbf0abda8b0cc25de0f977b8ca0220efa30bef4bba4a2d2c6c069d6db8673b4",
       "price": {
@@ -1716,7 +1716,7 @@
       "officialUrl": "https://www.shabu-yuzuan.jp/menu/course/zeitaku/",
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/course/zeitaku/",
       "sourceHash": "de4f8bdd2882363eda66e0ba56c53886dc85aa9f308656fe0114760ae83864c4",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "贅沢コース 4,480 円 (税込 4,928 円) 黒毛牛のしゃぶしゃぶに、「中とろ」やうにを使用した「うに海鮮手巻き」、「特大炙り上穴子」といった上寿司まで。誰もが憧れる“和の贅沢”を心ゆくまで堪能できるコースです。 贅沢コース 4,480 円 (税込 4,928 円) 黒毛牛のしゃぶしゃぶに、「中とろ」やうにを使用した「うに海鮮手巻き」、「特大炙り上穴子」といった上寿司まで。誰もが憧れる“和の贅沢”を心ゆくまで堪能できるコースです。 幼児 無料 小学生 半額 65歳 以上 500 円引き ※通常価格の税込より値引きいたします ※一部店舗では、4,680円(税込5,148円)で提供させていただきます。詳細は こちら をご確認ください ※黒毛牛は交雑種を使用しています 公式HTML画像 https://www.shabu-yuzuan.jp/wp-content/uploads/2025/11/zeitaku-1.jpg",
       "evidenceHash": "766d7b08d4f70d5ff148a47aa6cea525d9046a4461598ea8270791d3f281f976",
       "price": {
@@ -1764,7 +1764,7 @@
       "officialUrl": "https://www.shabu-yuzuan.jp/menu/course/zeitaku/",
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/course/zeitaku/",
       "sourceHash": "de4f8bdd2882363eda66e0ba56c53886dc85aa9f308656fe0114760ae83864c4",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "黒毛牛しゃぶしゃぶ (交雑種) 黒毛牛しゃぶしゃぶ (交雑種) 公式掲載コース:贅沢コース 公式HTML画像 https://www.shabu-yuzuan.jp/wp-content/uploads/2025/12/kurogewagyu.jpg",
       "evidenceHash": "4331818ee02dc9a7f2354412d1ebae0596c926f0784ebce410cf6cc0b43d1dd0",
       "price": {
@@ -1810,7 +1810,7 @@
       "officialUrl": "https://www.shabu-yuzuan.jp/menu/course/zeitaku/",
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/course/zeitaku/",
       "sourceHash": "de4f8bdd2882363eda66e0ba56c53886dc85aa9f308656fe0114760ae83864c4",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "天然本まぐろ 大とろ手巻き 天然本まぐろ 大とろ手巻き 公式掲載コース:贅沢コース 公式HTML画像 https://www.shabu-yuzuan.jp/wp-content/uploads/2026/09/web_otoro_temaki_1500x1000_2609.webp",
       "evidenceHash": "ce3b3cbcc07ee3e082695efa1e65585f07e747f8c22169474cf134cf9db707b6",
       "price": {
@@ -1856,7 +1856,7 @@
       "officialUrl": "https://www.shabu-yuzuan.jp/menu/course/zeitaku/",
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/course/zeitaku/",
       "sourceHash": "de4f8bdd2882363eda66e0ba56c53886dc85aa9f308656fe0114760ae83864c4",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "黒毛牛握り(交雑種) 黒毛牛握り(交雑種) 公式掲載コース:贅沢コース 公式HTML画像 https://www.shabu-yuzuan.jp/wp-content/uploads/2025/12/jouzushi-2-wagyunigiri.jpg",
       "evidenceHash": "997e71c9bd1bf0fdec6a3fe60f4755749545a2fe2c349c3894807ad9ef8ce1ef",
       "price": {
@@ -1902,7 +1902,7 @@
       "officialUrl": "https://www.shabu-yuzuan.jp/menu/course/zeitaku/",
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/course/zeitaku/",
       "sourceHash": "de4f8bdd2882363eda66e0ba56c53886dc85aa9f308656fe0114760ae83864c4",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "中とろ握り 中とろ握り 公式掲載コース:贅沢コース 公式HTML画像 https://www.shabu-yuzuan.jp/wp-content/uploads/2025/12/jouzushi-3-chutoro.jpg",
       "evidenceHash": "9cd17402cf906cbccbdeb273331850426f3d525422537a041b869e5207fdc170",
       "price": {
@@ -1948,7 +1948,7 @@
       "officialUrl": "https://www.shabu-yuzuan.jp/menu/course/zeitaku/",
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/course/zeitaku/",
       "sourceHash": "de4f8bdd2882363eda66e0ba56c53886dc85aa9f308656fe0114760ae83864c4",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "丸ズワイガニ握り 丸ズワイガニ握り 公式掲載コース:贅沢コース 公式HTML画像 https://www.shabu-yuzuan.jp/wp-content/uploads/2025/12/jouzushi-4-maruzuwaigani.jpg",
       "evidenceHash": "a44c6a37fc30a46f0349bde49828d0d56cb9cd0f75be2d12e0a6cf42ecde2f15",
       "price": {
@@ -1994,7 +1994,7 @@
       "officialUrl": "https://www.shabu-yuzuan.jp/menu/course/zeitaku/",
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/course/zeitaku/",
       "sourceHash": "de4f8bdd2882363eda66e0ba56c53886dc85aa9f308656fe0114760ae83864c4",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "いくら軍艦 いくら軍艦 公式掲載コース:贅沢コース 公式HTML画像 https://www.shabu-yuzuan.jp/wp-content/uploads/2025/12/jouzushi-5-ikura.jpg",
       "evidenceHash": "a6c6c7dcab6236fa55ea28a6d869de1cd85ff034b3c7918d5f5ea05f472eb6db",
       "price": {
@@ -2040,7 +2040,7 @@
       "officialUrl": "https://www.shabu-yuzuan.jp/menu/course/zeitaku/",
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/course/zeitaku/",
       "sourceHash": "de4f8bdd2882363eda66e0ba56c53886dc85aa9f308656fe0114760ae83864c4",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "大海老天 大海老天 公式掲載コース:贅沢コース 公式HTML画像 https://www.shabu-yuzuan.jp/wp-content/uploads/2025/12/joutempura-1-ooebiten.jpg",
       "evidenceHash": "fd438d9e2191f1c75715180feecfa345d802e13c3da354f821009641fb479c88",
       "price": {
@@ -2086,7 +2086,7 @@
       "officialUrl": "https://www.shabu-yuzuan.jp/menu/course/zeitaku/",
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/course/zeitaku/",
       "sourceHash": "de4f8bdd2882363eda66e0ba56c53886dc85aa9f308656fe0114760ae83864c4",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "のどぐろの天ぷら のどぐろの天ぷら 公式掲載コース:贅沢コース 公式HTML画像 https://www.shabu-yuzuan.jp/wp-content/uploads/2026/09/web_nodoguro_tempura_1500x1000_2609.webp",
       "evidenceHash": "5c34a913894af6535f743b106fb09ad876bc83a3e937959776d86aa0b5df4101",
       "price": {
@@ -2132,7 +2132,7 @@
       "officialUrl": "https://sato-res.com/sato/",
       "sourceUrl": "https://sato-res.com/sato/",
       "sourceHash": "60bfc8cbaec091058ebb7ae9d095825fc8b9b1056d038a6f405fd8caa444f9ca",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "さとカフェ&さとバル 公式HTML画像 https://sato-res.com/sato/assets/files/bar-home.jpg",
       "evidenceHash": "828fd86139f5abd6a89ec9db3eaa5299b0131ccf957a23f2a626dc59b372b624",
       "price": {
@@ -2173,7 +2173,7 @@
       "officialUrl": "https://sato-res.com/sato/bar/",
       "sourceUrl": "https://sato-res.com/sato/bar/",
       "sourceHash": "d66df0c75964266cf0235b0df69b80cefd746bfec33d1972d8a367205deb0073",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "公式さとカフェ＆さとバル：料理とセット 1,978（税込）、120分",
       "evidenceHash": "d66df0c75964266cf0235b0df69b80cefd746bfec33d1972d8a367205deb0073",
       "price": {
@@ -2215,7 +2215,7 @@
       "officialUrl": "https://sato-res.com/satoyaki/",
       "sourceUrl": "https://sato-res.com/satoyaki/",
       "sourceHash": "97fa69fc1a887180367c7b3e5a9e50402b4107c288d5e999f36dfa2481483910",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "公式さと式焼肉 menu-260409-01：牛＆豚プレミアムコース 税込4,279円",
       "evidenceHash": "97fa69fc1a887180367c7b3e5a9e50402b4107c288d5e999f36dfa2481483910",
       "price": {
@@ -2257,7 +2257,7 @@
       "officialUrl": "https://sato-res.com/satoyaki/",
       "sourceUrl": "https://sato-res.com/satoyaki/",
       "sourceHash": "b82047c4b4c237573ea8a12a08bc3589a8218da247d100949aae3b4075a5b1f0",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "公式さと式焼肉 menu-260409-01：黒毛和牛コース 税込6,369円",
       "evidenceHash": "b82047c4b4c237573ea8a12a08bc3589a8218da247d100949aae3b4075a5b1f0",
       "price": {
@@ -2299,7 +2299,7 @@
       "officialUrl": "https://sato-res.com/sato/assets/menu/book/ayce-260616/",
       "sourceUrl": "https://sato-res.com/sato/menu/",
       "sourceHash": "e9cc9c9e2dde6e9e83e57edec6133d5126eb50ec2d10879d8e894071f4f85367",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "しゃぶしゃぶ・すき焼き・ さと式焼肉食べ放題 全日:開店~ 公式HTML画像 https://sato-res.com/sato/assets/menu/images/ayce-260616.jpg",
       "evidenceHash": "d09f5dd30b4ddd5cb334e5dd737376e7150955b717904570cf1d12a55c2b10ea",
       "price": {
@@ -2340,7 +2340,7 @@
       "officialUrl": "https://sato-res.com/sato/assets/menu/book/lunch-260616/",
       "sourceUrl": "https://sato-res.com/sato/menu/",
       "sourceHash": "e9cc9c9e2dde6e9e83e57edec6133d5126eb50ec2d10879d8e894071f4f85367",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "ランチメニュー 平日:開店~15:00(土日祝・特定日を除く) 公式HTML画像 https://sato-res.com/sato/assets/menu/images/lunch-260616.jpg",
       "evidenceHash": "115ab6a704b9c990855860f8f4e8c3a607b925d05734268f7ce1dfa944d6229a",
       "price": {
@@ -2383,7 +2383,7 @@
       "officialUrl": "https://sato-res.com/sato/assets/menu/book/party-260409/",
       "sourceUrl": "https://sato-res.com/sato/menu/",
       "sourceHash": "e9cc9c9e2dde6e9e83e57edec6133d5126eb50ec2d10879d8e894071f4f85367",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "宴席メニュー 全日:開店~ 公式HTML画像 https://sato-res.com/sato/assets/menu/images/party-260409.jpg",
       "evidenceHash": "3cc41929da8b486c41fbaa9b1b478018dfb6ada858520e94e37ed13793f8d326",
       "price": {
@@ -2424,7 +2424,7 @@
       "officialUrl": "https://amiyakitei.jp/menu/",
       "sourceUrl": "https://amiyakitei.jp/menu/",
       "sourceHash": "0bb538076df415c4b07225b2b2a087d8cd6cf2d2214b78e1bcb45920e333db6b",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "牛タン&和牛一頭買い<br>食べ放題コース 牛タン&和牛一頭買い 食べ放題コース お一人様 5,000 円 (税込 5,500円) 公式HTML画像 https://amiyakitei.jp/prd/wordpress/wp-content/uploads/2025/12/5000yen_tabehoudai_course.webp",
       "evidenceHash": "567984dffe908638a6e4f89763790836ef11c570a4d369a0503ab6e4a52ca5f3",
       "price": {
@@ -2467,7 +2467,7 @@
       "officialUrl": "https://amiyakitei.jp/menu/",
       "sourceUrl": "https://amiyakitei.jp/menu/",
       "sourceHash": "0bb538076df415c4b07225b2b2a087d8cd6cf2d2214b78e1bcb45920e333db6b",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "国産黒毛和牛<br>食べ放題コース 国産黒毛和牛 食べ放題コース お一人様 4,091 円 (税込 4,500円) 公式HTML画像 https://amiyakitei.jp/prd/wordpress/wp-content/uploads/2025/12/4000yen_tabehoudai_course.webp",
       "evidenceHash": "ea713ca66cb671b2c646b11226422b7a81bda716ce486f26202ddd3cb7994f3d",
       "price": {
@@ -2510,7 +2510,7 @@
       "officialUrl": "https://amiyakitei.jp/menu/",
       "sourceUrl": "https://amiyakitei.jp/menu/",
       "sourceHash": "0bb538076df415c4b07225b2b2a087d8cd6cf2d2214b78e1bcb45920e333db6b",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "スタンダード<br>食べ放題コース スタンダード 食べ放題コース お一人様 3,182 円 (税込 3,500円) 公式HTML画像 https://amiyakitei.jp/prd/wordpress/wp-content/uploads/2025/12/3000yen_tabehoudai_course.webp",
       "evidenceHash": "085025655d615080334b29d89db4a97ed63c2e41083c3300d907deb8d5205f1f",
       "price": {
@@ -2553,7 +2553,7 @@
       "officialUrl": "https://amiyakitei.jp/menu/",
       "sourceUrl": "https://amiyakitei.jp/menu/",
       "sourceHash": "0bb538076df415c4b07225b2b2a087d8cd6cf2d2214b78e1bcb45920e333db6b",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "飲み放題 ※コースにつけられます お一人様 1,637 円 (税込1,800円) コースにつけられる飲み放題です。",
       "evidenceHash": "073947e70f2ad9d9db833e277d3f45e2b05aa5998b27d6ff50bf1044969e097b",
       "price": {
@@ -2597,7 +2597,7 @@
       "officialUrl": "https://amiyakitei.jp/menu/",
       "sourceUrl": "https://amiyakitei.jp/menu/",
       "sourceHash": "0bb538076df415c4b07225b2b2a087d8cd6cf2d2214b78e1bcb45920e333db6b",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "全メニュー贅沢コース 全メニュー贅沢コース お一人様 5,280 円 (税込 5,808円) 公式HTML画像 https://amiyakitei.jp/prd/wordpress/wp-content/uploads/2026/09/plus_zetaku_course.jpg",
       "evidenceHash": "1a975ac2db494c7376403eb3db9e17d0e117931eb796a70c425fc6631212282d",
       "price": {
@@ -2640,7 +2640,7 @@
       "officialUrl": "https://amiyakitei.jp/menu/",
       "sourceUrl": "https://amiyakitei.jp/menu/",
       "sourceHash": "0bb538076df415c4b07225b2b2a087d8cd6cf2d2214b78e1bcb45920e333db6b",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "黒毛和牛堪能コース 黒毛和牛堪能コース お一人様 4,080 円 (税込 4,488円) 公式HTML画像 https://amiyakitei.jp/prd/wordpress/wp-content/uploads/2026/09/plus_tanno_course.jpg",
       "evidenceHash": "10e95eccc86df57f54869eb2e8a84f12fd48adf200c44ccde0633586218164a1",
       "price": {
@@ -2683,7 +2683,7 @@
       "officialUrl": "https://amiyakitei.jp/menu/",
       "sourceUrl": "https://amiyakitei.jp/menu/",
       "sourceHash": "0bb538076df415c4b07225b2b2a087d8cd6cf2d2214b78e1bcb45920e333db6b",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "黒毛和牛お手軽コース 黒毛和牛お手軽コース お一人様 3,480 円 (税込 3,828円) 公式HTML画像 https://amiyakitei.jp/prd/wordpress/wp-content/uploads/2026/09/plus_otegaru_course.jpg",
       "evidenceHash": "6bff68d2ce63b3d7ee8ddd757dfbd81eaa5d8bfc6ad66252833492b103f7dc02",
       "price": {
@@ -2726,7 +2726,7 @@
       "officialUrl": "https://amiyakitei.jp/menu/",
       "sourceUrl": "https://amiyakitei.jp/menu/",
       "sourceHash": "0bb538076df415c4b07225b2b2a087d8cd6cf2d2214b78e1bcb45920e333db6b",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "飲み放題 ※コースにつけられます お一人様 1,600 円 (税込1,760円) コースにつけられる飲み放題です。",
       "evidenceHash": "960d3d5b0a39c1a3494bca7f715c055a3e2f0482d53359d1792c28bac9cbc436",
       "price": {
@@ -2770,7 +2770,7 @@
       "officialUrl": "https://www.onyasai.com/menu/menu-drink.php",
       "sourceUrl": "https://www.onyasai.com/menu/menu-drink.php",
       "sourceHash": "e76958a8936195e625064a40b6232332ea8332bebc6aa2f14feafacdb9d9a54a",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "ビールも 飲める アルコール飲み放題 約50品 お一人様 1,680円 (税込1,848円) 飲み放題(120分ラストオーダー90分)",
       "evidenceHash": "1b56b5715a1e9cc407a296fe67b8dffbb4541c61dbb21af02f238e8016715b6d",
       "price": {
@@ -2814,7 +2814,7 @@
       "officialUrl": "https://www.onyasai.com/menu/menu-drink.php",
       "sourceUrl": "https://www.onyasai.com/menu/menu-drink.php",
       "sourceHash": "e76958a8936195e625064a40b6232332ea8332bebc6aa2f14feafacdb9d9a54a",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "ソフトドリンク飲み放題 お一人様 680円 (税込748円) 小学生未満のお客様は無料 小学生 お一人様 200円(税込220円) 飲み放題(120分ラストオーダー90分)",
       "evidenceHash": "e97556019f21722dd08c364c7eb07f170ebc1b42d994955af982baadfed82011",
       "price": {
@@ -2858,7 +2858,7 @@
       "officialUrl": "https://www.onyasai.com/menu/menu-tabehoudai-onyasai.php",
       "sourceUrl": "https://www.onyasai.com/menu/menu-tabehoudai-onyasai.php",
       "sourceHash": "877ae2424b157f53396d294ca47113ae242e4b38a7b9ead2ebf1b4a149054f96",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "お肉全10種類 温野菜コース 3,980円 (税込4,378円) 公式HTML画像 https://www.onyasai.com/img_onyasai/tabehoudai/tabehoudai-tanshabu.jpg",
       "evidenceHash": "802f4236951f98c10211ecb748da257c87b95b30d5e454f32b368286507183e6",
       "price": {
@@ -2901,7 +2901,7 @@
       "officialUrl": "https://www.onyasai.com/menu/menu-tabehoudai-onyasai.php",
       "sourceUrl": "https://www.onyasai.com/menu/menu-tabehoudai-onyasai.php",
       "sourceHash": "877ae2424b157f53396d294ca47113ae242e4b38a7b9ead2ebf1b4a149054f96",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "特選牛しゃぶ 公式掲載コース:温野菜コース 公式HTML画像 https://www.onyasai.com/img_onyasai/tabehoudai/tabehoudai-gensengyuu.jpg",
       "evidenceHash": "0379dac6e61ed5c9e9763187c33022d40024d429dc68dc153cc2428575ffbabf",
       "price": {
@@ -2947,7 +2947,7 @@
       "officialUrl": "https://www.onyasai.com/menu/menu-tabehoudai-onyasai.php",
       "sourceUrl": "https://www.onyasai.com/menu/menu-tabehoudai-onyasai.php",
       "sourceHash": "877ae2424b157f53396d294ca47113ae242e4b38a7b9ead2ebf1b4a149054f96",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "北海道名物じゃがから 公式掲載コース:温野菜コース 公式HTML画像 https://www.onyasai.com/img_onyasai/tabehoudai/tabehoudai-ippin-jagakara.jpg",
       "evidenceHash": "90935aa88ea1e3d30b45cacf2913468c3a1de205523801edd625f4244ce3fb1e",
       "price": {
@@ -2993,7 +2993,7 @@
       "officialUrl": "https://www.onyasai.com/menu/menu-tabehoudai-butashabu.php",
       "sourceUrl": "https://www.onyasai.com/menu/menu-tabehoudai-butashabu.php",
       "sourceHash": "e538daa47d79de6620c3845a2b295eeb27fbf043abcbefde1bf73d6bde28cc62",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "お肉全5種類 三元豚コース 3,380円 (税込3,718円) 公式HTML画像 https://www.onyasai.com/img_onyasai/tabehoudai/tabehoudai-butashabu.jpg",
       "evidenceHash": "fa34f3fd7474ae879f8643df6fd38f70ee87c0bda1854660b4eeaba6d3186b96",
       "price": {
@@ -3036,7 +3036,7 @@
       "officialUrl": "https://www.onyasai.com/menu/menu-tabehoudai-gyushabu.php",
       "sourceUrl": "https://www.onyasai.com/menu/menu-tabehoudai-gyushabu.php",
       "sourceHash": "3ffc6e19ae5596bd0dbff3cffebf1154e4cc09c7a948159f7507f71a3b232d31",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "お肉全7種類 特選牛しゃぶコース 3,780円 (税込4,158円) 公式HTML画像 https://www.onyasai.com/img_onyasai/tabehoudai/tabehoudai-gensengyuu.jpg",
       "evidenceHash": "5b411d6b7f3b50947ae1a707c358d3d8461d34eb9c31edcc752bf14c59f03fcc",
       "price": {
@@ -3079,7 +3079,7 @@
       "officialUrl": "https://www.onyasai.com/menu/menu-tabehoudai-kurogewagyuu.php",
       "sourceUrl": "https://www.onyasai.com/menu/menu-tabehoudai-kurogewagyuu.php",
       "sourceHash": "aa9477d7015dceebed5f8bbd079e93122b13b308aa70c948c98cab5a40e89f67",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "お肉全11種類 黒毛和牛コース 4,980円 (税込5,478円) 公式HTML画像 https://www.onyasai.com/img_onyasai/tabehoudai/tabehoudai-kurogewagyuu.jpg",
       "evidenceHash": "b3698bc404cf31bf81d4935504c8d711fd278639026445e9f43087533cc7173e",
       "price": {
@@ -3122,7 +3122,7 @@
       "officialUrl": "https://www.onyasai.com/menu/menu-tabehoudai-shimofuri-kurogewagyuu.php",
       "sourceUrl": "https://www.onyasai.com/menu/menu-tabehoudai-shimofuri-kurogewagyuu.php",
       "sourceHash": "99100ff0891a82a11d2c7105b32e3393893eb2ccddf932ce40d5f41d2ab0901c",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "黒毛和牛 公式掲載コース:霜降り黒毛和牛コース 公式HTML画像 https://www.onyasai.com/img_onyasai/tabehoudai/tabehoudai-kurogewagyuu.jpg",
       "evidenceHash": "0af9f1552211870e4cc5addfc2068bab9fac40f055f43539b0a63212003b9b2e",
       "price": {
@@ -3168,7 +3168,7 @@
       "officialUrl": "https://www.onyasai.com/menu/menu-tabehoudai-shimofuri-kurogewagyuu.php",
       "sourceUrl": "https://www.onyasai.com/menu/menu-tabehoudai-shimofuri-kurogewagyuu.php",
       "sourceHash": "99100ff0891a82a11d2c7105b32e3393893eb2ccddf932ce40d5f41d2ab0901c",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "お肉全12種類 霜降り黒毛和牛コース 6,480円 (税込7,128円) 一部店舗では販売しておりません 詳しくはこちら 公式HTML画像 https://www.onyasai.com/img_onyasai/tabehoudai/tabehoudai-shimofuri-kurogewagyuu.jpg",
       "evidenceHash": "ef4ca3e4583347352350335efdd2537966d3cf6a2a56f3402dbf8675bcb01dd8",
       "price": {
@@ -3211,7 +3211,7 @@
       "officialUrl": "https://www.onyasai.com/menu/menu-tabehoudai-shimofuri-kurogewagyuu.php",
       "sourceUrl": "https://www.onyasai.com/menu/menu-tabehoudai-shimofuri-kurogewagyuu.php",
       "sourceHash": "99100ff0891a82a11d2c7105b32e3393893eb2ccddf932ce40d5f41d2ab0901c",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "霜降り黒毛和牛(くらした) 公式掲載コース:霜降り黒毛和牛コース 公式HTML画像 https://www.onyasai.com/img_onyasai/tabehoudai/tabehoudai-shimofuri-kurogewagyuu.jpg",
       "evidenceHash": "82af797636d3469e6e11b9dfa56147c6004c9d9c454501ee8e99ee940736ed25",
       "price": {
@@ -3257,7 +3257,7 @@
       "officialUrl": "https://ameblo.jp/0141roan/entry-12970963402.html",
       "sourceUrl": "https://ameblo.jp/0141roan/entry-12970963402.html",
       "sourceHash": "f01798b457b165ba3c8fbb3a1a8df8e3f9f86fc69950f4dc43b1193ac3b87de5",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "ディナー 大人 税込3,180円(土日祝は税込3,280円) 麻辣湯食べ放題 全時間帯で提供中! 麻辣湯食べ放題 全時間帯で提供中! 露菴名物の麻辣湯(マーラータン)が、 平日ランチ・土日ランチ・ディナーの全時間帯でお楽しみいただけるようになりました。 お好きな具材を組み合わせて、 自分だけの麻辣湯をお楽しみください。 麻辣湯とは? 中国発祥の人気鍋料理。 旨辛スープに、 野菜・きのこ・お肉・春雨など お好きな具材を組み合わせて楽しめます。 辛さだけではなく、 旨味と香りがクセになる一品です。 食べ放題で楽しめます 露菴の麻辣湯は食べ放題。 春雨や野菜、きのこ類はもちろん、 人気の魚卵団子など様々な具材をご用意しております。 ご利用方法 平日ランチ ビュッフェ料金でご利用いただけます。 お一人様ずつ専用鍋で、 お好きな具材をお楽しみください。 土日ランチ・ディナー 麻辣湯コースにてご利用いただけます。 しゃぶしゃぶ鍋を使用し、 ご家族やご友人とシェアしながらお楽しみいただけます。 皆さまのご来店をお待ちしております。 ━━━━━━━━━━━━━━ ※3歳未満無料 ※ドリンクバー無料 料金詳細はこちら ⇨ホームページで料金確認 ご予約はこちらから ⇨麻辣湯食べ放題を楽しみに行く",
       "evidenceHash": "ad361e0f168e5af4fe68efe8d7d582de1b4a928fc3205a8a88fb60247e6f03c1",
       "price": {
@@ -3306,7 +3306,7 @@
       "officialUrl": "https://ameblo.jp/0141roan/entry-12970963402.html",
       "sourceUrl": "https://ameblo.jp/0141roan/entry-12970963402.html",
       "sourceHash": "f01798b457b165ba3c8fbb3a1a8df8e3f9f86fc69950f4dc43b1193ac3b87de5",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "※ドリンクバー無料",
       "evidenceHash": "f7b8e9d6ed6684948ccdd8520e1566b84b42ab3c02979263a95819053eb3b83a",
       "price": {
@@ -3348,7 +3348,7 @@
       "officialUrl": "https://ameblo.jp/0141roan/entry-12953365343.html",
       "sourceUrl": "https://ameblo.jp/0141roan/entry-12953365343.html",
       "sourceHash": "668f6b2ef122dee2fe0dd96342a9a76dd0a69bc248c5b287e8f86167af62b6b4",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "大人 税込3,980円 大赤海老も!大ホタテも食べ放題!第2弾!極み大海鮮フェア開催!! 第2弾開催!極み大海鮮フェア!! 【海鮮食べ放題コース】 いつもの豚しゃぶコースに 牛しゃぶさらに 「大赤海老」 「北海道産大ホタテ」 食べ放題! 新鮮な海鮮を好きなだけ 楽しむことができる! 贅沢なコースです! 大赤海老 強い甘みが特徴で 加熱するとさらに甘みが増すため しゃぶしゃぶの 濃厚な出汁が楽しめます 北海道産大ホタテ 肉厚な食感と濃厚な甘み・旨味が大きな特徴 噛むほどに凝縮された濃厚な甘みと 旨味が口の中に広がります 【コース料金】 ・大人(中学生以上)3,980円 ・子供(小学生)税込1,990円 ・幼児(3歳以上)税込500円 ※上記金額は期間限定価格 ※LOは90分後(店舗でご確認下さい) 【全コース対象】 かに座 本ずわい蟹のトマトソースパスタ かに座 本ずわい蟹は甘みが強く 身がしっかりしているのが特徴 トマトやオリーブオイル ニンニクなどが加えられ 酸味と甘みのバランスが絶妙なパスタです うお座 大根とじゃこの和風マリネサラダ うお座 大根のシャキシャキとした食感と じゃこの旨味と塩気が 甘みと辛みのバランスがとれたサラダ マリネにすることで さっぱりとした味わいに仕上りました うお座 スープが旨い!自家製豆富と牡蠣のスンドゥブチゲ うお座 牡蠣は海の旨味が凝縮されており スープに深い味わいを加えます またプリプリとした食感が楽しめます スープは韓国の辛味調味料である コチュジャンや唐辛子粉を使用し スンドゥブチゲとして仕上げました ▶︎ご予約はこちらから ご予約 | 旬菜創作ビュッフェ 露菴 旬の野菜を中心とした新鮮な食材をバイキングスタイルでご提供する、和風創作料理の店、露菴の各店舗のウェブ予約ページのご案内です。 リンク www.good-promise.co.jp ▶︎最新メニュー情報はこちらから 露菴の最新メニュー(サラダ) 露菴では、店内手作りのメニューを、ビュッフェスタイルでお楽しみいただけます。メニューは毎月変更、さらに2ケ月に1回大幅な変更を加え、季節の料理をご提供しています。ソフトドリンクやコーヒー、16種類の健康茶など豊富に取り揃えていますので、お食事後のひと時もお楽しみいただけます。ランチ利用、ディナー利用はもちろん、団体利用にも最適。大型駐車場完備 リンク roan.hp.peraichi.com",
       "evidenceHash": "f20eb0a1bd751ea79fad20634d3a262220729a0e066b11b0f5d15b0f937705d8",
       "price": {
@@ -3396,7 +3396,7 @@
       "officialUrl": "https://www.kalubi-taisho.com/menu/3616/",
       "sourceUrl": "https://www.kalubi-taisho.com/menu/3616/",
       "sourceHash": "7fb0999a7d92a73cc85b10dc39882ad51c1ea10eab564e15136da565a523d3f5",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "※高山店ではメニューが異なります。 メニュー 一覧へ戻る 公式HTML画像 https://www.kalubi-taisho.com/wp/wp-content/uploads/2c442d14c993976fb9b92865037cde4f-scaled.jpg",
       "evidenceHash": "0e6bfa990b975f1cc5e3ada291761801723672c4c3e5342facc129db289f6ceb",
       "price": {
@@ -3437,7 +3437,7 @@
       "officialUrl": "https://www.kalubi-taisho.com/menu/4234/",
       "sourceUrl": "https://www.kalubi-taisho.com/menu/4234/",
       "sourceHash": "640142f448823fd79495e0065dbdd12fbb195a9a5e442d0a853940b1e6474f9c",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "よくばりコース 50品以上 2,980円(税込3,278円) よくばりコース 50品以上 2,980円(税込3,278円) 大将スペシャルコース 140品以上 3,980円(税込4,378円) 特選プレミアムコース 150品以上 4,980円(税込5,478円) 特選プレミアムコース+追加オプション 5,960円(税込6,556円) ※小学生は大人料金の半額/幼児(0~6歳)無料/65歳以上大人料金の550円引",
       "evidenceHash": "5679c9bb76fcea73f70e3bea83172a88dcd01b487be3bc8680ba99a15426b747",
       "price": {
@@ -3481,7 +3481,7 @@
       "officialUrl": "https://www.kalubi-taisho.com/menu/4234/",
       "sourceUrl": "https://www.kalubi-taisho.com/menu/4234/",
       "sourceHash": "640142f448823fd79495e0065dbdd12fbb195a9a5e442d0a853940b1e6474f9c",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "大将スペシャルコース 140品以上 3,980円(税込4,378円) よくばりコース 50品以上 2,980円(税込3,278円) 大将スペシャルコース 140品以上 3,980円(税込4,378円) 特選プレミアムコース 150品以上 4,980円(税込5,478円) 特選プレミアムコース+追加オプション 5,960円(税込6,556円) ※小学生は大人料金の半額/幼児(0~6歳)無料/65歳以上大人料金の550円引",
       "evidenceHash": "27e037b8c7c2ad6c8016799791b12ef25f2b92770d96c1889f64178729049674",
       "price": {
@@ -3525,7 +3525,7 @@
       "officialUrl": "https://www.kalubi-taisho.com/menu/4234/",
       "sourceUrl": "https://www.kalubi-taisho.com/menu/4234/",
       "sourceHash": "640142f448823fd79495e0065dbdd12fbb195a9a5e442d0a853940b1e6474f9c",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "特選プレミアムコース 150品以上 4,980円(税込5,478円) よくばりコース 50品以上 2,980円(税込3,278円) 大将スペシャルコース 140品以上 3,980円(税込4,378円) 特選プレミアムコース 150品以上 4,980円(税込5,478円) 特選プレミアムコース+追加オプション 5,960円(税込6,556円) ※小学生は大人料金の半額/幼児(0~6歳)無料/65歳以上大人料金の550円引",
       "evidenceHash": "27dcb7e75d987c9022f6a0887472836f2c4a9675ed06702dc4a8bb8031781da1",
       "price": {
@@ -3569,7 +3569,7 @@
       "officialUrl": "https://www.kalubi-taisho.com/menu/4234/",
       "sourceUrl": "https://www.kalubi-taisho.com/menu/4234/",
       "sourceHash": "640142f448823fd79495e0065dbdd12fbb195a9a5e442d0a853940b1e6474f9c",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "特選プレミアムコース+追加オプション 5,960円(税込6,556円) よくばりコース 50品以上 2,980円(税込3,278円) 大将スペシャルコース 140品以上 3,980円(税込4,378円) 特選プレミアムコース 150品以上 4,980円(税込5,478円) 特選プレミアムコース+追加オプション 5,960円(税込6,556円) ※小学生は大人料金の半額/幼児(0~6歳)無料/65歳以上大人料金の550円引",
       "evidenceHash": "ca387272d90081ec3ff46e8a81d426c83fa5ea5e72f87de1b088a3654594005b",
       "price": {
@@ -3613,7 +3613,7 @@
       "officialUrl": "https://www.kalubi-taisho.com/menu/4505/",
       "sourceUrl": "https://www.kalubi-taisho.com/menu/4505/",
       "sourceHash": "46b48fa0a86e6c39b157ca6de4baaebbf320005c4f3c73f20814433e9a4918c5",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "●特選プレミアムコース+追加オプション 5,960円(税込6,556円) ●特選プレミアムコース+追加オプション 5,960円(税込6,556円) ●特選プレミアムコース 150品以上 4,980円(税込5,478円) ●大将スペシャルコース 140品以上 3,980円(税込4,378円) ●よくばりコース 70品以上 2,980円(税込3,278円) ●アプリ会員限定カジュアルコース 45品以上 1,980円(税込2,178円) ※小学生は大人料金の半額/幼児(0~6歳)無料/65歳以上大人料金の550円引 ※カジュアルコースは、お客様”応援価格”につき、割引券のご利用は対象外とさせて頂きます。 ※カジュアルコースは、ご来店前日までにアトムアプリダウンロードが必須となります。",
       "evidenceHash": "3d9c582fcaa6302247ffef1db3edb685bee9c185d8e4ceaab611d011fa2f5881",
       "price": {
@@ -3658,7 +3658,7 @@
       "officialUrl": "https://www.kalubi-taisho.com/menu/4505/",
       "sourceUrl": "https://www.kalubi-taisho.com/menu/4505/",
       "sourceHash": "46b48fa0a86e6c39b157ca6de4baaebbf320005c4f3c73f20814433e9a4918c5",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "●特選プレミアムコース 150品以上 4,980円(税込5,478円) ●特選プレミアムコース+追加オプション 5,960円(税込6,556円) ●特選プレミアムコース 150品以上 4,980円(税込5,478円) ●大将スペシャルコース 140品以上 3,980円(税込4,378円) ●よくばりコース 70品以上 2,980円(税込3,278円) ●アプリ会員限定カジュアルコース 45品以上 1,980円(税込2,178円) ※小学生は大人料金の半額/幼児(0~6歳)無料/65歳以上大人料金の550円引 ※カジュアルコースは、お客様”応援価格”につき、割引券のご利用は対象外とさせて頂きます。 ※カジュアルコースは、ご来店前日までにアトムアプリダウンロードが必須となります。",
       "evidenceHash": "7225c9d630fa4247df307ec392cf2cd694927b28d2ec2ed270b3a97b009a2749",
       "price": {
@@ -3703,7 +3703,7 @@
       "officialUrl": "https://www.kalubi-taisho.com/menu/4505/",
       "sourceUrl": "https://www.kalubi-taisho.com/menu/4505/",
       "sourceHash": "46b48fa0a86e6c39b157ca6de4baaebbf320005c4f3c73f20814433e9a4918c5",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "●大将スペシャルコース 140品以上 3,980円(税込4,378円) ●特選プレミアムコース+追加オプション 5,960円(税込6,556円) ●特選プレミアムコース 150品以上 4,980円(税込5,478円) ●大将スペシャルコース 140品以上 3,980円(税込4,378円) ●よくばりコース 70品以上 2,980円(税込3,278円) ●アプリ会員限定カジュアルコース 45品以上 1,980円(税込2,178円) ※小学生は大人料金の半額/幼児(0~6歳)無料/65歳以上大人料金の550円引 ※カジュアルコースは、お客様”応援価格”につき、割引券のご利用は対象外とさせて頂きます。 ※カジュアルコースは、ご来店前日までにアトムアプリダウンロードが必須となります。",
       "evidenceHash": "4fa4db14972063d2f83f69721f5a4c23d6335c678c61d7c892af3b4901e2afae",
       "price": {
@@ -3748,7 +3748,7 @@
       "officialUrl": "https://www.kalubi-taisho.com/menu/4505/",
       "sourceUrl": "https://www.kalubi-taisho.com/menu/4505/",
       "sourceHash": "46b48fa0a86e6c39b157ca6de4baaebbf320005c4f3c73f20814433e9a4918c5",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "●よくばりコース 70品以上 2,980円(税込3,278円) ●特選プレミアムコース+追加オプション 5,960円(税込6,556円) ●特選プレミアムコース 150品以上 4,980円(税込5,478円) ●大将スペシャルコース 140品以上 3,980円(税込4,378円) ●よくばりコース 70品以上 2,980円(税込3,278円) ●アプリ会員限定カジュアルコース 45品以上 1,980円(税込2,178円) ※小学生は大人料金の半額/幼児(0~6歳)無料/65歳以上大人料金の550円引 ※カジュアルコースは、お客様”応援価格”につき、割引券のご利用は対象外とさせて頂きます。 ※カジュアルコースは、ご来店前日までにアトムアプリダウンロードが必須となります。",
       "evidenceHash": "f2aa434a60b4fc1c672937c728b88cac8b7b3c6a9aad43b044a947390c1b9c99",
       "price": {
@@ -3793,7 +3793,7 @@
       "officialUrl": "https://www.kalubi-taisho.com/menu/4505/",
       "sourceUrl": "https://www.kalubi-taisho.com/menu/4505/",
       "sourceHash": "46b48fa0a86e6c39b157ca6de4baaebbf320005c4f3c73f20814433e9a4918c5",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "●アプリ会員限定カジュアルコース 45品以上 1,980円(税込2,178円) ●特選プレミアムコース+追加オプション 5,960円(税込6,556円) ●特選プレミアムコース 150品以上 4,980円(税込5,478円) ●大将スペシャルコース 140品以上 3,980円(税込4,378円) ●よくばりコース 70品以上 2,980円(税込3,278円) ●アプリ会員限定カジュアルコース 45品以上 1,980円(税込2,178円) ※小学生は大人料金の半額/幼児(0~6歳)無料/65歳以上大人料金の550円引 ※カジュアルコースは、お客様”応援価格”につき、割引券のご利用は対象外とさせて頂きます。 ※カジュアルコースは、ご来店前日までにアトムアプリダウンロードが必須となります。",
       "evidenceHash": "91a799b060356bbb268d181fb6c162116ddfcafee118967e3b9480189dae788d",
       "price": {
@@ -3838,7 +3838,7 @@
       "officialUrl": "https://staminataro.jp/menu/",
       "sourceUrl": "https://staminataro.jp/menu/",
       "sourceHash": "7201236c7369cd37baa43ac88ff235fc42a891f38bd39a5a5180d38697471aa7",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "平日ランチ 店舗別の食べ放題料金は公式店舗ページで確認してください。",
       "evidenceHash": "2bf0177c8bebd643589b96a958ab24a7f709342c470587eeaae01ce9d9148ec2",
       "price": {
@@ -3882,7 +3882,7 @@
       "officialUrl": "https://staminataro.jp/menu/",
       "sourceUrl": "https://staminataro.jp/menu/",
       "sourceHash": "7201236c7369cd37baa43ac88ff235fc42a891f38bd39a5a5180d38697471aa7",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "ディナー&土日祝ランチ 店舗別の食べ放題料金は公式店舗ページで確認してください。",
       "evidenceHash": "0edcdde24c42c8a3d47cf4930b40260d864e25284ed5928a3c8644c0d4c53e62",
       "price": {
@@ -3926,7 +3926,7 @@
       "officialUrl": "https://staminataro.jp/menu/",
       "sourceUrl": "https://staminataro.jp/menu/",
       "sourceHash": "7201236c7369cd37baa43ac88ff235fc42a891f38bd39a5a5180d38697471aa7",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "牛タン ※やわらか、形を整える加工を施しております。 ※大垣インター店は対象外となります。 牛タン ※やわらか、形を整える加工を施しております。 ※大垣インター店は対象外となります。",
       "evidenceHash": "edd5e96788160cceb34fad3b365e73c0b6fdf09d25924745c86920835545b074",
       "price": {
@@ -3973,7 +3973,7 @@
       "officialUrl": "https://staminataro.jp/menu/",
       "sourceUrl": "https://staminataro.jp/menu/",
       "sourceHash": "7201236c7369cd37baa43ac88ff235fc42a891f38bd39a5a5180d38697471aa7",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "中落カルビ ※ディナー限定 中落カルビ ※ディナー限定",
       "evidenceHash": "a49cac9c9034245a74d1e19f81a60e88bb83cdc1f198ba45068e608bba34c006",
       "price": {
@@ -4019,7 +4019,7 @@
       "officialUrl": "https://staminataro.jp/menu/",
       "sourceUrl": "https://staminataro.jp/menu/",
       "sourceHash": "7201236c7369cd37baa43ac88ff235fc42a891f38bd39a5a5180d38697471aa7",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "ソフトドリンクバー 280円(税込308円) 食事とは別売。店舗ごとの料金・提供状況を確認してください。",
       "evidenceHash": "9afcb48a5a99ac1bcc070105e2c86efd6a4143d82bf558e62444d8abd549e0c5",
       "price": {
@@ -4063,7 +4063,7 @@
       "officialUrl": "https://www.asakuma.co.jp/salad-bar/",
       "sourceUrl": "https://www.asakuma.co.jp/salad-bar/",
       "sourceHash": "3aeb06b06c7919e34dd6eea6f4f9b2de66a2b5d7a3b4f0062578ad8698541754",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "45品目!!食べ放題サラダバー! 対象店舗 メイン料理の食べ放題ではありません。サラダバーのない店舗もあります。",
       "evidenceHash": "7e960d8e9b25d2e099412dadc057bfc4441054046a58c03ddbff193eb38a024d",
       "price": {
@@ -4108,7 +4108,7 @@
       "officialUrl": "https://www.asakuma.co.jp/salad-bar/",
       "sourceUrl": "https://www.asakuma.co.jp/salad-bar/",
       "sourceHash": "3aeb06b06c7919e34dd6eea6f4f9b2de66a2b5d7a3b4f0062578ad8698541754",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "カレーライス 公式サラダバー掲載メニュー。店舗により提供内容が異なります。 公式HTML画像 https://www.asakuma.co.jp/salad-bar/images/img_saladbar_m48.jpg",
       "evidenceHash": "03df4cd95f839648d10e4f94cdb93405da9eac447f0962f7d1e784b45fab10e1",
       "price": {
@@ -4152,7 +4152,7 @@
       "officialUrl": "https://www.asakuma.co.jp/salad-bar/",
       "sourceUrl": "https://www.asakuma.co.jp/salad-bar/",
       "sourceHash": "3aeb06b06c7919e34dd6eea6f4f9b2de66a2b5d7a3b4f0062578ad8698541754",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "コーンスープ 公式サラダバー掲載メニュー。店舗により提供内容が異なります。 公式HTML画像 https://www.asakuma.co.jp/salad-bar/images/img_saladbar_m50.jpg",
       "evidenceHash": "ba2a23a50b85297c2a7531b57f45bb42ecfeb93f2a86c6059c9e73fc175337ec",
       "price": {
@@ -4196,7 +4196,7 @@
       "officialUrl": "https://www.asakuma.co.jp/menu_recommended-lunch-menu.html",
       "sourceUrl": "https://www.asakuma.co.jp/menu_recommended-lunch-menu.html",
       "sourceHash": "dea58308307dab20487ecc3185a96f805aa9b826cf9aff5ecda4a8f35afacfca",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "肉味噌ハンバーグ 肉味噌ハンバーグ サラダバー付 1,750円 (税込1,925円) おすすめ平日ランチメニュー《サラダバー付》。おすすめ平日ランチメニュー 実施店舗 【愛知県】 藤が丘店 、 八熊店 、 千音寺店 、 桜山店 、 星崎店 、 東浦通り店 、 鳴海店 、 安城店 、 岡崎店 、 本店 、 トヨタ元町店 、 刈谷店 、 瀬戸西店 、 半田店 、 小牧店 、 一宮店 、 一宮浅野店 、 富木島店 、 稲沢店 、 蟹江店 、 シャオ西尾店 、 大府店 、 津島店 、 春日井店 、 尾張旭店 、 東海加木屋店 【三重県】 津店 、 四日市店 、 津高茶屋店 、 松阪店 、 桑名店 、 鈴鹿店 【岐阜県】 羽島店 、 柳津店 、 可児店 、 岐阜長良店 、 関店 【京都府】 京都伏見店 【岡山県】 岡山大元店 【静岡県】 函南店 、 浜松船越店 、 藤枝店 、 富士宮店 、 磐田店 、 宮竹店 、 鹿谷ガーデン店 、 富士店 、 三方原店 、 浜松本郷店 、 浜松インター店 、 袋井店 【東京都】 八王子店 【神奈川県】 長後店 、 武蔵小杉店 、 鶴見店 、 北山田店 、 相模原店 、 伊勢原店 【千葉県】 南柏店 、 西船橋店 、 蘇我店 、 松戸店 、 野田店 、 市原店 【埼玉県】 狭山店 、 川越店 、 越谷店 、 三郷店 【茨城県】 牛久店 、 学園都市店。メイン料理の食べ放題ではありません。サラダバー別料金の店舗は、別料金用の公式メニューを確認してください。 公式HTML画像 https://www.asakuma.co.jp/images/img_menu_recommended-lunch-menu_01.jpg",
       "evidenceHash": "6441bb623ed53c756a14a57f99ac5babfc3f21fb8748245e61b6a18f9f4b9fdb",
       "price": {
@@ -4243,7 +4243,7 @@
       "officialUrl": "https://www.asakuma.co.jp/menu_recommended-lunch-menu.html",
       "sourceUrl": "https://www.asakuma.co.jp/menu_recommended-lunch-menu.html",
       "sourceHash": "dea58308307dab20487ecc3185a96f805aa9b826cf9aff5ecda4a8f35afacfca",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "ねぎネギまっしマシガーリックチキン ねぎネギまっしマシガーリックチキン サラダバー付 1,750円 (税込1,925円) おすすめ平日ランチメニュー《サラダバー付》。おすすめ平日ランチメニュー 実施店舗 【愛知県】 藤が丘店 、 八熊店 、 千音寺店 、 桜山店 、 星崎店 、 東浦通り店 、 鳴海店 、 安城店 、 岡崎店 、 本店 、 トヨタ元町店 、 刈谷店 、 瀬戸西店 、 半田店 、 小牧店 、 一宮店 、 一宮浅野店 、 富木島店 、 稲沢店 、 蟹江店 、 シャオ西尾店 、 大府店 、 津島店 、 春日井店 、 尾張旭店 、 東海加木屋店 【三重県】 津店 、 四日市店 、 津高茶屋店 、 松阪店 、 桑名店 、 鈴鹿店 【岐阜県】 羽島店 、 柳津店 、 可児店 、 岐阜長良店 、 関店 【京都府】 京都伏見店 【岡山県】 岡山大元店 【静岡県】 函南店 、 浜松船越店 、 藤枝店 、 富士宮店 、 磐田店 、 宮竹店 、 鹿谷ガーデン店 、 富士店 、 三方原店 、 浜松本郷店 、 浜松インター店 、 袋井店 【東京都】 八王子店 【神奈川県】 長後店 、 武蔵小杉店 、 鶴見店 、 北山田店 、 相模原店 、 伊勢原店 【千葉県】 南柏店 、 西船橋店 、 蘇我店 、 松戸店 、 野田店 、 市原店 【埼玉県】 狭山店 、 川越店 、 越谷店 、 三郷店 【茨城県】 牛久店 、 学園都市店。メイン料理の食べ放題ではありません。サラダバー別料金の店舗は、別料金用の公式メニューを確認してください。 公式HTML画像 https://www.asakuma.co.jp/images/img_menu_recommended-lunch-menu_02.jpg",
       "evidenceHash": "201c2189afede6f456fbad6d628a3fd401290bcc39669bcb3a2174bf9c059ae1",
       "price": {
@@ -4290,7 +4290,7 @@
       "officialUrl": "https://www.asakuma.co.jp/menu_recommended-lunch-menu.html",
       "sourceUrl": "https://www.asakuma.co.jp/menu_recommended-lunch-menu.html",
       "sourceHash": "dea58308307dab20487ecc3185a96f805aa9b826cf9aff5ecda4a8f35afacfca",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "和風なめ茸鬼おろしハンバーグ 和風なめ茸鬼おろしハンバーグ サラダバー付 1,750円 (税込1,925円) おすすめ平日ランチメニュー《サラダバー付》。おすすめ平日ランチメニュー 実施店舗 【愛知県】 藤が丘店 、 八熊店 、 千音寺店 、 桜山店 、 星崎店 、 東浦通り店 、 鳴海店 、 安城店 、 岡崎店 、 本店 、 トヨタ元町店 、 刈谷店 、 瀬戸西店 、 半田店 、 小牧店 、 一宮店 、 一宮浅野店 、 富木島店 、 稲沢店 、 蟹江店 、 シャオ西尾店 、 大府店 、 津島店 、 春日井店 、 尾張旭店 、 東海加木屋店 【三重県】 津店 、 四日市店 、 津高茶屋店 、 松阪店 、 桑名店 、 鈴鹿店 【岐阜県】 羽島店 、 柳津店 、 可児店 、 岐阜長良店 、 関店 【京都府】 京都伏見店 【岡山県】 岡山大元店 【静岡県】 函南店 、 浜松船越店 、 藤枝店 、 富士宮店 、 磐田店 、 宮竹店 、 鹿谷ガーデン店 、 富士店 、 三方原店 、 浜松本郷店 、 浜松インター店 、 袋井店 【東京都】 八王子店 【神奈川県】 長後店 、 武蔵小杉店 、 鶴見店 、 北山田店 、 相模原店 、 伊勢原店 【千葉県】 南柏店 、 西船橋店 、 蘇我店 、 松戸店 、 野田店 、 市原店 【埼玉県】 狭山店 、 川越店 、 越谷店 、 三郷店 【茨城県】 牛久店 、 学園都市店。メイン料理の食べ放題ではありません。サラダバー別料金の店舗は、別料金用の公式メニューを確認してください。 公式HTML画像 https://www.asakuma.co.jp/images/img_menu_recommended-lunch-menu_03.jpg",
       "evidenceHash": "3724580facba8dffdb88758949586707dd54ec90efea035c2b929c5b0664a98f",
       "price": {
@@ -4337,7 +4337,7 @@
       "officialUrl": "https://www.asakuma.co.jp/menu_recommended-lunch-menu.html",
       "sourceUrl": "https://www.asakuma.co.jp/menu_recommended-lunch-menu.html",
       "sourceHash": "dea58308307dab20487ecc3185a96f805aa9b826cf9aff5ecda4a8f35afacfca",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "【期間限定】BIGハンバーグ 【期間限定】BIGハンバーグ 300g サラダバー付 1,750円 (税込1,925円) おすすめ平日ランチメニュー《サラダバー付》。おすすめ平日ランチメニュー 実施店舗 【愛知県】 藤が丘店 、 八熊店 、 千音寺店 、 桜山店 、 星崎店 、 東浦通り店 、 鳴海店 、 安城店 、 岡崎店 、 本店 、 トヨタ元町店 、 刈谷店 、 瀬戸西店 、 半田店 、 小牧店 、 一宮店 、 一宮浅野店 、 富木島店 、 稲沢店 、 蟹江店 、 シャオ西尾店 、 大府店 、 津島店 、 春日井店 、 尾張旭店 、 東海加木屋店 【三重県】 津店 、 四日市店 、 津高茶屋店 、 松阪店 、 桑名店 、 鈴鹿店 【岐阜県】 羽島店 、 柳津店 、 可児店 、 岐阜長良店 、 関店 【京都府】 京都伏見店 【岡山県】 岡山大元店 【静岡県】 函南店 、 浜松船越店 、 藤枝店 、 富士宮店 、 磐田店 、 宮竹店 、 鹿谷ガーデン店 、 富士店 、 三方原店 、 浜松本郷店 、 浜松インター店 、 袋井店 【東京都】 八王子店 【神奈川県】 長後店 、 武蔵小杉店 、 鶴見店 、 北山田店 、 相模原店 、 伊勢原店 【千葉県】 南柏店 、 西船橋店 、 蘇我店 、 松戸店 、 野田店 、 市原店 【埼玉県】 狭山店 、 川越店 、 越谷店 、 三郷店 【茨城県】 牛久店 、 学園都市店。メイン料理の食べ放題ではありません。サラダバー別料金の店舗は、別料金用の公式メニューを確認してください。 公式HTML画像 https://www.asakuma.co.jp/images/img_menu_recommended-lunch-menu_04.jpg",
       "evidenceHash": "716008fbcff4ef596360d9b247efa511af122890120d48786c912bb7506c6524",
       "price": {
@@ -4384,7 +4384,7 @@
       "officialUrl": "https://www.asakuma.co.jp/menu/lunchmenu-01.html",
       "sourceUrl": "https://www.asakuma.co.jp/menu/lunchmenu-01.html",
       "sourceHash": "697ac6d4330730a06a79a1a32c2ed663d5e6424c0062355bd0af9613e613c648",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "ランチメニュー 【対象店舗】 星崎店、藤が丘店、刈谷店、瀬戸西店、桜山店、富木島店、大府店、東浦通り店、小牧店、一宮店、千音寺店、本店、鳴海店、半田店、八熊店、春日井店、尾張旭店、トヨタ元町店、岡崎店、東海加木屋店、南柏店、野田店、八王子店、松戸店、蘇我店、市原店、西船橋店、伊勢原店、岡山大元店、富士宮店 公式HTML画像 https://www.asakuma.co.jp/menu/images/lunchmenu/lunchmenu-01_01.webp",
       "evidenceHash": "1e50fcf9b965ee249d41d9b739b1654ff4b29725d3f0a5ae31941287ded8d55c",
       "price": {
@@ -4428,7 +4428,7 @@
       "officialUrl": "https://www.asakuma.co.jp/menu/lunchmenu-01.html",
       "sourceUrl": "https://www.asakuma.co.jp/menu/lunchmenu-01.html",
       "sourceHash": "697ac6d4330730a06a79a1a32c2ed663d5e6424c0062355bd0af9613e613c648",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "ランチタイムメニュー/人気セレクトメニュー 【対象店舗】 星崎店、藤が丘店、刈谷店、瀬戸西店、桜山店、富木島店、大府店、東浦通り店、小牧店、一宮店、千音寺店、本店、鳴海店、半田店、八熊店、春日井店、尾張旭店、トヨタ元町店、岡崎店、東海加木屋店、南柏店、野田店、八王子店、松戸店、蘇我店、市原店、西船橋店、伊勢原店、岡山大元店、富士宮店 公式HTML画像 https://www.asakuma.co.jp/menu/images/lunchmenu/lunchmenu-01_02.webp",
       "evidenceHash": "c597be8f6e036ee989deb6f8b3ccaa1856aa0f704bdfe0c296a7fd2d50174e3c",
       "price": {
@@ -4472,7 +4472,7 @@
       "officialUrl": "https://www.asakuma.co.jp/menu/grandmenu-04.html",
       "sourceUrl": "https://www.asakuma.co.jp/menu/grandmenu-04.html",
       "sourceHash": "a7a2ea821807cb20c5925b25adb55fda869d513e9525834ba6af9ad6f68edf07",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "あさくま グランドメニュー 【対象店舗】 星崎店、安城店、津島店、春日井店、尾張旭店、岡崎店、東海加木屋店、野田店、八王子店、松戸店、西船橋店、伊勢原店、岡山大元店、富士宮店 公式HTML画像 https://www.asakuma.co.jp/menu/images/grandmenu/grandmenu-04_01.webp",
       "evidenceHash": "caa48c08cafdafe8e1ac6c494948b2e275a7bbeadec3345d63d8220ac18a6597",
       "price": {
@@ -4516,7 +4516,7 @@
       "officialUrl": "https://www.asakuma.co.jp/menu_recommended-lunch-menu_without-sb.html",
       "sourceUrl": "https://www.asakuma.co.jp/menu_recommended-lunch-menu_without-sb.html",
       "sourceHash": "fa5a0ea67954378908343a2b65e9f50f05de6d403c3ba625e3d2c57a09116f42",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "肉味噌ハンバーグ 肉味噌ハンバーグ サラダバー別 1,050円 (税込1,155円) おすすめ平日ランチメニュー《サラダバー別》。。メイン料理の食べ放題ではありません。サラダバー別料金の店舗は、別料金用の公式メニューを確認してください。 公式HTML画像 https://www.asakuma.co.jp/images/img_menu_recommended-lunch-menu_01.jpg",
       "evidenceHash": "1d14cb8f69ab1aa1808e74add7344ef0e3d117342e35121a9bc7c14d50a6f0cd",
       "price": {
@@ -4562,7 +4562,7 @@
       "officialUrl": "https://www.asakuma.co.jp/menu_recommended-lunch-menu_without-sb.html",
       "sourceUrl": "https://www.asakuma.co.jp/menu_recommended-lunch-menu_without-sb.html",
       "sourceHash": "fa5a0ea67954378908343a2b65e9f50f05de6d403c3ba625e3d2c57a09116f42",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "ねぎネギまっしマシガーリックチキン ねぎネギまっしマシガーリックチキン サラダバー別 1,050円 (税込1,155円) おすすめ平日ランチメニュー《サラダバー別》。。メイン料理の食べ放題ではありません。サラダバー別料金の店舗は、別料金用の公式メニューを確認してください。 公式HTML画像 https://www.asakuma.co.jp/images/img_menu_recommended-lunch-menu_02.jpg",
       "evidenceHash": "c7712902cb7f50327cd0f15f6393b24c501a9a4ef0c18e7a13aed696bcfc30d6",
       "price": {
@@ -4608,7 +4608,7 @@
       "officialUrl": "https://www.asakuma.co.jp/menu_recommended-lunch-menu_without-sb.html",
       "sourceUrl": "https://www.asakuma.co.jp/menu_recommended-lunch-menu_without-sb.html",
       "sourceHash": "fa5a0ea67954378908343a2b65e9f50f05de6d403c3ba625e3d2c57a09116f42",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "和風なめ茸鬼おろしハンバーグ 和風なめ茸鬼おろしハンバーグ サラダバー別 1,050円 (税込1,155円) おすすめ平日ランチメニュー《サラダバー別》。。メイン料理の食べ放題ではありません。サラダバー別料金の店舗は、別料金用の公式メニューを確認してください。 公式HTML画像 https://www.asakuma.co.jp/images/img_menu_recommended-lunch-menu_03.jpg",
       "evidenceHash": "95ed8ea0f465d898d40936f5c92984217b18ba66f4de2490ff649067a83a3d07",
       "price": {
@@ -4654,7 +4654,7 @@
       "officialUrl": "https://www.asakuma.co.jp/menu_recommended-lunch-menu_without-sb.html",
       "sourceUrl": "https://www.asakuma.co.jp/menu_recommended-lunch-menu_without-sb.html",
       "sourceHash": "fa5a0ea67954378908343a2b65e9f50f05de6d403c3ba625e3d2c57a09116f42",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "【期間限定】BIGハンバーグ 【期間限定】BIGハンバーグ 300g サラダバー別 1,050円 (税込1,155円) おすすめ平日ランチメニュー《サラダバー別》。。メイン料理の食べ放題ではありません。サラダバー別料金の店舗は、別料金用の公式メニューを確認してください。 公式HTML画像 https://www.asakuma.co.jp/images/img_menu_recommended-lunch-menu_04.jpg",
       "evidenceHash": "082be4868b4fd4e6e28e4b214ff3314c17fc0b0b82846c4bab9d8bc40e7d30b2",
       "price": {
@@ -4700,7 +4700,7 @@
       "officialUrl": "https://www.yakiniku.jp/nikushou_sakai/drink/",
       "sourceUrl": "https://www.yakiniku.jp/nikushou_sakai/drink/",
       "sourceHash": "fb96b5366da0c961ac9e2f6410966f48291bdeb549e9f374e533efbd1c9a30c8",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "公式HTML画像 https://www.yakiniku.jp/nikushou_sakai/wp-content/uploads/2026/05/20260520_NS%E3%83%88%E3%82%99%E3%83%AA%E3%83%B3%E3%82%AF_%E9%A3%B2%E3%81%BF%E6%94%BE%E9%A1%8C.jpg",
       "evidenceHash": "1b66efe6bf36a3155767ce1d5da4a26feea9fefa87468d5a08003dd0072efcd6",
       "price": {
@@ -4741,7 +4741,7 @@
       "officialUrl": "https://www.yakiniku.jp/nikushou_sakai/menu/",
       "sourceUrl": "https://www.yakiniku.jp/nikushou_sakai/menu/",
       "sourceHash": "0546694c0c2b185a49b422957a488c7494e9987dc1b9d7b2f00f2ff8421b22c6",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "公式コース一覧画像の料金・対象品目をご確認ください。店舗限定メニューは別設定です。 公式HTML画像 https://www.yakiniku.jp/nikushou_sakai/wp-content/uploads/2026/05/20260520_NS_GM%E3%81%8A%E6%89%8B%E8%BB%BD%E3%82%B3%E3%83%BC%E3%82%B9_%E8%A1%A8%E9%9D%A2_2980.jpg",
       "evidenceHash": "c52b16e712dc6c9c1cda7d6b820e446c2aacc24c98d4b506f658d4110ca98dc3",
       "price": {
@@ -4786,7 +4786,7 @@
       "officialUrl": "https://www.yakiniku.jp/nikushou_sakai/menu/",
       "sourceUrl": "https://www.yakiniku.jp/nikushou_sakai/menu/",
       "sourceHash": "0546694c0c2b185a49b422957a488c7494e9987dc1b9d7b2f00f2ff8421b22c6",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "公式コース一覧画像の料金・対象品目をご確認ください。店舗限定メニューは別設定です。 公式HTML画像 https://www.yakiniku.jp/nikushou_sakai/wp-content/uploads/2026/05/20260520_NS_GM%E8%82%89%E5%8C%A0%E5%9D%82%E4%BA%95%E3%83%A9%E3%82%A4%E3%83%88%E3%82%B3%E3%83%BC%E3%82%B9_%E8%A1%A8%E9%9D%A2_3680.jpg",
       "evidenceHash": "2baf563dfe84925d3c2db59d21ccba204993a2e96ae53fdfcee782ba0b6f9247",
       "price": {
@@ -4831,7 +4831,7 @@
       "officialUrl": "https://www.yakiniku.jp/nikushou_sakai/menu/",
       "sourceUrl": "https://www.yakiniku.jp/nikushou_sakai/menu/",
       "sourceHash": "0546694c0c2b185a49b422957a488c7494e9987dc1b9d7b2f00f2ff8421b22c6",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "公式コース一覧画像の料金・対象品目をご確認ください。店舗限定メニューは別設定です。 公式HTML画像 https://www.yakiniku.jp/nikushou_sakai/wp-content/uploads/2026/05/20260520_NS_GM%E8%82%89%E5%8C%A0%E5%9D%82%E4%BA%95%E3%82%B9%E3%83%98%E3%82%9A%E3%82%B7%E3%83%A3%E3%83%AB%E3%82%B3%E3%83%BC%E3%82%B9_%E8%A1%A8%E9%9D%A2_3980.jpg",
       "evidenceHash": "7591a24550f0e35cae5aad3cf127f146d0a61d36810a9125c5ff0b825c1d9ccf",
       "price": {
@@ -4876,7 +4876,7 @@
       "officialUrl": "https://www.yakiniku.jp/nikushou_sakai/menu/",
       "sourceUrl": "https://www.yakiniku.jp/nikushou_sakai/menu/",
       "sourceHash": "0546694c0c2b185a49b422957a488c7494e9987dc1b9d7b2f00f2ff8421b22c6",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "公式コース一覧画像の料金・対象品目をご確認ください。店舗限定メニューは別設定です。 公式HTML画像 https://www.yakiniku.jp/nikushou_sakai/wp-content/uploads/2026/05/20260520_NS_GM%E8%B4%85%E6%B2%A2%E3%83%95%E3%82%9A%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%82%B3%E3%83%BC%E3%82%B9_%E8%A1%A8%E9%9D%A2_5180.jpg",
       "evidenceHash": "f56139666e154afd3bd2cda160fa6cece5e1c697e6d89e9b5fa4e815923e2107",
       "price": {
@@ -4921,7 +4921,7 @@
       "officialUrl": "https://www.jukusei-ichiban.jp/jp/",
       "sourceUrl": "https://www.jukusei-ichiban.jp/jp/",
       "sourceHash": "28ea10907550270e10f8eb763fa835497b55859454cb667e896d7232dbce0fdc",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "料理名と対象コースは公式画像の表記をご確認ください。 公式HTML画像 https://www.jukusei-ichiban.jp/jp/img/top/mainVisual/nib_gland_02_202604_pc.jpg 公式画像の確認済み表記:特製たれ漬け 骨付きカルビ 対象:いちばん食べ放題コース/牛タン食べ放題コース/黒毛和牛食べ放題コース",
       "evidenceHash": "2cc05f944e38a99f0d8265b54279d500659f629c27a18266c696712ab54aa1f9",
       "price": {
@@ -4969,7 +4969,7 @@
       "officialUrl": "https://www.jukusei-ichiban.jp/jp/",
       "sourceUrl": "https://www.jukusei-ichiban.jp/jp/",
       "sourceHash": "28ea10907550270e10f8eb763fa835497b55859454cb667e896d7232dbce0fdc",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "料理名と対象コースは公式画像の表記をご確認ください。 公式HTML画像 https://www.jukusei-ichiban.jp/jp/img/top/mainVisual/nib_gland_03_202604_pc.jpg 公式画像の確認済み表記:いちばん熟成 上カルビ",
       "evidenceHash": "70dcbe21c229f2986deb0865288c798867c455a152ee8aff38723a4cf260a1ce",
       "price": {
@@ -5013,7 +5013,7 @@
       "officialUrl": "https://www.jukusei-ichiban.jp/jp/menu/",
       "sourceUrl": "https://www.jukusei-ichiban.jp/jp/menu/",
       "sourceHash": "97bf1ad3a12c3272578eb3ada25ff818a28a7abac12e92c7c39ae1f5139b7261",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "125 品 いちばん食べ放題 コース お肉もサイドメニューも バランスよく食べられる いちばん人気の食べ放題 3,380 円 (税込3,718円) 通常店の掲載メニュー。100分、ラストオーダー20分前。店舗により内容・料金が異なる場合があります。 公式HTML画像 https://www.jukusei-ichiban.jp/jp/img/menu/menu_new_grand_01_2604.png",
       "evidenceHash": "6481449b8acea537db948381f26a746e21f2ea9b68b454383ca744eb3cce685a",
       "price": {
@@ -5059,7 +5059,7 @@
       "officialUrl": "https://www.jukusei-ichiban.jp/jp/menu/",
       "sourceUrl": "https://www.jukusei-ichiban.jp/jp/menu/",
       "sourceHash": "97bf1ad3a12c3272578eb3ada25ff818a28a7abac12e92c7c39ae1f5139b7261",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "130 品 牛タン食べ放題 コース いちばん食べ放題コース 全メニュー+牛タンが 食べ放題 3,980 円 (税込4,378円) 通常店の掲載メニュー。100分、ラストオーダー20分前。店舗により内容・料金が異なる場合があります。 公式HTML画像 https://www.jukusei-ichiban.jp/jp/img/menu/menu_new_grand_02_2604.jpg",
       "evidenceHash": "7eb7693a8c2754926ed4700cbf47f65dc3f532424433ee163106c7273cc6b474",
       "price": {
@@ -5105,7 +5105,7 @@
       "officialUrl": "https://www.jukusei-ichiban.jp/jp/menu/",
       "sourceUrl": "https://www.jukusei-ichiban.jp/jp/menu/",
       "sourceHash": "97bf1ad3a12c3272578eb3ada25ff818a28a7abac12e92c7c39ae1f5139b7261",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "140 品 黒毛和牛食べ放題 コース いちばん食べ放題コース 全メニュー+牛タン+和牛が 食べ放題 4,680 円 (税込5,148円) 通常店の掲載メニュー。100分、ラストオーダー20分前。店舗により内容・料金が異なる場合があります。 公式HTML画像 https://www.jukusei-ichiban.jp/jp/img/menu/menu_new_grand_03_2604.jpg",
       "evidenceHash": "aff407380d543346122718d525f461cf3227f64508d19c1c141e6acc48981c01",
       "price": {
@@ -5151,7 +5151,7 @@
       "officialUrl": "https://www.jukusei-ichiban.jp/jp/menu/",
       "sourceUrl": "https://www.jukusei-ichiban.jp/jp/menu/",
       "sourceHash": "97bf1ad3a12c3272578eb3ada25ff818a28a7abac12e92c7c39ae1f5139b7261",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "80 品 ライトコース 人気のやわらか牛ハラミが 堪能できるお手軽価格のコース 2,980 円 (税込3,278円) 通常店の掲載メニュー。100分、ラストオーダー20分前。店舗により内容・料金が異なる場合があります。 公式HTML画像 https://www.jukusei-ichiban.jp/jp/img/menu/menu_new_grand_04_2604.jpg",
       "evidenceHash": "479322e0413675c68eb4a660f0028d45305b55376fb03ed5fe544980cb1d91fb",
       "price": {
@@ -5197,7 +5197,7 @@
       "officialUrl": "https://www.jukusei-ichiban.jp/jp/menu/",
       "sourceUrl": "https://www.jukusei-ichiban.jp/jp/menu/",
       "sourceHash": "97bf1ad3a12c3272578eb3ada25ff818a28a7abac12e92c7c39ae1f5139b7261",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "食べ放題コースをご注文のお客様限定 飲み放題 100分(ラストオーダー20分前) 1,490 円(税込1,639円) ビール・サワー・ハイボール・焼酎・ソフトドリンクなど ドリンクメニュー すべてが飲み放題になります。 通常店の掲載メニュー。100分、ラストオーダー20分前。店舗により内容・料金が異なる場合があります。 公式HTML画像 https://www.jukusei-ichiban.jp/jp/img/menu/liquorPhoto.jpg",
       "evidenceHash": "6e2c61251d42a26e17a8b05225c03accf7ed58ac72a46e7fb2779fb3ce2a6ab1",
       "price": {
@@ -5243,7 +5243,7 @@
       "officialUrl": "https://www.jukusei-ichiban.jp/jp/menu/",
       "sourceUrl": "https://www.jukusei-ichiban.jp/jp/menu/",
       "sourceHash": "97bf1ad3a12c3272578eb3ada25ff818a28a7abac12e92c7c39ae1f5139b7261",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "食べ放題コースをご注文のお客様限定 ノンアルコールビールテイスト飲料 オールフリー樽詰飲み放題 (ドリンクバー付き) 690 円(税込759円) 通常店の掲載メニュー。100分、ラストオーダー20分前。店舗により内容・料金が異なる場合があります。 公式HTML画像 https://www.jukusei-ichiban.jp/jp/img/menu/liquorPhoto02.jpg",
       "evidenceHash": "41f666a5a1d1093e1ab6c513a9c57f5c65ebe8d537125aeaa42fc9e125c632b1",
       "price": {
@@ -5289,7 +5289,7 @@
       "officialUrl": "https://anrakutei.jp/menucate/drink/",
       "sourceUrl": "https://anrakutei.jp/menucate/drink/",
       "sourceHash": "5c82bf18dbd57abd65f7116e0e9d50ed55684471b227163a51287d02ea9ccecc",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "飲み放題 公式HTML画像 https://anrakutei.jp/wp-content/uploads/2026/01/c3ab9ca290fad6203210a76b104c0833.jpg",
       "evidenceHash": "a41ddcb2308da7261709c7b7c564faa534a36902144772a842ec56b622deb597",
       "price": {
@@ -5330,7 +5330,7 @@
       "officialUrl": "https://anrakutei.jp/menucate/drink/",
       "sourceUrl": "https://anrakutei.jp/menucate/drink/",
       "sourceHash": "5c82bf18dbd57abd65f7116e0e9d50ed55684471b227163a51287d02ea9ccecc",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "ドリンクバー ※ドリンクバー実施店舗のみ。 350円 (税込385円) 4~12歳のお客様 100円 (税込110円) 3歳以下のお客様 無料 公式HTML画像 https://anrakutei.jp/wp-content/uploads/2018/08/6e820061e2fbd2ceb2af844b36cabc8a-455x303.png",
       "evidenceHash": "5e0c067fb736cee46b7c4d1cb011147c7805f11f48a8c53b5f77f3adb31eecc2",
       "price": {
@@ -5373,7 +5373,7 @@
       "officialUrl": "https://anrakutei.jp/menucate/tabehoudai/",
       "sourceUrl": "https://anrakutei.jp/menucate/tabehoudai/",
       "sourceHash": "fca379252bad9075707f187884048a3df52b6433bd5a426afc80d158bc90f882",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "味変ループサムギョプサルコース2,980円(税込3,278円) 大人気★安楽亭の食べ放題に「サムギョプサル味変ループコース」が新登場! インパクト抜群のつるしサムギョプサルを焼き、サンチュで巻いて、タレや具材で自由に味を変える新しい焼肉スタイル誕生♪ コース限定の味変ダレも付いてくる! 見た目のインパクトだけで終わらない、味変ループに“ハマる焼肉”をぜひご体感ください。 ◆味変ループ サムギョプサルコース メニュー詳細 【サムギョプサルセット】 つるしサムギョプサル、もやしナムル、キムチ、サンチュ、サンチュ味噌、ごま油塩、味変ダレ2種(ごまおろポン/からくチーズ) 【焼肉】 おかわりサムギョプサル、豚肩ロース、トントロ、鶏もも 【おつまみ】 キムチ、枝豆、もやしナムル、ほうれん草ナムル、韓国のり、サンチュ、味噌きゅうり、ポテトフライ 【焼き野菜】 長ネギ、玉ネギ、ピーマン、ニンジン、ニンニク、とうもろこし、野菜焼き盛り合わせ 【ごはん・スープ】 ごはん、海苔ごはん、わかめスープ ※食べ放題のお食事時間は100分(ラストオーダーは20分前)になります。 ※田無北原店、みのり台店、足立青井店、大井松田店は価格・メニュー内容が異なります。根岸店は実施しておりません。 ※詳細は店舗までお問い合わせください。 公式HTML画像 https://anrakutei.jp/wp-content/uploads/2026/07/89f9099dc9d7465bd83ce827cac831a0.jpg",
       "evidenceHash": "d5d5cf2e62307d5c3d43b770dd2122c06acc6fd3f62f63d1eac9ab904fb5e435",
       "price": {
@@ -5419,7 +5419,7 @@
       "officialUrl": "https://anrakutei.jp/menucate/tabehoudai/",
       "sourceUrl": "https://anrakutei.jp/menucate/tabehoudai/",
       "sourceHash": "fca379252bad9075707f187884048a3df52b6433bd5a426afc80d158bc90f882",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "ベーシックコース3,680円(税込4,048円) もっと気軽にたくさん焼肉を楽しみたい! 好きなお肉を好きなだけ!人気焼肉「ファミリーカルビ」をはじめ、旨みが弾ける食べ応え「厚切り豚カルビ」や、豚タン・豚肩ロース、鶏ももなど焼肉を楽しみながら、人気の鶏の唐揚げ、ポテトフライ、ビビンバなどサイドメニューもしっかりご用意。さらに「味変ヤキニク」の新作ダレもぜひお楽しみください! ※食べ放題のお食事時間は100分(ラストオーダーは20分前)になります。 ※田無北原店、坂下店、みのり台店、芝中田店、本庄店、朝霞三原店、水戸千波町店、葛西店、府中浅間町店、川崎小田店、宮前平店、足立青井店、霧ヶ丘店、川崎南町店、大井松田店、根岸店は価格・メニュー内容が異なります。 ※詳細は店舗までお問い合わせください。 公式HTML画像 https://anrakutei.jp/wp-content/uploads/2026/06/931f7dd8b99688aceb811bb495a228b3.jpg",
       "evidenceHash": "7b9abc04fb26048ed69425bdb1c80e0f67aaefa09bbea1118f2ff46d43b73549",
       "price": {
@@ -5464,7 +5464,7 @@
       "officialUrl": "https://anrakutei.jp/menucate/tabehoudai/",
       "sourceUrl": "https://anrakutei.jp/menucate/tabehoudai/",
       "sourceHash": "fca379252bad9075707f187884048a3df52b6433bd5a426afc80d158bc90f882",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "デラックスコース4,980円(税込5,478円) 《 焼肉のおいしさ満喫♪ 》人気焼肉TOP3「ファミリーカルビ」「中落ちカルビ」「ファミリーロース」はじめ安楽亭の自慢のメニューが楽しめるラインナップ。「味変ヤキニク」には3種類の新作が登場!ぐつぐつ温めたタレをたっぷりつけて、いろんな「おいしい!」を発見してみてください♪ ※食べ放題のお食事時間は100分(ラストオーダーは20分前)になります。 ※田無北原店、坂下店、みのり台店、芝中田店、本庄店、朝霞三原店、水戸千波町店、葛西店、府中浅間町店、川崎小田店、宮前平店、足立青井店、霧ヶ丘店、川崎南町店、大井松田店、根岸店は価格・メニュー内容が異なります。 ※詳細は店舗までお問い合わせください。 公式HTML画像 https://anrakutei.jp/wp-content/uploads/2026/06/36301f57298349f426065ae9b35906b4.jpg",
       "evidenceHash": "83ac8ff8a4e06c5a23eda0ebbedb0bf8eae974d90cd28d8acac5e38c24e2f10e",
       "price": {
@@ -5509,7 +5509,7 @@
       "officialUrl": "https://anrakutei.jp/menucate/tabehoudai/",
       "sourceUrl": "https://anrakutei.jp/menucate/tabehoudai/",
       "sourceHash": "fca379252bad9075707f187884048a3df52b6433bd5a426afc80d158bc90f882",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "プライムコース7,280円(税込8,008円) お肉もサイドメニューも大充実の品ぞろえ!定番焼肉から上質焼肉まで「焼肉」の美味しさをとことん満喫!肉三昧の豪華ラインナップにはお値打ち黒毛和牛、牛タン、牛ハラミ、上ミノ、国産牛赤身肉など、お肉にこだわる安楽亭の「自然肉」の味わいを存分に楽しめます。 ※食べ放題のお食事時間は100分(ラストオーダーは20分前)になります。 ※田無北原店、坂下店、みのり台店、芝中田店、本庄店、朝霞三原店、水戸千波町店、葛西店、府中浅間町店、川崎小田店、宮前平店、足立青井店、霧ヶ丘店、川崎南町店、大井松田店、根岸店は価格・メニュー内容が異なります。 ※詳細は店舗までお問い合わせください。 公式HTML画像 https://anrakutei.jp/wp-content/uploads/2026/06/0b3aa61029d3c55efcf18efe15dd89c9.jpg",
       "evidenceHash": "c1467f26881af17485a3afcb326a08456481b65671df62ee601e867d6fde7e52",
       "price": {
@@ -5554,7 +5554,7 @@
       "officialUrl": "https://anrakutei.jp/menucate/tabehoudai/",
       "sourceUrl": "https://anrakutei.jp/menucate/tabehoudai/",
       "sourceHash": "fca379252bad9075707f187884048a3df52b6433bd5a426afc80d158bc90f882",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "evidenceText": "プレミアムゴージャスコース 15,000円(税込16,500円) 安楽亭だからできる自信の食べ放題! 黒毛和牛カルビ、ロース、上タンまで。厳選された上質な自然肉を心ゆくまで。 家族のお祝いから、自分へのご褒美にも。特別な時間を彩る“極み”の時間を堪能してください。 ※食べ放題のお食事時間は100分(ラストオーダーは20分前)になります。 ※田無北原店、坂下店、みのり台店、芝中田店、本庄店、朝霞三原店、水戸千波町店、葛西店、府中浅間町店、川崎小田店、宮前平店、足立青井店、霧ヶ丘店、川崎南町店、大井松田店、根岸店は価格・メニュー内容が異なります。 ※詳細は店舗までお問い合わせください。 公式HTML画像 https://anrakutei.jp/wp-content/uploads/2026/06/616fa42ca56288fe25ea0946eb4f56e4.jpg",
       "evidenceHash": "719f6bac71843120eda2da20787617986ace816ed46b564e025b973376bf988c",
       "price": {
@@ -5595,8 +5595,8 @@
   "sources": [
     {
       "sourceUrl": "https://www.yakiniku-king.jp/",
-      "sourceHash": "4fb473f61acd5e4017a2112d3c72ab8fc5b7683a0c6806b5862081f32bce8f63",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "a22d19b225cde64ac027b466d673056bd491e64f262f5ce8f1b82b2a6a2b4afa",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "yakiniku-king",
@@ -5604,8 +5604,8 @@
     },
     {
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/season",
-      "sourceHash": "3edbbcada5962af46a61f5e506c1706a732a36a042c725cb5bc8b74cdece27b8",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "5ed269d543d6de2835c0fd0f4a85009838c68ff269ed399fa51474be40a67817",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "yakiniku-king",
@@ -5614,7 +5614,7 @@
     {
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/drink/",
       "sourceHash": "076894caf4dfbb7d73f2d5af57df0009123bfac0abb7c01e3e5dca85a6ab6b63",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 4,
       "brandId": "yakiniku-king",
@@ -5622,8 +5622,8 @@
     },
     {
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/free1/",
-      "sourceHash": "06e7adea4f2eae38932c115f1a11c0cea4be4f87b1f91194e8c33873389768d6",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "3910fab6f682abe89a813f49d42ef6a23320b3a2ab910a4e5f300c6e6d204968",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 6,
       "brandId": "yakiniku-king",
@@ -5631,8 +5631,8 @@
     },
     {
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/free2/",
-      "sourceHash": "8693509758e9c1b727cbadbcb0e116b8db1e89f5b0d118add4c354c6b63fc445",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "03f44b4f25b94628a577dc1afb4763658712313fa95d92a276059761b6e84430",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 12,
       "brandId": "yakiniku-king",
@@ -5641,7 +5641,7 @@
     {
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/free3/",
       "sourceHash": "dd09ab0c709a53c841cf3eb353d9930c5d79c523b1c11861d15eaf4738bb9151",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 1,
       "brandId": "yakiniku-king",
@@ -5650,7 +5650,7 @@
     {
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/lunch/",
       "sourceHash": "7d2fd0c14189c8de20c455b41a3e34ba8540dbbb8fc4ff480734be710fe74378",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 1,
       "brandId": "yakiniku-king",
@@ -5658,8 +5658,8 @@
     },
     {
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/",
-      "sourceHash": "e85a36fb6b3c0b2f5faa7526b404ee9b9204809caa6b56dde272650347ae9290",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "721aeca35093bff2817d84d14830e2bf1413e53f5fa86dd06ccd312d6398c78c",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "yakiniku-king",
@@ -5668,7 +5668,7 @@
     {
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/new/",
       "sourceHash": "885f928a3eb000cb514b0fe66fbb7071ba7d8162f4ee1d5dc6fc2c3a224a5945",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "yakiniku-king",
@@ -5676,8 +5676,8 @@
     },
     {
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/season/",
-      "sourceHash": "3edbbcada5962af46a61f5e506c1706a732a36a042c725cb5bc8b74cdece27b8",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "5ed269d543d6de2835c0fd0f4a85009838c68ff269ed399fa51474be40a67817",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "yakiniku-king",
@@ -5686,7 +5686,7 @@
     {
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/tanpin/",
       "sourceHash": "9ad5188de37e040d3c49388f96bef4fd68735af4f389b2d6f28275deba14a30b",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "yakiniku-king",
@@ -5694,8 +5694,8 @@
     },
     {
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all",
-      "sourceHash": "e85a36fb6b3c0b2f5faa7526b404ee9b9204809caa6b56dde272650347ae9290",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "721aeca35093bff2817d84d14830e2bf1413e53f5fa86dd06ccd312d6398c78c",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "yakiniku-king",
@@ -5704,7 +5704,7 @@
     {
       "sourceUrl": "https://www.yakiniku-king.jp/about/",
       "sourceHash": "1d0fbe09b811c574df43544135cca56d95630c2564b752264656e7a3ca2db431",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "yakiniku-king",
@@ -5713,7 +5713,7 @@
     {
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/tanpin/urameibutsu/",
       "sourceHash": "b713f64ac84b45311aa0853be10a3b0d84f3fb60fe25610858ff87b627563517",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "yakiniku-king",
@@ -5722,7 +5722,7 @@
     {
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/tanpin/gem/",
       "sourceHash": "12918743b951ace46de41d3df6be48d6a25b4e4a80b3e7c50b31230e9b68bcb1",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "yakiniku-king",
@@ -5731,7 +5731,7 @@
     {
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/tanpin/salad/",
       "sourceHash": "d7243fe81d016f0514dec7660b89f20a27dd197a62e554dbd71e0843d429e408",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "yakiniku-king",
@@ -5740,7 +5740,7 @@
     {
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/tanpin/seafood/",
       "sourceHash": "36d69113266d2bf270af36d3d16e9931463872eafd9daeaed31c9f5a707f190e",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "yakiniku-king",
@@ -5749,7 +5749,7 @@
     {
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/tanpin/soup/",
       "sourceHash": "219250218c5e02f8a19b546a31e2b3890d35aedefa3825d7f6fb1d34c452c0bd",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "yakiniku-king",
@@ -5758,7 +5758,7 @@
     {
       "sourceUrl": "https://www.gyukaku.ne.jp/",
       "sourceHash": "b77bf1cca8164c1a1a5830c42b82bb00a52402489cb1633caf32ccbfa61bbf3b",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "gyukaku",
@@ -5767,7 +5767,7 @@
     {
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/menu-drink.php",
       "sourceHash": "de3aa8d3d199a02153ebc06a72eb490d79f9b5bba0c7677ae66df9c8cedd3851",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 3,
       "brandId": "gyukaku",
@@ -5776,7 +5776,7 @@
     {
       "sourceUrl": "https://www.gyukaku.ne.jp/lp/202602_studentCP/hp/",
       "sourceHash": "4c4b4f58416a1fdbed14fe9859c73773089c6731c4969e45476abdff82c077d8",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "gyukaku",
@@ -5785,7 +5785,7 @@
     {
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/gyukaku-course.php",
       "sourceHash": "c5b2c8ac6ddf98c3a57707cb8e4408f99b571308354912b8946b60d17b878c67",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 1,
       "brandId": "gyukaku",
@@ -5794,7 +5794,7 @@
     {
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/50item-course.php",
       "sourceHash": "1c465f600c6a205e30d6abdab5094b34bc2869846972a681dbe428b5e64c01b4",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 1,
       "brandId": "gyukaku",
@@ -5803,7 +5803,7 @@
     {
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/70item-course.php",
       "sourceHash": "e41f37e4480c586dcf60d076a2a245770b2ec50059fc6ed09d16d3895c222136",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 1,
       "brandId": "gyukaku",
@@ -5812,7 +5812,7 @@
     {
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/tannnou-course.php",
       "sourceHash": "a1b272e9282b130661144968d3d3e019abd95537a07d9b1304432219df695dc5",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 1,
       "brandId": "gyukaku",
@@ -5821,7 +5821,7 @@
     {
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/kurogewagyu-course.php",
       "sourceHash": "e56b04e54c404d273807777c7942384e79a3b0fc23e1ae518dd9e8c66551b7ff",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 2,
       "brandId": "gyukaku",
@@ -5837,7 +5837,7 @@
     {
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/",
       "sourceHash": "205f1a4d1d3223dcc03c122b8e72da3d0fb901606d6517448790d1b3f8a50c18",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "gyukaku",
@@ -5846,7 +5846,7 @@
     {
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/menu-niku.php",
       "sourceHash": "9bfaf5e01a9994b0715a1a626b0a17f87b66287217bd02d031135cb6f97bb5fc",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "gyukaku",
@@ -5855,7 +5855,7 @@
     {
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/menu-salad.php",
       "sourceHash": "b4cb3e3fa3498a4539be2a310d41ee52655a1542ba29e12fd25bbdf785f63340",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "gyukaku",
@@ -5864,7 +5864,7 @@
     {
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/menu-ippin.php",
       "sourceHash": "b40cd3cad783bde9fbbcd834b71cd966db37429080cc048a803ab6a9b13d69c1",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "gyukaku",
@@ -5873,7 +5873,7 @@
     {
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/menu-dessert.php",
       "sourceHash": "0df89f001d896e1f9827599d375f27c931891897b3f92e7a85c4880f0f6c9463",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "gyukaku",
@@ -5882,7 +5882,7 @@
     {
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/menu-kids.php",
       "sourceHash": "54faf957a90010add8f82feb952cd198b8bae5417000d08d6776e7070786d933",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "gyukaku",
@@ -5891,7 +5891,7 @@
     {
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/menu-menmeshi.php",
       "sourceHash": "83a007f69a86bb1b77c63aa7c4230e8e1132581c0540b1b3c78ed93687e75df1",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "gyukaku",
@@ -5900,7 +5900,7 @@
     {
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/information.php",
       "sourceHash": "1aa103527203bc874a3bce3b5fed6227fccb4ba71e4dc5bb28aa14ccd023a662",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "gyukaku",
@@ -5909,7 +5909,7 @@
     {
       "sourceUrl": "https://www.gyukaku.ne.jp/menu/gyukaku-course.php",
       "sourceHash": "c5b2c8ac6ddf98c3a57707cb8e4408f99b571308354912b8946b60d17b878c67",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 1,
       "brandId": "gyukaku",
@@ -5918,7 +5918,7 @@
     {
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/",
       "sourceHash": "4d0c2c409a440df6e2c2230d8681027c426d6629e963c77a717b2a977b3dd4b9",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 2,
       "brandId": "syabuyo",
@@ -5927,7 +5927,7 @@
     {
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/menu/fair_sep/",
       "sourceHash": "9d7190645b6a9371b7add88fb821be893a7a0e853762eab7c27abd757d9ec090",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "syabuyo",
@@ -5936,7 +5936,7 @@
     {
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/menu/bara_west/",
       "sourceHash": "44cfec6d8f5f12b42416a81e591a4a513f2b1d9c60d8955a967c5f94451cdaff",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "syabuyo",
@@ -5945,7 +5945,7 @@
     {
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/menu/enkai/",
       "sourceHash": "d24aff5bb5476e3a9de29e7437a3d50e934fc2a4fe3fd456e0e5ab4a69e1d3ab",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 2,
       "brandId": "syabuyo",
@@ -5954,7 +5954,7 @@
     {
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/menu/menu_detail.html?mid=8_83",
       "sourceHash": "623a7a8977b771eb7193e2118e18b65911bf7b6d8e77332706bd6a936868f901",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "syabuyo",
@@ -5963,7 +5963,7 @@
     {
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/menu/bara_east/",
       "sourceHash": "20c3774c9687513a5428840def5d6b4c02e7863657cdd55acc095383285868cf",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "syabuyo",
@@ -5972,7 +5972,7 @@
     {
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/menu/lunch.html",
       "sourceHash": "dc6c0bd69291336d05ce51065eecd9627e9531d3bdc27c41d9c4ebed6ac2a904",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "syabuyo",
@@ -5981,7 +5981,7 @@
     {
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/menu/",
       "sourceHash": "aab36c90726dade93241bc53d4887b6a531d1d38833995a245cbe1c0c4d7dd27",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "syabuyo",
@@ -5990,7 +5990,7 @@
     {
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/menu/dinner.html",
       "sourceHash": "dea0d802d4e4565b1262d08ce1f518fa40a691c6263154c1373796d0b7e63eb2",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "syabuyo",
@@ -6013,7 +6013,7 @@
     {
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/menu/yotsunabe/",
       "sourceHash": "63fe95c09e5f55b83446fca372389e13ee4a31e1f902275865740ef779ea87f9",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "syabuyo",
@@ -6022,7 +6022,7 @@
     {
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/menu/dashi/",
       "sourceHash": "e957543752e154fa884de58cc01fc5907955432e3c8074498a42e5c902772b80",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "syabuyo",
@@ -6031,7 +6031,7 @@
     {
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/menu/parfait/",
       "sourceHash": "70f003eca453002e0319cfdf4f5107c6dc9dec315ad7abf3f17e7e9bdfdb98e5",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "syabuyo",
@@ -6040,7 +6040,7 @@
     {
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/menu/anniversary/",
       "sourceHash": "0cb3f5adf5d23cb008dfcf097221631b16c66a80d92fa62fad8d5c11a109ae71",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "syabuyo",
@@ -6049,7 +6049,7 @@
     {
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/campaign/",
       "sourceHash": "cad02fa9c0413c4993185d44f6703b15d19453a4ae6fe647b54363e32a5d1aa0",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 2,
       "brandId": "syabuyo",
@@ -6058,7 +6058,7 @@
     {
       "sourceUrl": "https://www.shabu-yuzuan.jp/",
       "sourceHash": "f4502eb7632dbc00b0b0af1f02d0ff6e72b30a1d618b6817324cac13dbde6c9d",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "yuzuan",
@@ -6067,7 +6067,7 @@
     {
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/drink/",
       "sourceHash": "a90cd9d79af781db360bb3acd5078102fb76322bf75ec68cece80fb71d77865a",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 6,
       "brandId": "yuzuan",
@@ -6076,7 +6076,7 @@
     {
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/course/",
       "sourceHash": "ffebde6f915b5172576c78af4f3b53c0c5ec81c3c4b3f5f22d3d1011519327a9",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "yuzuan",
@@ -6085,7 +6085,7 @@
     {
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/lunch/tabehodai/",
       "sourceHash": "837e537632750c7ea6bc4cae48f11d1c05ce98580f9f2c003553a2056595bde5",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 1,
       "brandId": "yuzuan",
@@ -6094,7 +6094,7 @@
     {
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/course/otegaru/",
       "sourceHash": "48b332f7fb1d64a7cdb7a9b08658b085f423d3f32fe9e50248a41d1ccc6e6c12",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 1,
       "brandId": "yuzuan",
@@ -6103,7 +6103,7 @@
     {
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/course/yuzuan/",
       "sourceHash": "52ece447b486f1dfdb3fac84db4b2e16f8b65ad6f871168d0c6897197e24c33c",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 1,
       "brandId": "yuzuan",
@@ -6112,7 +6112,7 @@
     {
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/course/zeitaku/",
       "sourceHash": "de4f8bdd2882363eda66e0ba56c53886dc85aa9f308656fe0114760ae83864c4",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 9,
       "brandId": "yuzuan",
@@ -6121,7 +6121,7 @@
     {
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/",
       "sourceHash": "6b601abb52d6b136c28aeed01350562abb59e8018a0c5fe71e110c2e3ef19fc9",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "yuzuan",
@@ -6130,7 +6130,7 @@
     {
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/tanpin/",
       "sourceHash": "8fe3e05cc0c483fee54e4cdcd165113943beb4048f053242eb38578ece772816",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "yuzuan",
@@ -6139,7 +6139,7 @@
     {
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/lunch/ozen/",
       "sourceHash": "5012abada5310010d10164cd398911bd3e9cf631ec81bbc9d8d4addc077a3522",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "yuzuan",
@@ -6148,7 +6148,7 @@
     {
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/lunch/ozen/",
       "sourceHash": "5012abada5310010d10164cd398911bd3e9cf631ec81bbc9d8d4addc077a3522",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "yuzuan",
@@ -6157,7 +6157,7 @@
     {
       "sourceUrl": "https://www.shabu-yuzuan.jp/menu/lunch/",
       "sourceHash": "484db1219b76b213fdec83e1e2ea94cc5178db12f713d6973dff235fb72433bc",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "yuzuan",
@@ -6166,7 +6166,7 @@
     {
       "sourceUrl": "https://www.shabu-yuzuan.jp/news/7327/",
       "sourceHash": "bb487fa03f527cb4a0c73855a3b42c12b7e4545dbf07966d6d440aaa292c23c5",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "yuzuan",
@@ -6175,7 +6175,7 @@
     {
       "sourceUrl": "https://sato-res.com/sato/",
       "sourceHash": "60bfc8cbaec091058ebb7ae9d095825fc8b9b1056d038a6f405fd8caa444f9ca",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 1,
       "brandId": "washoku-sato",
@@ -6184,7 +6184,7 @@
     {
       "sourceUrl": "https://sato-res.com/sato/en/menu/",
       "sourceHash": "3c2188a8f70cd3e576ce8627ed116e2b9d0cffce44efba3476bcff507d09ac4a",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "washoku-sato",
@@ -6193,7 +6193,7 @@
     {
       "sourceUrl": "https://sato-res.com/sato/bar/",
       "sourceHash": "06dcce84d0a3db35f1718a5d7679bd3ac2b1190151dd7c17c0f7b3244ede7991",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "washoku-sato",
@@ -6202,7 +6202,7 @@
     {
       "sourceUrl": "https://sato-res.com/satoshabu/",
       "sourceHash": "f52d2ca7622edc33947c657ff8a7d8dfa9996797c1614b6183526fd8342fec3b",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "washoku-sato",
@@ -6211,7 +6211,7 @@
     {
       "sourceUrl": "https://sato-res.com/satosuki/",
       "sourceHash": "9acd0c9762604ad6b4e705a1d35b3832907a68cb379190c100cf145e22f71dbb",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "washoku-sato",
@@ -6220,7 +6220,7 @@
     {
       "sourceUrl": "https://sato-res.com/satoyaki/",
       "sourceHash": "1d79efb45d7161716ab0e20f258a072047213aa21a68fd80dc46313b48bbc063",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "washoku-sato",
@@ -6229,7 +6229,7 @@
     {
       "sourceUrl": "https://sato-res.com/sato/menu/",
       "sourceHash": "e9cc9c9e2dde6e9e83e57edec6133d5126eb50ec2d10879d8e894071f4f85367",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 3,
       "brandId": "washoku-sato",
@@ -6245,7 +6245,7 @@
     {
       "sourceUrl": "https://sato-res.com/sato/about/",
       "sourceHash": "502bd985d57bcc18c7e1f0728210bb6f21de9531dd448e1e39c4e5a5d66af5fe",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "washoku-sato",
@@ -6303,7 +6303,7 @@
     {
       "sourceUrl": "https://sato-res.com/sato/about/smile/",
       "sourceHash": "f431899e7785fc010a381033566aac871509f546511b23efeb59cbc7a818394b",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "washoku-sato",
@@ -6312,7 +6312,7 @@
     {
       "sourceUrl": "https://sato-res.com/sato/about/safety/",
       "sourceHash": "260c1b91530f6068cc9277d6697af5835d1febfcae2bcc2b5e4a2691d9134f92",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "washoku-sato",
@@ -6321,7 +6321,7 @@
     {
       "sourceUrl": "https://amiyakitei.jp/",
       "sourceHash": "8448b45c3f0405b4cd31bda015e0538e5de4d4ade4f2a7b0b1342122b6a71ec1",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "amiyakitei",
@@ -6330,7 +6330,7 @@
     {
       "sourceUrl": "https://amiyakitei.jp/menu/",
       "sourceHash": "0bb538076df415c4b07225b2b2a087d8cd6cf2d2214b78e1bcb45920e333db6b",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 8,
       "brandId": "amiyakitei",
@@ -6339,7 +6339,7 @@
     {
       "sourceUrl": "https://amiyakitei.jp/menu/",
       "sourceHash": "0bb538076df415c4b07225b2b2a087d8cd6cf2d2214b78e1bcb45920e333db6b",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 8,
       "brandId": "amiyakitei",
@@ -6348,7 +6348,7 @@
     {
       "sourceUrl": "https://amiyakitei.jp/atsugirifes_no_coupon/",
       "sourceHash": "268c2e88c7a7ee8acc8f0ad4a2d540372a334d1d4caf809bfbe3fc57436cc8fa",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "amiyakitei",
@@ -6356,8 +6356,8 @@
     },
     {
       "sourceUrl": "https://www.onyasai.com/",
-      "sourceHash": "873fdd5984695ac0779e5009c57c2a651fc2d39f406ef4a268e84214eabb896d",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "1002fcad0f122678c25b169e77bebb0938a703c491eabc6d45c5318d62aabad6",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "onyasai",
@@ -6366,7 +6366,7 @@
     {
       "sourceUrl": "https://www.onyasai.com/menu/menu-drink.php",
       "sourceHash": "e76958a8936195e625064a40b6232332ea8332bebc6aa2f14feafacdb9d9a54a",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 2,
       "brandId": "onyasai",
@@ -6375,7 +6375,7 @@
     {
       "sourceUrl": "https://www.onyasai.com/lp/party/",
       "sourceHash": "c4a5decc235ef7113c466437fcdf639baee4c28ed80a9b7f24085a09e6d04a4f",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "onyasai",
@@ -6384,7 +6384,7 @@
     {
       "sourceUrl": "https://www.onyasai.com/menu/menu-drink_n.php/",
       "sourceHash": "5cac373637a29159d5c57e33b4b1fef09c13ce5576477bca5bc8c305c4db4106",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "onyasai",
@@ -6393,7 +6393,7 @@
     {
       "sourceUrl": "https://www.onyasai.com/menu/menu-tabehoudai.php",
       "sourceHash": "b9a0a23a55b40dc7cd2b816b04475f46ca82c392084b540bcfdfd13249582af7",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "onyasai",
@@ -6402,7 +6402,7 @@
     {
       "sourceUrl": "https://www.onyasai.com/lp/kani/",
       "sourceHash": "8d2882345a9fcb33bff2b3b4a21f4b66c29a68bf7ad21f813c55451ecc8d3d14",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "onyasai",
@@ -6411,7 +6411,7 @@
     {
       "sourceUrl": "https://www.onyasai.com/menu/",
       "sourceHash": "682d3fff3006664a1c6a15229a006a4c07319b2eb0f568e20ad256679334cc4b",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "onyasai",
@@ -6420,7 +6420,7 @@
     {
       "sourceUrl": "https://www.onyasai.com/menu/menu-gozen.php",
       "sourceHash": "ee5484b5bcb5d112235c5dc7603b528b7bd6767b450d78fcf34baf1232711de0",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "onyasai",
@@ -6429,7 +6429,7 @@
     {
       "sourceUrl": "https://www.onyasai.com/menu/menu-lunch.php",
       "sourceHash": "91089b5f0b98654f95b24251615ab0e331ec8301281f74d0dd10b2a1de407242",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "onyasai",
@@ -6438,7 +6438,7 @@
     {
       "sourceUrl": "https://www.onyasai.com/menu/menu-kids.php",
       "sourceHash": "3dea9823000800ca3f1811f7ffb6a378ec01172c68db9ee218ecfa7abd49a963",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "onyasai",
@@ -6447,7 +6447,7 @@
     {
       "sourceUrl": "https://www.onyasai.com/menu/menu-howto-onyasai.php",
       "sourceHash": "024c63742aacba420e3ff857e37a83ff71001891a192b20c1e65fea681b4e2c7",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "onyasai",
@@ -6456,7 +6456,7 @@
     {
       "sourceUrl": "https://www.onyasai.com/multilingual-menu/",
       "sourceHash": "6eea603f0999305ada11e72812b31985177375245707ab68b7e5ef01ea492f06",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "onyasai",
@@ -6465,7 +6465,7 @@
     {
       "sourceUrl": "https://www.onyasai.com/menu/index.php",
       "sourceHash": "682d3fff3006664a1c6a15229a006a4c07319b2eb0f568e20ad256679334cc4b",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "onyasai",
@@ -6474,7 +6474,7 @@
     {
       "sourceUrl": "https://www.onyasai.com/menu/menu-tabehoudai-onyasai.php",
       "sourceHash": "877ae2424b157f53396d294ca47113ae242e4b38a7b9ead2ebf1b4a149054f96",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 3,
       "brandId": "onyasai",
@@ -6483,7 +6483,7 @@
     {
       "sourceUrl": "https://www.onyasai.com/menu/menu-tabehoudai-butashabu.php",
       "sourceHash": "e538daa47d79de6620c3845a2b295eeb27fbf043abcbefde1bf73d6bde28cc62",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 2,
       "brandId": "onyasai",
@@ -6492,7 +6492,7 @@
     {
       "sourceUrl": "https://www.onyasai.com/menu/menu-tabehoudai-gyushabu.php",
       "sourceHash": "3ffc6e19ae5596bd0dbff3cffebf1154e4cc09c7a948159f7507f71a3b232d31",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 3,
       "brandId": "onyasai",
@@ -6501,7 +6501,7 @@
     {
       "sourceUrl": "https://www.onyasai.com/menu/menu-tabehoudai-kurogewagyuu.php",
       "sourceHash": "aa9477d7015dceebed5f8bbd079e93122b13b308aa70c948c98cab5a40e89f67",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 4,
       "brandId": "onyasai",
@@ -6510,7 +6510,7 @@
     {
       "sourceUrl": "https://www.onyasai.com/menu/menu-tabehoudai-shimofuri-kurogewagyuu.php",
       "sourceHash": "99100ff0891a82a11d2c7105b32e3393893eb2ccddf932ce40d5f41d2ab0901c",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 5,
       "brandId": "onyasai",
@@ -6554,7 +6554,7 @@
     {
       "sourceUrl": "https://ameblo.jp/0141roan/entry-12970963402.html",
       "sourceHash": "f01798b457b165ba3c8fbb3a1a8df8e3f9f86fc69950f4dc43b1193ac3b87de5",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 2,
       "brandId": "roan",
@@ -6570,7 +6570,7 @@
     {
       "sourceUrl": "https://ameblo.jp/0141roan/entry-12953365343.html",
       "sourceHash": "668f6b2ef122dee2fe0dd96342a9a76dd0a69bc248c5b287e8f86167af62b6b4",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 1,
       "brandId": "roan",
@@ -6579,7 +6579,7 @@
     {
       "sourceUrl": "https://www.kalubi-taisho.com/",
       "sourceHash": "9e244cc6f154055e9f2e416e341ee491f0fa7872f2f783889dfd6e3dbfff53e1",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "kalubi-taisho",
@@ -6588,7 +6588,7 @@
     {
       "sourceUrl": "https://www.kalubi-taisho.com/menu/3616/",
       "sourceHash": "7fb0999a7d92a73cc85b10dc39882ad51c1ea10eab564e15136da565a523d3f5",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 1,
       "brandId": "kalubi-taisho",
@@ -6597,7 +6597,7 @@
     {
       "sourceUrl": "https://www.kalubi-taisho.com/menu/4234/",
       "sourceHash": "640142f448823fd79495e0065dbdd12fbb195a9a5e442d0a853940b1e6474f9c",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 4,
       "brandId": "kalubi-taisho",
@@ -6606,7 +6606,7 @@
     {
       "sourceUrl": "https://www.kalubi-taisho.com/campaign/4662/",
       "sourceHash": "16878a72342db626b9233fba16d3e2157aa4c803a720979c27628194de2f243f",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "kalubi-taisho",
@@ -6615,7 +6615,7 @@
     {
       "sourceUrl": "https://www.kalubi-taisho.com/campaign/4602/",
       "sourceHash": "086c375fbc2c1417a48740e307105223f74a53f3088e3778f418a3d1f182f600",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "kalubi-taisho",
@@ -6624,7 +6624,7 @@
     {
       "sourceUrl": "https://www.kalubi-taisho.com/menu/4232/",
       "sourceHash": "3cf45dc6646e60088c156bc1cb1fec12fe779a41c25bb9e2a8a9207cd9a7335b",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "kalubi-taisho",
@@ -6633,7 +6633,7 @@
     {
       "sourceUrl": "https://www.kalubi-taisho.com/menu/",
       "sourceHash": "03240b094280084bcf644076e06a1336eba40db57d8f3f1e2c8827e9cb0f1acd",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "kalubi-taisho",
@@ -6642,7 +6642,7 @@
     {
       "sourceUrl": "https://www.kalubi-taisho.com/campaign/4596/",
       "sourceHash": "63c39fc29f2d2119f7e75ab10c0473e483b0fda8142ec78a9165f16d0faa8d78",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "kalubi-taisho",
@@ -6651,7 +6651,7 @@
     {
       "sourceUrl": "https://www.kalubi-taisho.com/about/",
       "sourceHash": "d73a621c00f6f9992ca43467904f6d68b2969efe87595b39ea5e5246e2e00e1f",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "kalubi-taisho",
@@ -6660,7 +6660,7 @@
     {
       "sourceUrl": "https://www.kalubi-taisho.com/menu/4505/",
       "sourceHash": "46b48fa0a86e6c39b157ca6de4baaebbf320005c4f3c73f20814433e9a4918c5",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 5,
       "brandId": "kalubi-taisho",
@@ -6669,7 +6669,7 @@
     {
       "sourceUrl": "https://www.kalubi-taisho.com/menu/4228/",
       "sourceHash": "b2b91c9f5824b302f9fd894c6949ea2146345998a69a24f9deb9eff61328e583",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "kalubi-taisho",
@@ -6678,7 +6678,7 @@
     {
       "sourceUrl": "https://www.kalubi-taisho.com/menu/4279/",
       "sourceHash": "c9d3926483a372d727c7051ab4b2a2b08184a507626c91844c1b76ee73277b61",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "kalubi-taisho",
@@ -6687,7 +6687,7 @@
     {
       "sourceUrl": "https://www.kalubi-taisho.com/menu/3896/",
       "sourceHash": "4aa35961675232b0ed8887c0d3e2460363e7f9d8667811c4a6c5fca9621c38f3",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "kalubi-taisho",
@@ -6696,7 +6696,7 @@
     {
       "sourceUrl": "https://www.kalubi-taisho.com/menu/4082/",
       "sourceHash": "7535c82da1af09b40697efda1d12c4a7e42dd42d0594af500cd6a0f6ad564fa8",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "kalubi-taisho",
@@ -6705,7 +6705,7 @@
     {
       "sourceUrl": "https://www.kalubi-taisho.com/campaign/4605/",
       "sourceHash": "13fc005d21facef20c8303f17666cbcccdb9506b70a7249b0a488656a40677c3",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "kalubi-taisho",
@@ -6713,8 +6713,8 @@
     },
     {
       "sourceUrl": "https://staminataro.jp/",
-      "sourceHash": "752491c14daf9a19b857aec6027739a059f273a1a585969ef95291ef6dc39e6a",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "758ff9948a4b4d010fcb12191474f2b05926554d996f0283851c32c24e38811b",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "stamina-taro",
@@ -6723,7 +6723,7 @@
     {
       "sourceUrl": "https://staminataro.jp/shop-list/",
       "sourceHash": "ca000892f6c86101416f9de81e9d5528a0a6591d345cee6b3f62416e21c68f86",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "stamina-taro",
@@ -6732,7 +6732,7 @@
     {
       "sourceUrl": "https://staminataro.jp/menu/",
       "sourceHash": "7201236c7369cd37baa43ac88ff235fc42a891f38bd39a5a5180d38697471aa7",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 5,
       "brandId": "stamina-taro",
@@ -6741,7 +6741,7 @@
     {
       "sourceUrl": "https://staminataro.jp/2026/09/14/0919sw/",
       "sourceHash": "e897dcd140342c1696c562f0bb9d409e6caed84f064be1f7efedeae6ea26feef",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "stamina-taro",
@@ -6750,7 +6750,7 @@
     {
       "sourceUrl": "https://staminataro.jp/2026/09/10/ninnikufair20260918/",
       "sourceHash": "2e0a072ec05ac4e9071327237b8e327db927e1ddd56da4119802943702350039",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "stamina-taro",
@@ -6759,7 +6759,7 @@
     {
       "sourceUrl": "https://www.asakuma.co.jp/",
       "sourceHash": "723dcb0958e55855f9e454d3ecd772dd824485a138cf82ccfa051c1fecb3c419",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "asakuma",
@@ -6768,7 +6768,7 @@
     {
       "sourceUrl": "https://www.asakuma.co.jp/shoplist/okazaki.html",
       "sourceHash": "0e654a597ca3f86059832a8a8a4b2894a77379f3d3721ba993017d5fc196a140",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "asakuma",
@@ -6777,7 +6777,7 @@
     {
       "sourceUrl": "https://www.asakuma.co.jp/shoplist/hamamatsuic.html",
       "sourceHash": "11ea3b5a47d83ea171fbf7d9c2bd4525717d6c332c0b0b84627915f2ef20c824",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "asakuma",
@@ -6786,7 +6786,7 @@
     {
       "sourceUrl": "https://www.asakuma.co.jp/salad-bar/",
       "sourceHash": "3aeb06b06c7919e34dd6eea6f4f9b2de66a2b5d7a3b4f0062578ad8698541754",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 3,
       "brandId": "asakuma",
@@ -6795,7 +6795,7 @@
     {
       "sourceUrl": "https://www.asakuma.co.jp/menu/menu.html?topmenu",
       "sourceHash": "b4682bbb5ba369f587f26c4a90a4c47882bb87ca5dcc22d0bb052ad9a5d031ac",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "asakuma",
@@ -6804,7 +6804,7 @@
     {
       "sourceUrl": "https://www.asakuma.co.jp/menu/menu.html",
       "sourceHash": "b4682bbb5ba369f587f26c4a90a4c47882bb87ca5dcc22d0bb052ad9a5d031ac",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "asakuma",
@@ -6813,7 +6813,7 @@
     {
       "sourceUrl": "https://www.asakuma.co.jp/menu_recommended-lunch-menu.html",
       "sourceHash": "dea58308307dab20487ecc3185a96f805aa9b826cf9aff5ecda4a8f35afacfca",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 4,
       "brandId": "asakuma",
@@ -6822,7 +6822,7 @@
     {
       "sourceUrl": "https://www.asakuma.co.jp/menu_gyumabushi.html",
       "sourceHash": "434dbf3dea2031209e719489f9c5b291888f5185ff67fc796c7835b4e113c382",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "asakuma",
@@ -6831,7 +6831,7 @@
     {
       "sourceUrl": "https://www.asakuma.co.jp/counterless/dish-planner.html",
       "sourceHash": "168ddaad9adbbb97394772b5501a84e1d6c0167c25917c9516bb6d0957f3276f",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "asakuma",
@@ -6840,7 +6840,7 @@
     {
       "sourceUrl": "https://www.asakuma.co.jp/menu/takeout-menu.html",
       "sourceHash": "b029bb96a4d10d76e4eaf9181f3908a9cef61d8b21640cdb86882c2eeabc1aa7",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "asakuma",
@@ -6849,7 +6849,7 @@
     {
       "sourceUrl": "https://www.asakuma.co.jp/ir/20260903.html",
       "sourceHash": "3805e7479a98f2062f5ae7cc6df038041b78a88d99ddf3105af9e6e1b6a7abdc",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "asakuma",
@@ -6858,7 +6858,7 @@
     {
       "sourceUrl": "https://www.asakuma.co.jp/menu/menu.html?topmain1",
       "sourceHash": "b4682bbb5ba369f587f26c4a90a4c47882bb87ca5dcc22d0bb052ad9a5d031ac",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "asakuma",
@@ -6867,7 +6867,7 @@
     {
       "sourceUrl": "https://www.asakuma.co.jp/menu/menu.html?topmainimg",
       "sourceHash": "b4682bbb5ba369f587f26c4a90a4c47882bb87ca5dcc22d0bb052ad9a5d031ac",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "asakuma",
@@ -6876,7 +6876,7 @@
     {
       "sourceUrl": "https://www.asakuma.co.jp/menu/menu.html?topmain2",
       "sourceHash": "b4682bbb5ba369f587f26c4a90a4c47882bb87ca5dcc22d0bb052ad9a5d031ac",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "asakuma",
@@ -6885,7 +6885,7 @@
     {
       "sourceUrl": "https://www.asakuma.co.jp/shoplist.html?topmenu",
       "sourceHash": "9e51a119b7bb0c3884375143db295cb024c25873c61f464aed7d41f489ca8f17",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "asakuma",
@@ -6894,7 +6894,7 @@
     {
       "sourceUrl": "https://www.asakuma.co.jp/menu/lunchmenu-01.html",
       "sourceHash": "697ac6d4330730a06a79a1a32c2ed663d5e6424c0062355bd0af9613e613c648",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 2,
       "brandId": "asakuma",
@@ -6903,7 +6903,7 @@
     {
       "sourceUrl": "https://www.asakuma.co.jp/menu/grandmenu-04.html",
       "sourceHash": "a7a2ea821807cb20c5925b25adb55fda869d513e9525834ba6af9ad6f68edf07",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 1,
       "brandId": "asakuma",
@@ -6912,7 +6912,7 @@
     {
       "sourceUrl": "https://www.asakuma.co.jp/menu_recommended-lunch-menu_without-sb.html",
       "sourceHash": "fa5a0ea67954378908343a2b65e9f50f05de6d403c3ba625e3d2c57a09116f42",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 4,
       "brandId": "asakuma",
@@ -6920,8 +6920,8 @@
     },
     {
       "sourceUrl": "https://www.yakiniku.jp/nikushou_sakai/",
-      "sourceHash": "d5b6d7b4b2f57b58784b57b18b5717a66fb47b4691107001f1eedf3008597bd8",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "22a5ccafd952b7d841aeea8569fa8295285b051ca1eed62794ba943d8719619f",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "nikusho-sakai",
@@ -6930,7 +6930,7 @@
     {
       "sourceUrl": "https://www.yakiniku.jp/nikushou_sakai/drink/",
       "sourceHash": "fb96b5366da0c961ac9e2f6410966f48291bdeb549e9f374e533efbd1c9a30c8",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 1,
       "brandId": "nikusho-sakai",
@@ -6939,7 +6939,7 @@
     {
       "sourceUrl": "https://www.yakiniku.jp/nikushou_sakai/menu/",
       "sourceHash": "0546694c0c2b185a49b422957a488c7494e9987dc1b9d7b2f00f2ff8421b22c6",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 4,
       "brandId": "nikusho-sakai",
@@ -6948,7 +6948,7 @@
     {
       "sourceUrl": "https://www.yakiniku.jp/nikushou_sakai/news/taiwan_gourmet/",
       "sourceHash": "2d1ca6a0446261f7ea05cf6d61f2834f4bbcb09380e6267304dd8b1a220f3ecc",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "nikusho-sakai",
@@ -6957,7 +6957,7 @@
     {
       "sourceUrl": "https://www.jukusei-ichiban.jp/jp/",
       "sourceHash": "28ea10907550270e10f8eb763fa835497b55859454cb667e896d7232dbce0fdc",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 2,
       "brandId": "jukusei-ichiban",
@@ -6966,7 +6966,7 @@
     {
       "sourceUrl": "https://www.jukusei-ichiban.jp/jp/menu/cat5.html",
       "sourceHash": "0137783cc5147a9fa36cdcb508e35a0a707c431e5b373a952143dbfd87221509",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "jukusei-ichiban",
@@ -6975,7 +6975,7 @@
     {
       "sourceUrl": "https://www.jukusei-ichiban.jp/jp/menu/",
       "sourceHash": "97bf1ad3a12c3272578eb3ada25ff818a28a7abac12e92c7c39ae1f5139b7261",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 6,
       "brandId": "jukusei-ichiban",
@@ -6984,7 +6984,7 @@
     {
       "sourceUrl": "https://www.jukusei-ichiban.jp/jp/menu/cat2.html",
       "sourceHash": "715ab8b1baf400353311b6b4a93f5613979c1ab4631f2a34792d828b18a132a7",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "jukusei-ichiban",
@@ -6993,7 +6993,7 @@
     {
       "sourceUrl": "https://www.jukusei-ichiban.jp/jp/menu/cat3.html",
       "sourceHash": "4b84c95f5df95c34c2e13ade883c11583d871b4e2654097113a3ce46d5046a92",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "jukusei-ichiban",
@@ -7002,7 +7002,7 @@
     {
       "sourceUrl": "https://www.jukusei-ichiban.jp/jp/menu/cat4.html",
       "sourceHash": "1176828cba3828eb29ea719b75c2d08785e9e9527ae91ec611ede0496f571f60",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "jukusei-ichiban",
@@ -7010,8 +7010,8 @@
     },
     {
       "sourceUrl": "https://anrakutei.jp/",
-      "sourceHash": "62d657a65f9ac83d3f21984fa81edeea91c3d46b49033cee5ae6cadbe35c35d4",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "sourceHash": "1e8ee30ce8b48b4805aa9aac8df7a3a819195ce428d6530c585af4957c4f6e55",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "anrakutei",
@@ -7020,7 +7020,7 @@
     {
       "sourceUrl": "https://anrakutei.jp/fair/nikunohi202608/",
       "sourceHash": "5efa3b9c61aca4663e1da060a0c47e4e887f6dd0f856718293e00e8e0ddab1a4",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "anrakutei",
@@ -7029,7 +7029,7 @@
     {
       "sourceUrl": "https://anrakutei.jp/about/",
       "sourceHash": "ca6dc3f07ef8708b2e7f2ca1ac85a8f5d13c88ea3838b95d487a6c4c8e0ec8e1",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "anrakutei",
@@ -7038,7 +7038,7 @@
     {
       "sourceUrl": "https://anrakutei.jp/menu/",
       "sourceHash": "42ee259296c49834e7e8ba35061bc9627330e5d08664d499a608fcf103acc4d8",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "anrakutei",
@@ -7047,7 +7047,7 @@
     {
       "sourceUrl": "https://anrakutei.jp/menucate/drink/",
       "sourceHash": "5c82bf18dbd57abd65f7116e0e9d50ed55684471b227163a51287d02ea9ccecc",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 2,
       "brandId": "anrakutei",
@@ -7056,7 +7056,7 @@
     {
       "sourceUrl": "https://anrakutei.jp/menucate/tabehoudai/",
       "sourceHash": "fca379252bad9075707f187884048a3df52b6433bd5a426afc80d158bc90f882",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 5,
       "brandId": "anrakutei",
@@ -7065,7 +7065,7 @@
     {
       "sourceUrl": "https://anrakutei.jp/menucate/largeplatter/",
       "sourceHash": "c7f2cb8ae07dca5d51a062a06f93a7e8b7d0756a54815da630270ef13217227e",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "anrakutei",
@@ -7074,7 +7074,7 @@
     {
       "sourceUrl": "https://anrakutei.jp/menucate/yakiniku/",
       "sourceHash": "6d6fc27b73cc786d313b8df29cc41016447f2c3d6dc2c56b701c75da39f1ddf7",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "anrakutei",
@@ -7083,7 +7083,7 @@
     {
       "sourceUrl": "https://anrakutei.jp/menucate/kaisen/",
       "sourceHash": "2d17ac20dff9fa91d78b2c3c78ef077cd26564d8bd26874821686607dc355e17",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "anrakutei",
@@ -7092,7 +7092,7 @@
     {
       "sourceUrl": "https://anrakutei.jp/menucate/vegetables-2/",
       "sourceHash": "da0aed83b8f5dd8711e7c6c20a464ee4e88683b81ccf1dbdcdfd48ffe93c1c2c",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "anrakutei",
@@ -7101,7 +7101,7 @@
     {
       "sourceUrl": "https://anrakutei.jp/menucate/sangchusalad/",
       "sourceHash": "b2985f8ded362c37d58c22a013cb092f174bd1b73c14782519b68797a65545ba",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "anrakutei",
@@ -7110,7 +7110,7 @@
     {
       "sourceUrl": "https://anrakutei.jp/menucate/kimchinamul/",
       "sourceHash": "5c338756403df33409bcf8e91f0d0328696aa9a2c8e777ff9f1d7922ca35dbca",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "anrakutei",
@@ -7119,7 +7119,7 @@
     {
       "sourceUrl": "https://anrakutei.jp/menucate/rice%ef%bc%86noodle/",
       "sourceHash": "28ab93da6d072f3f996d68b142808886f891ec1b83c7b4fa421914ebd8f7ec66",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "anrakutei",
@@ -7128,7 +7128,7 @@
     {
       "sourceUrl": "https://anrakutei.jp/menucate/soup/",
       "sourceHash": "f71d77f81e493398000191f64456585a9ed3aa32726a9f6e20ada94737fac702",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "anrakutei",
@@ -7137,7 +7137,7 @@
     {
       "sourceUrl": "https://anrakutei.jp/menucate/yakiniku-teishoku/",
       "sourceHash": "e05ab9724b5db0ba43252c8809609fa3adeadcf7e577261c402e4718ccbceba4",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "anrakutei",
@@ -7146,7 +7146,7 @@
     {
       "sourceUrl": "https://anrakutei.jp/menucate/dessert-2/",
       "sourceHash": "cb48ef6820d42ae012569b86f9b5cbc0bc88711a49d9a954230f88d6cf42eadb",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "anrakutei",
@@ -7155,7 +7155,7 @@
     {
       "sourceUrl": "https://anrakutei.jp/menucate/lunch/",
       "sourceHash": "8a7b28366ca60ab5c0ae2558db4c5061083539b5ebad95baf501d1abcb33cb0a",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "anrakutei",
@@ -7164,7 +7164,7 @@
     {
       "sourceUrl": "https://anrakutei.jp/menucate/enkai/",
       "sourceHash": "9695b573c5ab6bb4b1636c5a32e7cc7c6916714dcea501d2f9838164b31f1f45",
-      "checkedAt": "2026-09-16T00:29:55.442Z",
+      "checkedAt": "2026-09-16T04:16:55.604Z",
       "status": "ok",
       "entries": 0,
       "brandId": "anrakutei",
