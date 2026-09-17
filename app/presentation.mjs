@@ -1,7 +1,6 @@
 // UI policy extracted from the 2026-09-15 chain-by-chain review.
 // Data collection stays factual; this file controls only what is emphasized.
-export const EXCLUDED_BRANDS=new Set(['kushiya-monogatari']);
-
+// Only the fourteen explicitly reviewed brands below are part of this app.
 const BASE={
   showHighlights:false,
   coursePhotos:false,
@@ -99,13 +98,13 @@ export const BRAND_PRESENTATION={
   anrakutei:{
     ...BASE,coursePhotos:true,drinkPhotos:true,
     courseAllow:/コース/i,
-    drinkAllow:/ドリンクバー/i,
-    note:'写真付きコースを優先。飲み物は価格確認できるドリンクバーパネルだけを表示し、重複・未確認パネルは出さない'
+    drinkAllow:/ドリンクバー|ソフトドリンク飲み放題/i,
+    note:'写真付きコースを優先。確認済みのドリンク料金・コース込み飲み放題だけを表示'
   }
 };
 
 export function presentationFor(brandId){return BRAND_PRESENTATION[brandId]||BASE;}
-export function visibleBrand(brandId){return !EXCLUDED_BRANDS.has(brandId);}
+export function visibleBrand(brandId){return Object.hasOwn(BRAND_PRESENTATION,brandId);}
 export function matchesRule(value,allow,deny){
   const text=String(value||'');
   if(deny&&deny.test(text))return false;
@@ -113,10 +112,7 @@ export function matchesRule(value,allow,deny){
 }
 
 export function fairAssetVisible(brandId,asset){
-  // Tests and future chains without an explicit presentation policy retain the
-  // generic verified gallery behavior. The 14 reviewed chains below are the
-  // only ones intentionally trimmed for the compact Sakai-style UI.
-  if(!BRAND_PRESENTATION[brandId])return true;
+  if(!BRAND_PRESENTATION[brandId])return false;
   const p=presentationFor(brandId);
   if(asset.kind==='campaign')return true;
   if(p.fairGallery==='amiyakitei')return asset.kind==='detail'&&asset.group!=='drink';
@@ -125,7 +121,7 @@ export function fairAssetVisible(brandId,asset){
 }
 
 export function catalogEntryVisible(brandId,entry){
-  if(!BRAND_PRESENTATION[brandId])return true;
+  if(!BRAND_PRESENTATION[brandId])return false;
   const p=presentationFor(brandId);
   if(entry.kind==='highlight')return p.showHighlights===true;
   if(entry.kind==='course')return matchesRule(entry.title,p.courseAllow,p.courseDeny);
