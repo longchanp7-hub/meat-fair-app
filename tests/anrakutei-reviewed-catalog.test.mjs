@@ -22,7 +22,7 @@ test('Anrakutei notice parser fails closed when one required price or marker is 
  assert.deepEqual(reviewedAnrakuteiCatalog(ANRAKUTEI_PRICE_NOTICE,notice.replace('追加料金なし',''),checkedAt),[]);
 });
 
-test('effective notice replaces known old core rows but yields to a fully changed current menu',()=>{
+test('effective notice replaces known old core rows but yields course prices to a fully changed current menu',()=>{
  const reviewed=reviewedAnrakuteiCatalog(ANRAKUTEI_PRICE_NOTICE,notice,checkedAt);
  const auto=(title,amount)=>({brandId:'anrakutei',kind:'course',title,sourceUrl:'https://anrakutei.jp/menucate/tabehoudai/',price:{amount}});
  const old=[auto('ベーシックコース',4048),auto('デラックスコース',5478),auto('プライムコース',8008),auto('プレミアムゴージャスコース',16500)];
@@ -30,5 +30,7 @@ test('effective notice replaces known old core rows but yields to a fully change
  assert.equal(reconciled.filter(x=>x.kind==='course').length,4);assert.ok(reconciled.every(x=>x.sourceMethod==='reviewed-effective-price-notice'));
  const future=[auto('スタンダードコース',3700),auto('デラックスコース',5300),auto('プライムコース',7800),auto('プレミアムゴージャスコース',11000)];
  const futureResult=reconcileAnrakuteiCatalog([...future,...reviewed]);
- assert.ok(futureResult.some(x=>x.price?.amount===3700));assert.ok(!futureResult.some(x=>x.sourceMethod==='reviewed-effective-price-notice'));
+ assert.ok(futureResult.some(x=>x.price?.amount===3700));
+ assert.ok(!futureResult.some(x=>x.kind==='course'&&x.sourceMethod==='reviewed-effective-price-notice'));
+ assert.ok(futureResult.some(x=>x.kind==='drink'&&x.sourceMethod==='reviewed-effective-price-notice'));
 });
