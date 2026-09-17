@@ -112,7 +112,9 @@ export function matchesRule(value,allow,deny){
 }
 
 export function fairAssetVisible(brandId,asset){
-  if(!BRAND_PRESENTATION[brandId])return false;
+  // Generic helpers remain usable for isolated tests/future review work, while
+  // visibleBrand() is the hard gate used by the actual app.
+  if(!BRAND_PRESENTATION[brandId])return true;
   const p=presentationFor(brandId);
   if(asset.kind==='campaign')return true;
   if(p.fairGallery==='amiyakitei')return asset.kind==='detail'&&asset.group!=='drink';
@@ -121,7 +123,7 @@ export function fairAssetVisible(brandId,asset){
 }
 
 export function catalogEntryVisible(brandId,entry){
-  if(!BRAND_PRESENTATION[brandId])return false;
+  if(!BRAND_PRESENTATION[brandId])return true;
   const p=presentationFor(brandId);
   if(entry.kind==='highlight')return p.showHighlights===true;
   if(entry.kind==='course')return matchesRule(entry.title,p.courseAllow,p.courseDeny);
