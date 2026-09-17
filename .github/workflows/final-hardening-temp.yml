@@ -17,7 +17,9 @@ jobs:
         with:
           node-version: '24'
       - name: Apply audited cleanup
-        run: python scripts/final-hardening-apply.py
+        run: |
+          python scripts/final-hardening-apply.py
+          sed -i '1{/^\\$/d;}' tests/pipeline-hardening.test.mjs
       - name: Verify hardening
         run: |
           if grep -RIE 'kushiya-monogatari|kushi-ya\.com|串家物語|串の日' app scripts --include='*.js' --include='*.mjs' --include='*.json'; then exit 1; fi
