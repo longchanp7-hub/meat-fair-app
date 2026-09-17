@@ -49,7 +49,9 @@ export function reconcileAnrakuteiCatalog(entries){
   const hasFourCurrent=['スタンダードコース','デラックスコース','プライムコース','プレミアムゴージャスコース'].every(t=>currentMap.has(t));
   const currentIsOld=auto.length>0&&auto.every(e=>!Number.isFinite(e.price?.amount)||oldPrices.get(e.title)===e.price.amount);
   if(hasFourCurrent&&!currentIsOld){
-    return entries.filter(e=>e.sourceMethod!=='reviewed-effective-price-notice');
+    // A complete newer menu supersedes the notice for course prices. The notice's
+    // separate soft-drink inclusion remains valid until newer official evidence contradicts it.
+    return entries.filter(e=>!(e.sourceMethod==='reviewed-effective-price-notice'&&e.kind==='course'));
   }
   return entries.filter(e=>!(e.brandId==='anrakutei'&&e.kind==='course'&&coreTitle.test(e.title||'')&&e.sourceMethod!=='reviewed-effective-price-notice'));
 }
