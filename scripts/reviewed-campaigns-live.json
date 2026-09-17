@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "reviews": [
+    {
+      "brandId": "yakiniku-king",
+      "officialUrl": "https://www.yakiniku-king.jp/menu_all/season/2609_koreanfair/",
+      "reviewedAt": "2026-09-17T01:19:00.000Z",
+      "contentHash": "cd3743f6967eb7885b6c31c20c5eb3ea47dd8e7945afb1fabc5d64061dfd8b85",
+      "semanticGuard": true,
+      "fields": {
+        "price": null,
+        "priceText": null,
+        "limitedIngredients": ["韓国"],
+        "targetCourses": ["きんぐコース", "プレミアムコース"],
+        "conditions": ["一部店舗では販売商品・開始時期が異なります。"],
+        "title": "期間限定 韓国市場（カンコクシジャン）",
+        "startDate": "2026-09-16",
+        "endDate": "2026-12-08",
+        "allYouCanEat": true,
+        "imageUrl": "https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/img/menu/season/2609_koreanfair/pc01.webp"
+      }
+    }
+  ]
+}
