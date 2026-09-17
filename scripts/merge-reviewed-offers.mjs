@@ -3,7 +3,7 @@ import crypto from 'node:crypto';
 
 const dataUrl=new URL('../app/data/offers.json',import.meta.url);
 const reviewedUrl=new URL('./reviewed-offers.json',import.meta.url);
-const MAX_REVIEW_AGE=2*86400000;
+const DEFAULT_REVIEW_AGE=2*86400000,ROAN_REVIEW_AGE=7*86400000;
 const now=Date.now();
 const data=JSON.parse(await fs.readFile(dataUrl,'utf8'));
 const reviewed=JSON.parse(await fs.readFile(reviewedUrl,'utf8'));
@@ -22,7 +22,8 @@ for(const o of reviewed.offers){
 for(const [brandId,rows] of reviewedByBrand){
   const health=(data.sourceHealth||[]).find(h=>h.brandId===brandId);
   if((byBrand.get(brandId)||[]).length||health?.status==='ok')continue;
-  const fresh=rows.filter(o=>{const t=Date.parse(o.reviewedAt||'');return Number.isFinite(t)&&now-t>=0&&now-t<=MAX_REVIEW_AGE;});
+  const maxAge=brandId==='roan'?ROAN_REVIEW_AGE:DEFAULT_REVIEW_AGE;
+  const fresh=rows.filter(o=>{const t=Date.parse(o.reviewedAt||'');return Number.isFinite(t)&&now-t>=0&&now-t<=maxAge;});
   for(const [rank,o] of fresh.entries()){
     const checkedAt=o.reviewedAt;
     data.offers.push({...o,checkedAt,rank,id:crypto.createHash('sha256').update([o.brandId,o.kind,o.title,o.priceText||'',o.officialUrl].join('|')).digest('hex').slice(0,16),verificationState:'reviewed_fallback'});

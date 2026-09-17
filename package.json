@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "update": "node scripts/update-fairs.mjs && node scripts/update-gallery.mjs && node scripts/update-offers.mjs && node scripts/merge-reviewed-offers.mjs && node scripts/update-catalog.mjs && node scripts/normalize-static-data.mjs",
+    "update": "node scripts/normalize-reviewed-campaigns.mjs && node scripts/update-fairs.mjs && node scripts/update-gallery.mjs && node scripts/update-offers.mjs && node scripts/merge-reviewed-offers.mjs && node scripts/update-catalog.mjs && node scripts/normalize-static-data.mjs",
     "update:gallery": "node scripts/update-gallery.mjs",
     "quality-gate": "node scripts/quality-gate.mjs --self-test",
     "verify": "node scripts/verify-data.mjs && node scripts/verify-gallery.mjs && node scripts/verify-catalog.mjs && node scripts/verify-offers.mjs",

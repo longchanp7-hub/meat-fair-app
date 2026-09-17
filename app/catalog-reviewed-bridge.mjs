@@ -3,14 +3,14 @@
 // No inferred price is introduced here.
 const validUrl=v=>{try{return new URL(v).protocol==='https:';}catch{return false;}};
 const normalize=v=>String(v||'').normalize('NFKC').replace(/\s+/g,'');
+const DEFAULT_REVIEWED_TTL=2*86400000,ROAN_REVIEWED_TTL=7*86400000,CURRENT_TTL=2*86400000;
 export function reviewedCatalogFallbacks(data,brandId,current=[],now=new Date()){
  const result=[];
  for(const o of data?.offers||[]){
-  const age=+now-Date.parse(o.checkedAt||o.reviewedAt);
-  if(o.brandId!==brandId||!['course','drink'].includes(o.kind)||!(age>=0&&age<=172800000)||!validUrl(o.sourceUrl)||!validUrl(o.officialUrl))continue;
+  const age=+now-Date.parse(o.checkedAt||o.reviewedAt),reviewed=o.verificationState==='reviewed_fallback',ttl=reviewed?(brandId==='roan'?ROAN_REVIEWED_TTL:DEFAULT_REVIEWED_TTL):CURRENT_TTL;
+  if(o.brandId!==brandId||!['course','drink'].includes(o.kind)||!(age>=0&&age<=ttl)||!validUrl(o.sourceUrl)||!validUrl(o.officialUrl))continue;
   const label=String(o.priceText||''),explicit=label.match(/税込\s*([\d,]+)\s*円/),n=explicit?Number(explicit[1].replaceAll(',','')):null;
   const included=/料金に含|無料/.test(label),amount=included?0:n;
-  const reviewed=o.verificationState==='reviewed_fallback';
   // しゃぶ葉の公式ページは「平日ディナー宴会 3,000円」を画像と本文に
   // 分けて掲載しているため、税込額が本文で明示された現在取得分だけ補完する。
   const currentExplicit=brandId==='syabuyo'&&o.kind==='course'&&/平日ディナー/.test(String(o.title||''))&&amount!==null;

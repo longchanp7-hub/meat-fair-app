@@ -5,5 +5,6 @@ export const CATALOG_SOURCES={
   'kalubi-taisho':['https://www.kalubi-taisho.com/menu/3616/','https://www.kalubi-taisho.com/menu/4234/'],
   'roan':['https://www.good-promise.co.jp/roan/price/','https://www.good-promise.co.jp/roan/shop/toyokawa/','https://www.good-promise.co.jp/roan/shop/hamamatsu/'],
   'stamina-taro':['https://staminataro.jp/shop-list/'],
-  'asakuma':['https://www.asakuma.co.jp/shoplist/okazaki.html','https://www.asakuma.co.jp/shoplist/hamamatsuic.html']
+  'asakuma':['https://www.asakuma.co.jp/shoplist/okazaki.html','https://www.asakuma.co.jp/shoplist/hamamatsuic.html'],
+  'anrakutei':['https://anrakutei.jp/topic/20260917pricedown/']
 };

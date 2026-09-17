@@ -1,6 +1,8 @@
 import fs from 'node:fs/promises';
 import crypto from 'node:crypto';
 import {SOURCES} from './source-registry.mjs';
+import {TARGET_BRANDS} from './target-brands.mjs';
+import {reviewSemanticallySupported} from './review-guard.mjs';
 import {validateDataset,validateCampaign} from './quality-gate.mjs';
 import {campaignId} from './fair-utils.mjs';
 import {parseHtml,text,httpUrl,all} from './html-document.mjs';
@@ -10,9 +12,16 @@ import {withFetchRetries} from './retry-fetch.mjs';
 const OUT=new URL('../app/data/fairs.json',import.meta.url);
 const AUDIT=new URL('../app/data/candidates.json',import.meta.url);
 const primaryCatalog=JSON.parse(await fs.readFile(new URL('./reviewed-campaigns.json',import.meta.url),'utf8'));
+const liveCatalog=JSON.parse(await fs.readFile(new URL('./reviewed-campaigns-live.json',import.meta.url),'utf8'));
 let roanCatalog={reviews:[]};
 try{roanCatalog=JSON.parse(await fs.readFile(new URL('./reviewed-campaigns-roan.json',import.meta.url),'utf8'))}catch(e){if(e.code!=='ENOENT')throw e;}
-const catalog={...primaryCatalog,reviews:[...(primaryCatalog.reviews||[]),...(roanCatalog.reviews||[])]};
+const reviewMap=new Map();
+for(const r of [...(liveCatalog.reviews||[]),...(primaryCatalog.reviews||[]),...(roanCatalog.reviews||[])]){
+  if(!TARGET_BRANDS.has(r.brandId))continue;
+  const key=r.brandId+'|'+r.officialUrl;
+  if(!reviewMap.has(key))reviewMap.set(key,r);
+}
+const catalog={schemaVersion:1,reviews:[...reviewMap.values()]};
 const now=new Date(),stamp=now.toISOString(),today=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(now);
 const DAY=86400000;
 let current={schemaVersion:1,timezone:'Asia/Tokyo',statusRules:{newDays:7,endingSoonDays:7},campaigns:[]};
@@ -36,7 +45,7 @@ function live(c){return c.lifecycleStatus==='current'&&(!c.endDate||c.endDate>=t
 function stillRecent(c,maxDays=45){const d=c.startDate||c.publishedDate;return d&&(now-new Date(d+'T00:00:00+09:00'))/DAY<=maxDays;}
 function knownReview(brandId,url){return catalog.reviews.find(r=>r.brandId===brandId&&r.officialUrl===url);}
 function oldAt(brandId,url){return current.campaigns.find(c=>c.brandId===brandId&&c.officialUrl===url);}
-function noReviewFood(title){return FOOD_TITLE.test(title)&&!NON_FOOD.test(title)&&!/^食べ放題コースはこちら|^選べる|^【公式】|^メニュー|^お知らせ$/.test(title);}
+function noReviewFood(title){return FOOD_TITLE.test(title)&&!NON_FOOD.test(title)&&!/写真投稿|投稿キャンペーン|フォロー.?リプライ|スピードくじ/.test(title)&&!/^食べ放題コースはこちら|^選べる|^【公式】|^メニュー|^お知らせ$/.test(title);}
 
 async function processBrand(brand){
   const errors=[],roots=[],listed=new Map(),queue=new Map(),proposed=[],accepted=[],failedUrls=new Set();
@@ -52,7 +61,7 @@ async function processBrand(brand){
       for(const l of discoverLinks(brand,result.html,source.url)){
         listed.set(l.url,true);
         if(!knownReview(brand.brandId,l.url)){
-          if(NON_FOOD.test(l.title))continue;
+          if(NON_FOOD.test(l.title)||/写真投稿|投稿キャンペーン|フォロー.?リプライ|スピードくじ/.test(l.title))continue;
           if(l.title&&!FOOD_TITLE.test(l.title)&&!/詳細|詳しく|こちら|more/i.test(l.title))continue;
           const ym=new URL(l.url).pathname.match(/\/(20\d{2})\/(\d{2})\//);
           if(ym&&(now-new Date(`${ym[1]}-${ym[2]}-01T00:00:00Z`))/DAY>120)continue;
@@ -76,10 +85,12 @@ async function processBrand(brand){
       if(!allowedDetail(brand,finalUrl))throw Error('unexpected_redirect_path');
       const p=extractPage(brand,html,finalUrl,link.title);
       const review=knownReview(brand.brandId,finalUrl);
-      const reviewed=!!review&&review.contentHash===p.hash;
+      const d=datesFor(p,finalUrl);
+      const exactReviewed=!!review&&review.contentHash===p.hash;
+      const semanticReviewed=!!review&&!exactReviewed&&reviewSemanticallySupported(review,p,d);
+      const reviewed=exactReviewed||semanticReviewed;
       if(!reviewed&&!noReviewFood(p.title))continue;
       if(p.bodyText.length<25)throw Error('empty_campaign_body');
-      const d=datesFor(p,finalUrl);
       const old=oldAt(brand.brandId,finalUrl);
       let c={
         id:campaignId(brand.brandId,finalUrl),brandId:brand.brandId,brandName:brand.name,
@@ -91,10 +102,12 @@ async function processBrand(brand){
         limitedIngredients:[],weekdayCondition:/平日/.test(p.title)?'平日限定':null,conditions:[],
         imageUrl:selectImage(p,finalUrl,p.title),firstSeenAt:old?.firstSeenAt||stamp,fetchedAt:stamp,lastVerifiedAt:stamp,
         contentHash:p.hash,confidence:reviewed?0.98:0.76,verificationState:reviewed?'reviewed':'automatic',
-        statusEvidence:reviewed?'reviewed_official_content':(d.startDate&&d.endDate?'official_period':'unverified'),staleAfterDays:45
+        statusEvidence:semanticReviewed?'reviewed_semantic_recheck':reviewed?'reviewed_official_content':(d.startDate&&d.endDate?'official_period':'unverified'),staleAfterDays:45
       };
+      const observedImage=c.imageUrl;
       if(reviewed)c={...c,...review.fields};
-      if(reviewed&&c.imageUrl)c.imageUrl=httpUrl(c.imageUrl,finalUrl);
+      if(semanticReviewed&&observedImage)c.imageUrl=observedImage;
+      else if(reviewed&&c.imageUrl)c.imageUrl=httpUrl(c.imageUrl,finalUrl);
       c.lifecycleStatus=periodState(c);
       if(ENDED.test(p.title)||/販売終了いたしました|販売を終了しました|キャンペーンは終了しました/.test(p.bodyText))c.lifecycleStatus='ended_official';
       const unbounded=!c.endDate;
@@ -105,7 +118,7 @@ async function processBrand(brand){
         const listedNow=listed.has(finalUrl)||listed.has(link.url);
         if(review.requiresListing&&!listedNow)c.lifecycleStatus='stale_unverified';
         if(!review.requiresListing&&!stillRecent(c,90)&&c.startDate)c.lifecycleStatus='stale_unverified';
-        if(live(c))c.statusEvidence=listedNow?'official_listing_rechecked':'reviewed_recent_announcement';
+        if(live(c))c.statusEvidence=listedNow?'official_listing_rechecked':semanticReviewed?'reviewed_semantic_recheck':'reviewed_recent_announcement';
       }
       const invalid=validateCampaign(c);if(invalid.length)throw Error(invalid.join(', '));
       proposed.push(c);
