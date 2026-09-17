@@ -215,8 +215,22 @@ export function discoverCatalogLinks(html,base,brand){
     if(t.origin!==allowed.origin)return false;
     // A corporate host may contain several unrelated brands.
     if(allowed.pathname!=='/'&&!t.pathname.startsWith(allowed.pathname))return false;
+    // Known non-HTML/action endpoints: do not turn expected redirects or a PDF
+    // response into a noisy catalog-source failure. These exclusions are only
+    // for catalog crawling; campaign discovery and official source checks stay separate.
+    if(brand.id==='gyukaku'&&t.pathname==='/lunch_course/')return false;
+    if(brand.id==='washoku-sato'&&t.pathname.startsWith('/sato/assets/menu/book/'))return false;
+    if(/\/(?:yoyaku|reservation)\//i.test(t.pathname)||/予約(?:する|はこちら)?|reservation/i.test(l.title))return false;
     if(/\.(?:jpe?g|png|gif|webp|svg|avif|zip|exe|pdf)(?:$|\?)/i.test(t.pathname)||/\/news\/|\/topics?\/|\/20\d{2}\//.test(t.pathname))return false;
     if(NOISE.test(l.title)||/学生|学割|お子様|キッズ|予約する/.test(l.title))return false;
     return (/shop-list|shoplist/.test(new URL(base).pathname)&&/豊橋|豊川|蒲郡|岡崎|浜松/.test(l.title))||/menu|course|price|drink|lunch|dinner|enkai|buffet|tabehodai|tabehoudai|nomihodai|plan|all-you-can-eat|\/(?:qa|about)\//i.test(t.pathname+t.search)||COURSE.test(l.title)||DRINK.test(l.title);
-  }).map(l=>({url:l.url,title:l.title,rank:DRINK.test(l.title)||/drink|nomihodai/.test(l.url)?0:/コース|食べ放題|料金|price|course/.test(l.title+l.url)?1:2})).sort((a,b)=>a.rank-b.rank);
+  }).map(l=>{
+    const u=new URL(l.url);
+    // Skylark advertises this menu URL without a trailing slash, and the server
+    // briefly redirects through HTTP. Canonicalize locally rather than weakening
+    // the HTTPS redirect guard used by the fetcher.
+    if(brand.id==='syabuyo'&&u.hostname==='www.skylark.co.jp'&&u.pathname==='/syabuyo/menu')u.pathname='/syabuyo/menu/';
+    const url=u.href;
+    return{url,title:l.title,rank:DRINK.test(l.title)||/drink|nomihodai/.test(url)?0:/コース|食べ放題|料金|price|course/.test(l.title+url)?1:2};
+  }).sort((a,b)=>a.rank-b.rank);
 }
