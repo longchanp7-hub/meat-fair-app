@@ -1,0 +1,32 @@
+name: Apply final warning cleanup
+on:
+  push:
+    branches:
+      - fix/final-hardening-20260917
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/final-hardening-20260917
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Apply warning cleanup
+        run: python scripts/final-hardening2.py
+      - name: Verify cleanup
+        run: |
+          npm test
+          npm run quality-gate
+          npm run verify
+      - name: Commit result
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m "fix: skip non-HTML and redundant catalog endpoints"
+          git push origin HEAD:fix/final-hardening-20260917
