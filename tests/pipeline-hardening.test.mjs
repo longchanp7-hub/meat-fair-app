@@ -38,11 +38,11 @@ test('ended reviewed-campaign hash drift must not degrade current source health'
 
 test('catalog discovery skips known action/PDF/viewer traps and canonicalizes Shabuyo menu',()=>{
   const gyukaku={id:'gyukaku',homeUrl:'https://www.gyukaku.ne.jp/'};
-  assert.deepEqual(discoverCatalogLinks('<a href="/lunch_course/">ランチコース</a>','https://www.gyukaku.ne.jp/',gyukaku),[]);
+  assert.deepEqual(discoverCatalogLinks('<a href="/lunch_course/">ランチコース</a><a href="/lunch_teisyoku/">ランチ定食</a>','https://www.gyukaku.ne.jp/',gyukaku),[]);
   const sato={id:'washoku-sato',homeUrl:'https://sato-res.com/sato/'};
   assert.deepEqual(discoverCatalogLinks('<a href="/sato/assets/menu/book/ayce-260616/">食べ放題メニュー</a>','https://sato-res.com/sato/',sato),[]);
   const shabuyo={id:'syabuyo',homeUrl:'https://www.skylark.co.jp/syabuyo/'};
-  const found=discoverCatalogLinks('<a href="/syabuyo/menu">メニュー</a><a href="/syabuyo/menu/yoyaku/">予約する</a>','https://www.skylark.co.jp/syabuyo/',shabuyo);
+  const found=discoverCatalogLinks('<a href="/syabuyo/menu">メニュー</a><a href="/syabuyo/menu/">メニュー</a><a href="/syabuyo/menu/yoyaku/">予約する</a><a href="/syabuyo/menu/lunch.html">平日ランチ</a>','https://www.skylark.co.jp/syabuyo/',shabuyo);
   assert.equal(found.length,1);
-  assert.equal(found[0].url,'https://www.skylark.co.jp/syabuyo/menu/');
+  assert.equal(found[0].url,'https://www.skylark.co.jp/syabuyo/menu/lunch.html');
 });
