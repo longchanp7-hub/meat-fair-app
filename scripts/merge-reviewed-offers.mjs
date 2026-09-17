@@ -3,7 +3,7 @@ import crypto from 'node:crypto';
 
 const dataUrl=new URL('../app/data/offers.json',import.meta.url);
 const reviewedUrl=new URL('./reviewed-offers.json',import.meta.url);
-const MAX_REVIEW_AGE=2*86400000;
+const MAX_REVIEW_AGE=7*86400000;
 const now=Date.now();
 const data=JSON.parse(await fs.readFile(dataUrl,'utf8'));
 const reviewed=JSON.parse(await fs.readFile(reviewedUrl,'utf8'));
