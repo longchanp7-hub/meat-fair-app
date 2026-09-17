@@ -45,13 +45,14 @@ jobs:
       - name: Commit refreshed data without overwriting concurrent edits
         id: save
         run: |
-          if ! git diff --quiet -- app/data; then
+          if ! git diff --quiet -- app/data scripts/reviewed-campaigns.json; then
             git config user.name github-actions[bot]
             git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-            git add app/data
+            git add app/data scripts/reviewed-campaigns.json
             git commit -m "chore: refresh all fourteen official fair sources"
             git pull --rebase origin main
             npm test
+            npm run quality-gate
             npm run verify
             git push origin HEAD:main
           fi
