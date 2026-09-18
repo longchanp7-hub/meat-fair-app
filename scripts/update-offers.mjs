@@ -3,6 +3,7 @@ import crypto from 'node:crypto';
 import {parseHtml,one,all,text,links} from './html-document.mjs';
 import {publicUrl} from './gallery-extract.mjs';
 import {SOURCES} from './source-registry.mjs';
+import {clean,taxPrice,classifyOfferKind,canonicalCourseTitle,pruneIncludedRows} from './offer-parser.mjs';
 
 const root=new URL('../app/data/',import.meta.url),stamp=new Date().toISOString(),MAX_AGE=172800000;
 const read=async name=>JSON.parse(await fs.readFile(new URL(name,root),'utf8'));
@@ -24,34 +25,26 @@ async function request(url){
     return{html:buf.toString('utf8'),finalUrl:current};
   }finally{clearTimeout(timer);}
 }
-const clean=s=>String(s||'').replace(/\s+/g,' ').replace(/^[|｜・:：\-–—\s]+|[|｜・:：\-–—\s]+$/g,'').trim();
 const child=/小学生|幼児|未就学|こども|子供|お子さま|お子様|シニア|65歳|60歳|70歳/;
 const addon=/追加料金|差額|プラス\s*[￥¥\d]|\+\s*[￥¥\d]|単品/;
-const course=/食べ放題|食べ放題コース|ビュッフェ|バイキング|しゃぶしゃぶコース|焼肉コース|プレミアムコース/;
-const drink=/飲み放題|アルコール飲み放題|ソフトドリンク飲み放題|ドリンクバー/;
-const usefulLink=/食べ放題|コース|メニュー|料金|宴会|飲み放題|ドリンク|ビュッフェ|バイキング/;
-function taxPrice(value){
-  const s=clean(value);let m=s.match(/[（(]\s*税込\s*[:：]?\s*[￥¥]?\s*(\d[\d,]*)\s*円?\s*[）)]\s*([〜～~])?/u);
-  if(!m)m=s.match(/税込\s*[:：]?\s*[￥¥]?\s*(\d[\d,]*)\s*円?\s*([〜～~])?/u);
-  if(!m)return{price:null,priceText:null};const n=Number(m[1].replace(/,/g,''));
-  return{price:Number.isFinite(n)?n:null,priceText:`税込${m[1]}円${m[2]?'〜':''}`};
-}
-function conditionsOf(s){const out=[];for(const[re,label]of[[/平日/,'平日'],[/土日祝|土・日・祝/,'土日祝'],[/ランチ/,'ランチ'],[/ディナー/,'ディナー'],[/予約限定|ネット予約|WEB予約|Web予約/,'予約条件あり'],[/店舗により|店舗によって|一部店舗/,'店舗条件あり']])if(re.test(s))out.push(label);return out;}
+const usefulLink=/食べ放題|食べ飲み放題|飲み食べ放題|コース|メニュー|料金|宴会|飲み放題|ドリンク|ビュッフェ|バイキング/;
+function conditionsOf(s){const out=[];for(const[re,label]of[[/平日/,'平日'],[/土日祝|土・日・祝/,'土日祝'],[/ランチ/,'ランチ'],[/ディナー/,'ディナー'],[/予約限定|ネット予約|WEB予約|Web予約|前日まで.*予約|要予約/,'予約条件あり'],[/\d+名以上/,'人数条件あり'],[/店舗により|店舗によって|一部店舗/,'店舗条件あり']])if(re.test(s))out.push(label);return out;}
 function titleOf(s,kind){
+  const canonical=canonicalCourseTitle(s,kind);if(canonical)return canonical;
   let v=clean(s).replace(/[￥¥]?\d[\d,]*\s*円\s*[（(]\s*税込[^）)]*[）)]/gu,' ').replace(/[（(]\s*税込[^）)]*[）)]/gu,' ').replace(/税込\s*[￥¥]?\s*\d[\d,]*\s*円?/gu,' ');v=clean(v);
   if(v.length>110)v=v.slice(0,107)+'…';return v||(kind==='drink'?'飲み放題':'食べ放題・コース');
 }
 function make(raw,sourceUrl,brandId,officialUrl=sourceUrl){
   const s=clean(raw);if(s.length<4||s.length>260||child.test(s)||addon.test(s))return null;
-  const kind=drink.test(s)?'drink':course.test(s)?'course':null;if(!kind)return null;
-  const p=taxPrice(s);if(kind==='course'&&!p.priceText&&!/食べ放題|ビュッフェ|バイキング/.test(s))return null;
+  const kind=classifyOfferKind(s);if(!kind)return null;
+  const p=taxPrice(s);if(kind==='course'&&!p.priceText&&!/食べ放題|食べ飲み放題|飲み食べ放題|ビュッフェ|バイキング/.test(s))return null;
   const conditions=conditionsOf(s);return{brandId,kind,title:titleOf(s,kind),...p,conditions,officialUrl,sourceUrl,checkedAt:stamp,comparisonKey:sourceUrl+'|'+conditions.join(','),rawText:s};
 }
 function extract(html,sourceUrl,brandId){
   const doc=parseHtml(html),rootNode=one(doc,'main,.area-contents,.contents,body')||doc,rows=[];
   for(const node of all(rootNode,'p,li,tr,dd')){const o=make(text(node),sourceUrl,brandId);if(o)rows.push(o);}
   for(const link of links(rootNode,sourceUrl)){const o=make(link.title,sourceUrl,brandId,publicUrl(link.url)||sourceUrl);if(o)rows.push(o);}
-  return rows;
+  return pruneIncludedRows(rows);
 }
 function galleryOffers(brandId){
   const out=[];

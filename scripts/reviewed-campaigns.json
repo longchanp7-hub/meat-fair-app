@@ -564,6 +564,60 @@
         "imageUrl": "https://anrakutei.jp/wp-content/uploads/2026/09/3499f6f03edb4890066b44f87dd2b073.jpg"
       },
       "requiresListing": false
+    },
+    {
+      "brandId": "nikusho-sakai",
+      "officialUrl": "https://www.yakiniku.jp/nikushou_sakai/news/student_2026_autumn/",
+      "reviewedAt": "2026-09-18T04:50:51.000Z",
+      "semanticGuard": true,
+      "fields": {
+        "price": 3000,
+        "priceText": "税込3,000円",
+        "limitedIngredients": [],
+        "targetCourses": [
+          "学生応援コース"
+        ],
+        "conditions": [
+          "2026年9月7日〜12月18日の平日限定。",
+          "49品食べ放題＋ソフトドリンク16品飲み放題、100分（開始80分後ラストオーダー）。",
+          "3名以上の学生グループが対象。前日まで要予約。",
+          "宇都宮店、富山黒瀬店、関マーゴ店、浜松佐鳴台店、京都福知山店、高知野市店、大分大在店は対象外。"
+        ],
+        "title": "学生応援コース",
+        "startDate": "2026-09-07",
+        "endDate": "2026-12-18",
+        "allYouCanEat": true,
+        "weekdayCondition": "平日限定",
+        "campaignType": "discount",
+        "priority": "P2",
+        "imageUrl": null
+      },
+      "requiresListing": false
+    },
+    {
+      "brandId": "anrakutei",
+      "officialUrl": "https://anrakutei.jp/fair/nikunohi202609/",
+      "reviewedAt": "2026-09-18T04:50:51.000Z",
+      "semanticGuard": true,
+      "fields": {
+        "price": null,
+        "priceText": "290円クーポン対象11品／黒毛和牛ロース1.5倍 税込1,705円／焼きしゃぶカルビ1.5倍 税込869円／パワーカルビ450 税込2,640円",
+        "limitedIngredients": [],
+        "targetCourses": [],
+        "conditions": [
+          "2026年9月19日〜30日。安楽亭店舗で実施（コスモス店・ぼたん店を除く）。",
+          "290円クーポンは1人計2点まで。他の有料商品の注文が必要。",
+          "黒毛和牛ロース・焼きしゃぶカルビは1.5倍増量。パワーカルビ450は税込2,640円。"
+        ],
+        "title": "安楽亭9月の肉の日祭り＆290円クーポン感謝祭",
+        "startDate": "2026-09-19",
+        "endDate": "2026-09-30",
+        "allYouCanEat": false,
+        "campaignType": "discount",
+        "priority": "P2",
+        "imageUrl": null
+      },
+      "requiresListing": false
     }
   ]
 }
