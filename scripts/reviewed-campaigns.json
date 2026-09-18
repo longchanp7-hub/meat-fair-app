@@ -704,7 +704,11 @@
         "priority": "P1",
         "imageUrl": null
       },
-      "requiresListing": false
+      "requiresListing": false,
+      "semanticTerms": [
+        "韓国フェア",
+        "黒毛和牛堪能コース"
+      ]
     },
     {
       "brandId": "amiyakitei",
@@ -782,7 +786,7 @@
           "東海3県（愛知・岐阜・三重）のアプリ会員限定。",
           "利用前に公式アプリの対象条件を確認してください。"
         ],
-        "title": "東海3県 アプリ会員限定 食べ放題カジュアルコース",
+        "title": "【東海3県】食べ放題カジュアルコースのご利用につきまして",
         "startDate": "2026-09-15",
         "endDate": null,
         "allYouCanEat": true,
@@ -790,7 +794,11 @@
         "priority": "P2",
         "imageUrl": null
       },
-      "requiresListing": true
+      "requiresListing": true,
+      "semanticTerms": [
+        "東海3県",
+        "カジュアルコース"
+      ]
     },
     {
       "brandId": "syabuyo",
@@ -817,7 +825,11 @@
         "priority": "P2",
         "imageUrl": null
       },
-      "requiresListing": false
+      "requiresListing": false,
+      "semanticTerms": [
+        "10%OFF",
+        "クーポン"
+      ]
     },
     {
       "brandId": "onyasai",
@@ -847,7 +859,11 @@
         "priority": "P2",
         "imageUrl": null
       },
-      "requiresListing": false
+      "requiresListing": false,
+      "semanticTerms": [
+        "鍋飲み",
+        "鴨しゃぶ"
+      ]
     },
     {
       "brandId": "roan",
@@ -876,7 +892,11 @@
         "priority": "P2",
         "imageUrl": null
       },
-      "requiresListing": false
+      "requiresListing": false,
+      "semanticTerms": [
+        "シルバーウィーク",
+        "9/19"
+      ]
     }
   ]
 }
