@@ -31,10 +31,12 @@ export const SOURCES = [
     { type:'brand_top', url:'https://www.onyasai.com/', primary:true },
     { type:'news_index', url:'https://www.onyasai.com/news/index.php?year=2026', primary:false },
     { type:'campaign_detail', url:'https://www.onyasai.com/lp/202607_korea/', campaignTitle:'夏のごちそう韓国鍋 海鮮チゲ鍋・コムタン鍋', primary:false },
-    { type:'campaign_detail', url:'https://www.onyasai.com/lp/202609_kamoshabu_porcini/', campaignTitle:'秋しゃぶ 豆乳ポルチーニしゃぶしゃぶ・鴨しゃぶ', primary:false }
+    { type:'campaign_detail', url:'https://www.onyasai.com/lp/202609_kamoshabu_porcini/', campaignTitle:'秋しゃぶ 豆乳ポルチーニしゃぶしゃぶ・鴨しゃぶ', primary:false },
+    { type:'campaign_detail', url:'https://prtimes.jp/main/html/rd/p/000000689.000018604.html', campaignTitle:'鴨しゃぶ 鍋飲みセット', primary:false }
   ]},
   { brandId:'roan', name:'露菴', category:'buffet', priority:8, sources:[
     { type:'official_blog', url:'https://ameblo.jp/0141roan/entrylist.html', primary:true },
+    { type:'reference_detail', url:'https://ameblo.jp/0141roan/entry-12977830217.html', primary:false },
     { type:'campaign_detail', url:'https://ameblo.jp/0141roan/entry-12970963402.html', campaignTitle:'麻辣湯食べ放題 全時間帯で提供中！', primary:false },
     { type:'campaign_detail', url:'https://ameblo.jp/0141roan/entry-12953365343.html', campaignTitle:'大赤海老も！大ホタテも食べ放題！第2弾！極み大海鮮フェア開催！！', primary:false },
     { type:'brand_top', url:'https://www.good-promise.co.jp/roan/', primary:false },
@@ -42,6 +44,7 @@ export const SOURCES = [
   ]},
   { brandId:'kalubi-taisho', name:'カルビ大将', category:'yakiniku', priority:9, sources:[
     { type:'campaign_index', url:'https://www.kalubi-taisho.com/campaign/', primary:true },
+    { type:'campaign_detail', url:'https://www.kalubi-taisho.com/campaign/4662/', campaignTitle:'東海3県 アプリ会員限定 食べ放題カジュアルコース', primary:false },
     { type:'reference_detail', url:'https://www.kalubi-taisho.com/campaign/4605/', primary:false }
   ]},
   { brandId:'stamina-taro', name:'すたみな太郎', category:'buffet', priority:10, sources:[
