@@ -5,16 +5,17 @@ const dateForms=date=>{
   const y=Number(m[1]),mo=Number(m[2]),d=Number(m[3]);
   return[`${y}年${mo}月${d}日`,`${y}/${mo}/${d}`,`${mo}月${d}日`,`${mo}/${d}`].map(norm);
 };
-function dateSupported(body,parsed,expected,key){
+function dateSupported(body,parsed,expected,key,allowBodyDateEvidence=false){
   if(!expected)return true;
-  if(parsed?.[key])return parsed[key]===expected;
+  if(parsed?.[key]===expected)return true;
+  if(parsed?.[key]&&!allowBodyDateEvidence)return false;
   return dateForms(expected).some(x=>body.includes(x));
 }
 export function reviewSemanticallySupported(review,page,dates){
   if(!review?.semanticGuard||!review.fields)return false;
   const f=review.fields,body=norm(page?.bodyText),title=norm(page?.title);
   if(!body||body.length<25)return false;
-  if(!dateSupported(body,dates,f.startDate,'startDate')||!dateSupported(body,dates,f.endDate,'endDate'))return false;
+  if(!dateSupported(body,dates,f.startDate,'startDate',review.allowBodyDateEvidence)||!dateSupported(body,dates,f.endDate,'endDate',review.allowBodyDateEvidence))return false;
   const titleTokens=norm(f.title).split(/[「」『』【】（）()・,，。:：〜～-]+/).filter(x=>x.length>=3);
   if(titleTokens.length&&!titleTokens.some(x=>title.includes(x)||body.includes(x)))return false;
   for(const course of f.targetCourses||[])if(!body.includes(norm(course)))return false;
