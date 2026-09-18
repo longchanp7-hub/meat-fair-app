@@ -69,6 +69,11 @@ test('Shabuyo campaign index and food-campaign title are discoverable',()=>{
  const found=discoverLinks(b,'<a href="/syabuyo/campaign/">シルバーウィークキャンペーン</a>','https://www.skylark.co.jp/syabuyo/');
  assert.equal(found.length,1);assert.equal(found[0].url,'https://www.skylark.co.jp/syabuyo/campaign/');
 });
+test('Roan Silver Week uses the exact official blog article as a campaign detail',()=>{
+ const b=brand('roan'),url='https://ameblo.jp/0141roan/entry-12977830217.html';
+ assert.ok(b.sources.some(s=>s.type==='campaign_detail'&&s.url===url));
+ assert.equal(allowedDetail(b,url),true);
+});
 test('current rollout has 14 distinct source definitions and audited imagery',()=>{
  assert.equal(SOURCES.length,14);assert.equal(new Set(SOURCES.map(b=>b.brandId)).size,14);
  const r=JSON.parse(fs.readFileSync(new URL('../scripts/reviewed-campaigns.json',import.meta.url))).reviews;
