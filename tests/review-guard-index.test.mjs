@@ -9,3 +9,11 @@ test('multi-campaign index may use explicit body date evidence only when opted i
   assert.equal(reviewSemanticallySupported(base,page,dates),false);
   assert.equal(reviewSemanticallySupported({...base,allowBodyDateEvidence:true},page,dates),true);
 });
+
+test('explicit semantic terms are all required for reviewed index pages',()=>{
+  const page={title:'ブランドトップ',bodyText:'学割 10%OFF クーポンを配信しています。'};
+  const dates={startDate:null,endDate:null};
+  const review={semanticGuard:true,semanticTerms:['10%OFF','クーポン'],fields:{title:'別タイトル',targetCourses:[],limitedIngredients:[],allYouCanEat:false}};
+  assert.equal(reviewSemanticallySupported(review,page,dates),true);
+  assert.equal(reviewSemanticallySupported({...review,semanticTerms:['10%OFF','見つからない語']},page,dates),false);
+});
