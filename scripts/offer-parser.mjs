@@ -9,6 +9,8 @@ export function taxPrice(value){
   if(!m)m=s.match(/税込\s*[:：]?\s*[￥¥]?\s*(\d[\d,]*)\s*円?\s*([〜～~])?/u);
   if(!m)m=s.match(/[￥¥]?\s*(\d[\d,]*)\s*円\s*[（(]\s*税込\s*[）)]\s*([〜～~])?/u);
   if(!m)return{price:null,priceText:null};
+  const after=s.slice((m.index??0)+m[0].length,(m.index??0)+m[0].length+16);
+  if(/^\s*(?:引き|OFF|オフ|割引)/i.test(after))return{price:null,priceText:null};
   const n=Number(m[1].replace(/,/g,''));
   return{price:Number.isFinite(n)?n:null,priceText:'税込'+m[1]+'円'+(m[2]?'〜':'')};
 }
