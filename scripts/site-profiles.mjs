@@ -6,12 +6,12 @@ import {resolveAnnouncements} from './campaign-aliases.mjs';
 export const PROFILE = {
   'yakiniku-king':{scope:'main,article',head:'h1',paths:/^\/(?:news\/\d+\/?|menu_all\/season\/[^/]+\/?)$/},
   gyukaku:{scope:'#contents,main,article',head:'h1',paths:/^\/lp\/.+|^\/news\/news\.php$/},
-  syabuyo:{scope:'.area-contents',head:'h1.mod-heading',paths:/^\/syabuyo\/(?:menu\/fair[^/]*\/|campaign\/(?:.*)?)$/},
+  syabuyo:{scope:'.area-contents,main',head:'h1.mod-heading,h1',paths:/^\/syabuyo\/$|^\/syabuyo\/(?:menu\/fair[^/]*\/|campaign\/(?:.*?)|gakusei\/index\.html)$/},
   yuzuan:{scope:'main',head:'h1',paths:/^\/news\/\d+\/$/},
   'washoku-sato':{scope:'article.news',head:'h3',paths:/^\/news\/20\d{2}\/\d{2}\/\d+\.html$/},
   amiyakitei:{scope:'main,.page_container_single',head:'h1.header-title,.page_container_single_title,h2',paths:/^\/atsugirifes(?:_no_coupon)?\/$|^\/topics\/\d+\/$/},
   onyasai:{scope:'main,#contents,.contents',head:'h1',paths:/^\/lp\/20\d{4}_[^/]+\/$/},
-  roan:{scope:'article,main',head:'h1,h2',paths:/\/roan\/(?:news|fair|campaign)\/[^/]+\/?$|^\/0141roan\/entry-\d+\.html$/},
+  roan:{scope:'article,main',head:'h1,h2',paths:/\/roan\/(?:news|fair|campaign)\/[^/]+\/?$|^\/0141roan\/(?:entry-\d+\.html|entrylist\.html)$/},
   'kalubi-taisho':{scope:'.detail',head:'h3.detail_title',paths:/^\/campaign\/\d+\/$/},
   'stamina-taro':{scope:'main',head:'h1.wp-block-post-title',paths:/^\/20\d{2}\/\d{2}\/\d{2}\/[^/]+\/$/},
   asakuma:{scope:'#main',head:'h1.heading',paths:/^\/(?:fair_|event_)[\w-]+\.html$/},
@@ -25,7 +25,101 @@ export const ENDED=/【終了|※\s*終了|終了しました|終了いたしま
 export function allowedDetail(brand,url){
   const u=new URL(url),hosts=new Set(brand.sources.map(s=>new URL(s.url).hostname));
   if(!hosts.has(u.hostname)||/[.](pdf|jpg|png|webp|css|js)$/i.test(u.pathname))return false;
-  if(brand.brandId==='amiyakitei'&&u.hostname==='prtimes.jp')return /^\/main\/html\/rd\/p\/\d+\.000130952\.html$/.test(u.pathname);
+  if(u.hostname==='prtimes.jp'){
+    const company=brand.brandId==='amiyakitei'?'000130952':brand.brandId==='onyasai'?'000018604':null;
+    return !!company&&new RegExp('^/main/html/rd/p/\\d+\\.'+company+'\\.html
+  return !!PROFILE[brand.brandId]?.paths.test(u.pathname);
+}
+function meta(doc,key){return all(doc,'meta').find(n=>n.attrs.property===key||n.attrs.name===key)?.attrs.content||'';}
+export function extractPage(brand,html,url,anchor=''){
+  const doc=parseHtml(html),profile=PROFILE[brand.brandId]||{};
+  let scope=one(doc,profile.scope||'main,article')||one(doc,'body')||doc;
+  // Never include the Sakai sidebar / neighboring posts or the Sato logo article.
+  let body=brand.brandId==='nikusho-sakai'?(one(doc,'.p-entry__body')||scope):scope;
+  if(brand.brandId==='jukusei-ichiban'){scope=one(scope,'dl')||scope;body=scope;}
+  const heading=one(scope,profile.head||'h1');
+  const possibilities=[text(heading),meta(doc,'og:title'),text(one(doc,'title')),anchor];
+  let title=possibilities.find(t=>t&&FOOD_TITLE.test(t)&&!/^メニュー|^お知らせ|^【公式】/.test(t))||anchor||possibilities.find(Boolean)||'';
+  if(brand.brandId==='onyasai'&&anchor&&FOOD_TITLE.test(anchor))title=anchor;
+  if(brand.brandId==='amiyakitei'&&url.includes('atsugirifes'))title='厚切りフェス';
+  title=title.replace(/\s*[|｜].*$/,'').replace(/^20\d{2}[./-]\d{1,2}[./-]\d{1,2}\s*/,'').replace(/焼肉きんぐ\s*/g,'').trim();
+  title=title.replace(/^(.{3,}?)\s+\1$/,'$1');
+  let bodyText=text(body), scopedHtml=markup(body);
+  if(brand.brandId==='syabuyo')bodyText=bodyText.split('ドリンクバー付！')[0];
+  const time=all(scope,'time').find(n=>n.attrs.datetime)?.attrs.datetime;
+  const dateNode=one(scope,'.detail_day,.date,.news_date,.p-entry__date,.wp-block-post-date')||one(doc,'.p-entry__date');
+  const dateText=text(dateNode)||text(scope).slice(0,180);
+  const m=dateText.match(/(20\d{2})[年./-]\s*(\d{1,2})[月./-]\s*(\d{1,2})/);
+  let publishedDate=(time||meta(doc,'article:published_time')).slice(0,10)|| (m?iso(+m[1],+m[2],+m[3]):null);
+  if(publishedDate&&!validDate(publishedDate))publishedDate=null;
+  const actualImages=all(doc,'img,source').map(n=>httpUrl(n.attrs['data-src']||n.attrs.src||n.attrs.srcset?.split(/[ ,]/)[0],url)).filter(Boolean);
+  return {title,bodyText,scopedHtml,doc,scope,publishedDate,actualImages,hash:crypto.createHash('sha256').update(bodyText+'\n'+all(body,'img,source').map(n=>n.attrs['data-src']||n.attrs.src||n.attrs.srcset||'').join('\n')).digest('hex')};
+}
+export function validDate(v){return /^\d{4}-\d{2}-\d{2}$/.test(v||'')&&!Number.isNaN(Date.parse(v))&&new Date(v+'T00:00:00Z').toISOString().slice(0,10)===v;}
+export function iso(y,m,d){const v=`${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`;return validDate(v)?v:null;}
+export function parsePeriod(s,year){
+  s=String(s).normalize('NFKC').replace(/\s+/g,'');
+  // A full date or month/day. Year is never guessed from the runtime clock.
+  const re=/(?:(20\d{2})[年/.-])?(\d{1,2})[月/](\d{1,2})日?(?:\([^)]{1,5}\))?/g;
+  const ms=[...s.matchAll(re)];if(!ms.length)return null;
+  const a=ms[0];const y=+(a[1]||year||0);if(!y)return null;
+  const startDate=iso(y,+a[2],+a[3]);if(!startDate)return null;
+  const tail=s.slice(a.index+a[0].length);let endDate=null;
+  const second=ms[1];
+  if(second&&/^(?:より|から)?[～〜~\-－—]/.test(tail)) {
+    const between=s.slice(a.index+a[0].length,second.index);
+    if(between.length<25)endDate=iso(+(second[1]||y+(+second[2]<+a[2]?1:0)),+second[2],+second[3]);
+  }
+  if(!endDate){const same=tail.match(/^(?:より|から)?[～〜~\-－—](\d{1,2})日/);if(same)endDate=iso(y,+a[2],+same[1]);}
+  return{startDate,endDate,endDateText:/なくなり次第|無くなり次第/.test(s)?'なくなり次第終了':null};
+}
+export function datesFor(page,url){
+  const urlYear=new URL(url).pathname.match(/\/(20\d{2})(?:\/|\d{2}_)/)?.[1];
+  const year=+(urlYear||page.publishedDate?.slice(0,4)||0)||null;
+  const t=page.bodyText;
+  const labelled=t.match(/(?:販売期間|開催期間|実施期間|提供期間|キャンペーン期間|販売開始日)[:：\s】]*([\s\S]{0,180})/);
+  const labelPeriod=labelled?parsePeriod(labelled[1],year):null;
+  const titlePeriod=parsePeriod(page.title,year);
+  // Explicit full-year period in LP text beats a publication date/anniversary in the title.
+  const full=t.match(/20\d{2}年\s*\d{1,2}月\s*\d{1,2}日[^0-9]{0,18}[～〜~\-][\s\S]{0,45}/);
+  const fullPeriod=full?parsePeriod(full[0],year):null;
+  return labelPeriod||fullPeriod||titlePeriod||{startDate:null,endDate:null,endDateText:/なくなり次第終了|無くなり次第終了/.test(t)?'なくなり次第終了':null};
+}
+export function selectImage(page,url,title){
+  const bad=/(?:logo|icon|btn_|button|qrcode|qr_|coupon|クーポン|title-|abstract-title|background|bg[_.-]|arrow|footer|header|app_|sign|ttl|term\.)/i;
+  const candidates=imageCandidatesFromHtml(page.scopedHtml,url,{title}).filter(c=>/\.(?:jpe?g|png|webp)(?:\?|#|$)/i.test(c.url)&&!bad.test(c.url));
+  const best=candidates.sort((a,b)=>b.score-a.score)[0];
+  return best&&best.score>=10?httpUrl(best.url,url):null;
+}
+export function discoverLinks(brand,html,url){
+  const doc=parseHtml(html),externalAmiyakiIndex=brand.brandId==='amiyakitei'&&new URL(url).hostname==='prtimes.jp';
+  const found=links(doc,url).filter(x=>allowedDetail(brand,x.url)).filter(x=>!externalAmiyakiIndex||/あみやき亭/i.test(x.title||'')).map(x=>({url:x.url,title:x.title,sourceUrl:url}));
+  // Ameba's entry-list HTML can expose article URLs outside the simplified anchor tree.
+  // Recover those first-party article URLs directly without widening other brand scopes.
+  if(brand.brandId==='roan'){
+    const seen=new Set(found.map(x=>x.url));
+    for(const m of html.matchAll(/(?:https?:\/\/ameblo\.jp)?\/0141roan\/entry-\d+\.html(?:\?[^"'<> ]*)?/g)){
+      const raw=httpUrl(m[0],url);if(!raw)continue;
+      const u=new URL(raw);u.search='';u.hash='';const clean=u.href;
+      if(!seen.has(clean)&&allowedDetail(brand,clean)){seen.add(clean);found.push({url:clean,title:'',sourceUrl:url});}
+    }
+  }
+  return found;
+}
+export function dedupCampaigns(rows){
+  const out=[],keys=new Map();
+  for(const c of resolveAnnouncements(rows)){
+    const title=c.title.normalize('NFKC').replace(/[\s「」『』【】!！。、]/g,'');
+    const key=c.brandId+'|'+(c.campaignKey||c.officialUrl);
+    // Never merge different offers merely because their dates/ingredients overlap.
+    const semantic=c.brandId+'|'+title+'|'+(c.startDate||'')+'|'+(c.endDate||'');
+    const at=keys.get(key)??keys.get(semantic);
+    if(at===undefined){keys.set(key,out.length);keys.set(semantic,out.length);out.push({...c,secondarySources:c.secondarySources||[]});}
+    else if(c.officialUrl!==out[at].officialUrl)out[at].secondarySources.push({url:c.officialUrl,title:c.title,type:c.sourceType});
+  }return out;
+}
+).test(u.pathname);
+  }
   return !!PROFILE[brand.brandId]?.paths.test(u.pathname);
 }
 function meta(doc,key){return all(doc,'meta').find(n=>n.attrs.property===key||n.attrs.name===key)?.attrs.content||'';}
