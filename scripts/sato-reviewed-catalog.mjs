@@ -1,10 +1,10 @@
 import crypto from 'node:crypto';
 
 const hash=value=>crypto.createHash('sha256').update(String(value)).digest('hex');
-function entry({title,kind='course',amount,text,sourceUrl,checkedAt,evidence,service='ディナー',scope}){
+function entry({title,kind='course',amount,text,sourceUrl,officialUrl=sourceUrl,checkedAt,evidence,service='ディナー',scope}){
   return {
     id:hash(['washoku-sato',kind,title,text,sourceUrl].join('|')).slice(0,20),
-    brandId:'washoku-sato',kind,title,officialUrl:sourceUrl,sourceUrl,
+    brandId:'washoku-sato',kind,title,officialUrl,sourceUrl,
     sourceHash:hash(evidence),checkedAt,evidenceText:evidence,evidenceHash:hash(evidence),
     price:{amount,text,taxIncluded:true,from:/[〜～~]/.test(text)},
     context:{service,days:'公式掲載条件',audience:'大人',channel:'通常掲載',charge:kind==='drink'?'飲み物料金':'コース料金',subBrand:'',scope},
@@ -20,11 +20,9 @@ function entry({title,kind='course',amount,text,sourceUrl,checkedAt,evidence,ser
 export function reviewedSatoCatalog(url,html,checkedAt){
   const out=[],body=String(html||''),u=new URL(url),p=u.pathname;
   const menuEdition=/ayce-260616/.test(body);
-  if(p==='/satoshabu/'&&menuEdition){
-    out.push(entry({title:'さとしゃぶ 食べ放題（大人）',amount:2189,text:'税込2,189円〜6,039円',sourceUrl:url,checkedAt,evidence:'公式メニューブック ayce-260616：さとしゃぶ 大人 税込2,189円〜6,039円',scope:'sato-shabu-current'}));
-  }
-  if(p==='/satosuki/'&&menuEdition){
-    out.push(entry({title:'さとすき 食べ放題（大人）',amount:2189,text:'税込2,189円〜6,039円',sourceUrl:url,checkedAt,evidence:'公式メニューブック ayce-260616：さとすき 大人 税込2,189円〜6,039円',scope:'sato-suki-current'}));
+  if(p==='/sato/menu/'&&menuEdition){
+    out.push(entry({title:'さとしゃぶ 食べ放題（大人）',amount:2189,text:'税込2,189円〜6,039円',sourceUrl:url,officialUrl:'https://sato-res.com/satoshabu/',checkedAt,evidence:'公式メニューブック ayce-260616：さとしゃぶ 大人 税込2,189円〜6,039円',scope:'sato-shabu-current'}));
+    out.push(entry({title:'さとすき 食べ放題（大人）',amount:2189,text:'税込2,189円〜6,039円',sourceUrl:url,officialUrl:'https://sato-res.com/satosuki/',checkedAt,evidence:'公式メニューブック ayce-260616：さとすき 大人 税込2,189円〜6,039円',scope:'sato-suki-current'}));
   }
   if(p==='/satoyaki/'&&/menu-260409-01\.jpg/.test(body)){
     out.push(entry({title:'さと式焼肉 牛＆豚プレミアムコース',amount:4279,text:'税込4,279円',sourceUrl:url,checkedAt,evidence:'公式さと式焼肉 menu-260409-01：牛＆豚プレミアムコース 税込4,279円',scope:'sato-yakiniku-current'}));

@@ -22,7 +22,12 @@ export const PROFILE = {
 export const FOOD_TITLE=/フェア|フェス|キャンペーン|期間限定|季節|食べ放題|半額|割引|OFF|お値打ち|ナイト割|厚切り|秋しゃぶ|感謝祭|肉祭|牛タン|牛たん|鴨しゃぶ|ポルチーニ|コムタン|海鮮チゲ|特選ジャンボ|ニンニク|麻辣湯|マーラータン|大海鮮/i;
 export const NON_FOOD=/アンケート|Q\d|食育|啓発|採用|求人|抽選|スピードくじ|山分け|プレゼント|フォロー|リポスト|SNS|グッズ|福袋|テイクアウト|持ち帰り|d払い|PayPay|映画|プリキュア|学生専用|学生限定|学生応援|学割|キッズ|改装|オープン|休業|営業時間|価格改定|ドリンク飲み放題|飲み放題のみ/i;
 export const ENDED=/【終了|※\s*終了|終了しました|終了いたしました|販売を終了|販売終了いたしました|キャンペーンは終了/;
-export function allowedDetail(brand,url){const u=new URL(url);const hosts=new Set(brand.sources.map(s=>new URL(s.url).hostname));return hosts.has(u.hostname)&&PROFILE[brand.brandId]?.paths.test(u.pathname)&&!/[.](pdf|jpg|png|webp|css|js)$/i.test(u.pathname);}
+export function allowedDetail(brand,url){
+  const u=new URL(url),hosts=new Set(brand.sources.map(s=>new URL(s.url).hostname));
+  if(!hosts.has(u.hostname)||/[.](pdf|jpg|png|webp|css|js)$/i.test(u.pathname))return false;
+  if(brand.brandId==='amiyakitei'&&u.hostname==='prtimes.jp')return /^\/main\/html\/rd\/p\/\d+\.000130952\.html$/.test(u.pathname);
+  return !!PROFILE[brand.brandId]?.paths.test(u.pathname);
+}
 function meta(doc,key){return all(doc,'meta').find(n=>n.attrs.property===key||n.attrs.name===key)?.attrs.content||'';}
 export function extractPage(brand,html,url,anchor=''){
   const doc=parseHtml(html),profile=PROFILE[brand.brandId]||{};
@@ -85,8 +90,8 @@ export function selectImage(page,url,title){
   return best&&best.score>=10?httpUrl(best.url,url):null;
 }
 export function discoverLinks(brand,html,url){
-  const doc=parseHtml(html);
-  const found=links(doc,url).filter(x=>allowedDetail(brand,x.url)).map(x=>({url:x.url,title:x.title,sourceUrl:url}));
+  const doc=parseHtml(html),externalAmiyakiIndex=brand.brandId==='amiyakitei'&&new URL(url).hostname==='prtimes.jp';
+  const found=links(doc,url).filter(x=>allowedDetail(brand,x.url)).filter(x=>!externalAmiyakiIndex||/あみやき亭/i.test(x.title||'')).map(x=>({url:x.url,title:x.title,sourceUrl:url}));
   // Ameba's entry-list HTML can expose article URLs outside the simplified anchor tree.
   // Recover those first-party article URLs directly without widening other brand scopes.
   if(brand.brandId==='roan'){

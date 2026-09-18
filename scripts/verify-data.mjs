@@ -28,6 +28,7 @@ for(const c of fairs.campaigns){
   if(!Array.isArray(c.conditions)||!Array.isArray(c.targetCourses))throw Error(`Invalid conditions: ${c.id}`);
   if(c.imageUrl&&/\.(?:pdf|svg|html)(?:\?|$)/i.test(c.imageUrl))throw Error(`Not a food image: ${c.id}`);
   if(c.lifecycleStatus==='stale_unverified')throw Error(`Unreviewed candidate leaked into public data: ${c.id}`);
+  if(campaignStatus(c).state==='ended')throw Error(`Ended campaign leaked into public data: ${c.id}`);
   if(c.verificationState==='reviewed'&&!c.contentHash)throw Error(`Missing evidence hash: ${c.id}`);
 }
 if(duplicateAnnouncements(fairs.campaigns).length)throw Error('Duplicate announcement and campaign landing page in public data');

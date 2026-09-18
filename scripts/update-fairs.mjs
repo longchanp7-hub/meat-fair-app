@@ -135,7 +135,7 @@ async function processBrand(brand){
       if(age<=7)accepted.push({...old,verificationState:'last_known_good',lifecycleStatus:periodState(old)});
     }
   }
-  const rows=dedupCampaigns(accepted),pending=proposed.filter(c=>c.lifecycleStatus==='stale_unverified');
+  const rows=dedupCampaigns(accepted).filter(live),pending=proposed.filter(c=>c.lifecycleStatus==='stale_unverified'&&(!c.endDate||c.endDate>=today));
   const hasLive=rows.some(live),sourceOk=roots.length>0;
   const degraded=errors.some(e=>e.kind==='detail'&&reviews.some(r=>r.officialUrl===e.url))||entries.length>48;
   const changedReview=pending.some(c=>c.statusEvidence==='official_content_changed_review_required');
@@ -148,7 +148,7 @@ async function processBrand(brand){
 }
 const results=[];
 for(let i=0;i<SOURCES.length;i+=3)results.push(...await Promise.all(SOURCES.slice(i,i+3).map(processBrand)));
-const production=dedupCampaigns(results.flatMap(r=>r.rows));
+const production=dedupCampaigns(results.flatMap(r=>r.rows)).filter(live);
 const next={...current,schemaVersion:2,updatedAt:stamp,timezone:'Asia/Tokyo',sourceHealth:results.map(r=>r.health),campaigns:production};
 const gate=validateDataset(next);if(gate.length)throw Error('Quality gate: '+gate.join(', '));
 if(next.sourceHealth.length!==SOURCES.length)throw Error('Incomplete source coverage');

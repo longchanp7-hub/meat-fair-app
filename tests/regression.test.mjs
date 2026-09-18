@@ -50,6 +50,15 @@ test('restrict sources to official detail hosts, not feeds/archive/assets',()=>{
  assert.equal(allowedDetail(brand('amiyakitei'),'https://amiyakitei.jp/topics/category/news/'),false);
  assert.equal(allowedDetail(brand('gyukaku'),'https://evil.example/lp/test/'),false);
 });
+test('Amiyakitei company press monitoring only accepts company 130952 brand releases',()=>{
+ const b=brand('amiyakitei');
+ const valid='https://prtimes.jp/main/html/rd/p/000000389.000130952.html';
+ const other='https://prtimes.jp/main/html/rd/p/000000389.000999999.html';
+ assert.equal(allowedDetail(b,valid),true);assert.equal(allowedDetail(b,other),false);
+ const html='<a href="'+valid+'">あみやき亭 飛騨牛＆肉ガチャWフェア</a><a href="https://prtimes.jp/main/html/rd/p/000000388.000130952.html">感動の肉と米 新商品</a>';
+ const found=discoverLinks(b,html,'https://prtimes.jp/topics/keywords/%E3%81%82%E3%81%BF%E3%82%84%E3%81%8D%E4%BA%AD');
+ assert.deepEqual(found.map(x=>x.url),[valid]);
+});
 test('Shabuyo campaign index and food-campaign title are discoverable',()=>{
  const b=brand('syabuyo');
  assert.ok(b.sources.some(s=>s.type==='campaign_detail'&&s.url==='https://www.skylark.co.jp/syabuyo/campaign/'));

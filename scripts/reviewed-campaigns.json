@@ -618,6 +618,121 @@
         "imageUrl": null
       },
       "requiresListing": false
+    },
+    {
+      "brandId": "yuzuan",
+      "officialUrl": "https://www.shabu-yuzuan.jp/news/7249/",
+      "reviewedAt": "2026-09-18T11:57:35.000Z",
+      "semanticGuard": true,
+      "fields": {
+        "price": null,
+        "priceText": "対象のお祝いコース利用でアプリ来店スタンプ2個",
+        "limitedIngredients": [],
+        "targetCourses": [
+          "【お祝い】ゆず庵コース",
+          "【お祝い】贅沢コース"
+        ],
+        "conditions": [
+          "2026年9月19日〜23日の5日間限定。",
+          "対象のお祝いコースを前日までに予約・利用すると、アプリ来店スタンプ2個をプレゼント。",
+          "席100分、オーダー80分。乾杯ドリンクは6名につき1本。",
+          "お誕生日特典プランとの併用不可。"
+        ],
+        "title": "お祝いコースキャンペーン",
+        "startDate": "2026-09-19",
+        "endDate": "2026-09-23",
+        "allYouCanEat": true,
+        "campaignType": "discount",
+        "priority": "P2",
+        "imageUrl": null
+      },
+      "requiresListing": false
+    },
+    {
+      "brandId": "gyukaku",
+      "officialUrl": "https://www.gyukaku.ne.jp/lp/202602_studentCP/hp/",
+      "reviewedAt": "2026-09-18T11:57:35.000Z",
+      "semanticGuard": true,
+      "fields": {
+        "price": 2500,
+        "priceText": "学生グループ限定食べ放題 税込2,500円／ソフトドリンク飲み放題無料",
+        "limitedIngredients": [],
+        "targetCourses": [
+          "学生グループ限定食べ放題"
+        ],
+        "conditions": [
+          "2026年7月21日〜9月18日の平日限定（8月10日〜14日を除く）。",
+          "中学生以上の学生2名以上が対象。グループ全員の学生証等の提示が必要。",
+          "着席時・会計時にクーポン画面を提示。90分、ラストオーダー70分。",
+          "他クーポン・優待との併用不可。実施状況は店舗により異なります。"
+        ],
+        "title": "学生グループ限定 食べ放題",
+        "startDate": "2026-07-21",
+        "endDate": "2026-09-18",
+        "allYouCanEat": true,
+        "weekdayCondition": "平日限定",
+        "campaignType": "discount",
+        "priority": "P2",
+        "imageUrl": null
+      },
+      "requiresListing": false
+    },
+    {
+      "brandId": "amiyakitei",
+      "officialUrl": "https://prtimes.jp/main/html/rd/p/000000386.000130952.html",
+      "reviewedAt": "2026-09-18T11:57:35.000Z",
+      "semanticGuard": true,
+      "fields": {
+        "price": null,
+        "priceText": null,
+        "limitedIngredients": [
+          "韓国"
+        ],
+        "targetCourses": [
+          "黒毛和牛堪能コース以上"
+        ],
+        "conditions": [
+          "2026年9月1日〜11月1日の期間限定。",
+          "あみやき亭Plus全店舗対象。豊橋北山店・浜松曳馬店を含みます。",
+          "「黒毛和牛堪能コース」以上で対象の韓国グルメを食べ放題。"
+        ],
+        "title": "あみやき亭Plus 韓国フェア",
+        "startDate": "2026-09-01",
+        "endDate": "2026-11-01",
+        "allYouCanEat": true,
+        "campaignType": "fair",
+        "priority": "P1",
+        "imageUrl": null
+      },
+      "requiresListing": false
+    },
+    {
+      "brandId": "amiyakitei",
+      "officialUrl": "https://prtimes.jp/main/html/rd/p/000000389.000130952.html",
+      "reviewedAt": "2026-09-18T11:57:35.000Z",
+      "semanticGuard": true,
+      "fields": {
+        "price": 869,
+        "priceText": "飛騨牛ブリスケ 税込869円／肉ガチャ 1組1回無料",
+        "limitedIngredients": [
+          "飛騨牛"
+        ],
+        "targetCourses": [],
+        "conditions": [
+          "2026年9月19日〜23日の5日間限定。",
+          "あみやき亭 中部地区店舗（愛知・岐阜・三重・滋賀）が対象。飛騨牛ブリスケは数量限定。",
+          "肉ガチャは来店全組が対象で、1組につき1回無料。",
+          "肉ガチャのお肉引換券は9月28日〜11月30日に利用可能。当日は利用不可。"
+        ],
+        "title": "飛騨牛＆肉ガチャWフェア",
+        "startDate": "2026-09-19",
+        "endDate": "2026-09-23",
+        "allYouCanEat": false,
+        "campaignType": "fair",
+        "priority": "P1",
+        "imageUrl": null
+      },
+      "requiresListing": false
     }
   ]
 }

@@ -22,7 +22,10 @@ export const SOURCES = [
   ]},
   { brandId:'amiyakitei', name:'あみやき亭／あみやき亭Plus', category:'yakiniku', priority:6, sources:[
     { type:'brand_top', url:'https://amiyakitei.jp/', primary:true },
-    { type:'topics_index', url:'https://amiyakitei.jp/topics/', primary:false }
+    { type:'topics_index', url:'https://amiyakitei.jp/topics/', primary:false },
+    { type:'company_press_index', url:'https://prtimes.jp/topics/keywords/%E3%81%82%E3%81%BF%E3%82%84%E3%81%8D%E4%BA%AD', primary:false },
+    { type:'campaign_detail', url:'https://prtimes.jp/main/html/rd/p/000000386.000130952.html', campaignTitle:'あみやき亭Plus 韓国フェア', primary:false },
+    { type:'campaign_detail', url:'https://prtimes.jp/main/html/rd/p/000000389.000130952.html', campaignTitle:'飛騨牛＆肉ガチャWフェア', primary:false }
   ]},
   { brandId:'onyasai', name:'しゃぶしゃぶ温野菜', category:'shabu', priority:7, sources:[
     { type:'brand_top', url:'https://www.onyasai.com/', primary:true },
