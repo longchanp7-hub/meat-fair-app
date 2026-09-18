@@ -48,3 +48,9 @@ test('catalog: a course including drinks must not become a standalone drink-plan
  assert.equal(items[0].kind,'course');
  assert.equal(items.filter(e=>e.kind==='drink'&&e.price.amount===6000).length,0);
 });
+
+test('catalog: discount amounts are never treated as course prices',()=>{
+  assert.equal(priceEvidence('鴨しゃぶ食べ放題コース 税込200円引き').amount,null);
+  assert.equal(priceEvidence('牛＆豚食べ放題コース 税込100円OFF').amount,null);
+  assert.equal(priceEvidence('通常 税込3,739円から税込200円引き').amount,3739);
+});

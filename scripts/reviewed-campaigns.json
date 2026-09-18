@@ -689,12 +689,12 @@
           "韓国"
         ],
         "targetCourses": [
-          "黒毛和牛堪能コース以上"
+          "黒毛和牛堪能コース"
         ],
         "conditions": [
           "2026年9月1日〜11月1日の期間限定。",
-          "あみやき亭Plus全店舗対象。豊橋北山店・浜松曳馬店を含みます。",
-          "「黒毛和牛堪能コース」以上で対象の韓国グルメを食べ放題。"
+          "あみやき亭Plus全店舗（豊橋北山店・浜松曳馬店を含む）が対象。",
+          "黒毛和牛堪能コース以上で韓国グルメを食べ放題。"
         ],
         "title": "あみやき亭Plus 韓国フェア",
         "startDate": "2026-09-01",
@@ -704,7 +704,11 @@
         "priority": "P1",
         "imageUrl": null
       },
-      "requiresListing": false
+      "requiresListing": false,
+      "semanticTerms": [
+        "韓国フェア",
+        "黒毛和牛堪能コース"
+      ]
     },
     {
       "brandId": "amiyakitei",
@@ -733,6 +737,166 @@
         "imageUrl": null
       },
       "requiresListing": false
+    },
+    {
+      "brandId": "washoku-sato",
+      "officialUrl": "https://sato-res.com/news/2026/09/37346.html",
+      "reviewedAt": "2026-09-18T11:57:35.000Z",
+      "semanticGuard": true,
+      "fields": {
+        "price": null,
+        "priceText": "食べ放題コース利用・税込2,000円以上のレシートでアプリ応募",
+        "limitedIngredients": [],
+        "targetCourses": [],
+        "conditions": [
+          "2026年9月3日〜9月23日。",
+          "食べ放題コースを注文した税込2,000円以上のレシートで、和食さとアプリから応募。",
+          "抽選で計68名に食事券・商品・食べ放題クーポンをプレゼント。"
+        ],
+        "title": "食べ放題プレミアムコース16周年記念 アプリプレゼントキャンペーン",
+        "startDate": "2026-09-03",
+        "endDate": "2026-09-23",
+        "allYouCanEat": true,
+        "campaignType": "discount",
+        "priority": "P2",
+        "imageUrl": "https://sato-res.com/news/assets/files/sato-2609033.jpg"
+      },
+      "requiresListing": true
+    },
+    {
+      "brandId": "kalubi-taisho",
+      "officialUrl": "https://www.kalubi-taisho.com/campaign/4662/",
+      "reviewedAt": "2026-09-18T11:57:35.000Z",
+      "semanticGuard": true,
+      "fields": {
+        "price": 2178,
+        "priceText": "アプリ会員限定 食べ放題カジュアルコース 税込2,178円",
+        "limitedIngredients": [],
+        "targetCourses": [
+          "カジュアルコース"
+        ],
+        "targetAreas": [
+          "愛知県",
+          "岐阜県",
+          "三重県"
+        ],
+        "regionScope": "tokai",
+        "conditions": [
+          "2026年9月15日から商品ラインアップ変更。",
+          "東海3県（愛知・岐阜・三重）のアプリ会員限定。",
+          "利用前に公式アプリの対象条件を確認してください。"
+        ],
+        "title": "【東海3県】食べ放題カジュアルコースのご利用につきまして",
+        "startDate": "2026-09-15",
+        "endDate": null,
+        "allYouCanEat": true,
+        "campaignType": "discount",
+        "priority": "P2",
+        "imageUrl": null
+      },
+      "requiresListing": true,
+      "semanticTerms": [
+        "東海3県",
+        "カジュアルコース"
+      ]
+    },
+    {
+      "brandId": "syabuyo",
+      "officialUrl": "https://www.skylark.co.jp/syabuyo/",
+      "reviewedAt": "2026-09-18T11:57:35.000Z",
+      "semanticGuard": true,
+      "allowBodyDateEvidence": true,
+      "fields": {
+        "price": null,
+        "priceText": "平日限定10%OFF",
+        "limitedIngredients": [],
+        "targetCourses": [],
+        "conditions": [
+          "すかいらーくアプリで配信。",
+          "中学生〜大学生・専門学生が対象。",
+          "平日限定。2026年12月2日まで。"
+        ],
+        "title": "しゃぶ葉 平日限定 学割10%OFFクーポン",
+        "startDate": "2026-09-10",
+        "endDate": "2026-12-02",
+        "allYouCanEat": true,
+        "weekdayCondition": "平日限定",
+        "campaignType": "discount",
+        "priority": "P2",
+        "imageUrl": null
+      },
+      "requiresListing": false,
+      "semanticTerms": [
+        "10%OFF",
+        "クーポン"
+      ]
+    },
+    {
+      "brandId": "onyasai",
+      "officialUrl": "https://prtimes.jp/main/html/rd/p/000000689.000018604.html",
+      "reviewedAt": "2026-09-18T11:57:35.000Z",
+      "semanticGuard": true,
+      "fields": {
+        "price": 2178,
+        "priceText": "鴨しゃぶ＋2時間アルコール飲み放題 税込2,178円／生ビールあり税込2,728円／ソフトドリンク税込1,738円",
+        "limitedIngredients": [
+          "鴨肉"
+        ],
+        "targetCourses": [
+          "鍋飲みセット"
+        ],
+        "conditions": [
+          "2026年9月16日〜12月22日の期間限定。",
+          "平日限定。選べる鍋と2時間飲み放題のセット。",
+          "一部対象外店舗があります。"
+        ],
+        "title": "鴨しゃぶ 鍋飲みセット",
+        "startDate": "2026-09-16",
+        "endDate": "2026-12-22",
+        "allYouCanEat": false,
+        "weekdayCondition": "平日限定",
+        "campaignType": "fair",
+        "priority": "P2",
+        "imageUrl": null
+      },
+      "requiresListing": false,
+      "semanticTerms": [
+        "鍋飲み",
+        "鴨しゃぶ"
+      ]
+    },
+    {
+      "brandId": "roan",
+      "officialUrl": "https://ameblo.jp/0141roan/entrylist.html",
+      "reviewedAt": "2026-09-18T11:57:35.000Z",
+      "semanticGuard": true,
+      "allowBodyDateEvidence": true,
+      "fields": {
+        "price": 2700,
+        "priceText": "9/19〜23 旬菜ビュッフェランチ 税込2,700円／麻辣湯コースランチ 税込2,900円",
+        "limitedIngredients": [],
+        "targetCourses": [
+          "旬菜ビュッフェランチ",
+          "麻辣湯コースランチ"
+        ],
+        "conditions": [
+          "2026年9月19日〜23日は土日祝料金。",
+          "旬菜ビュッフェランチと麻辣湯コースランチはシルバーウィーク特別料金。",
+          "豊川店は9/19〜22がランチ11:00〜15:30・ディナー17:00〜22:00、9/23は11:00〜21:00。"
+        ],
+        "title": "2026年シルバーウィーク営業",
+        "startDate": "2026-09-19",
+        "endDate": "2026-09-23",
+        "allYouCanEat": true,
+        "campaignType": "discount",
+        "priority": "P2",
+        "imageUrl": null
+      },
+      "requiresListing": false,
+      "semanticTerms": [
+        "シルバーウィーク",
+        "9/19"
+      ]
     }
   ]
 }

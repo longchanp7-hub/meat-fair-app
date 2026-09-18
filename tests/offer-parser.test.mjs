@@ -26,3 +26,8 @@ test('included unpriced detail rows are pruned behind a priced combined course',
   ];
   assert.deepEqual(pruneIncludedRows(rows),[course]);
 });
+
+test('offer parser does not turn discount amounts into plan prices',()=>{
+  assert.deepEqual(taxPrice('牛＆豚食べ放題コース 税込100円引き'),{price:null,priceText:null});
+  assert.deepEqual(taxPrice('鴨しゃぶ食べ放題コース 税込200円OFF'),{price:null,priceText:null});
+});

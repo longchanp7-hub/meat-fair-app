@@ -7,7 +7,12 @@
       "title": "旬菜ビュッフェ ランチ（平日・豊川店）",
       "price": 2300,
       "priceText": "税込2,300円",
-      "conditions": ["平日", "ランチ", "豊川店", "大人"],
+      "conditions": [
+        "平日",
+        "ランチ",
+        "豊川店",
+        "大人"
+      ],
       "officialUrl": "https://www.good-promise.co.jp/roan/price02/",
       "sourceUrl": "https://www.good-promise.co.jp/roan/price02/",
       "comparisonKey": "roan-toyokawa-weekday-lunch",
@@ -20,7 +25,12 @@
       "title": "旬菜ビュッフェ ランチ（土日祝・豊川店）",
       "price": 2400,
       "priceText": "税込2,400円",
-      "conditions": ["土日祝", "ランチ", "豊川店", "大人"],
+      "conditions": [
+        "土日祝",
+        "ランチ",
+        "豊川店",
+        "大人"
+      ],
       "officialUrl": "https://www.good-promise.co.jp/roan/price02/",
       "sourceUrl": "https://www.good-promise.co.jp/roan/price02/",
       "comparisonKey": "roan-toyokawa-weekend-lunch",
@@ -33,7 +43,12 @@
       "title": "三元豚しゃぶと旬菜ビュッフェ（平日ディナー・豊川店）",
       "price": 3100,
       "priceText": "税込3,100円",
-      "conditions": ["平日", "ディナー", "豊川店", "大人"],
+      "conditions": [
+        "平日",
+        "ディナー",
+        "豊川店",
+        "大人"
+      ],
       "officialUrl": "https://www.good-promise.co.jp/roan/price02/",
       "sourceUrl": "https://www.good-promise.co.jp/roan/price02/",
       "comparisonKey": "roan-toyokawa-weekday-dinner",
@@ -46,7 +61,12 @@
       "title": "厳選牛しゃぶと旬菜ビュッフェ（平日ディナー・豊川店）",
       "price": 3500,
       "priceText": "税込3,500円",
-      "conditions": ["平日", "ディナー", "豊川店", "大人"],
+      "conditions": [
+        "平日",
+        "ディナー",
+        "豊川店",
+        "大人"
+      ],
       "officialUrl": "https://www.good-promise.co.jp/roan/price02/",
       "sourceUrl": "https://www.good-promise.co.jp/roan/price02/",
       "comparisonKey": "roan-toyokawa-weekday-dinner",
@@ -59,7 +79,11 @@
       "title": "三元豚しゃぶと旬菜ビュッフェ（土日祝・豊川店）",
       "price": 3200,
       "priceText": "税込3,200円",
-      "conditions": ["土日祝", "豊川店", "大人"],
+      "conditions": [
+        "土日祝",
+        "豊川店",
+        "大人"
+      ],
       "officialUrl": "https://www.good-promise.co.jp/roan/price02/",
       "sourceUrl": "https://www.good-promise.co.jp/roan/price02/",
       "comparisonKey": "roan-toyokawa-weekend",
@@ -72,7 +96,11 @@
       "title": "厳選牛しゃぶと旬菜ビュッフェ（土日祝・豊川店）",
       "price": 3600,
       "priceText": "税込3,600円",
-      "conditions": ["土日祝", "豊川店", "大人"],
+      "conditions": [
+        "土日祝",
+        "豊川店",
+        "大人"
+      ],
       "officialUrl": "https://www.good-promise.co.jp/roan/price02/",
       "sourceUrl": "https://www.good-promise.co.jp/roan/price02/",
       "comparisonKey": "roan-toyokawa-weekend",
@@ -85,7 +113,10 @@
       "title": "お酒飲み放題（豊川店）",
       "price": 1980,
       "priceText": "税込1,980円",
-      "conditions": ["豊川店", "大人"],
+      "conditions": [
+        "豊川店",
+        "大人"
+      ],
       "officialUrl": "https://www.good-promise.co.jp/roan/price02/",
       "sourceUrl": "https://www.good-promise.co.jp/roan/price02/",
       "comparisonKey": "roan-toyokawa-drink",
@@ -98,12 +129,52 @@
       "title": "ドリンクバー（豊川店）",
       "price": null,
       "priceText": "コース料金に含む",
-      "conditions": ["豊川店"],
+      "conditions": [
+        "豊川店"
+      ],
       "officialUrl": "https://www.good-promise.co.jp/roan/price02/",
       "sourceUrl": "https://www.good-promise.co.jp/roan/price02/",
       "comparisonKey": "roan-toyokawa-drink",
       "reviewedAt": "2026-09-15T09:55:00+09:00",
       "rawText": "ドリンクバー無料"
+    },
+    {
+      "brandId": "roan",
+      "kind": "course",
+      "title": "旬菜ビュッフェ ディナー（平日）",
+      "price": 2880,
+      "priceText": "税込2,880円",
+      "conditions": [
+        "平日",
+        "ディナー",
+        "大人",
+        "ドリンクバー付き",
+        "デザート食べ放題"
+      ],
+      "officialUrl": "https://ameblo.jp/0141roan/entry-12977830217.html",
+      "sourceUrl": "https://ameblo.jp/0141roan/entry-12977830217.html",
+      "comparisonKey": "roan-current-weekday-dinner-buffet",
+      "reviewedAt": "2026-09-18T11:57:35.000Z",
+      "rawText": "旬菜ビュッフェ ディナー 平日 大人 税込2,880円 ドリンクバー・デザート食べ放題付き"
+    },
+    {
+      "brandId": "roan",
+      "kind": "course",
+      "title": "旬菜ビュッフェ ディナー（土日祝）",
+      "price": 2980,
+      "priceText": "税込2,980円",
+      "conditions": [
+        "土日祝",
+        "ディナー",
+        "大人",
+        "ドリンクバー付き",
+        "デザート食べ放題"
+      ],
+      "officialUrl": "https://ameblo.jp/0141roan/entry-12977830217.html",
+      "sourceUrl": "https://ameblo.jp/0141roan/entry-12977830217.html",
+      "comparisonKey": "roan-current-weekend-dinner-buffet",
+      "reviewedAt": "2026-09-18T11:57:35.000Z",
+      "rawText": "旬菜ビュッフェ ディナー 土日祝 大人 税込2,980円 ドリンクバー・デザート食べ放題付き"
     }
   ]
 }

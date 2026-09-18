@@ -18,6 +18,8 @@ export function priceEvidence(value=''){
   const patterns=[/(?:税込(?:価格|料金)?\s*[:：]?\s*[¥￥]?\s*)([0-9][0-9,]*(?:\.[0-9]+)?)\s*円?\s*([〜～~]|から)?/gu,/[¥￥]?\s*([0-9][0-9,]*(?:\.[0-9]+)?)\s*円?\s*[（(]\s*税込\s*[）)]\s*([〜～~]|から)?/gu];
   for(const re of patterns)for(const m of s.matchAll(re)){
     const amount=Number(m[1].replaceAll(',',''));
+    const after=s.slice((m.index??0)+m[0].length,(m.index??0)+m[0].length+16);
+    if(/^\s*(?:引き|OFF|オフ|割引)/i.test(after))continue;
     if(Number.isFinite(amount)&&amount>0&&amount<1000000)matches.push({amount,from:!!m[2],index:m.index,raw:m[0]});
   }
   const amounts=[...new Set(matches.map(m=>m.amount))];

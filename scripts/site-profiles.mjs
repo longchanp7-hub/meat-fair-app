@@ -6,12 +6,12 @@ import {resolveAnnouncements} from './campaign-aliases.mjs';
 export const PROFILE = {
   'yakiniku-king':{scope:'main,article',head:'h1',paths:/^\/(?:news\/\d+\/?|menu_all\/season\/[^/]+\/?)$/},
   gyukaku:{scope:'#contents,main,article',head:'h1',paths:/^\/lp\/.+|^\/news\/news\.php$/},
-  syabuyo:{scope:'.area-contents',head:'h1.mod-heading',paths:/^\/syabuyo\/(?:menu\/fair[^/]*\/|campaign\/(?:.*)?)$/},
+  syabuyo:{scope:'.area-contents,main',head:'h1.mod-heading,h1',paths:/^\/syabuyo\/$|^\/syabuyo\/(?:menu\/fair[^/]*\/|campaign\/(?:.*)?|gakusei\/index\.html)$/},
   yuzuan:{scope:'main',head:'h1',paths:/^\/news\/\d+\/$/},
   'washoku-sato':{scope:'article.news',head:'h3',paths:/^\/news\/20\d{2}\/\d{2}\/\d+\.html$/},
   amiyakitei:{scope:'main,.page_container_single',head:'h1.header-title,.page_container_single_title,h2',paths:/^\/atsugirifes(?:_no_coupon)?\/$|^\/topics\/\d+\/$/},
   onyasai:{scope:'main,#contents,.contents',head:'h1',paths:/^\/lp\/20\d{4}_[^/]+\/$/},
-  roan:{scope:'article,main',head:'h1,h2',paths:/\/roan\/(?:news|fair|campaign)\/[^/]+\/?$|^\/0141roan\/entry-\d+\.html$/},
+  roan:{scope:'article,main',head:'h1,h2',paths:/\/roan\/(?:news|fair|campaign)\/[^/]+\/?$|^\/0141roan\/(?:entry-\d+\.html|entrylist\.html)$/},
   'kalubi-taisho':{scope:'.detail',head:'h3.detail_title',paths:/^\/campaign\/\d+\/$/},
   'stamina-taro':{scope:'main',head:'h1.wp-block-post-title',paths:/^\/20\d{2}\/\d{2}\/\d{2}\/[^/]+\/$/},
   asakuma:{scope:'#main',head:'h1.heading',paths:/^\/(?:fair_|event_)[\w-]+\.html$/},
@@ -25,7 +25,11 @@ export const ENDED=/【終了|※\s*終了|終了しました|終了いたしま
 export function allowedDetail(brand,url){
   const u=new URL(url),hosts=new Set(brand.sources.map(s=>new URL(s.url).hostname));
   if(!hosts.has(u.hostname)||/[.](pdf|jpg|png|webp|css|js)$/i.test(u.pathname))return false;
-  if(brand.brandId==='amiyakitei'&&u.hostname==='prtimes.jp')return /^\/main\/html\/rd\/p\/\d+\.000130952\.html$/.test(u.pathname);
+  if(u.hostname==='prtimes.jp'){
+    if(brand.brandId==='amiyakitei')return /^\/main\/html\/rd\/p\/\d+\.000130952\.html$/.test(u.pathname);
+    if(brand.brandId==='onyasai')return /^\/main\/html\/rd\/p\/\d+\.000018604\.html$/.test(u.pathname);
+    return false;
+  }
   return !!PROFILE[brand.brandId]?.paths.test(u.pathname);
 }
 function meta(doc,key){return all(doc,'meta').find(n=>n.attrs.property===key||n.attrs.name===key)?.attrs.content||'';}
