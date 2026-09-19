@@ -70,7 +70,7 @@ test('Shabuyo campaign index and food-campaign title are discoverable',()=>{
  assert.equal(found.length,1);assert.equal(found[0].url,'https://www.skylark.co.jp/syabuyo/campaign/');
 });
 test('Roan Silver Week uses the exact official blog article as a campaign detail',()=>{
- const b=brand('roan'),url='https://ameblo.jp/0141roan/entry-12977830217.html';
+ const b=brand('roan'),url='https://ameblo.jp/0141roan/entry-12975623389.html';
  assert.ok(b.sources.some(s=>s.type==='campaign_detail'&&s.url===url));
  assert.equal(allowedDetail(b,url),true);
 });
