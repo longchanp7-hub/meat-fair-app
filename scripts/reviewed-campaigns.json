@@ -868,7 +868,7 @@
     {
       "brandId": "roan",
       "officialUrl": "https://ameblo.jp/0141roan/entry-12975623389.html",
-      "reviewedAt": "2026-09-19T00:01:15.000Z",
+      "reviewedAt": "2026-09-19T00:05:21.000Z",
       "semanticGuard": true,
       "allowBodyDateEvidence": true,
       "fields": {
@@ -895,7 +895,8 @@
       "requiresListing": false,
       "semanticTerms": [
         "シルバーウィーク",
-        "9/19"
+        "旬菜ビュッフェランチ",
+        "麻辣湯コースランチ"
       ]
     }
   ]
