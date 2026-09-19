@@ -21,6 +21,16 @@ for(const o of reviewed.offers){
 }
 for(const [brandId,rows] of reviewedByBrand){
   const health=(data.sourceHealth||[]).find(h=>h.brandId===brandId);
+  if(brandId==='roan'){
+    const currentSource='https://ameblo.jp/0141roan/entry-12977830217.html',freshCurrent=rows.filter(o=>o.sourceUrl===currentSource&&Date.now()-Date.parse(o.reviewedAt||'')>=0&&Date.now()-Date.parse(o.reviewedAt||'')<=ROAN_REVIEW_AGE);
+    if(freshCurrent.length){
+      data.offers=data.offers.filter(o=>!(o.brandId==='roan'&&o.sourceUrl===currentSource));
+      for(const [rank,o] of freshCurrent.entries()){
+        data.offers.push({...o,checkedAt:o.reviewedAt,rank,id:crypto.createHash('sha256').update([o.brandId,o.kind,o.title,o.priceText||'',o.officialUrl].join('|')).digest('hex').slice(0,16),verificationState:'reviewed_fallback'});
+      }
+      if(health){health.offers=data.offers.filter(o=>o.brandId==='roan').length;health.reviewedSupplement=true;}
+    }
+  }
   if((byBrand.get(brandId)||[]).length||health?.status==='ok')continue;
   const maxAge=brandId==='roan'?ROAN_REVIEW_AGE:DEFAULT_REVIEW_AGE;
   const fresh=rows.filter(o=>{const t=Date.parse(o.reviewedAt||'');return Number.isFinite(t)&&now-t>=0&&now-t<=maxAge;});

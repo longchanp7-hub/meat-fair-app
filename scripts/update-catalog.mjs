@@ -10,6 +10,7 @@ import {reviewedSatoCatalog} from './sato-reviewed-catalog.mjs';
 import {reviewedAnrakuteiCatalog,reconcileAnrakuteiCatalog} from './anrakutei-reviewed-catalog.mjs';
 import {reviewedSyabuyoStudentCatalog} from './syabuyo-reviewed-catalog.mjs';
 import {reviewedIchibanStudentCatalog} from './ichiban-reviewed-catalog.mjs';
+import {reviewedRoanCatalog,reconcileRoanCatalog} from './roan-reviewed-catalog.mjs';
 import {campaignStatus} from '../app/status.mjs';
 import {withFetchRetries} from './retry-fetch.mjs';
 
@@ -78,6 +79,7 @@ async function collectBrand(brand){
       if(brand.id==='anrakutei'&&!item.campaign)entries.push(...reviewedAnrakuteiCatalog(received.url,received.html,stamp));
       if(brand.id==='syabuyo'&&!item.campaign)entries.push(...reviewedSyabuyoStudentCatalog(received.url,received.html,stamp));
       if(brand.id==='jukusei-ichiban'&&!item.campaign)entries.push(...reviewedIchibanStudentCatalog(received.url,received.html,stamp));
+      if(brand.id==='roan'&&!item.campaign)entries.push(...reviewedRoanCatalog(received.url,received.html,stamp));
       sources.push({...extracted.source,brandId:brand.id,requestedUrl:url});
       if(item.depth<2||item.campaign)for(const l of discoverCatalogLinks(received.html,received.url,brand))if(!visited.has(l.url))queue.push({...l,depth:item.campaign?1:item.depth+1,rank:l.rank+item.depth*.5});
     }catch(e){
@@ -86,7 +88,8 @@ async function collectBrand(brand){
       entries.push(...previous.entries.filter(e=>e.brandId===brand.id&&e.sourceUrl===url&&now-Date.parse(e.checkedAt)>=0&&now-Date.parse(e.checkedAt)<=TTL&&usableParent(e)).map(e=>({...e,verificationState:'last_known_good'})));
     }
   }
-  const reconciled=brand.id==='anrakutei'?reconcileAnrakuteiCatalog(dedupCatalog(entries)):dedupCatalog(entries);
+  const deduped=dedupCatalog(entries);
+  const reconciled=brand.id==='anrakutei'?reconcileAnrakuteiCatalog(deduped):brand.id==='roan'?reconcileRoanCatalog(deduped):deduped;
   const result=[];
   for(const e of reconciled){
     if(!usableParent(e))continue;

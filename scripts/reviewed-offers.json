@@ -154,7 +154,7 @@
       "officialUrl": "https://ameblo.jp/0141roan/entry-12977830217.html",
       "sourceUrl": "https://ameblo.jp/0141roan/entry-12977830217.html",
       "comparisonKey": "roan-current-weekday-dinner-buffet",
-      "reviewedAt": "2026-09-18T11:57:35.000Z",
+      "reviewedAt": "2026-09-19T00:09:01.000Z",
       "rawText": "旬菜ビュッフェ ディナー 平日 大人 税込2,880円 ドリンクバー・デザート食べ放題付き"
     },
     {
@@ -173,8 +173,24 @@
       "officialUrl": "https://ameblo.jp/0141roan/entry-12977830217.html",
       "sourceUrl": "https://ameblo.jp/0141roan/entry-12977830217.html",
       "comparisonKey": "roan-current-weekend-dinner-buffet",
-      "reviewedAt": "2026-09-18T11:57:35.000Z",
+      "reviewedAt": "2026-09-19T00:09:01.000Z",
       "rawText": "旬菜ビュッフェ ディナー 土日祝 大人 税込2,980円 ドリンクバー・デザート食べ放題付き"
+    },
+    {
+      "brandId": "roan",
+      "kind": "drink",
+      "title": "ドリンクバー（旬菜ビュッフェディナーに含む）",
+      "price": null,
+      "priceText": "コース料金に含む",
+      "conditions": [
+        "ディナー",
+        "大人"
+      ],
+      "officialUrl": "https://ameblo.jp/0141roan/entry-12977830217.html",
+      "sourceUrl": "https://ameblo.jp/0141roan/entry-12977830217.html",
+      "comparisonKey": "roan-current-dinner-drink",
+      "reviewedAt": "2026-09-19T00:09:01.000Z",
+      "rawText": "旬菜ビュッフェ ディナーは平日・土日祝ともドリンクバー・デザート食べ放題付き"
     }
   ]
 }
