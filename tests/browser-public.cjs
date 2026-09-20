@@ -42,13 +42,13 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
       if(!['P1','P2'].includes(c.priority))return false;const s=campaignStatus(c);
       return tab==='new'?s.isNew&&s.state!=='ended':tab==='ending'?s.endingSoon:s.state===tab;
     });
-    const settle=()=>page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
-    async function inspect(){
-      await page.locator('.adaptive-gallery img').evaluateAll(images=>images.forEach(i=>i.loading='eager'));
-      await page.waitForFunction(()=>[...document.querySelectorAll('.adaptive-gallery img')].every(i=>i.complete),{},{timeout:20000});
-      await page.locator('.adaptive-gallery img').evaluateAll(images=>Promise.all(images.map(i=>i.decode().catch(()=>{}))));
-      await settle();
-      const faults=await page.locator('.adaptive-gallery').evaluateAll(gs=>{
+    const settle=(p=page)=>p.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
+    async function inspect(p=page){
+      await p.locator('.adaptive-gallery img').evaluateAll(images=>images.forEach(i=>i.loading='eager'));
+      await p.waitForFunction(()=>[...document.querySelectorAll('.adaptive-gallery img')].every(i=>i.complete),{},{timeout:20000});
+      await p.locator('.adaptive-gallery img').evaluateAll(images=>Promise.all(images.map(i=>i.decode().catch(()=>{}))));
+      await settle(p);
+      const faults=await p.locator('.adaptive-gallery').evaluateAll(gs=>{
         const out=[];
         for(const g of gs){
           const gr=g.getBoundingClientRect(),tiles=[...g.querySelectorAll('.media-tile')];
@@ -70,7 +70,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
         return out;
       });
       assert.deepEqual(faults,[]);
-      assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'horizontal overflow');
+      assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'horizontal overflow');
     }
     async function screenshotCard(id,width){
       await page.locator('#status-tabs').evaluate(e=>e.style.visibility='hidden');
@@ -139,7 +139,17 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
     assert.equal(await page.locator('.media-tile').count(),before-1);assert.ok(await page.locator('.media-unavailable').count()>0);await inspect();
     await page.locator('#clear-filter').click();
     const liveChanges=await require('./gallery-live-resize.cjs')({page,inspect,settle});reports.push({liveChanges});console.log('Image-count changes and live Fold resizing passed:',JSON.stringify(liveChanges));
-    const refreshLifecycle=await require('./refresh-lifecycle.cjs')({page,inspect,settle});reports.push({refreshLifecycle});console.log('Foreground data lifecycle passed:',JSON.stringify(refreshLifecycle));
+    const lifecyclePage=await browser.newPage({viewport:{width:390,height:900},timezoneId:'America/Los_Angeles',serviceWorkers:'block'});
+    lifecyclePage.setDefaultTimeout(12000);await lifecyclePage.emulateMedia({reducedMotion:'reduce'});
+    await lifecyclePage.goto(base+'?lifecycle='+Date.now(),{waitUntil:'domcontentloaded'});
+    await lifecyclePage.locator('body[data-ready="true"]').waitFor({timeout:30000});
+    const refreshLifecycle=await require('./refresh-lifecycle.cjs')({
+      page:lifecyclePage,
+      inspect:()=>inspect(lifecyclePage),
+      settle:()=>settle(lifecyclePage)
+    });
+    await lifecyclePage.close();
+    reports.push({refreshLifecycle});console.log('Foreground data lifecycle passed:',JSON.stringify(refreshLifecycle));
     const manifest=await page.evaluate(async()=>await(await fetch(document.querySelector('link[rel="manifest"]').href)).json());
     assert.equal(manifest.id,'/meat-fair-app/');assert.equal(manifest.start_url,manifest.id);assert.equal(manifest.scope,manifest.id);assert.equal(manifest.display,'standalone');
     const scope=await page.evaluate(async()=>(await navigator.serviceWorker.ready).scope);assert.equal(new URL(scope).pathname,'/meat-fair-app/');
