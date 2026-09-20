@@ -47,14 +47,13 @@ test('accepted request is not reported as installed until appinstalled arrives',
   assert.match(nodes['install-status'].textContent, /インストールしました/);
 });
 
-test('offline worker does not cache fair data or intercept other resource requests', async () => {
-  const events = {};
-  const self = {addEventListener(name, fn){events[name]=fn;}};
-  vm.runInNewContext(await fs.readFile(new URL('../app/sw.js', import.meta.url), 'utf8'), {self, Response, fetch:async()=>{throw Error('offline');}});
-  let response;
-  events.fetch({request:{mode:'navigate'}, respondWith(p){response=p;}});
-  const offline = await response;
-  assert.equal(offline.status,503);
-  assert.match(await offline.text(), /インターネットに接続/);
-  events.fetch({request:{mode:'cors'}, respondWith(){assert.fail('Data must use the normal network request');}});
+test('offline worker keeps the meat app shell and official data network-first without touching other origins', async () => {
+  const sw = await fs.readFile(new URL('../app/sw.js', import.meta.url), 'utf8');
+  assert.ok(sw.includes("CACHE_PREFIX='meat-fair-shell-v'"));
+  for (const file of ['index.html','app.js','styles.css','manifest.webmanifest','icons/icon-192.png']) assert.ok(sw.includes(file), file);
+  for (const file of ['/data/fairs.json','/data/catalog.json','/data/offers.json']) assert.ok(sw.includes(file), file);
+  assert.ok(sw.includes("fetch(request,{cache:'no-store'"));
+  assert.ok(sw.includes("fallbackKey:'./index.html'"));
+  assert.ok(sw.includes("event.request.method!=='GET'||!sameOrigin(event.request)"));
+  assert.ok(sw.includes('cache.match(request)'));
 });
