@@ -7,7 +7,8 @@ export const SOURCES = [
   ]},
   { brandId:'gyukaku', name:'牛角', category:'yakiniku', priority:2, sources:[
     { type:'brand_top', url:'https://www.gyukaku.ne.jp/', primary:true },
-    { type:'news_index', url:'https://www.gyukaku.ne.jp/news/', primary:false }
+    { type:'news_index', url:'https://www.gyukaku.ne.jp/news/', primary:false },
+    { type:'campaign_detail', url:'https://www.gyukaku.ne.jp/lp/202608_jujutsukaisencp/', campaignTitle:'牛角×アニメ『呪術廻戦』5周年 コラボキャンペーン', primary:false }
   ]},
   { brandId:'syabuyo', name:'しゃぶ葉', category:'shabu', priority:3, sources:[
     { type:'brand_top', url:'https://www.skylark.co.jp/syabuyo/', primary:true },
