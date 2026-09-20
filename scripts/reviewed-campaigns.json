@@ -902,7 +902,7 @@
     {
       "brandId": "gyukaku",
       "officialUrl": "https://www.gyukaku.ne.jp/lp/202608_jujutsukaisencp/",
-      "reviewedAt": "2026-09-20T00:40:41.469Z",
+      "reviewedAt": "2026-09-20T01:13:33.846Z",
       "semanticGuard": true,
       "allowBodyDateEvidence": true,
       "semanticTerms": [
@@ -926,7 +926,8 @@
         "campaignType": "collaboration",
         "priority": "P1"
       },
-      "requiresListing": false
+      "requiresListing": false,
+      "contentHash": "7cc1ab7722a22481dc16287012087fe8d9cb64603cf6666264996bc07b057b59"
     }
   ]
 }
