@@ -898,6 +898,35 @@
         "旬菜ビュッフェランチ",
         "麻辣湯コースランチ"
       ]
+    },
+    {
+      "brandId": "gyukaku",
+      "officialUrl": "https://www.gyukaku.ne.jp/lp/202608_jujutsukaisencp/",
+      "reviewedAt": "2026-09-20T00:40:41.469Z",
+      "semanticGuard": true,
+      "allowBodyDateEvidence": true,
+      "semanticTerms": [
+        "呪術廻戦",
+        "9月30日"
+      ],
+      "fields": {
+        "price": null,
+        "priceText": "コラボお肉盛り 税込1,958円／石焼きチーズビビンバ 税込1,045円／ゼリードリンク 税込583円",
+        "limitedIngredients": [],
+        "targetCourses": [],
+        "conditions": [
+          "2026年8月26日〜9月30日の期間限定。",
+          "牛角×アニメ『呪術廻戦』5周年コラボキャンペーン。",
+          "コラボメニュー・オリジナルグッズはなくなり次第終了。"
+        ],
+        "title": "牛角×アニメ『呪術廻戦』5周年 コラボキャンペーン",
+        "startDate": "2026-08-26",
+        "endDate": "2026-09-30",
+        "allYouCanEat": false,
+        "campaignType": "collaboration",
+        "priority": "P1"
+      },
+      "requiresListing": false
     }
   ]
 }
