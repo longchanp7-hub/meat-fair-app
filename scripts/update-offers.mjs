@@ -55,18 +55,23 @@ function galleryOffers(brandId){
   return out;
 }
 function conditionSubset(a,b){const B=new Set(b||[]);return(a||[]).every(x=>B.has(x));}
-function detailScore(x){
-  let score=(x.conditions?.length||0)*4;
-  try{const u=new URL(x.officialUrl);score+=u.pathname.split('/').filter(Boolean).length;if(/news|campaign|fair|menu|course|student/i.test(u.pathname))score+=4;}catch{}
-  return score;
+function urlShape(value){
+  try{const u=new URL(value);return{origin:u.origin,depth:u.pathname.split('/').filter(Boolean).length};}catch{return null;}
 }
+function semanticDuplicate(a,b){
+  if(a.kind!==b.kind||a.title!==b.title||(a.priceText||'')!==(b.priceText||''))return false;
+  if(!(conditionSubset(a.conditions,b.conditions)||conditionSubset(b.conditions,a.conditions)))return false;
+  if(a.officialUrl===b.officialUrl)return true;
+  const A=urlShape(a.officialUrl),B=urlShape(b.officialUrl);
+  return !!A&&!!B&&A.origin===B.origin&&Math.abs(A.depth-B.depth)>=2;
+}
+function detailScore(x){const u=urlShape(x.officialUrl);return(x.conditions?.length||0)*4+(u?.depth||0);}
 function dedupe(items){
   const out=[];
   for(const x of items){
-    const i=out.findIndex(y=>y.kind===x.kind&&y.title===x.title&&(y.priceText||'')===(x.priceText||'')&&(conditionSubset(y.conditions,x.conditions)||conditionSubset(x.conditions,y.conditions)));
+    const i=out.findIndex(y=>semanticDuplicate(y,x));
     if(i<0){out.push(x);continue;}
-    const y=out[i],ySubset=conditionSubset(y.conditions,x.conditions),xSubset=conditionSubset(x.conditions,y.conditions);
-    if((ySubset&&!xSubset)||(ySubset&&xSubset&&detailScore(x)>detailScore(y)))out[i]=x;
+    if(detailScore(x)>detailScore(out[i]))out[i]=x;
   }
   return out;
 }
