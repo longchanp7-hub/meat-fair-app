@@ -54,7 +54,22 @@ function galleryOffers(brandId){
   }
   return out;
 }
-function dedupe(items){const seen=new Set();return items.filter(x=>{const k=[x.kind,x.title,x.priceText||'',x.officialUrl].join('|');if(seen.has(k))return false;seen.add(k);return true;});}
+function conditionSubset(a,b){const B=new Set(b||[]);return(a||[]).every(x=>B.has(x));}
+function detailScore(x){
+  let score=(x.conditions?.length||0)*4;
+  try{const u=new URL(x.officialUrl);score+=u.pathname.split('/').filter(Boolean).length;if(/news|campaign|fair|menu|course|student/i.test(u.pathname))score+=4;}catch{}
+  return score;
+}
+function dedupe(items){
+  const out=[];
+  for(const x of items){
+    const i=out.findIndex(y=>y.kind===x.kind&&y.title===x.title&&(y.priceText||'')===(x.priceText||'')&&(conditionSubset(y.conditions,x.conditions)||conditionSubset(x.conditions,y.conditions)));
+    if(i<0){out.push(x);continue;}
+    const y=out[i],ySubset=conditionSubset(y.conditions,x.conditions),xSubset=conditionSubset(x.conditions,y.conditions);
+    if((ySubset&&!xSubset)||(ySubset&&xSubset&&detailScore(x)>detailScore(y)))out[i]=x;
+  }
+  return out;
+}
 async function collect(brand){
   const profile=SOURCES.find(x=>x.brandId===brand.id),allowed=new Set([new URL(brand.homeUrl).origin]);
   for(const s of profile?.sources||[])try{allowed.add(new URL(s.url).origin)}catch{}
