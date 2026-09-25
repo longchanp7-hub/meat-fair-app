@@ -521,8 +521,8 @@
     {
       "brandId": "anrakutei",
       "officialUrl": "https://anrakutei.jp/fair/290yenthanksf2/",
-      "reviewedAt": "2026-09-14T15:15:00.000Z",
-      "contentHash": "ea82bff86c62eb4295e48460f0ad92c8bd6e92620e0fd60e2f1eb8afb7c8c459",
+      "reviewedAt": "2026-09-25T09:47:06+09:00",
+      "contentHash": "d948ac8515a360e33ab64a2161612cdaa4a5cf208adfc72f6bbedcf3c273db07",
       "fields": {
         "price": null,
         "priceText": "ファミリーカルビなど対象商品 税込319円",
@@ -928,6 +928,35 @@
       },
       "requiresListing": false,
       "contentHash": "7cc1ab7722a22481dc16287012087fe8d9cb64603cf6666264996bc07b057b59"
+    },
+    {
+      "brandId": "yuzuan",
+      "officialUrl": "https://www.shabu-yuzuan.jp/news/7422/",
+      "reviewedAt": "2026-09-25T09:47:06+09:00",
+      "contentHash": "1a56c86c9d5040acfe70b70499b5d5bc96bd7707e806fd9e75d1fe873fd88c53",
+      "fields": {
+        "price": null,
+        "priceText": null,
+        "limitedIngredients": [],
+        "targetCourses": [
+          "【お祝い】ゆず庵コース",
+          "【お祝い】贅沢コース"
+        ],
+        "conditions": [
+          "2026年10月16日〜18日の3日間。",
+          "対象のお祝いコース利用で来店スタンプを通常1個から2個に増量。",
+          "前日までの予約が必要。お誕生日特典プランとの併用不可。",
+          "一部店舗は休業中の場合があるため店舗情報を確認。"
+        ],
+        "title": "お祝いコースキャンペーン",
+        "startDate": "2026-10-16",
+        "endDate": "2026-10-18",
+        "allYouCanEat": false,
+        "campaignType": "fair",
+        "priority": "P2",
+        "imageUrl": null
+      },
+      "requiresListing": false
     }
   ]
 }
