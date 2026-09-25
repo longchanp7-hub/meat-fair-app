@@ -268,14 +268,6 @@ export function profileCatalog(brand,root,url,{photos,campaign=null}={}){
       return out;
     }
     case 'roan': return null; // Explicit official linked pages / current blog scope.
-    case 'kushiya-monogatari': {
-      if(/\/(?:qa|about)\/?$/.test(p)){
-        if(/ソフトドリンク.*飲み放題/.test(whole))add('ソフトドリンク飲み放題',root,{kind:'drink',priceText:'',conditions:whole.slice(0,2500)});
-        if(/アルコール.*飲み放題/.test(whole))add('アルコール飲み放題（店舗限定）',root,{kind:'drink',priceText:'',conditions:whole.slice(0,2500)});
-        if(/食べ放題/.test(whole))add('串揚げ食べ放題',root,{image:photos(root,url).find(i=>/串/.test(i.title))||null,priceText:'',conditions:'料金・制限時間は利用店舗の公式案内で確認してください。'});
-      }
-      return out;
-    }
     default:return null;
   }
 }
