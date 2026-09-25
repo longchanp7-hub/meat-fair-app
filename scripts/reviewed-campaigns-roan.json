@@ -15,8 +15,12 @@
         "allYouCanEat": true,
         "campaignType": "fair",
         "priority": "P1",
-        "targetCourses": ["麻辣湯コース（土日ランチ・ディナー）"],
-        "limitedIngredients": ["麻辣湯"],
+        "targetCourses": [
+          "麻辣湯コース（土日ランチ・ディナー）"
+        ],
+        "limitedIngredients": [
+          "麻辣湯"
+        ],
         "conditions": [
           "平日ランチはビュッフェ料金で利用できます。",
           "平日・土日祝のディナーでも麻辣湯食べ放題を提供しています。",
@@ -40,10 +44,18 @@
         "allYouCanEat": true,
         "campaignType": "fair",
         "priority": "P1",
-        "targetCourses": ["海鮮食べ放題コース"],
-        "targetAreas": ["toyokawa"],
+        "targetCourses": [
+          "海鮮食べ放題コース"
+        ],
+        "targetAreas": [
+          "toyokawa"
+        ],
         "regionScope": "store_limited",
-        "limitedIngredients": ["大赤海老", "北海道産大ホタテ", "本ずわい蟹"],
+        "limitedIngredients": [
+          "大赤海老",
+          "北海道産大ホタテ",
+          "本ずわい蟹"
+        ],
         "conditions": [
           "露菴 豊川店の公式料金ページで提供を確認しています。",
           "子供（小学生）は税込1,990円、幼児（3歳以上）は税込500円。",
@@ -56,8 +68,8 @@
     {
       "brandId": "syabuyo",
       "officialUrl": "https://www.skylark.co.jp/syabuyo/campaign/",
-      "reviewedAt": "2026-09-16T09:21:23+09:00",
-      "contentHash": "cad02fa9c0413c4993185d44f6703b15d19453a4ae6fe647b54363e32a5d1aa0",
+      "reviewedAt": "2026-09-25T09:47:06+09:00",
+      "contentHash": "85ac46ca536dbe4aab8d097a28449661a379394add2548a69386f2cbf4919000",
       "fields": {
         "title": "シルバーウィークキャンペーン",
         "startDate": "2026-09-19",
@@ -71,7 +83,10 @@
           "鴨しゃぶ＆黒毛和牛 食べ放題コース",
           "牛＆豚 しゃぶしゃぶ食べ放題コース"
         ],
-        "limitedIngredients": ["鴨肉", "黒毛和牛"],
+        "limitedIngredients": [
+          "鴨肉",
+          "黒毛和牛"
+        ],
         "conditions": [
           "対象期間は2026年9月19日〜9月27日予定で、予告なく終了する場合があります。",
           "食べ放題コースの割引はすかいらーく公式アプリの特別クーポンを利用します。",
