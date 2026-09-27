@@ -4,6 +4,7 @@ import {parseHtml,one,all,text,links} from './html-document.mjs';
 import {publicUrl} from './gallery-extract.mjs';
 import {SOURCES} from './source-registry.mjs';
 import {clean,taxPrice,classifyOfferKind,canonicalCourseTitle,pruneIncludedRows} from './offer-parser.mjs';
+import {reviewedRoanCatalog} from './roan-reviewed-catalog.mjs';
 
 const root=new URL('../app/data/',import.meta.url),stamp=new Date().toISOString(),MAX_AGE=172800000;
 const read=async name=>JSON.parse(await fs.readFile(new URL(name,root),'utf8'));
@@ -88,10 +89,29 @@ async function collect(brand){
   }catch(e){errors.push({brandId:brand.id,url:brand.homeUrl,error:e.message});}
   const found=[...galleryOffers(brand.id)];let pagesRead=0;
   const pages=await Promise.all(urls.slice(0,5).map(async url=>{
-    try{const {html,finalUrl}=await request(url);if(!allowed.has(new URL(finalUrl).origin))throw Error('Unexpected official redirect');return{ok:true,url,rows:extract(html,finalUrl,brand.id)};}
+    try{const {html,finalUrl}=await request(url);if(!allowed.has(new URL(finalUrl).origin))throw Error('Unexpected official redirect');return{ok:true,url,html,finalUrl,rows:extract(html,finalUrl,brand.id)};}
     catch(e){return{ok:false,url,error:e.message,rows:[]};}
   }));
-  for(const p of pages){if(p.ok){pagesRead++;found.push(...p.rows);}else errors.push({brandId:brand.id,url:p.url,error:p.error});}
+  for(const p of pages){
+    if(p.ok){
+      pagesRead++;
+      if(brand.id==='roan'){
+        const reviewed=reviewedRoanCatalog(p.finalUrl,p.html,stamp);
+        if(reviewed.length){
+          found.push(...reviewed.map(e=>({
+            brandId:e.brandId,kind:e.kind,title:e.title,
+            price:e.price?.amount===0?null:e.price?.amount??null,
+            priceText:e.price?.text||null,conditions:e.conditions||[],
+            officialUrl:e.officialUrl,sourceUrl:e.sourceUrl,checkedAt:stamp,
+            comparisonKey:e.comparisonKey,rawText:e.evidenceText||e.title,
+            verificationState:'confirmed'
+          })));
+          continue;
+        }
+      }
+      found.push(...p.rows);
+    }else errors.push({brandId:brand.id,url:p.url,error:p.error});
+  }
   let offers=dedupe(found).slice(0,24).map((x,i)=>({...x,rank:i,id:crypto.createHash('sha256').update([brand.id,x.kind,x.title,x.priceText||'',x.officialUrl].join('|')).digest('hex').slice(0,16)}));
   if(!offers.length&&(!homeOk||pages.some(p=>!p.ok))){
     const old=(previous.offers||[]).filter(x=>x.brandId===brand.id&&Date.now()-Date.parse(x.checkedAt)<MAX_AGE);offers=old;
