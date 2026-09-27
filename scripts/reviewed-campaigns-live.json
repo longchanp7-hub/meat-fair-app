@@ -92,7 +92,7 @@
     {
       "brandId": "asakuma",
       "officialUrl": "https://www.asakuma.co.jp/29day.html",
-      "reviewedAt": "2026-09-27T00:25:54.000Z",
+      "reviewedAt": "2026-09-27T00:43:00.000Z",
       "semanticGuard": true,
       "allowBodyDateEvidence": true,
       "semanticTerms": [
@@ -118,7 +118,8 @@
         "campaignType": "fair",
         "priority": "P2",
         "imageUrl": null
-      }
+      },
+      "contentHash": "fd802b2e74fd5f60cc0aa2a0abcc048fce88cf1070b90e48dbbc6fdccb5fa573"
     }
   ]
 }
