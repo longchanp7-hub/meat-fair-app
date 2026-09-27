@@ -10,14 +10,114 @@
       "fields": {
         "price": null,
         "priceText": null,
-        "limitedIngredients": ["韓国"],
-        "targetCourses": ["きんぐコース", "プレミアムコース"],
-        "conditions": ["一部店舗では販売商品・開始時期が異なります。"],
+        "limitedIngredients": [
+          "韓国"
+        ],
+        "targetCourses": [
+          "きんぐコース",
+          "プレミアムコース"
+        ],
+        "conditions": [
+          "一部店舗では販売商品・開始時期が異なります。"
+        ],
         "title": "期間限定 韓国市場（カンコクシジャン）",
         "startDate": "2026-09-16",
         "endDate": "2026-12-08",
         "allYouCanEat": true,
         "imageUrl": "https://www.yakiniku-king.jp/wp-content/themes/king_basic_2024/img/menu/season/2609_koreanfair/pc01.webp"
+      }
+    },
+    {
+      "brandId": "amiyakitei",
+      "officialUrl": "https://prtimes.jp/main/html/rd/p/000000390.000130952.html",
+      "reviewedAt": "2026-09-27T00:25:54.000Z",
+      "semanticGuard": true,
+      "allowBodyDateEvidence": true,
+      "semanticTerms": [
+        "宮崎牛",
+        "お月見すき焼きカルビ"
+      ],
+      "fields": {
+        "title": "9月29日限定 宮崎牛 お月見すき焼きカルビ",
+        "startDate": "2026-09-29",
+        "endDate": "2026-09-29",
+        "price": 759,
+        "priceText": "税込759円",
+        "limitedIngredients": [
+          "宮崎牛"
+        ],
+        "targetCourses": [],
+        "conditions": [
+          "2026年9月29日限定。",
+          "中部地区店舗（愛知・岐阜・三重・滋賀）で販売。",
+          "数量限定で、なくなり次第終了。"
+        ],
+        "allYouCanEat": false,
+        "campaignType": "fair",
+        "priority": "P2",
+        "imageUrl": null
+      }
+    },
+    {
+      "brandId": "asakuma",
+      "officialUrl": "https://www.asakuma.co.jp/event_takumi.html",
+      "reviewedAt": "2026-09-27T00:25:54.000Z",
+      "semanticGuard": true,
+      "allowBodyDateEvidence": true,
+      "semanticTerms": [
+        "匠肉祭り"
+      ],
+      "fields": {
+        "title": "ステーキ食べ放題【匠肉祭り】",
+        "startDate": "2026-09-29",
+        "endDate": "2026-09-29",
+        "price": null,
+        "priceText": "大人3,629円（税別）",
+        "limitedIngredients": [
+          "ステーキ"
+        ],
+        "targetCourses": [],
+        "conditions": [
+          "瀬戸西店・松戸店限定。",
+          "11:00〜22:00（最終入店20:40）。",
+          "80分制。サラダバー・ドリンクバー付き。",
+          "予約不可。"
+        ],
+        "allYouCanEat": true,
+        "campaignType": "fair",
+        "priority": "P1",
+        "imageUrl": null
+      }
+    },
+    {
+      "brandId": "asakuma",
+      "officialUrl": "https://www.asakuma.co.jp/29day.html",
+      "reviewedAt": "2026-09-27T00:25:54.000Z",
+      "semanticGuard": true,
+      "allowBodyDateEvidence": true,
+      "semanticTerms": [
+        "肉の日",
+        "50%増量"
+      ],
+      "fields": {
+        "title": "肉の日 お客様感謝デー《サラダバー付》",
+        "startDate": "2026-09-26",
+        "endDate": "2026-09-27",
+        "price": null,
+        "priceText": "対象ステーキ50%増量",
+        "limitedIngredients": [
+          "サーロイン"
+        ],
+        "targetCourses": [],
+        "conditions": [
+          "9月26日・27日限定。ランチからディナーまで全時間帯で実施。",
+          "対象店舗限定。",
+          "サーロイン・テンダーロイン・ランプなど対象ステーキを50%増量。"
+        ],
+        "allYouCanEat": false,
+        "campaignType": "fair",
+        "priority": "P2",
+        "imageUrl": null
       }
     }
   ]
