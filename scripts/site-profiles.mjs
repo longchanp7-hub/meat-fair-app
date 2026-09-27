@@ -14,7 +14,7 @@ export const PROFILE = {
   roan:{scope:'article,main',head:'h1,h2',paths:/\/roan\/(?:news|fair|campaign)\/[^/]+\/?$|^\/0141roan\/(?:entry-\d+\.html|entrylist\.html)$/},
   'kalubi-taisho':{scope:'.detail',head:'h3.detail_title',paths:/^\/campaign\/\d+\/$/},
   'stamina-taro':{scope:'main',head:'h1.wp-block-post-title',paths:/^\/20\d{2}\/\d{2}\/\d{2}\/[^/]+\/$/},
-  asakuma:{scope:'#main',head:'h1.heading',paths:/^\/(?:fair_|event_)[\w-]+\.html$/},
+  asakuma:{scope:'#main',head:'h1.heading',paths:/^\/(?:fair_|event_)[\w-]+\.html$|^\/29day\.html$/},
   'nikusho-sakai':{scope:'.p-entry',head:'h1.p-entry__title',paths:/^\/nikushou_sakai\/news\/(?!feed\/|page\/)[\w-]+\/$/},
   'jukusei-ichiban':{scope:'.menuFair_wrap,main',head:'h3,h2',paths:/^\/jp\/menu\/cat5\.html$|^\/jp\/news\/20\d{2}\/.+\.html$/},
   anrakutei:{scope:'article#contentsArea',head:'h3',paths:/^\/(?:fair|topic)\/[^/]+\/$/}
