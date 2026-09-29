@@ -5,7 +5,7 @@ import {publicUrl} from './gallery-extract.mjs';
 import {SOURCES} from './source-registry.mjs';
 import {clean,taxPrice,classifyOfferKind,canonicalCourseTitle,pruneIncludedRows} from './offer-parser.mjs';
 import {reviewedRoanCatalog} from './roan-reviewed-catalog.mjs';
-import {extractPage,datesFor} from './site-profiles.mjs';
+import {extractPage,datesFor,parsePeriod,iso} from './site-profiles.mjs';
 
 const root=new URL('../app/data/',import.meta.url),stamp=new Date().toISOString(),MAX_AGE=172800000;
 const today=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
@@ -38,7 +38,7 @@ function titleOf(s,kind){
   if(v.length>110)v=v.slice(0,107)+'…';return v||(kind==='drink'?'飲み放題':'食べ放題・コース');
 }
 function make(raw,sourceUrl,brandId,officialUrl=sourceUrl){
-  const s=clean(raw);if(s.length<4||s.length>260||child.test(s)||addon.test(s))return null;
+  const s=clean(raw);if(s.length<4||s.length>260||child.test(s)||addon.test(s)||expiredOfferText(s))return null;
   const kind=classifyOfferKind(s);if(!kind)return null;
   const p=taxPrice(s);if(kind==='course'&&!p.priceText&&!/食べ放題|食べ飲み放題|飲み食べ放題|ビュッフェ|バイキング/.test(s))return null;
   const conditions=conditionsOf(s);return{brandId,kind,title:titleOf(s,kind),...p,conditions,officialUrl,sourceUrl,checkedAt:stamp,comparisonKey:sourceUrl+'|'+conditions.join(','),rawText:s};
@@ -83,6 +83,27 @@ function datedCampaignDetail(url){
     const path=new URL(url).pathname;
     return /\/(?:fair|campaign|news|topics?|information)\/[^/]+/i.test(path)||/\/entry-\d+\.html$/i.test(path);
   }catch{return false;}
+}
+function inferredPeriodYear(value){
+  const currentYear=+today.slice(0,4),currentMonth=+today.slice(5,7);
+  const m=String(value).normalize('NFKC').match(/(?:^|[^\d])(\d{1,2})[月/](\d{1,2})/);
+  if(!m)return currentYear;
+  const month=+m[1];
+  if(month<currentMonth-6)return currentYear+1;
+  if(month>currentMonth+6)return currentYear-1;
+  return currentYear;
+}
+function explicitRangeEnd(value,year){
+  const s=String(value).normalize('NFKC').replace(/\s+/g,'');
+  const m=s.match(/(?:(20\d{2})[年/.-])?(\d{1,2})[月/](\d{1,2})日?[～〜~\-－—](?:(\d{1,2})[月/])?(\d{1,2})日?/);
+  if(!m)return null;
+  const y=+(m[1]||year),startMonth=+m[2],endMonth=+(m[4]||m[2]),endDay=+m[5];
+  return iso(y+(endMonth<startMonth?1:0),endMonth,endDay);
+}
+function expiredOfferText(value){
+  const year=inferredPeriodYear(value),period=parsePeriod(value,year);
+  const endDate=period?.endDate||explicitRangeEnd(value,year);
+  return !!endDate&&endDate<today;
 }
 function expiredCampaignPage(html,url,brandId){
   if(!datedCampaignDetail(url))return false;
