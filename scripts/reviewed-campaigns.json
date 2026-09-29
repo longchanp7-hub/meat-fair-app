@@ -371,8 +371,8 @@
     {
       "brandId": "stamina-taro",
       "officialUrl": "https://staminataro.jp/2026/09/10/ninnikufair20260918/",
-      "reviewedAt": "2026-09-14T15:15:00.000Z",
-      "contentHash": "2e0a072ec05ac4e9071327237b8e327db927e1ddd56da4119802943702350039",
+      "reviewedAt": "2026-09-29T01:16:00.000Z",
+      "contentHash": "75d8fb34481c9d212966d134ad74758ff63b366114a762d2355b379f6498968b",
       "fields": {
         "price": null,
         "priceText": null,
@@ -391,30 +391,6 @@
         "endDateText": "なくなり次第終了",
         "allYouCanEat": true,
         "imageUrl": "https://i0.wp.com/staminataro.jp/wp-content/uploads/2026/09/A4%E3%83%9D%E3%82%B9%E3%82%BF%E3%83%BC.jpg?resize=724%2C1024&ssl=1"
-      },
-      "requiresListing": true
-    },
-    {
-      "brandId": "stamina-taro",
-      "officialUrl": "https://staminataro.jp/2026/09/14/0919sw/",
-      "reviewedAt": "2026-09-14T15:15:00.000Z",
-      "contentHash": "e897dcd140342c1696c562f0bb9d409e6caed84f064be1f7efedeae6ea26feef",
-      "fields": {
-        "price": null,
-        "priceText": null,
-        "limitedIngredients": [
-          "牛ロース"
-        ],
-        "targetCourses": [],
-        "conditions": [
-          "ディナー限定・数量限定。"
-        ],
-        "title": "特選ジャンボ牛ロース 食べ放題",
-        "startDate": "2026-09-19",
-        "endDate": null,
-        "endDateText": "なくなり次第終了",
-        "allYouCanEat": true,
-        "imageUrl": "https://staminataro.jp/wp-content/uploads/2026/09/2026GW%E8%B2%A9%E4%BF%83%E8%82%89%E3%81%AE%E3%82%B3%E3%83%94%E3%83%BC.jpg"
       },
       "requiresListing": true
     },

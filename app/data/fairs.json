@@ -1218,47 +1218,6 @@
       "staleAfterDays": 45,
       "lifecycleStatus": "current",
       "secondarySources": []
-    },
-    {
-      "id": "03c0c1f68ee3a36c",
-      "brandId": "stamina-taro",
-      "brandName": "すたみな太郎",
-      "title": "特選ジャンボ牛ロース 食べ放題",
-      "officialUrl": "https://staminataro.jp/2026/09/14/0919sw/",
-      "sourceUrl": "https://staminataro.jp/",
-      "sourceType": "brand_top",
-      "campaignType": "fair",
-      "priority": "P1",
-      "startDate": "2026-09-19",
-      "endDate": null,
-      "startDateText": null,
-      "endDateText": "なくなり次第終了",
-      "publishedDate": "2026-09-14",
-      "price": null,
-      "priceText": null,
-      "allYouCanEat": true,
-      "targetCourses": [],
-      "targetStores": [],
-      "targetAreas": [],
-      "regionScope": "unknown",
-      "limitedIngredients": [
-        "牛ロース"
-      ],
-      "weekdayCondition": null,
-      "conditions": [
-        "ディナー限定・数量限定。"
-      ],
-      "imageUrl": "https://staminataro.jp/wp-content/uploads/2026/09/2026GW%E8%B2%A9%E4%BF%83%E8%82%89%E3%81%AE%E3%82%B3%E3%83%94%E3%83%BC.jpg",
-      "firstSeenAt": "2026-09-14T15:44:30.768Z",
-      "fetchedAt": "2026-09-28T01:00:53.439Z",
-      "lastVerifiedAt": "2026-09-28T01:00:53.439Z",
-      "contentHash": "e897dcd140342c1696c562f0bb9d409e6caed84f064be1f7efedeae6ea26feef",
-      "confidence": 0.98,
-      "verificationState": "last_known_good",
-      "statusEvidence": "official_listing_rechecked",
-      "staleAfterDays": 45,
-      "lifecycleStatus": "current",
-      "secondarySources": []
     }
   ],
   "sourceHealth": [
