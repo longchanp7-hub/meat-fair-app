@@ -120,6 +120,37 @@
         "imageUrl": null
       },
       "contentHash": "fd802b2e74fd5f60cc0aa2a0abcc048fce88cf1070b90e48dbbc6fdccb5fa573"
+    },
+    {
+      "brandId": "anrakutei",
+      "officialUrl": "https://anrakutei.jp/topic/20260929lmpricedown/",
+      "reviewedAt": "2026-09-29T01:07:00.000Z",
+      "semanticGuard": true,
+      "allowBodyDateEvidence": true,
+      "semanticTerms": [
+        "ランチメニュー",
+        "値下げ"
+      ],
+      "fields": {
+        "title": "安楽亭コスパ宣言・第3弾 ランチメニュー値下げ",
+        "startDate": "2026-09-29",
+        "endDate": null,
+        "price": null,
+        "priceText": "ファミリーカルビランチ 税込1,078円／特盛MIX240ランチ 税込1,738円／特盛牛・牛200ランチ 税込2,178円",
+        "limitedIngredients": [
+          "ファミリーカルビ"
+        ],
+        "targetCourses": [],
+        "conditions": [
+          "2026年9月29日から。ランチ35品目以上を値下げ。",
+          "ランチは平日・土日とも17時まで。",
+          "一部商品は店舗により価格・取扱いが異なります。"
+        ],
+        "allYouCanEat": false,
+        "campaignType": "discount",
+        "priority": "P2",
+        "imageUrl": null
+      }
     }
   ]
 }
