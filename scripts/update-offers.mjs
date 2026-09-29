@@ -5,8 +5,10 @@ import {publicUrl} from './gallery-extract.mjs';
 import {SOURCES} from './source-registry.mjs';
 import {clean,taxPrice,classifyOfferKind,canonicalCourseTitle,pruneIncludedRows} from './offer-parser.mjs';
 import {reviewedRoanCatalog} from './roan-reviewed-catalog.mjs';
+import {extractPage,datesFor} from './site-profiles.mjs';
 
 const root=new URL('../app/data/',import.meta.url),stamp=new Date().toISOString(),MAX_AGE=172800000;
+const today=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 const read=async name=>JSON.parse(await fs.readFile(new URL(name,root),'utf8'));
 const brands=(await read('brands.json')).brands,gallery=await read('gallery.json');
 let previous={offers:[]};try{previous=await read('offers.json');}catch(e){if(e.code!=='ENOENT')throw e;}
@@ -76,6 +78,20 @@ function dedupe(items){
   }
   return out;
 }
+function datedCampaignDetail(url){
+  try{
+    const path=new URL(url).pathname;
+    return /\/(?:fair|campaign|news|topics?|information)\/[^/]+/i.test(path)||/\/entry-\d+\.html$/i.test(path);
+  }catch{return false;}
+}
+function expiredCampaignPage(html,url,brandId){
+  if(!datedCampaignDetail(url))return false;
+  try{
+    const page=extractPage({brandId},html,url);
+    const {endDate}=datesFor(page,url);
+    return !!endDate&&endDate<today;
+  }catch{return false;}
+}
 async function collect(brand){
   const profile=SOURCES.find(x=>x.brandId===brand.id),allowed=new Set([new URL(brand.homeUrl).origin]);
   for(const s of profile?.sources||[])try{allowed.add(new URL(s.url).origin)}catch{}
@@ -87,14 +103,15 @@ async function collect(brand){
     const doc=parseHtml(html),rootNode=one(doc,'main,.area-contents,.contents,body')||doc;
     for(const l of links(rootNode,finalUrl))if(usefulLink.test((l.title||'')+' '+l.url))add(l.url);
   }catch(e){errors.push({brandId:brand.id,url:brand.homeUrl,error:e.message});}
-  const found=[...galleryOffers(brand.id)];let pagesRead=0;
+  const found=[...galleryOffers(brand.id)];let pagesRead=0;const expiredUrls=new Set();
   const pages=await Promise.all(urls.slice(0,5).map(async url=>{
-    try{const {html,finalUrl}=await request(url);if(!allowed.has(new URL(finalUrl).origin))throw Error('Unexpected official redirect');return{ok:true,url,html,finalUrl,rows:extract(html,finalUrl,brand.id)};}
+    try{const {html,finalUrl}=await request(url);if(!allowed.has(new URL(finalUrl).origin))throw Error('Unexpected official redirect');const expired=expiredCampaignPage(html,finalUrl,brand.id);return{ok:true,url,html,finalUrl,expired,rows:expired?[]:extract(html,finalUrl,brand.id)};}
     catch(e){return{ok:false,url,error:e.message,rows:[]};}
   }));
   for(const p of pages){
     if(p.ok){
       pagesRead++;
+      if(p.expired){expiredUrls.add(p.finalUrl);continue;}
       if(brand.id==='roan'){
         const reviewed=reviewedRoanCatalog(p.finalUrl,p.html,stamp);
         if(reviewed.length){
@@ -112,7 +129,8 @@ async function collect(brand){
       found.push(...p.rows);
     }else errors.push({brandId:brand.id,url:p.url,error:p.error});
   }
-  let offers=dedupe(found).slice(0,24).map((x,i)=>({...x,rank:i,id:crypto.createHash('sha256').update([brand.id,x.kind,x.title,x.priceText||'',x.officialUrl].join('|')).digest('hex').slice(0,16)}));
+  const eligibleFound=found.filter(x=>!expiredUrls.has(x.officialUrl)&&!expiredUrls.has(x.sourceUrl));
+  let offers=dedupe(eligibleFound).slice(0,24).map((x,i)=>({...x,rank:i,id:crypto.createHash('sha256').update([brand.id,x.kind,x.title,x.priceText||'',x.officialUrl].join('|')).digest('hex').slice(0,16)}));
   if(!offers.length&&(!homeOk||pages.some(p=>!p.ok))){
     const old=(previous.offers||[]).filter(x=>x.brandId===brand.id&&Date.now()-Date.parse(x.checkedAt)<MAX_AGE);offers=old;
     return{offers,health:{brandId:brand.id,status:old.length?'last_known_good':'partial',pagesRead,offers:old.length}};
