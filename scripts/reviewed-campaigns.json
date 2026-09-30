@@ -371,7 +371,7 @@
     {
       "brandId": "stamina-taro",
       "officialUrl": "https://staminataro.jp/2026/09/10/ninnikufair20260918/",
-      "reviewedAt": "2026-09-30T03:06:00.000Z",
+      "reviewedAt": "2026-09-30T03:12:00.000Z",
       "contentHash": "2e0a072ec05ac4e9071327237b8e327db927e1ddd56da4119802943702350039",
       "fields": {
         "price": null,
@@ -389,10 +389,15 @@
         "startDate": "2026-09-18",
         "endDate": null,
         "endDateText": "なくなり次第終了",
-        "allYouCanEat": true,
+        "allYouCanEat": false,
         "imageUrl": "https://i0.wp.com/staminataro.jp/wp-content/uploads/2026/09/A4%E3%83%9D%E3%82%B9%E3%82%BF%E3%83%BC.jpg?resize=724%2C1024&ssl=1"
       },
-      "requiresListing": true
+      "requiresListing": true,
+      "semanticGuard": true,
+      "semanticTerms": [
+        "ニンニクフェア",
+        "第2弾"
+      ]
     },
     {
       "brandId": "asakuma",
