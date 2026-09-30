@@ -2,7 +2,7 @@ name: Update fairs
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *' # 09:00 JST
+    - cron: '17 19 * * *' # 04:17 JST; allow buffer for GitHub Actions schedule delays
   push:
     branches: [main]
     paths:
