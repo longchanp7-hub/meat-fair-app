@@ -46,9 +46,9 @@ export const BRAND_PRESENTATION={
     note:'さとしゃぶ／さとすき／さと式焼肉を分けて料金表示。宴席・通常メニュー写真は非表示'
   },
   amiyakitei:{
-    ...BASE,fairGallery:'amiyakitei',coursePhotos:true,hideTextWhenPhoto:false,
+    ...BASE,fairGallery:'amiyakitei',coursePhotos:true,
     drinkAllow:/飲み放題/i,
-    note:'厚切りフェスと小写真は維持。料金テキストは座布団状に圧縮'
+    note:'厚切りフェスと小写真は維持。写真付きコースの重複テキストは出さない'
   },
   onyasai:{
     ...BASE,
