@@ -26,6 +26,10 @@ test('reviewed chain rules remove the specific clutter rejected in the visual re
  for(const title of ['アプリ会員限定カジュアルコース','特選プレミアムコース+追加オプション'])assert.equal(catalogEntryVisible('kalubi-taisho',{kind:'course',title}),false);
  assert.equal(catalogEntryVisible('roan',{kind:'course',title:'旬菜ビュッフェ ランチ（平日・豊川店）'}),true);
  assert.equal(catalogEntryVisible('roan',{kind:'course',title:'麻辣湯コース(土日ランチ・ディナー)'}),false);
+ assert.equal(catalogEntryVisible('amiyakitei',{kind:'course',title:'スタンダード 食べ放題コース'}),true);
+ assert.equal(catalogEntryVisible('amiyakitei',{kind:'course',title:'黒毛和牛お手軽コース'}),false);
+ assert.equal(catalogEntryVisible('amiyakitei-plus',{kind:'course',title:'黒毛和牛お手軽コース'}),true);
+ assert.equal(catalogEntryVisible('amiyakitei-plus',{kind:'course',title:'焼肉食べ放題 感激どんどん'}),false);
  for(const title of ['さとしゃぶ 食べ放題','さとすき 食べ放題','さと式焼肉 牛＆豚プレミアムコース'])assert.equal(catalogEntryVisible('washoku-sato',{kind:'course',title}),true);
 });
 

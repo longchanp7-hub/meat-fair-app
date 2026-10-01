@@ -47,13 +47,15 @@ export const BRAND_PRESENTATION={
   },
   amiyakitei:{
     ...BASE,fairGallery:'amiyakitei',coursePhotos:true,
+    courseAllow:/スタンダード|国産黒毛和牛|牛タン.*和牛一頭買い/i,
     drinkAllow:/飲み放題/i,
-    note:'厚切りフェスと小写真は維持。写真付きコースの重複テキストは出さない'
+    note:'厚切りフェスと小写真は維持。通常あみやき亭の3コースだけを表示'
   },
   'amiyakitei-plus':{
     ...BASE,fairGallery:'amiyakitei',coursePhotos:true,
+    courseAllow:/黒毛和牛お手軽|黒毛和牛堪能|全メニュー贅沢/i,
     drinkAllow:/飲み放題/i,
-    note:'Plus専用フェア→写真付きコース→飲み放題。通常のあみやき亭とは分けて表示'
+    note:'Plus専用フェア→Plusの3コース→飲み放題。通常のあみやき亭とは分けて表示'
   },
   onyasai:{
     ...BASE,
