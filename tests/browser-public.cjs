@@ -22,7 +22,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
   const brands=JSON.parse(await fs.readFile('app/data/brands.json','utf8')).brands;
   const stores=JSON.parse(await fs.readFile('app/data/stores.json','utf8'));
   const brandIds=new Set(brands.map(b=>b.id));
-  assert.equal(brands.length,14);assert.equal(brandIds.has('kushiya-monogatari'),false);
+  assert.equal(brands.length,15);assert.equal(brandIds.has('kushiya-monogatari'),false);
   assert.equal(new Set(stores.stores.map(s=>s.brandId)).size,brands.length);
   assert.ok(stores.stores.every(s=>brandIds.has(s.brandId)));
   const folder='browser-report';await fs.mkdir(folder,{recursive:true});
