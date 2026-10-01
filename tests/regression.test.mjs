@@ -50,14 +50,16 @@ test('restrict sources to official detail hosts, not feeds/archive/assets',()=>{
  assert.equal(allowedDetail(brand('amiyakitei'),'https://amiyakitei.jp/topics/category/news/'),false);
  assert.equal(allowedDetail(brand('gyukaku'),'https://evil.example/lp/test/'),false);
 });
-test('Amiyakitei company press monitoring only accepts company 130952 brand releases',()=>{
- const b=brand('amiyakitei');
- const valid='https://prtimes.jp/main/html/rd/p/000000389.000130952.html';
+test('Amiyakitei company press monitoring separates regular and Plus releases',()=>{
+ const regular=brand('amiyakitei'),plus=brand('amiyakitei-plus');
+ const regularUrl='https://prtimes.jp/main/html/rd/p/000000389.000130952.html';
+ const plusUrl='https://prtimes.jp/main/html/rd/p/000000386.000130952.html';
  const other='https://prtimes.jp/main/html/rd/p/000000389.000999999.html';
- assert.equal(allowedDetail(b,valid),true);assert.equal(allowedDetail(b,other),false);
- const html='<a href="'+valid+'">あみやき亭 飛騨牛＆肉ガチャWフェア</a><a href="https://prtimes.jp/main/html/rd/p/000000388.000130952.html">感動の肉と米 新商品</a>';
- const found=discoverLinks(b,html,'https://prtimes.jp/topics/keywords/%E3%81%82%E3%81%BF%E3%82%84%E3%81%8D%E4%BA%AD');
- assert.deepEqual(found.map(x=>x.url),[valid]);
+ assert.equal(allowedDetail(regular,regularUrl),true);assert.equal(allowedDetail(plus,plusUrl),true);assert.equal(allowedDetail(regular,other),false);
+ const html='<a href="'+regularUrl+'">あみやき亭 飛騨牛＆肉ガチャWフェア</a><a href="'+plusUrl+'">あみやき亭Plus 韓国フェア</a><a href="https://prtimes.jp/main/html/rd/p/000000388.000130952.html">感動の肉と米 新商品</a>';
+ const index='https://prtimes.jp/topics/keywords/%E3%81%82%E3%81%BF%E3%82%84%E3%81%8D%E4%BA%AD';
+ assert.deepEqual(discoverLinks(regular,html,index).map(x=>x.url),[regularUrl]);
+ assert.deepEqual(discoverLinks(plus,html,index).map(x=>x.url),[plusUrl]);
 });
 test('Shabuyo campaign index and food-campaign title are discoverable',()=>{
  const b=brand('syabuyo');
@@ -74,8 +76,8 @@ test('Roan Silver Week uses the exact official blog article as a campaign detail
  assert.ok(b.sources.some(s=>s.type==='campaign_detail'&&s.url===url));
  assert.equal(allowedDetail(b,url),true);
 });
-test('current rollout has 14 distinct source definitions and audited imagery',()=>{
- assert.equal(SOURCES.length,14);assert.equal(new Set(SOURCES.map(b=>b.brandId)).size,14);
+test('current rollout has 15 distinct source definitions and audited imagery',()=>{
+ assert.equal(SOURCES.length,15);assert.equal(new Set(SOURCES.map(b=>b.brandId)).size,15);
  const r=JSON.parse(fs.readFileSync(new URL('../scripts/reviewed-campaigns.json',import.meta.url))).reviews;
  assert.equal(new Set(r.map(x=>x.officialUrl)).size,r.length);
  const find=x=>r.find(c=>c.officialUrl.includes(x));

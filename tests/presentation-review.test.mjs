@@ -4,9 +4,9 @@ import {visibleBrand,fairAssetVisible,catalogEntryVisible} from '../app/presenta
 import {renderCatalog} from '../app/catalog.mjs';
 import {reviewedSatoCatalog} from '../scripts/sato-reviewed-catalog.mjs';
 
-test('Kushiya is outside the 14-chain local target while reviewed chains remain visible',()=>{
+test('Kushiya is outside the 15-chain local target while reviewed chains remain visible',()=>{
  assert.equal(visibleBrand('kushiya-monogatari'),false);
- for(const id of ['yakiniku-king','gyukaku','syabuyo','yuzuan','washoku-sato','amiyakitei','onyasai','roan','kalubi-taisho','stamina-taro','asakuma','nikusho-sakai','jukusei-ichiban','anrakutei'])assert.equal(visibleBrand(id),true);
+ for(const id of ['yakiniku-king','gyukaku','syabuyo','yuzuan','washoku-sato','amiyakitei','amiyakitei-plus','onyasai','roan','kalubi-taisho','stamina-taro','asakuma','nikusho-sakai','jukusei-ichiban','anrakutei'])assert.equal(visibleBrand(id),true);
 });
 
 test('reviewed compact galleries hide ordinary dish clutter but retain Shabuyo featured meat blocks',()=>{

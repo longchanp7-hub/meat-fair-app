@@ -7,9 +7,9 @@ import {visibleBrand} from '../app/presentation.mjs';
 
 const brands=JSON.parse(fs.readFileSync(new URL('../app/data/brands.json',import.meta.url),'utf8')).brands;
 
-test('permanent target set is exactly the fourteen configured brands',()=>{
+test('permanent target set is exactly the fifteen configured brands',()=>{
  const ids=brands.map(b=>b.id);
- assert.equal(TARGET_BRAND_IDS.length,14);assert.equal(TARGET_BRANDS.size,14);
+ assert.equal(TARGET_BRAND_IDS.length,15);assert.equal(TARGET_BRANDS.size,15);
  assert.deepEqual(new Set(ids),TARGET_BRANDS);
  assert.deepEqual(new Set(SOURCES.map(x=>x.brandId)),TARGET_BRANDS);
  for(const id of TARGET_BRAND_IDS)assert.equal(visibleBrand(id),true);
