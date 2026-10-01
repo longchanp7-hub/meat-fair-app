@@ -119,10 +119,13 @@ export function profileCatalog(brand,root,url,{photos,campaign=null}={}){
       }
       return out;
     }
-    case 'amiyakitei': {
+    case 'amiyakitei':
+    case 'amiyakitei-plus': {
       if(!/\/menu\/?$/.test(p))return out;
+      const wantPlus=brand.id==='amiyakitei-plus';
       for(const scope of all(root,'.brand-content')){
-        const isPlus=!!one(scope,'#course-plus'),subBrand=isPlus?'あみやき亭Plus':'あみやき亭';
+        const isPlus=!!one(scope,'#course-plus');if(isPlus!==wantPlus)continue;
+        const subBrand=isPlus?'あみやき亭Plus':'あみやき亭';
         for(const n of all(scope,'.course-slider__item')){
           const h=one(n,'.course-slider__title');if(h&&tax(text(n)))add(text(h),n,{image:photo(n),subBrand,group:subBrand+'|course'});
         }

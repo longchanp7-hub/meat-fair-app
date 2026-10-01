@@ -1,6 +1,6 @@
 // UI policy extracted from the 2026-09-15 chain-by-chain review.
 // Data collection stays factual; this file controls only what is emphasized.
-// Only the fourteen explicitly reviewed brands below are part of this app.
+// Only the fifteen explicitly reviewed brands below are part of this app.
 const BASE={
   showHighlights:false,
   coursePhotos:false,
@@ -49,6 +49,11 @@ export const BRAND_PRESENTATION={
     ...BASE,fairGallery:'amiyakitei',coursePhotos:true,
     drinkAllow:/飲み放題/i,
     note:'厚切りフェスと小写真は維持。写真付きコースの重複テキストは出さない'
+  },
+  'amiyakitei-plus':{
+    ...BASE,fairGallery:'amiyakitei',coursePhotos:true,
+    drinkAllow:/飲み放題/i,
+    note:'Plus専用フェア→写真付きコース→飲み放題。通常のあみやき亭とは分けて表示'
   },
   onyasai:{
     ...BASE,
