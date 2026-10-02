@@ -68,14 +68,15 @@ test('Roan reviewed regular prices collapse into three simple course rows',()=>{
 });
 
 test('Sato reviewed prices fail closed unless the exact current official menu marker is present',()=>{
- const at='2026-09-15T03:00:00Z';
- assert.equal(reviewedSatoCatalog('https://sato-res.com/satoshabu/','old menu',at).length,0);
- const shabu=reviewedSatoCatalog('https://sato-res.com/satoshabu/','href="/sato/assets/menu/book/ayce-260616/"',at);
- assert.equal(shabu.length,1);assert.equal(shabu[0].price.text,'税込2,189円〜6,039円');
- const suki=reviewedSatoCatalog('https://sato-res.com/satosuki/','ayce-260616',at);
+ const at='2026-10-02T01:40:00Z';
+ assert.equal(reviewedSatoCatalog('https://www.sato-res.com/pages/sato-satoshabu','old menu',at).length,0);
+ const marker='src="https://www.sato-res.com/cdn/shop/files/other-menu.jpg?v=1790570027&width=1600"';
+ const shabu=reviewedSatoCatalog('https://www.sato-res.com/pages/sato-satoshabu',marker,at);
+ assert.equal(shabu.length,1);assert.equal(shabu[0].price.text,'税込2,189円〜6,149円');
+ const suki=reviewedSatoCatalog('https://www.sato-res.com/pages/sato-satosuki',marker,at);
  assert.equal(suki[0].title,'さとすき 食べ放題（大人）');
- const yaki=reviewedSatoCatalog('https://sato-res.com/satoyaki/','<img src="menu-260409-01.jpg">',at);
- assert.deepEqual(yaki.map(x=>x.price.amount),[4279,6369]);
- const bar=reviewedSatoCatalog('https://sato-res.com/sato/bar/','料理とセットでご注文の方、1,978（税込）',at);
- assert.equal(bar[0].price.amount,1978);
+ const yaki=reviewedSatoCatalog('https://www.sato-res.com/pages/sato-satoshikiyakiniku','<img src="yakiniku-menu.jpg?v=1790569988&width=1600">',at);
+ assert.deepEqual(yaki.map(x=>x.price.amount),[4389,6479]);
+ const bar=reviewedSatoCatalog('https://www.sato-res.com/pages/sato-bar','料理とセットでご注文の方、1,428円（税込）',at);
+ assert.equal(bar[0].price.amount,1428);
 });
