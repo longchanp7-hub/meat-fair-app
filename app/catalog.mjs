@@ -92,15 +92,6 @@ function dedupeSemantic(entries){
   }
   return [...map.values()];
 }
-function reviewedSatoVersionRows(entries){
-  const marker=entries.find(e=>e.brandId==='washoku-sato'&&e.kind==='course'&&/ayce-260616\.jpg/.test(String(e.imageUrl||''))&&e.verificationState==='confirmed');
-  if(!marker)return [];
-  const base={...marker,imageUrl:null,width:null,height:null,rank:-10,verificationState:'confirmed',sourceMethod:'reviewed-current-menu-version'};
-  return [
-    {...base,id:'sato-shabu-ayce-260616',title:'さとしゃぶ 食べ放題（大人）',officialUrl:'https://sato-res.com/satoshabu/',sourceUrl:marker.sourceUrl,price:{amount:2189,text:'税込2,189円〜6,039円',taxIncluded:true,from:true},context:{...marker.context,service:'ディナー',audience:'大人',scope:'sato-shabu-current'},comparisonKey:'sato-shabu|ayce-260616',comparisonEvidence:'official-current-menu-version-ayce-260616',evidenceText:'公式食べ放題メニュー ayce-260616 の確認済み料金帯'},
-    {...base,id:'sato-suki-ayce-260616',title:'さとすき 食べ放題（大人）',officialUrl:'https://sato-res.com/satosuki/',sourceUrl:marker.sourceUrl,price:{amount:2189,text:'税込2,189円〜6,039円',taxIncluded:true,from:true},context:{...marker.context,service:'ディナー',audience:'大人',scope:'sato-suki-current'},comparisonKey:'sato-suki|ayce-260616',comparisonEvidence:'official-current-menu-version-ayce-260616',evidenceText:'公式食べ放題メニュー ayce-260616 の確認済み料金帯'}
-  ];
-}
 function roanRange(entries,pattern,title,service,id){
   const rows=entries.filter(e=>e.kind==='course'&&pattern.test(String(e.title||''))&&knownPrice(e));
   if(!rows.length)return null;
@@ -120,10 +111,6 @@ function compactRoan(entries){
 }
 function reviewedLayoutEntries(brandId,current,fallback){
   let entries=dedupeSemantic([...current,...fallback]);
-  if(brandId==='washoku-sato'){
-    const reviewed=reviewedSatoVersionRows(entries);
-    if(reviewed.length)entries=entries.filter(e=>!/しゃぶしゃぶ・すき焼き.*さと式焼肉/.test(String(e.title||''))).concat(reviewed);
-  }
   if(brandId==='syabuyo'){
     const priced=entries.filter(e=>knownPrice(e)&&/平日ディナー/.test(String(e.title||'')));
     if(priced.length)entries=entries.filter(e=>!(/平日ディナー/.test(String(e.title||''))&&!knownPrice(e)));

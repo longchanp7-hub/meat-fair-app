@@ -51,11 +51,14 @@ test('58-item course names remain intact and are not mistaken for a price',()=>{
  const result=extractCatalogPage(html,'https://example.com/menu_all/free3/',b);
  assert.equal(result.items[0].title,'58品コース');assert.equal(result.items[0].price.amount,3278);
 });
-test('normal and Plus course prices have separate comparison scopes',()=>{
- const b={...brand,id:'amiyakitei'};
+test('normal and Plus menu extraction is isolated by brand',()=>{
+ const regular={...brand,id:'amiyakitei'},plus={...brand,id:'amiyakitei-plus'};
  const html=doc('<div class="brand-content"><div class="course-slider__item"><h4 class="course-slider__title">国産黒毛和牛 食べ放題コース</h4><p>税込4,500円</p></div></div><div class="brand-content"><div id="course-plus"></div><div class="course-slider__item"><h4 class="course-slider__title">黒毛和牛堪能コース</h4><p>税込4,488円</p></div></div>');
- const {items}=extractCatalogPage(html,'https://example.com/menu/',b);
- assert.equal(items.length,2);assert.notEqual(items[0].comparisonKey,items[1].comparisonKey);assert.equal(items[1].context.subBrand,'あみやき亭Plus');
+ const a=extractCatalogPage(html,'https://example.com/menu/',regular).items;
+ const b=extractCatalogPage(html,'https://example.com/menu/',plus).items;
+ assert.equal(a.length,1);assert.equal(b.length,1);
+ assert.equal(a[0].context.subBrand,'あみやき亭');assert.equal(b[0].context.subBrand,'あみやき亭Plus');
+ assert.notEqual(a[0].comparisonKey,b[0].comparisonKey);
 });
 test('image-only prices are never taken from filename numbers, including decomposed Japanese Unicode',()=>{
  const b={...brand,id:'nikusho-sakai'};

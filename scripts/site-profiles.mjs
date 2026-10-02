@@ -8,8 +8,9 @@ export const PROFILE = {
   gyukaku:{scope:'#contents,main,article',head:'h1',paths:/^\/lp\/.+|^\/news\/news\.php$/},
   syabuyo:{scope:'.area-contents,main',head:'h1.mod-heading,h1',paths:/^\/syabuyo\/$|^\/syabuyo\/(?:menu\/fair[^/]*\/|campaign\/(?:.*)?|gakusei\/index\.html)$/},
   yuzuan:{scope:'main',head:'h1',paths:/^\/news\/\d+\/$/},
-  'washoku-sato':{scope:'article.news',head:'h3',paths:/^\/news\/20\d{2}\/\d{2}\/\d+\.html$/},
+  'washoku-sato':{scope:'article.news,article,main,.article-template',head:'h1,h2,h3',paths:/^\/news\/20\d{2}\/\d{2}\/\d+\.html$|^\/blogs\/news\/(?!tagged(?:\/|$))[^/?#]+\/?$/},
   amiyakitei:{scope:'main,.page_container_single',head:'h1.header-title,.page_container_single_title,h2',paths:/^\/atsugirifes(?:_no_coupon)?\/$|^\/topics\/\d+\/$/},
+  'amiyakitei-plus':{scope:'main,.page_container_single',head:'h1.header-title,.page_container_single_title,h2',paths:/^\/topics\/\d+\/$/},
   onyasai:{scope:'main,#contents,.contents',head:'h1',paths:/^\/lp\/20\d{4}_[^/]+\/$/},
   roan:{scope:'article,main',head:'h1,h2',paths:/\/roan\/(?:news|fair|campaign)\/[^/]+\/?$|^\/0141roan\/(?:entry-\d+\.html|entrylist\.html)$/},
   'kalubi-taisho':{scope:'.detail',head:'h3.detail_title',paths:/^\/campaign\/\d+\/$/},
@@ -26,7 +27,7 @@ export function allowedDetail(brand,url){
   const u=new URL(url),hosts=new Set(brand.sources.map(s=>new URL(s.url).hostname));
   if(!hosts.has(u.hostname)||/[.](pdf|jpg|png|webp|css|js)$/i.test(u.pathname))return false;
   if(u.hostname==='prtimes.jp'){
-    if(brand.brandId==='amiyakitei')return /^\/main\/html\/rd\/p\/\d+\.000130952\.html$/.test(u.pathname);
+    if(['amiyakitei','amiyakitei-plus'].includes(brand.brandId))return /^\/main\/html\/rd\/p\/\d+\.000130952\.html$/.test(u.pathname);
     if(brand.brandId==='onyasai')return /^\/main\/html\/rd\/p\/\d+\.000018604\.html$/.test(u.pathname);
     return false;
   }
@@ -94,8 +95,13 @@ export function selectImage(page,url,title){
   return best&&best.score>=10?httpUrl(best.url,url):null;
 }
 export function discoverLinks(brand,html,url){
-  const doc=parseHtml(html),externalAmiyakiIndex=brand.brandId==='amiyakitei'&&new URL(url).hostname==='prtimes.jp';
-  const found=links(doc,url).filter(x=>allowedDetail(brand,x.url)).filter(x=>!externalAmiyakiIndex||/あみやき亭/i.test(x.title||'')).map(x=>({url:x.url,title:x.title,sourceUrl:url}));
+  const doc=parseHtml(html),amiyakiGroup=['amiyakitei','amiyakitei-plus'].includes(brand.brandId),externalAmiyakiIndex=amiyakiGroup&&new URL(url).hostname==='prtimes.jp';
+  let found=links(doc,url).filter(x=>allowedDetail(brand,x.url)).filter(x=>!externalAmiyakiIndex||/あみやき亭/i.test(x.title||'')).map(x=>({url:x.url,title:x.title,sourceUrl:url}));
+  if(amiyakiGroup)found=found.filter(x=>{
+    const title=x.title||'';
+    if(!title)return brand.brandId==='amiyakitei';
+    return brand.brandId==='amiyakitei-plus'?/Plus|プラス/i.test(title):!/Plus|プラス/i.test(title);
+  });
   // Ameba's entry-list HTML can expose article URLs outside the simplified anchor tree.
   // Recover those first-party article URLs directly without widening other brand scopes.
   if(brand.brandId==='roan'){

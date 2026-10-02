@@ -4,9 +4,9 @@ import {visibleBrand,fairAssetVisible,catalogEntryVisible} from '../app/presenta
 import {renderCatalog} from '../app/catalog.mjs';
 import {reviewedSatoCatalog} from '../scripts/sato-reviewed-catalog.mjs';
 
-test('Kushiya is outside the 14-chain local target while reviewed chains remain visible',()=>{
+test('Kushiya is outside the 15-chain local target while reviewed chains remain visible',()=>{
  assert.equal(visibleBrand('kushiya-monogatari'),false);
- for(const id of ['yakiniku-king','gyukaku','syabuyo','yuzuan','washoku-sato','amiyakitei','onyasai','roan','kalubi-taisho','stamina-taro','asakuma','nikusho-sakai','jukusei-ichiban','anrakutei'])assert.equal(visibleBrand(id),true);
+ for(const id of ['yakiniku-king','gyukaku','syabuyo','yuzuan','washoku-sato','amiyakitei','amiyakitei-plus','onyasai','roan','kalubi-taisho','stamina-taro','asakuma','nikusho-sakai','jukusei-ichiban','anrakutei'])assert.equal(visibleBrand(id),true);
 });
 
 test('reviewed compact galleries hide ordinary dish clutter but retain Shabuyo featured meat blocks',()=>{
@@ -26,6 +26,10 @@ test('reviewed chain rules remove the specific clutter rejected in the visual re
  for(const title of ['アプリ会員限定カジュアルコース','特選プレミアムコース+追加オプション'])assert.equal(catalogEntryVisible('kalubi-taisho',{kind:'course',title}),false);
  assert.equal(catalogEntryVisible('roan',{kind:'course',title:'旬菜ビュッフェ ランチ（平日・豊川店）'}),true);
  assert.equal(catalogEntryVisible('roan',{kind:'course',title:'麻辣湯コース(土日ランチ・ディナー)'}),false);
+ assert.equal(catalogEntryVisible('amiyakitei',{kind:'course',title:'スタンダード 食べ放題コース'}),true);
+ assert.equal(catalogEntryVisible('amiyakitei',{kind:'course',title:'黒毛和牛お手軽コース'}),false);
+ assert.equal(catalogEntryVisible('amiyakitei-plus',{kind:'course',title:'黒毛和牛お手軽コース'}),true);
+ assert.equal(catalogEntryVisible('amiyakitei-plus',{kind:'course',title:'焼肉食べ放題 感激どんどん'}),false);
  for(const title of ['さとしゃぶ 食べ放題','さとすき 食べ放題','さと式焼肉 牛＆豚プレミアムコース'])assert.equal(catalogEntryVisible('washoku-sato',{kind:'course',title}),true);
 });
 
@@ -64,14 +68,15 @@ test('Roan reviewed regular prices collapse into three simple course rows',()=>{
 });
 
 test('Sato reviewed prices fail closed unless the exact current official menu marker is present',()=>{
- const at='2026-09-15T03:00:00Z';
- assert.equal(reviewedSatoCatalog('https://sato-res.com/satoshabu/','old menu',at).length,0);
- const shabu=reviewedSatoCatalog('https://sato-res.com/satoshabu/','href="/sato/assets/menu/book/ayce-260616/"',at);
- assert.equal(shabu.length,1);assert.equal(shabu[0].price.text,'税込2,189円〜6,039円');
- const suki=reviewedSatoCatalog('https://sato-res.com/satosuki/','ayce-260616',at);
+ const at='2026-10-02T01:40:00Z';
+ assert.equal(reviewedSatoCatalog('https://www.sato-res.com/pages/sato-satoshabu','old menu',at).length,0);
+ const marker='src="https://www.sato-res.com/cdn/shop/files/other-menu.jpg?v=1790570027&width=1600"';
+ const shabu=reviewedSatoCatalog('https://www.sato-res.com/pages/sato-satoshabu',marker,at);
+ assert.equal(shabu.length,1);assert.equal(shabu[0].price.text,'税込2,189円〜6,149円');
+ const suki=reviewedSatoCatalog('https://www.sato-res.com/pages/sato-satosuki',marker,at);
  assert.equal(suki[0].title,'さとすき 食べ放題（大人）');
- const yaki=reviewedSatoCatalog('https://sato-res.com/satoyaki/','<img src="menu-260409-01.jpg">',at);
- assert.deepEqual(yaki.map(x=>x.price.amount),[4279,6369]);
- const bar=reviewedSatoCatalog('https://sato-res.com/sato/bar/','料理とセットでご注文の方、1,978（税込）',at);
- assert.equal(bar[0].price.amount,1978);
+ const yaki=reviewedSatoCatalog('https://www.sato-res.com/pages/sato-satoshikiyakiniku','<img src="yakiniku-menu.jpg?v=1790569988&width=1600">',at);
+ assert.deepEqual(yaki.map(x=>x.price.amount),[4389,6479]);
+ const bar=reviewedSatoCatalog('https://www.sato-res.com/pages/sato-bar','料理とセットでご注文の方、1,428円（税込）',at);
+ assert.equal(bar[0].price.amount,1428);
 });

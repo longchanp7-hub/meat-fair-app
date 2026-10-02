@@ -22,7 +22,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
   const brands=JSON.parse(await fs.readFile('app/data/brands.json','utf8')).brands;
   const stores=JSON.parse(await fs.readFile('app/data/stores.json','utf8'));
   const brandIds=new Set(brands.map(b=>b.id));
-  assert.equal(brands.length,14);assert.equal(brandIds.has('kushiya-monogatari'),false);
+  assert.equal(brands.length,15);assert.equal(brandIds.has('kushiya-monogatari'),false);
   assert.equal(new Set(stores.stores.map(s=>s.brandId)).size,brands.length);
   assert.ok(stores.stores.every(s=>brandIds.has(s.brandId)));
   const folder='browser-report';await fs.mkdir(folder,{recursive:true});
@@ -44,8 +44,16 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
     });
     const settle=(p=page)=>p.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
     async function inspect(p=page){
-      await p.locator('.adaptive-gallery img').evaluateAll(images=>images.forEach(i=>i.loading='eager'));
-      await p.waitForFunction(()=>[...document.querySelectorAll('.adaptive-gallery img')].every(i=>i.complete),{},{timeout:20000});
+      await p.locator('.adaptive-gallery img').evaluateAll(async images=>{
+        images.forEach(i=>i.loading='eager');
+        await Promise.all(images.map(img=>new Promise(resolve=>{
+          if(img.complete)return resolve();
+          let finished=false;
+          const done=()=>{if(finished)return;finished=true;clearTimeout(timer);resolve();};
+          img.addEventListener('load',done,{once:true});img.addEventListener('error',done,{once:true});
+          const timer=setTimeout(()=>{if(!img.complete)img.dispatchEvent(new Event('error'));done();},12000);
+        })));
+      });
       await p.locator('.adaptive-gallery img').evaluateAll(images=>Promise.all(images.map(i=>i.decode().catch(()=>{}))));
       await settle(p);
       const faults=await p.locator('.adaptive-gallery').evaluateAll(gs=>{
@@ -121,6 +129,12 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
           if(width===390){const rects=await page.locator('[data-photo-stack="course"] .catalog-photo-card').evaluateAll(es=>es.map(e=>e.getBoundingClientRect()).map(r=>({x:r.x,y:r.y,w:r.width,h:r.height})));for(let i=1;i<rects.length;i++)assert.ok(rects[i].y>=rects[i-1].y+rects[i-1].h-1,'Sakai phone course cards are not vertically stacked');}
         }
         if(brand.id==='jukusei-ichiban'&&width===390){const heights=await page.locator('[data-photo-stack="course"] .catalog-photo-frame').evaluateAll(es=>es.map(e=>e.getBoundingClientRect().height));if(heights.length>1)assert.ok(Math.max(...heights)-Math.min(...heights)<2,'Ichiban course image frames have inconsistent size');}
+        if(brand.id==='amiyakitei'){
+          const txt=await card.innerText();assert.doesNotMatch(txt,/黒毛和牛お手軽|黒毛和牛堪能|全メニュー贅沢|感激どんどん/,'Plus or unrelated courses leaked into Amiyakitei');
+        }
+        if(brand.id==='amiyakitei-plus'){
+          const txt=await card.innerText();assert.doesNotMatch(txt,/スタンダード 食べ放題|国産黒毛和牛 食べ放題|牛タン&和牛一頭買い|感激どんどん/,'regular or unrelated courses leaked into Amiyakitei Plus');
+        }
         await screenshotCard(brand.id,width);
         await page.locator('#clear-filter').click();
       }

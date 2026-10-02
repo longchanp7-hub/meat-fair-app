@@ -1,10 +1,12 @@
 // UI policy extracted from the 2026-09-15 chain-by-chain review.
 // Data collection stays factual; this file controls only what is emphasized.
-// Only the fourteen explicitly reviewed brands below are part of this app.
+// Only the fifteen explicitly reviewed brands below are part of this app.
 const BASE={
   showHighlights:false,
-  coursePhotos:false,
-  drinkPhotos:false,
+  // Sakai-style is the common layout: use official course/drink artwork when available.
+  // Brands without a usable image automatically fall back to the compact factual card.
+  coursePhotos:true,
+  drinkPhotos:true,
   hideTextWhenPhoto:true,
   compactText:true,
   fairGallery:'campaigns',
@@ -47,8 +49,15 @@ export const BRAND_PRESENTATION={
   },
   amiyakitei:{
     ...BASE,fairGallery:'amiyakitei',coursePhotos:true,
+    courseAllow:/スタンダード|国産黒毛和牛|牛タン.*和牛一頭買い/i,
     drinkAllow:/飲み放題/i,
-    note:'厚切りフェスと小写真は維持。写真付きコースの重複テキストは出さない'
+    note:'厚切りフェスと小写真は維持。通常あみやき亭の3コースだけを表示'
+  },
+  'amiyakitei-plus':{
+    ...BASE,fairGallery:'amiyakitei',coursePhotos:true,
+    courseAllow:/黒毛和牛お手軽|黒毛和牛堪能|全メニュー贅沢/i,
+    drinkAllow:/飲み放題/i,
+    note:'Plus専用フェア→Plusの3コース→飲み放題。通常のあみやき亭とは分けて表示'
   },
   onyasai:{
     ...BASE,
@@ -117,6 +126,7 @@ export function fairAssetVisible(brandId,asset){
   if(!BRAND_PRESENTATION[brandId])return true;
   const p=presentationFor(brandId);
   if(asset.kind==='campaign')return true;
+  if(asset.kind==='menu')return asset.fallbackWhenNoFair===true;
   if(p.fairGallery==='amiyakitei')return asset.kind==='detail'&&asset.group!=='drink';
   if(p.fairGallery==='syabuyo')return asset.kind==='detail'&&asset.group==='course'&&/九州黒豚|黒毛和牛/.test(asset.title||'');
   return false;
