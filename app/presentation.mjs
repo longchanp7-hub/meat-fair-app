@@ -3,8 +3,10 @@
 // Only the fifteen explicitly reviewed brands below are part of this app.
 const BASE={
   showHighlights:false,
-  coursePhotos:false,
-  drinkPhotos:false,
+  // Sakai-style is the common layout: use official course/drink artwork when available.
+  // Brands without a usable image automatically fall back to the compact factual card.
+  coursePhotos:true,
+  drinkPhotos:true,
   hideTextWhenPhoto:true,
   compactText:true,
   fairGallery:'campaigns',
@@ -124,6 +126,7 @@ export function fairAssetVisible(brandId,asset){
   if(!BRAND_PRESENTATION[brandId])return true;
   const p=presentationFor(brandId);
   if(asset.kind==='campaign')return true;
+  if(asset.kind==='menu')return asset.fallbackWhenNoFair===true;
   if(p.fairGallery==='amiyakitei')return asset.kind==='detail'&&asset.group!=='drink';
   if(p.fairGallery==='syabuyo')return asset.kind==='detail'&&asset.group==='course'&&/九州黒豚|黒毛和牛/.test(asset.title||'');
   return false;
