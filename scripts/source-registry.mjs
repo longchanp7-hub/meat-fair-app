@@ -18,7 +18,8 @@ export const SOURCES = [
     { type:'news_index', url:'https://www.shabu-yuzuan.jp/news/', primary:true }
   ]},
   { brandId:'washoku-sato', name:'和食さと', category:'shabu', priority:5, sources:[
-    { type:'brand_news', url:'https://sato-res.com/news/', primary:true },
+    { type:'brand_news', url:'https://www.sato-res.com/blogs/news/tagged/campaign', primary:true },
+    { type:'year_index', url:'https://sato-res.com/news/2026/', primary:false },
     { type:'brand_top', url:'https://www.sato-res.com/pages/sato', primary:false }
   ]},
   { brandId:'amiyakitei', name:'あみやき亭', category:'yakiniku', priority:6, sources:[
