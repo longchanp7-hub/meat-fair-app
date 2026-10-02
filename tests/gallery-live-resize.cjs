@@ -9,14 +9,21 @@ module.exports=async function checkLiveGallery({page,inspect,settle}){
       fetch('./data/fairs.json',{cache:'no-cache'}).then(r=>r.json()),
       fetch('./data/gallery.json',{cache:'no-cache'}).then(r=>r.json())
     ]);
-    const rows=fairs.campaigns.filter(c=>c.brandId==='syabuyo'&&['P1','P2'].includes(c.priority)&&campaignStatus(c).state==='active');
-    const pool=selectMedia(rows,'syabuyo',media,'active');
+    const pool=[],seen=new Set();
+    for(const brandId of [...new Set(fairs.campaigns.map(c=>c.brandId))]){
+      const rows=fairs.campaigns.filter(c=>c.brandId===brandId&&['P1','P2'].includes(c.priority)&&campaignStatus(c).state==='active');
+      for(const asset of selectMedia(rows,brandId,media,'active')){
+        if(seen.has(asset.imageUrl))continue;seen.add(asset.imageUrl);pool.push(asset);
+        if(pool.length>=6)break;
+      }
+      if(pool.length>=6)break;
+    }
     const host=document.createElement('article');host.className='restaurant-card';host.dataset.layoutFixture='true';
     document.querySelector('#campaign-list').append(host);
     window.__layoutFixture={host,pool};
     return pool.length;
   });
-  assert.ok(available>=2,'at least two real official images are required to test count changes');
+  assert.ok(available>=2,'at least two current official images across reviewed brands are required to test count changes');
   const counts=[0,1,2,available,Math.min(3,available),0,available];
   const widths=[360,390,430,690,820,1024,390];
   try{
