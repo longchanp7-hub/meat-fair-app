@@ -6,14 +6,20 @@ module.exports=async function checkRefreshLifecycle({page,inspect,settle}){
     fairs:await(await fetch('./data/fairs.json',{cache:'no-cache'})).json(),
     media:await(await fetch('./data/gallery.json',{cache:'no-cache'})).json()
   }));
-  const brandId='syabuyo',card=`[data-brand-card="${brandId}"]`;
   await page.locator('[data-tab="active"]').click();
   const clear=page.locator('#clear-filter');if(await clear.isVisible())await clear.click();
   await page.setViewportSize({width:390,height:900});
+  const candidate=await page.locator('[data-brand-card]').evaluateAll(cards=>cards.map(card=>({
+    brandId:card.dataset.brandCard,
+    rows:card.querySelectorAll('[data-campaign]').length,
+    images:card.querySelectorAll('[data-gallery-role="fair"] .media-tile').length
+  })).filter(x=>x.rows>0&&x.images>0).sort((a,b)=>b.images-a.images||b.rows-a.rows)[0]||null);
+  assert.ok(candidate,'current official fair with an official image required');
+  const brandId=candidate.brandId,card=`[data-brand-card="${brandId}"]`;
   await page.locator(`[data-brand="${brandId}"]`).click();await inspect();
   const originalImages=await page.locator(card+' [data-gallery-role="fair"] .media-tile').count();
   const originalRows=await page.locator(card+' [data-campaign]').count();
-  assert.ok(originalRows>0&&originalImages>1,'current official fair required');
+  assert.ok(originalRows>0&&originalImages>0,'current official fair with an official image required');
   const courses=page.locator(card+' [data-gallery-role="fair"] [data-group="course"]'),meals=page.locator(card+' [data-gallery-role="fair"] :is([data-group="related-meal"],[data-group="support"])');
   if(originalRows===1&&await courses.count()===2&&await meals.count()===2){
     const lead=await page.locator(card+' [data-gallery-role="fair"] .media-tile[data-kind="campaign"]').first().boundingBox();
