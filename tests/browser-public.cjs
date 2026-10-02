@@ -44,8 +44,16 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
     });
     const settle=(p=page)=>p.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));
     async function inspect(p=page){
-      await p.locator('.adaptive-gallery img').evaluateAll(images=>images.forEach(i=>i.loading='eager'));
-      await p.waitForFunction(()=>[...document.querySelectorAll('.adaptive-gallery img')].every(i=>i.complete),{},{timeout:20000});
+      await p.locator('.adaptive-gallery img').evaluateAll(async images=>{
+        images.forEach(i=>i.loading='eager');
+        await Promise.all(images.map(img=>new Promise(resolve=>{
+          if(img.complete)return resolve();
+          let finished=false;
+          const done=()=>{if(finished)return;finished=true;clearTimeout(timer);resolve();};
+          img.addEventListener('load',done,{once:true});img.addEventListener('error',done,{once:true});
+          const timer=setTimeout(()=>{if(!img.complete)img.dispatchEvent(new Event('error'));done();},12000);
+        })));
+      });
       await p.locator('.adaptive-gallery img').evaluateAll(images=>Promise.all(images.map(i=>i.decode().catch(()=>{}))));
       await settle(p);
       const faults=await p.locator('.adaptive-gallery').evaluateAll(gs=>{
