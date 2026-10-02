@@ -138,7 +138,7 @@ async function processBrand(brand){
   const rows=dedupCampaigns(accepted).filter(live),pending=proposed.filter(c=>c.lifecycleStatus==='stale_unverified'&&(!c.endDate||c.endDate>=today));
   const hasLive=rows.some(live),sourceOk=roots.length>0;
   const degraded=errors.some(e=>e.kind==='detail'&&reviews.some(r=>r.officialUrl===e.url))||entries.length>48;
-  const changedReview=pending.some(c=>c.statusEvidence==='official_content_changed_review_required');
+  const changedReview=pending.some(c=>c.statusEvidence==='official_content_changed_review_required'&&(!c.endDate||c.endDate>=today));
   const status=!sourceOk?'unavailable':hasLive?(degraded||changedReview?'partial':'ok'):'needs_review';
   return{rows,candidates:proposed,errors:errors.map(e=>({brandId:brand.brandId,...e})),health:{brandId:brand.brandId,status,sourceOk,
     checkedAt:stamp,lastSuccessAt:sourceOk?stamp:current.sourceHealth?.find(h=>h.brandId===brand.brandId)?.lastSuccessAt||null,
