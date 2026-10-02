@@ -27,9 +27,15 @@ test('Japanese range, slash range, same-month end, no invented year',()=>{
  assert.equal(parsePeriod('9月9日〜11月1日',null),null);
  assert.equal(parsePeriod('12月25日〜1月10日',2026).endDate,'2027-01-10');
 });
-test('Sato extracts news article instead of logo/sidebar dates',()=>{
- const p=extractPage(brand('washoku-sato'),'<article>ロゴ 2025年1月1日</article><article class="news"><h3>和食さと 松茸フェア 9月3日〜</h3><p>2026年9月3日</p><img src="food.jpg"></article><aside>2024年1月1日</aside>','https://sato-res.com/news/2026/09/37321.html');
- assert.match(p.bodyText,/松茸/);assert.doesNotMatch(p.bodyText,/2025|2024/);assert.equal(datesFor(p,'https://sato-res.com/news/2026/09/37321.html').startDate,'2026-09-03');
+test('Sato extracts old and current news details instead of index/sidebar dates',()=>{
+ const b=brand('washoku-sato');
+ const oldUrl='https://sato-res.com/news/2026/09/37321.html';
+ const oldPage=extractPage(b,'<article>ロゴ 2025年1月1日</article><article class="news"><h3>和食さと 松茸フェア 9月3日〜</h3><p>2026年9月3日</p><img src="food.jpg"></article><aside>2024年1月1日</aside>',oldUrl);
+ assert.match(oldPage.bodyText,/松茸/);assert.doesNotMatch(oldPage.bodyText,/2025|2024/);assert.equal(datesFor(oldPage,oldUrl).startDate,'2026-09-03');
+ const newUrl='https://www.sato-res.com/blogs/news/sato-matsutake-salmon-20260903';
+ assert.equal(allowedDetail(b,newUrl),true);
+ const current=extractPage(b,'<main><article><h1>和食さと「9月3日（木）～10月14日（水）松茸料理＆国産サーモン料理食べ放題コース登場！」</h1><p>販売期間：2026年9月3日(木)～10月14日(水)</p><img src="/cdn/shop/files/matsutake.jpg"></article></main>',newUrl);
+ assert.match(current.title,/松茸/);assert.equal(datesFor(current,newUrl).startDate,'2026-09-03');assert.equal(datesFor(current,newUrl).endDate,'2026-10-14');
 });
 test('Sakai ignores neighboring expired campaigns',()=>{
  const p=extractPage(brand('nikusho-sakai'),'<article class="p-entry"><h1 class="p-entry__title">台湾グルメフェア</h1><div class="p-entry__body">販売期間 9月9日〜11月1日 台湾料理食べ放題</div><time datetime="2026-09-02"></time></article><aside>終了しました 2026年7月21日〜7月24日</aside>','https://www.yakiniku.jp/nikushou_sakai/news/taiwan_gourmet/');
