@@ -10,6 +10,7 @@ on:
       - 'scripts/**'
       - 'tests/**'
       - 'package.json'
+      - 'operations.json'
       - '.github/workflows/update-fairs.yml'
       - '.github/workflows/deploy-pages.yml'
 permissions:
@@ -25,6 +26,7 @@ jobs:
     timeout-minutes: 15
     outputs:
       commit: ${{ steps.save.outputs.commit }}
+      changed: ${{ steps.save.outputs.changed }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -46,6 +48,7 @@ jobs:
         id: save
         run: |
           if ! git diff --quiet -- app/data scripts/reviewed-campaigns.json; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
             git config user.name github-actions[bot]
             git config user.email 41898282+github-actions[bot]@users.noreply.github.com
             git add app/data scripts/reviewed-campaigns.json
@@ -57,8 +60,12 @@ jobs:
             git push origin HEAD:main
           fi
           echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Check published app without AI
+        if: always()
+        run: node scripts/ops-health.mjs
   deploy:
     needs: update
+    if: needs.update.outputs.changed == 'true' || github.event_name != 'schedule'
     uses: ./.github/workflows/deploy-pages.yml
     with:
       ref: ${{ needs.update.outputs.commit }}
