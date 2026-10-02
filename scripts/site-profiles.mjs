@@ -8,7 +8,7 @@ export const PROFILE = {
   gyukaku:{scope:'#contents,main,article',head:'h1',paths:/^\/lp\/.+|^\/news\/news\.php$/},
   syabuyo:{scope:'.area-contents,main',head:'h1.mod-heading,h1',paths:/^\/syabuyo\/$|^\/syabuyo\/(?:menu\/fair[^/]*\/|campaign\/(?:.*)?|gakusei\/index\.html)$/},
   yuzuan:{scope:'main',head:'h1',paths:/^\/news\/\d+\/$/},
-  'washoku-sato':{scope:'article.news',head:'h3',paths:/^\/news\/20\d{2}\/\d{2}\/\d+\.html$/},
+  'washoku-sato':{scope:'article.news,article,main,.article-template',head:'h1,h2,h3',paths:/^\/news\/20\d{2}\/\d{2}\/\d+\.html$|^\/blogs\/news\/(?!tagged(?:\/|$))[^/?#]+\/?$/},
   amiyakitei:{scope:'main,.page_container_single',head:'h1.header-title,.page_container_single_title,h2',paths:/^\/atsugirifes(?:_no_coupon)?\/$|^\/topics\/\d+\/$/},
   'amiyakitei-plus':{scope:'main,.page_container_single',head:'h1.header-title,.page_container_single_title,h2',paths:/^\/topics\/\d+\/$/},
   onyasai:{scope:'main,#contents,.contents',head:'h1',paths:/^\/lp\/20\d{4}_[^/]+\/$/},
