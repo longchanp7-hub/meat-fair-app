@@ -1,0 +1,21 @@
+{
+  "name": "肉フェア",
+  "ai": false,
+  "publicUrl": "https://longchanp7-hub.github.io/meat-fair-app/",
+  "checks": [
+    {
+      "path": "",
+      "contains": "食べ放題・肉フェア"
+    },
+    {
+      "path": "manifest.webmanifest",
+      "json": true,
+      "key": "name"
+    },
+    {
+      "path": "data/fairs.json",
+      "json": true,
+      "key": "campaigns"
+    }
+  ]
+}
