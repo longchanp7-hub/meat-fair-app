@@ -938,6 +938,78 @@
         "imageUrl": null
       },
       "requiresListing": false
+    },
+    {
+      "brandId": "washoku-sato",
+      "officialUrl": "https://www.sato-res.com/blogs/news/202609-37321",
+      "reviewedAt": "2026-10-02T02:02:09.029Z",
+      "contentHash": "c5ca0a725b04cc36c954c224dfb11f376a6b192b85fa1ef02621d78f13beefca",
+      "fields": {
+        "price": null,
+        "priceText": null,
+        "limitedIngredients": [
+          "松茸",
+          "サーモン"
+        ],
+        "targetCourses": [],
+        "conditions": [
+          "対象の食べ放題コース限定。店舗別の取扱いは公式で確認。"
+        ],
+        "title": "松茸料理＆国産サーモン料理 食べ放題",
+        "startDate": "2026-09-03",
+        "endDate": null,
+        "allYouCanEat": true,
+        "campaignType": "fair",
+        "priority": "P1",
+        "imageUrl": "https://cdn.shopify.com/s/files/1/0619/9155/1031/files/sato-2609031.jpg"
+      },
+      "requiresListing": true
+    },
+    {
+      "brandId": "washoku-sato",
+      "officialUrl": "https://www.sato-res.com/blogs/news/202609-37320",
+      "reviewedAt": "2026-10-02T02:02:09.029Z",
+      "contentHash": "1e2f03b566a426ea9c57e8c8b4400121f8092c05f9bd7c62dbc08f9b5defa422",
+      "fields": {
+        "price": null,
+        "priceText": null,
+        "limitedIngredients": [
+          "なごやめし"
+        ],
+        "targetCourses": [],
+        "conditions": [],
+        "title": "絶品なごやめしフェア",
+        "startDate": "2026-09-03",
+        "endDate": null,
+        "allYouCanEat": false,
+        "campaignType": "fair",
+        "priority": "P1",
+        "imageUrl": null
+      },
+      "requiresListing": true
+    },
+    {
+      "brandId": "washoku-sato",
+      "officialUrl": "https://www.sato-res.com/blogs/news/20261001-sato-nightcampaign3rd",
+      "reviewedAt": "2026-10-02T02:02:09.029Z",
+      "contentHash": "f0cc92813de44679327bee4c7bc504c825138d22ce5a64235e9ddc9f4c988c78",
+      "fields": {
+        "price": null,
+        "priceText": null,
+        "limitedIngredients": [],
+        "targetCourses": [],
+        "conditions": [
+          "21時以降の来店が条件。対象商品・提供時間は公式案内を確認。"
+        ],
+        "title": "21時以降の来店限定「ナイト割」第3弾",
+        "startDate": "2026-10-01",
+        "endDate": "2026-10-28",
+        "allYouCanEat": false,
+        "campaignType": "discount",
+        "priority": "P2",
+        "imageUrl": null
+      },
+      "requiresListing": true
     }
   ]
 }
