@@ -151,6 +151,41 @@
         "priority": "P2",
         "imageUrl": null
       }
+    },
+    {
+      "brandId": "syabuyo",
+      "officialUrl": "https://www.skylark.co.jp/syabuyo/menu/fair_sep/",
+      "reviewedAt": "2026-10-04T14:57:00.000Z",
+      "semanticGuard": true,
+      "semanticTerms": [
+        "秋のきのこと鴨しゃぶフェア",
+        "鴨肉",
+        "6種のきのこ"
+      ],
+      "fields": {
+        "title": "秋のきのこと鴨しゃぶフェア",
+        "startDate": null,
+        "endDate": null,
+        "price": null,
+        "priceText": "鴨しゃぶ食べ放題コース 税込2,969円〜（時間帯・店舗等で異なる）",
+        "limitedIngredients": [
+          "鴨肉",
+          "きのこ"
+        ],
+        "targetCourses": [
+          "鴨しゃぶ食べ放題コース"
+        ],
+        "conditions": [
+          "ヘルシーな鴨肉と6種のきのこが食べ放題。",
+          "一部店舗では価格・時間制限・提供内容が異なります。",
+          "公式掲載が継続している間を開催中として扱います。"
+        ],
+        "allYouCanEat": true,
+        "campaignType": "fair",
+        "priority": "P1",
+        "imageUrl": null
+      },
+      "requiresListing": true
     }
   ]
 }
