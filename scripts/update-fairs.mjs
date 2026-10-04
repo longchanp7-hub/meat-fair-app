@@ -113,7 +113,7 @@ async function processBrand(brand){
       const unbounded=!c.endDate;
       const missingReview=!!review&&!reviewed;
       const eligible=reviewed||(!missingReview&&c.imageUrl&&c.startDate&&(c.endDate||stillRecent(c,30)));
-      if(!eligible){c.lifecycleStatus='stale_unverified';c.statusEvidence=missingReview?'official_content_changed_review_required':'insufficient_period_evidence';}
+      if(!eligible&&!['ended_official','ended_by_date'].includes(c.lifecycleStatus)){c.lifecycleStatus='stale_unverified';c.statusEvidence=missingReview?'official_content_changed_review_required':'insufficient_period_evidence';}
       if(unbounded&&reviewed){
         const listedNow=listed.has(finalUrl)||listed.has(link.url);
         if(review.requiresListing&&!listedNow)c.lifecycleStatus='stale_unverified';
@@ -138,13 +138,14 @@ async function processBrand(brand){
   const rows=dedupCampaigns(accepted).filter(live),pending=proposed.filter(c=>c.lifecycleStatus==='stale_unverified'&&(!c.endDate||c.endDate>=today));
   const hasLive=rows.some(live),sourceOk=roots.length>0;
   const degraded=errors.some(e=>e.kind==='detail'&&reviews.some(r=>r.officialUrl===e.url))||entries.length>48;
-  const changedReview=pending.some(c=>c.statusEvidence==='official_content_changed_review_required');
-  const status=!sourceOk?'unavailable':hasLive?(degraded||changedReview?'partial':'ok'):'needs_review';
+  const changedReview=pending.some(c=>c.statusEvidence==='official_content_changed_review_required'&&(!c.endDate||c.endDate>=today));
+  const needsReview=pending.length>0;
+  const status=!sourceOk?'unavailable':hasLive?(degraded||changedReview?'partial':'ok'):needsReview?'needs_review':'ok';
   return{rows,candidates:proposed,errors:errors.map(e=>({brandId:brand.brandId,...e})),health:{brandId:brand.brandId,status,sourceOk,
     checkedAt:stamp,lastSuccessAt:sourceOk?stamp:current.sourceHealth?.find(h=>h.brandId===brand.brandId)?.lastSuccessAt||null,
     sourceCount:brand.sources.length,readSourceCount:roots.length,discoveredCount:entries.length,checkedDetailCount:limited.length,
     liveCampaignCount:rows.filter(live).length,pendingCount:pending.length,truncated:entries.length>48,
-    message:status==='unavailable'?'公式情報を取得できないため開催状況を確認できません。':status==='needs_review'?'掲載できる開催中フェアを確認できていません。':status==='partial'?'一部の情報は再確認が必要です。':'公式情報を確認しました。'}};
+    message:status==='unavailable'?'公式情報を取得できないため開催状況を確認できません。':status==='needs_review'?'開催中の可能性がある情報に確認待ちがあります。':status==='partial'?'一部の情報は再確認が必要です。':hasLive?'公式情報を確認しました。':'公式情報を確認しました。現在、掲載条件に合う開催中フェアは確認されていません。'}};
 }
 const results=[];
 for(let i=0;i<SOURCES.length;i+=3)results.push(...await Promise.all(SOURCES.slice(i,i+3).map(processBrand)));
