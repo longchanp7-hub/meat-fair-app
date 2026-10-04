@@ -14,17 +14,17 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
       - name: Save exact source revision for reproducible inspection
         run: git archive --format=tar HEAD > /tmp/meat-source.tar
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: repository-source
           path: /tmp/meat-source.tar
           retention-days: 7
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           node-version: '24'
       - run: npm test && npm run quality-gate
@@ -32,7 +32,7 @@ jobs:
         env:
           CATALOG_CAPTURE_DIR: browser-report/catalog-sources
         run: npm run update && npm run verify
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: gallery-source-snapshot
           path: app/data
@@ -45,7 +45,7 @@ jobs:
         env:
           PLAYWRIGHT_MODULE: /tmp/meat-browser/node_modules/playwright
         run: node tests/browser-public.cjs
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: phone-fold-preview
