@@ -12,7 +12,7 @@ export const SOURCES = [
   ]},
   { brandId:'syabuyo', name:'しゃぶ葉', category:'shabu', priority:3, sources:[
     { type:'brand_top', url:'https://www.skylark.co.jp/syabuyo/', primary:true },
-    { type:'campaign_detail', url:'https://www.skylark.co.jp/syabuyo/campaign/', campaignTitle:'シルバーウィークキャンペーン', primary:false }
+    { type:'campaign_detail', url:'https://www.skylark.co.jp/syabuyo/menu/fair_sep/', campaignTitle:'秋のきのこと鴨しゃぶフェア', primary:false }
   ]},
   { brandId:'yuzuan', name:'ゆず庵', category:'shabu', priority:4, sources:[
     { type:'news_index', url:'https://www.shabu-yuzuan.jp/news/', primary:true }
