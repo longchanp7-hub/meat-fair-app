@@ -1,5 +1,5 @@
 const CACHE_PREFIX='meat-fair-shell-v';
-const CACHE='meat-fair-shell-v20260920-private-pages1';
+const CACHE='meat-fair-shell-v20261006-csp1';
 
 const SHELL=[
   './',
