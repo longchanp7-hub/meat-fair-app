@@ -7,6 +7,8 @@ test('PWA identity, launch URL and scope stay inside the meat app', async () => 
   const base = 'https://longchanp7-hub.github.io/meat-fair-app/';
   const manifest = JSON.parse(await fs.readFile(new URL('../app/manifest.webmanifest', import.meta.url)));
   for (const field of ['id', 'start_url', 'scope']) assert.equal(new URL(manifest[field], base).href, base);
+  const configuredBrands = JSON.parse(await fs.readFile(new URL('../app/data/brands.json', import.meta.url))).brands;
+  assert.match(manifest.description, new RegExp(`${configuredBrands.length}チェーン`));
   assert.equal(manifest.display, 'standalone');
   assert.equal(manifest.theme_color, '#e53935');
   assert.equal(manifest.background_color, manifest.theme_color);
