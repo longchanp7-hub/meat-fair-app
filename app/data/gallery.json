@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "policyVersion": 2,
-  "updatedAt": "2026-10-20T22:18:19.411Z",
-  "fairsUpdatedAt": "2026-10-20T22:17:19.426Z",
+  "updatedAt": "2026-10-21T22:20:21.575Z",
+  "fairsUpdatedAt": "2026-10-21T22:19:47.191Z",
   "assets": [
     {
       "kind": "campaign",
@@ -13,7 +13,7 @@
       "sourceUrl": "https://www.yakiniku-king.jp/menu_all/season/2609_koreanfair/",
       "campaignId": "602e61cb0e08d9cb",
       "parentHash": "cd3743f6967eb7885b6c31c20c5eb3ea47dd8e7945afb1fabc5d64061dfd8b85",
-      "checkedAt": "2026-10-20T22:17:19.426Z",
+      "checkedAt": "2026-10-21T22:19:47.191Z",
       "width": 1180,
       "height": 185,
       "brandId": "yakiniku-king",
@@ -34,7 +34,7 @@
       "group": "dish",
       "priority": 60,
       "visualWeight": 1,
-      "checkedAt": "2026-10-20T22:18:19.411Z",
+      "checkedAt": "2026-10-21T22:20:21.575Z",
       "width": 1100,
       "height": 850,
       "brandId": "yakiniku-king",
@@ -52,7 +52,7 @@
       "group": "dish",
       "priority": 60,
       "visualWeight": 1,
-      "checkedAt": "2026-10-20T22:18:19.411Z",
+      "checkedAt": "2026-10-21T22:20:21.575Z",
       "width": 1100,
       "height": 803,
       "brandId": "yakiniku-king",
@@ -70,7 +70,7 @@
       "group": "dish",
       "priority": 60,
       "visualWeight": 1,
-      "checkedAt": "2026-10-20T22:18:19.411Z",
+      "checkedAt": "2026-10-21T22:20:21.575Z",
       "width": 1100,
       "height": 844,
       "brandId": "yakiniku-king",
@@ -103,7 +103,7 @@
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/menu/fair_sep/",
       "campaignId": "0136c50e7917ca4d",
       "parentHash": "706902966da15e24c8dda2611ab8cf09439543302572ae32f0b4fde4e02a67bc",
-      "checkedAt": "2026-10-20T22:17:19.426Z",
+      "checkedAt": "2026-10-21T22:19:47.191Z",
       "width": 1056,
       "height": 741,
       "brandId": "syabuyo",
@@ -115,17 +115,17 @@
     {
       "kind": "campaign",
       "rank": 10,
-      "imageUrl": "https://www.skylark.co.jp/syabuyo/tgur9t0000001ab1-img/kv_img_bara_1001.jpg",
+      "imageUrl": "https://www.skylark.co.jp/syabuyo/tgur9t0000001ab1-img/kv_img_collab_1022.jpg",
       "title": "しゃぶ葉 平日限定 学割10%OFFクーポン",
       "officialUrl": "https://www.skylark.co.jp/syabuyo/",
       "sourceUrl": "https://www.skylark.co.jp/syabuyo/",
       "campaignId": "a2876df025269041",
-      "parentHash": "212a1b3747989b6c3672b87d02406d153dfb965361c3474662e2328ff33efb7e",
-      "checkedAt": "2026-10-20T22:17:19.426Z",
+      "parentHash": "4ac15d946457e0739eb5c6f547c92852281f95410fe10d389cc311e20d7dd352",
+      "checkedAt": "2026-10-21T22:19:47.191Z",
       "width": 1056,
       "height": 500,
       "brandId": "syabuyo",
-      "id": "4cc0b5400f38cde1",
+      "id": "1e6af0c6070c8655",
       "group": "campaign",
       "priority": 0,
       "visualWeight": 2.2
@@ -138,8 +138,8 @@
       "kind": "detail",
       "rank": 10,
       "campaignId": "a2876df025269041",
-      "parentHash": "212a1b3747989b6c3672b87d02406d153dfb965361c3474662e2328ff33efb7e",
-      "checkedAt": "2026-10-20T22:18:19.411Z",
+      "parentHash": "4ac15d946457e0739eb5c6f547c92852281f95410fe10d389cc311e20d7dd352",
+      "checkedAt": "2026-10-21T22:20:21.575Z",
       "width": 635,
       "height": 167,
       "brandId": "syabuyo",
@@ -160,7 +160,7 @@
       "group": "course",
       "priority": 20,
       "visualWeight": 1.5,
-      "checkedAt": "2026-10-20T22:18:19.411Z",
+      "checkedAt": "2026-10-21T22:20:21.575Z",
       "width": 768,
       "height": 514,
       "brandId": "syabuyo",
@@ -178,7 +178,7 @@
       "group": "course",
       "priority": 20,
       "visualWeight": 1.5,
-      "checkedAt": "2026-10-20T22:18:19.411Z",
+      "checkedAt": "2026-10-21T22:20:21.575Z",
       "width": 768,
       "height": 597,
       "brandId": "syabuyo",
@@ -196,7 +196,7 @@
       "group": "dish",
       "priority": 60,
       "visualWeight": 1,
-      "checkedAt": "2026-10-20T22:18:19.411Z",
+      "checkedAt": "2026-10-21T22:20:21.575Z",
       "width": 768,
       "height": 1807,
       "brandId": "syabuyo",
@@ -214,7 +214,7 @@
       "group": "dish",
       "priority": 60,
       "visualWeight": 1,
-      "checkedAt": "2026-10-20T22:18:19.411Z",
+      "checkedAt": "2026-10-21T22:20:21.575Z",
       "width": 768,
       "height": 810,
       "brandId": "syabuyo",
@@ -232,7 +232,7 @@
       "group": "dish",
       "priority": 60,
       "visualWeight": 1,
-      "checkedAt": "2026-10-20T22:18:19.411Z",
+      "checkedAt": "2026-10-21T22:20:21.575Z",
       "width": 768,
       "height": 606,
       "brandId": "syabuyo",
@@ -255,11 +255,11 @@
         },
         {
           "campaignId": "a2876df025269041",
-          "parentHash": "212a1b3747989b6c3672b87d02406d153dfb965361c3474662e2328ff33efb7e"
+          "parentHash": "4ac15d946457e0739eb5c6f547c92852281f95410fe10d389cc311e20d7dd352"
         }
       ],
-      "sourceHash": "0422edb6e445b3ce61b716cfe250ab604bd533d9f6be313d8d56158402e055df",
-      "checkedAt": "2026-10-20T22:18:19.411Z",
+      "sourceHash": "78d68f6a831653fc8ef726f37960fc21b06530190c0abe99d95603aa18e2e840",
+      "checkedAt": "2026-10-21T22:20:21.575Z",
       "width": 584,
       "height": 360,
       "brandId": "syabuyo",
@@ -282,11 +282,11 @@
         },
         {
           "campaignId": "a2876df025269041",
-          "parentHash": "212a1b3747989b6c3672b87d02406d153dfb965361c3474662e2328ff33efb7e"
+          "parentHash": "4ac15d946457e0739eb5c6f547c92852281f95410fe10d389cc311e20d7dd352"
         }
       ],
-      "sourceHash": "0422edb6e445b3ce61b716cfe250ab604bd533d9f6be313d8d56158402e055df",
-      "checkedAt": "2026-10-20T22:18:19.411Z",
+      "sourceHash": "78d68f6a831653fc8ef726f37960fc21b06530190c0abe99d95603aa18e2e840",
+      "checkedAt": "2026-10-21T22:20:21.575Z",
       "width": 584,
       "height": 360,
       "brandId": "syabuyo",
@@ -301,7 +301,7 @@
       "sourceUrl": "https://www.shabu-yuzuan.jp/news/7327/",
       "campaignId": "a428d31e595a41cf",
       "parentHash": "bb487fa03f527cb4a0c73855a3b42c12b7e4545dbf07966d6d440aaa292c23c5",
-      "checkedAt": "2026-10-20T22:17:19.426Z",
+      "checkedAt": "2026-10-21T22:19:47.191Z",
       "width": 1500,
       "height": 1000,
       "brandId": "yuzuan",
@@ -327,7 +327,7 @@
         }
       ],
       "sourceHash": "0cbff472f3846106f5d390f01f4b9caf73c98bb8a8afefc845c526a62305f0d7",
-      "checkedAt": "2026-10-20T22:18:19.411Z",
+      "checkedAt": "2026-10-21T22:20:21.575Z",
       "width": 1184,
       "height": 790,
       "brandId": "yuzuan",
@@ -350,7 +350,7 @@
         }
       ],
       "sourceHash": "0cbff472f3846106f5d390f01f4b9caf73c98bb8a8afefc845c526a62305f0d7",
-      "checkedAt": "2026-10-20T22:18:19.411Z",
+      "checkedAt": "2026-10-21T22:20:21.575Z",
       "width": 1500,
       "height": 1000,
       "brandId": "yuzuan",
@@ -358,14 +358,14 @@
     },
     {
       "kind": "campaign",
-      "rank": 10,
+      "rank": 0,
       "imageUrl": "https://cdn.shopify.com/s/files/1/0619/9155/1031/files/sato-2609031.jpg",
       "title": "松茸料理＆国産サーモン料理 食べ放題",
       "officialUrl": "https://www.sato-res.com/blogs/news/202609-37321",
       "sourceUrl": "https://www.sato-res.com/blogs/news/202609-37321",
       "campaignId": "fd682c04dd98ab93",
       "parentHash": "c5ca0a725b04cc36c954c224dfb11f376a6b192b85fa1ef02621d78f13beefca",
-      "checkedAt": "2026-10-20T22:17:19.426Z",
+      "checkedAt": "2026-10-21T22:19:47.191Z",
       "width": 1755,
       "height": 2481,
       "brandId": "washoku-sato",
@@ -383,7 +383,7 @@
       "sourceUrl": "https://www.sato-res.com/blogs/news/20261015-sato-gozenwinterhokkaido",
       "campaignId": "b606cba1b606a78f",
       "parentHash": "daf134008c408e90ac686be25c9562548359dc582a7618decb033789eaf5c3cb",
-      "checkedAt": "2026-10-20T22:17:19.426Z",
+      "checkedAt": "2026-10-21T22:19:47.191Z",
       "width": 4055,
       "height": 2866,
       "brandId": "washoku-sato",
@@ -590,7 +590,7 @@
       "sourceUrl": "https://ameblo.jp/0141roan/entry-12970963402.html",
       "campaignId": "bf2421f1368722b0",
       "parentHash": "f01798b457b165ba3c8fbb3a1a8df8e3f9f86fc69950f4dc43b1193ac3b87de5",
-      "checkedAt": "2026-10-20T22:17:19.426Z",
+      "checkedAt": "2026-10-21T22:19:47.191Z",
       "width": 800,
       "height": 714,
       "brandId": "roan",
@@ -608,7 +608,7 @@
       "sourceUrl": "https://ameblo.jp/0141roan/entry-12953365343.html",
       "campaignId": "23a106b97b4febaf",
       "parentHash": "668f6b2ef122dee2fe0dd96342a9a76dd0a69bc248c5b287e8f86167af62b6b4",
-      "checkedAt": "2026-10-20T22:17:19.426Z",
+      "checkedAt": "2026-10-21T22:19:47.191Z",
       "width": 800,
       "height": 1131,
       "brandId": "roan",
@@ -672,7 +672,7 @@
       "sourceUrl": "https://staminataro.jp/2026/09/10/ninnikufair20260918/",
       "campaignId": "cf9c27d8efd549b2",
       "parentHash": "8e1590b9ee2e7302d8988eddabe86acab8f5f2e96f9deeaf0aff2c2c4838ec9a",
-      "checkedAt": "2026-10-20T22:17:19.426Z",
+      "checkedAt": "2026-10-21T22:19:47.191Z",
       "width": 1024,
       "height": 683,
       "brandId": "stamina-taro",
@@ -690,7 +690,7 @@
       "sourceUrl": "https://www.asakuma.co.jp/fair_house-steak.html",
       "campaignId": "06303139a492712c",
       "parentHash": "bb0e09bb8a42f6d3ac6ec3800daa4847b60fe687a0fd58664a37fd40ddb5bf1b",
-      "checkedAt": "2026-10-20T22:17:19.426Z",
+      "checkedAt": "2026-10-21T22:19:47.191Z",
       "width": 750,
       "height": 310,
       "brandId": "asakuma",
@@ -711,7 +711,7 @@
       "group": "dish",
       "priority": 60,
       "visualWeight": 1,
-      "checkedAt": "2026-10-20T22:18:19.411Z",
+      "checkedAt": "2026-10-21T22:20:21.575Z",
       "width": 940,
       "height": 600,
       "brandId": "asakuma",
@@ -729,7 +729,7 @@
       "group": "dish",
       "priority": 60,
       "visualWeight": 1,
-      "checkedAt": "2026-10-20T22:18:19.411Z",
+      "checkedAt": "2026-10-21T22:20:21.575Z",
       "width": 940,
       "height": 600,
       "brandId": "asakuma",
@@ -751,8 +751,8 @@
           "parentHash": "bb0e09bb8a42f6d3ac6ec3800daa4847b60fe687a0fd58664a37fd40ddb5bf1b"
         }
       ],
-      "sourceHash": "d97a25e1787ad62a35c1ad05883b68acf62568f53785cb4acdfa49a1a6b3d4c8",
-      "checkedAt": "2026-10-20T22:18:19.411Z",
+      "sourceHash": "3be47a5b738de28f69375b27a04ddc63992dc69f07a9b040ebab70dbf5111e5f",
+      "checkedAt": "2026-10-21T22:20:21.575Z",
       "width": 1280,
       "height": 460,
       "brandId": "asakuma",
@@ -785,7 +785,7 @@
       "sourceUrl": "https://www.jukusei-ichiban.jp/jp/menu/cat5.html",
       "campaignId": "3c4b1ae8d79ba2ae",
       "parentHash": "41eef422dae2b1aa24bdad2cff7623522f25a5b12c4928e19abc762bbc7cff62",
-      "checkedAt": "2026-10-20T22:17:19.426Z",
+      "checkedAt": "2026-10-21T22:19:47.191Z",
       "width": 960,
       "height": 1365,
       "brandId": "jukusei-ichiban",
@@ -811,7 +811,7 @@
         }
       ],
       "sourceHash": "337a30b56d92e2c417f1f1f42d8957a5aebdb64403d37a6284e4610c564383e5",
-      "checkedAt": "2026-10-20T22:18:19.411Z",
+      "checkedAt": "2026-10-21T22:20:21.575Z",
       "width": 220,
       "height": 250,
       "brandId": "jukusei-ichiban",
@@ -834,7 +834,7 @@
         }
       ],
       "sourceHash": "337a30b56d92e2c417f1f1f42d8957a5aebdb64403d37a6284e4610c564383e5",
-      "checkedAt": "2026-10-20T22:18:19.411Z",
+      "checkedAt": "2026-10-21T22:20:21.575Z",
       "width": 220,
       "height": 252,
       "brandId": "jukusei-ichiban",
@@ -849,7 +849,7 @@
       "sourceUrl": "https://anrakutei.jp/topic/20260929lmpricedown/",
       "campaignId": "522a212b17799f91",
       "parentHash": "4e16ee229238d4e542e2e9be33dcb5d7d2136fac85742c4935465a5ff1dc6c34",
-      "checkedAt": "2026-10-20T22:17:19.426Z",
+      "checkedAt": "2026-10-21T22:19:47.191Z",
       "width": 1200,
       "height": 800,
       "brandId": "anrakutei",
@@ -867,7 +867,7 @@
       "sourceUrl": "https://anrakutei.jp/topic/20260907lunchth/",
       "campaignId": "c19b5023e189a4e0",
       "parentHash": "13dd02c19f92871e61f8fc482b8a843799800d7c1e91265d2170ffe5946e8a86",
-      "checkedAt": "2026-10-20T22:17:19.426Z",
+      "checkedAt": "2026-10-21T22:19:47.191Z",
       "width": 1040,
       "height": 1040,
       "brandId": "anrakutei",
@@ -886,7 +886,7 @@
     },
     {
       "brandId": "gyukaku",
-      "pagesRead": 2,
+      "pagesRead": 0,
       "images": 1,
       "status": "partial"
     },
@@ -904,7 +904,7 @@
     },
     {
       "brandId": "washoku-sato",
-      "pagesRead": 5,
+      "pagesRead": 4,
       "images": 2,
       "status": "ok"
     },
@@ -922,9 +922,9 @@
     },
     {
       "brandId": "onyasai",
-      "pagesRead": 3,
+      "pagesRead": 1,
       "images": 10,
-      "status": "ok"
+      "status": "partial"
     },
     {
       "brandId": "roan",
@@ -934,9 +934,9 @@
     },
     {
       "brandId": "kalubi-taisho",
-      "pagesRead": 2,
+      "pagesRead": 0,
       "images": 2,
-      "status": "ok"
+      "status": "partial"
     },
     {
       "brandId": "stamina-taro",
@@ -952,9 +952,9 @@
     },
     {
       "brandId": "nikusho-sakai",
-      "pagesRead": 3,
+      "pagesRead": 0,
       "images": 1,
-      "status": "ok"
+      "status": "partial"
     },
     {
       "brandId": "jukusei-ichiban",
@@ -972,13 +972,123 @@
   "errors": [
     {
       "brandId": "gyukaku",
-      "url": "https://www.gyukaku.ne.jp/lp/202610_cp/wagyufair/assets/images/img10.png",
-      "error": "Non-card image or unsupported dimensions"
+      "url": "https://www.gyukaku.ne.jp/lp/202610_cp/wagyufair/",
+      "error": "HTTP 503"
+    },
+    {
+      "brandId": "gyukaku",
+      "url": "https://www.gyukaku.ne.jp/",
+      "error": "HTTP 503"
+    },
+    {
+      "brandId": "gyukaku",
+      "url": "https://www.gyukaku.ne.jp/lp/202610_cp/wagyufair/assets/images/img01_1008.png",
+      "error": "HTTP 503"
+    },
+    {
+      "brandId": "onyasai",
+      "url": "https://www.onyasai.com/lp/202609_kamoshabu_porcini/",
+      "error": "HTTP 503"
     },
     {
       "brandId": "roan",
       "url": "https://www.good-promise.co.jp/roan/",
       "error": "HTTP 403"
+    },
+    {
+      "brandId": "onyasai",
+      "url": "https://www.onyasai.com/",
+      "error": "HTTP 503"
+    },
+    {
+      "brandId": "onyasai",
+      "url": "https://www.onyasai.com/lp/202609_kamoshabu_porcini/images/cover.jpg",
+      "error": "HTTP 503"
+    },
+    {
+      "brandId": "onyasai",
+      "url": "https://www.onyasai.com/lp/202609_kamoshabu_porcini/images/05_03.jpg",
+      "error": "HTTP 503"
+    },
+    {
+      "brandId": "onyasai",
+      "url": "https://www.onyasai.com/lp/202609_kamoshabu_porcini/images/05_04.jpg",
+      "error": "HTTP 503"
+    },
+    {
+      "brandId": "onyasai",
+      "url": "https://www.onyasai.com/lp/202609_kamoshabu_porcini/images/01_01.jpg",
+      "error": "HTTP 503"
+    },
+    {
+      "brandId": "onyasai",
+      "url": "https://www.onyasai.com/lp/202609_kamoshabu_porcini/images/01_02.jpg",
+      "error": "HTTP 503"
+    },
+    {
+      "brandId": "onyasai",
+      "url": "https://www.onyasai.com/lp/202609_kamoshabu_porcini/images/05_01.jpg",
+      "error": "HTTP 503"
+    },
+    {
+      "brandId": "onyasai",
+      "url": "https://www.onyasai.com/lp/202609_kamoshabu_porcini/images/05_02.jpg",
+      "error": "HTTP 503"
+    },
+    {
+      "brandId": "onyasai",
+      "url": "https://www.onyasai.com/lp/202609_kamoshabu_porcini/images/06_01.jpg",
+      "error": "HTTP 503"
+    },
+    {
+      "brandId": "onyasai",
+      "url": "https://www.onyasai.com/lp/202609_kamoshabu_porcini/images/07_01.jpg?v=2",
+      "error": "HTTP 503"
+    },
+    {
+      "brandId": "onyasai",
+      "url": "https://www.onyasai.com/img_onyasai/top/img-lunch.jpg",
+      "error": "HTTP 503"
+    },
+    {
+      "brandId": "kalubi-taisho",
+      "url": "https://www.kalubi-taisho.com/campaign/4662/",
+      "error": "HTTP 503"
+    },
+    {
+      "brandId": "kalubi-taisho",
+      "url": "https://www.kalubi-taisho.com/",
+      "error": "HTTP 503"
+    },
+    {
+      "brandId": "kalubi-taisho",
+      "url": "https://www.kalubi-taisho.com/wp/wp-content/uploads/6ab95d8c74a92e45a3dfd600b1fde289-1.jpg",
+      "error": "HTTP 503"
+    },
+    {
+      "brandId": "kalubi-taisho",
+      "url": "https://www.kalubi-taisho.com/wp/wp-content/uploads/22361be313884f45165b3e23aed59042.jpg",
+      "error": "HTTP 503"
+    },
+    {
+      "brandId": "nikusho-sakai",
+      "url": "https://www.yakiniku.jp/nikushou_sakai/news/student_2026_autumn/",
+      "error": "HTTP 502"
+    },
+    {
+      "brandId": "nikusho-sakai",
+      "url": "https://www.yakiniku.jp/nikushou_sakai/news/taiwan_gourmet/",
+      "error": "HTTP 502"
+    },
+    {
+      "brandId": "nikusho-sakai",
+      "url": "https://www.yakiniku.jp/nikushou_sakai/",
+      "error": "HTTP 502"
+    },
+    {
+      "brandId": "nikusho-sakai",
+      "url": "https://www.yakiniku.jp/nikushou_sakai/wp-content/uploads/2026/08/%E5%8F%B0%E6%B9%BE%E3%82%B0%E3%83%AB%E3%83%A1%E3%83%95%E3%82%A7%E3%82%A22026.jpg",
+      "error": "HTTP 502"
     }
   ]
 }
