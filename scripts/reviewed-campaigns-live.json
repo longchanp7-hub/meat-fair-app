@@ -186,6 +186,251 @@
         "imageUrl": null
       },
       "requiresListing": true
+    },
+    {
+      "brandId": "gyukaku",
+      "officialUrl": "https://prtimes.jp/main/html/rd/p/000000706.000018604.html",
+      "reviewedAt": "2026-11-25T00:33:00.000Z",
+      "semanticGuard": true,
+      "allowBodyDateEvidence": true,
+      "semanticTerms": [
+        "極上四種盛り",
+        "12月10日"
+      ],
+      "fields": {
+        "title": "いい肉の日 極上四種盛り（牛角アプリ会員限定）",
+        "startDate": "2026-11-25",
+        "endDate": "2026-12-10",
+        "price": 5049,
+        "priceText": "アプリクーポン価格 税込5,049円",
+        "limitedIngredients": [
+          "黒毛和牛",
+          "上タン塩"
+        ],
+        "targetCourses": [],
+        "conditions": [
+          "牛角アプリのクーポン提示が必要",
+          "沖縄の牛角、牛角食べ放題専門店、牛角焼肉食堂は対象外"
+        ],
+        "allYouCanEat": false,
+        "campaignType": "discount",
+        "priority": "P2",
+        "imageUrl": null
+      }
+    },
+    {
+      "brandId": "syabuyo",
+      "officialUrl": "https://www.skylark.co.jp/syabuyo/menu/fair_nov/",
+      "reviewedAt": "2026-11-25T00:33:00.000Z",
+      "contentHash": "d8a72754c2fb4eb9ecf13d5f205dd2005b3efda6ab822ba417e6297cabd094ca",
+      "semanticGuard": true,
+      "allowBodyDateEvidence": true,
+      "semanticTerms": [
+        "ラムしゃぶ麻辣湯フェア"
+      ],
+      "fields": {
+        "title": "ラムしゃぶ麻辣湯フェア",
+        "startDate": "2026-11-19",
+        "endDate": null,
+        "price": null,
+        "priceText": null,
+        "limitedIngredients": [
+          "ラム",
+          "麻辣湯"
+        ],
+        "targetCourses": [],
+        "conditions": [
+          "11月19日開始",
+          "価格・提供時間・取扱商品は店舗および曜日で異なる場合があります"
+        ],
+        "allYouCanEat": false,
+        "campaignType": "fair",
+        "priority": "P1",
+        "imageUrl": "https://www.skylark.co.jp/syabuyo/menu/fair_nov/images/ss_1109_pc_01.jpg"
+      }
+    },
+    {
+      "brandId": "yuzuan",
+      "officialUrl": "https://www.shabu-yuzuan.jp/news/7600/",
+      "reviewedAt": "2026-11-25T00:33:00.000Z",
+      "contentHash": "c94c577456710d6772dddd7991fe9d72c6cb76915e911735f295d9a130f301db",
+      "semanticGuard": true,
+      "allowBodyDateEvidence": true,
+      "semanticTerms": [
+        "冬期間限定メニュー"
+      ],
+      "fields": {
+        "title": "冬の期間限定メニュー（水炊きだし・寒ぶりなど）",
+        "startDate": "2026-11-10",
+        "endDate": null,
+        "price": null,
+        "priceText": null,
+        "limitedIngredients": [
+          "寒ぶり",
+          "水炊き"
+        ],
+        "targetCourses": [],
+        "conditions": [
+          "11月10日販売開始",
+          "商品・価格と対象コースは公式メニューで確認"
+        ],
+        "allYouCanEat": false,
+        "campaignType": "fair",
+        "priority": "P1",
+        "imageUrl": null
+      }
+    },
+    {
+      "brandId": "yuzuan",
+      "officialUrl": "https://www.shabu-yuzuan.jp/news/7603/",
+      "reviewedAt": "2026-11-25T00:33:00.000Z",
+      "semanticGuard": true,
+      "allowBodyDateEvidence": true,
+      "semanticTerms": [
+        "本ずわいがに",
+        "かにしゃぶ"
+      ],
+      "fields": {
+        "title": "本ずわいがに かにしゃぶ・有頭海老しゃぶ",
+        "startDate": "2026-11-10",
+        "endDate": null,
+        "price": null,
+        "priceText": null,
+        "limitedIngredients": [
+          "本ずわいがに",
+          "有頭海老"
+        ],
+        "targetCourses": [],
+        "conditions": [
+          "11月10日販売開始",
+          "販売終了日は公式で確認"
+        ],
+        "allYouCanEat": false,
+        "campaignType": "fair",
+        "priority": "P1",
+        "imageUrl": null
+      }
+    },
+    {
+      "brandId": "amiyakitei",
+      "officialUrl": "https://prtimes.jp/main/html/rd/p/000000402.000130952.html",
+      "reviewedAt": "2026-11-25T00:33:00.000Z",
+      "contentHash": "64f0e8df5bdad5daadc40b9354a70b8c1030601010f650dc643dc90e39167180",
+      "semanticGuard": true,
+      "allowBodyDateEvidence": true,
+      "semanticTerms": [
+        "平日半額祭",
+        "17店舗"
+      ],
+      "fields": {
+        "title": "17店舗限定 平日半額祭（対象焼肉10品半額）",
+        "startDate": "2026-11-24",
+        "endDate": "2026-12-04",
+        "price": null,
+        "priceText": "対象の焼肉10品が半額",
+        "limitedIngredients": [],
+        "targetCourses": [],
+        "conditions": [
+          "11月24日〜12月4日の平日限定",
+          "中部地区の指定17店舗のみ。全店実施ではありません"
+        ],
+        "allYouCanEat": false,
+        "campaignType": "discount",
+        "priority": "P2",
+        "imageUrl": null,
+        "regionScope": "store_limited",
+        "weekdayCondition": "平日限定"
+      }
+    },
+    {
+      "brandId": "amiyakitei",
+      "officialUrl": "https://prtimes.jp/main/html/rd/p/000000398.000130952.html",
+      "reviewedAt": "2026-11-25T00:33:00.000Z",
+      "contentHash": "401ded72f70ddb5197999dff7bb3c3fd2c48155d46fb482d35f51506383ebfcc",
+      "semanticGuard": true,
+      "allowBodyDateEvidence": true,
+      "semanticTerms": [
+        "九州うまかもんフェア"
+      ],
+      "fields": {
+        "title": "九州うまかもんフェア（期間限定9品）",
+        "startDate": "2026-11-02",
+        "endDate": "2026-12-13",
+        "price": null,
+        "priceText": null,
+        "limitedIngredients": [
+          "九州",
+          "馬刺し",
+          "もつ鍋"
+        ],
+        "targetCourses": [],
+        "conditions": [
+          "中部地区のあみやき亭店舗（愛知・岐阜・三重・滋賀）で実施",
+          "焼肉とサラダ・デザートバーは料金と条件が異なります"
+        ],
+        "allYouCanEat": false,
+        "campaignType": "fair",
+        "priority": "P1",
+        "imageUrl": null,
+        "regionScope": "tokai"
+      }
+    },
+    {
+      "brandId": "stamina-taro",
+      "officialUrl": "https://staminataro.jp/2026/11/19/iinikunohi2026/",
+      "reviewedAt": "2026-11-25T00:33:00.000Z",
+      "semanticGuard": true,
+      "allowBodyDateEvidence": true,
+      "semanticTerms": [
+        "いい肉の日",
+        "半額クーポン"
+      ],
+      "fields": {
+        "title": "いい肉の日 小学生半額クーポン・290円引券配布",
+        "startDate": "2026-11-24",
+        "endDate": "2026-11-29",
+        "price": null,
+        "priceText": "小学生食事料金半額（アプリクーポン）",
+        "limitedIngredients": [],
+        "targetCourses": [],
+        "conditions": [
+          "小学生半額は11月24日〜29日",
+          "290円引券は期間中に配布、利用期間は11月30日〜12月20日",
+          "対象外店舗・他クーポン併用不可あり"
+        ],
+        "allYouCanEat": false,
+        "campaignType": "discount",
+        "priority": "P2",
+        "imageUrl": null
+      }
+    },
+    {
+      "brandId": "jukusei-ichiban",
+      "officialUrl": "https://www.jukusei-ichiban.jp/jp/menu/cat5.html",
+      "reviewedAt": "2026-11-25T00:33:00.000Z",
+      "contentHash": "4d2aa379d3ac089239d5598d41fc2d4d059ade4b3661626bccaa672acaee0dfd",
+      "semanticGuard": true,
+      "allowBodyDateEvidence": true,
+      "semanticTerms": [
+        "日本全国うまいものフェア"
+      ],
+      "fields": {
+        "title": "日本全国うまいものフェア（12月1日開始）",
+        "startDate": "2026-12-01",
+        "endDate": null,
+        "price": null,
+        "priceText": null,
+        "limitedIngredients": [],
+        "targetCourses": [],
+        "conditions": [
+          "12月1日開始、7店舗は11月24日から先行販売",
+          "店舗によって提供商品・時期が異なります"
+        ],
+        "allYouCanEat": false,
+        "campaignType": "fair",
+        "priority": "P1",
+        "imageUrl": null
+      }
     }
   ]
 }

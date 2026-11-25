@@ -112,7 +112,9 @@ async function processBrand(brand){
       if(ENDED.test(p.title)||/販売終了いたしました|販売を終了しました|キャンペーンは終了しました/.test(p.bodyText))c.lifecycleStatus='ended_official';
       const unbounded=!c.endDate;
       const missingReview=!!review&&!reviewed;
-      const eligible=reviewed||(!missingReview&&c.imageUrl&&c.startDate&&(c.endDate||stillRecent(c,30)));
+      // Official campaigns with explicit start/end dates can be published without an image.
+      // Open-ended unreviewed items still need a recent start and verified image.
+      const eligible=reviewed||(!missingReview&&c.startDate&&(c.endDate||stillRecent(c,30))&&(c.imageUrl||c.endDate));
       if(!eligible&&!['ended_official','ended_by_date'].includes(c.lifecycleStatus)){c.lifecycleStatus='stale_unverified';c.statusEvidence=missingReview?'official_content_changed_review_required':'insufficient_period_evidence';}
       if(unbounded&&reviewed){
         const listedNow=listed.has(finalUrl)||listed.has(link.url);

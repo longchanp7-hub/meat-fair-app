@@ -8,14 +8,16 @@ export const SOURCES = [
   { brandId:'gyukaku', name:'牛角', category:'yakiniku', priority:2, sources:[
     { type:'brand_top', url:'https://www.gyukaku.ne.jp/', primary:true },
     { type:'news_index', url:'https://www.gyukaku.ne.jp/news/', primary:false },
-    { type:'campaign_detail', url:'https://www.gyukaku.ne.jp/lp/202608_jujutsukaisencp/', campaignTitle:'牛角×アニメ『呪術廻戦』5周年 コラボキャンペーン', primary:false }
+    { type:'campaign_detail', url:'https://prtimes.jp/main/html/rd/p/000000706.000018604.html', campaignTitle:'極上四種盛り アプリ会員限定価格', primary:false }
   ]},
   { brandId:'syabuyo', name:'しゃぶ葉', category:'shabu', priority:3, sources:[
     { type:'brand_top', url:'https://www.skylark.co.jp/syabuyo/', primary:true },
-    { type:'campaign_detail', url:'https://www.skylark.co.jp/syabuyo/menu/fair_sep/', campaignTitle:'秋のきのこと鴨しゃぶフェア', primary:false }
+    { type:'campaign_detail', url:'https://www.skylark.co.jp/syabuyo/menu/fair_nov/', campaignTitle:'ラムしゃぶ麻辣湯フェア', primary:false }
   ]},
   { brandId:'yuzuan', name:'ゆず庵', category:'shabu', priority:4, sources:[
-    { type:'news_index', url:'https://www.shabu-yuzuan.jp/news/', primary:true }
+    { type:'news_index', url:'https://www.shabu-yuzuan.jp/news/', primary:true },
+    { type:'campaign_detail', url:'https://www.shabu-yuzuan.jp/news/7600/', campaignTitle:'冬期間限定メニュー', primary:false },
+    { type:'campaign_detail', url:'https://www.shabu-yuzuan.jp/news/7603/', campaignTitle:'本ずわいがに かにしゃぶ・有頭海老しゃぶ', primary:false }
   ]},
   { brandId:'washoku-sato', name:'和食さと', category:'shabu', priority:5, sources:[
     { type:'brand_news', url:'https://www.sato-res.com/blogs/news/tagged/campaign', primary:true },
@@ -26,7 +28,8 @@ export const SOURCES = [
     { type:'brand_top', url:'https://amiyakitei.jp/', primary:true },
     { type:'topics_index', url:'https://amiyakitei.jp/topics/', primary:false },
     { type:'company_press_index', url:'https://prtimes.jp/topics/keywords/%E3%81%82%E3%81%BF%E3%82%84%E3%81%8D%E4%BA%AD', primary:false },
-    { type:'campaign_detail', url:'https://prtimes.jp/main/html/rd/p/000000389.000130952.html', campaignTitle:'飛騨牛＆肉ガチャWフェア', primary:false }
+    { type:'campaign_detail', url:'https://prtimes.jp/main/html/rd/p/000000402.000130952.html', campaignTitle:'17店舗限定 平日半額祭', primary:false },
+    { type:'campaign_detail', url:'https://prtimes.jp/main/html/rd/p/000000398.000130952.html', campaignTitle:'九州うまかもんフェア', primary:false }
   ]},
   { brandId:'amiyakitei-plus', name:'あみやき亭Plus', category:'yakiniku', priority:7, sources:[
     { type:'brand_top', url:'https://amiyakitei.jp/plus_toyohashikitayama/shopinfo/', primary:true },
@@ -58,7 +61,7 @@ export const SOURCES = [
   { brandId:'stamina-taro', name:'すたみな太郎', category:'buffet', priority:11, sources:[
     { type:'brand_top', url:'https://staminataro.jp/', primary:true },
     { type:'year_index', url:'https://staminataro.jp/2026/', primary:false },
-    { type:'reference_detail', url:'https://staminataro.jp/2026/09/10/ninnikufair20260918/', primary:false }
+    { type:'campaign_detail', url:'https://staminataro.jp/2026/11/19/iinikunohi2026/', campaignTitle:'いい肉の日キャンペーン 小学生半額', primary:false }
   ]},
   { brandId:'asakuma', name:'ステーキのあさくま', category:'steak', priority:12, sources:[
     { type:'brand_top', url:'https://www.asakuma.co.jp/', primary:true },
