@@ -431,6 +431,137 @@
         "priority": "P1",
         "imageUrl": null
       }
+    },
+    {
+      "brandId": "washoku-sato",
+      "officialUrl": "https://prtimes.jp/main/html/rd/p/000001045.000122416.html",
+      "semanticTerms": [
+        "北海道フェア",
+        "北海づくし御膳"
+      ],
+      "fields": {
+        "title": "和食さと 北海道フェア（北海づくし御膳ほか）",
+        "startDate": "2026-10-15",
+        "endDate": "2026-12-09",
+        "price": 2748,
+        "priceText": "北海づくし御膳 税込2,748円／選べる北海ミニ丼セット 税込2,308円",
+        "limitedIngredients": [
+          "帆立",
+          "いくら"
+        ],
+        "targetCourses": [],
+        "conditions": [
+          "北海づくし御膳・北海ミニ丼などの期間限定御膳で、食べ放題ではありません。",
+          "2026年10月15日〜12月9日予定。店舗・販売状況は公式で確認。"
+        ],
+        "allYouCanEat": false,
+        "campaignType": "fair",
+        "priority": "P1",
+        "imageUrl": null
+      },
+      "reviewedAt": "2026-11-25T00:45:00.000Z",
+      "semanticGuard": true,
+      "allowBodyDateEvidence": true
+    },
+    {
+      "brandId": "washoku-sato",
+      "officialUrl": "https://prtimes.jp/main/html/rd/p/000001046.000122416.html",
+      "semanticTerms": [
+        "北海道逸品食べ放題",
+        "帆立"
+      ],
+      "fields": {
+        "title": "和食さと 北海道逸品食べ放題（海鮮・限定寿司など）",
+        "startDate": "2026-10-15",
+        "endDate": "2026-12-16",
+        "price": null,
+        "priceText": "コース・時間帯・店舗により料金が異なります",
+        "limitedIngredients": [
+          "帆立",
+          "するめいか"
+        ],
+        "targetCourses": [],
+        "conditions": [
+          "2026年10月15日〜12月16日予定。",
+          "さとしゃぶ・さとすき・さと式焼肉の対象コースで利用可能。",
+          "120分制（実際のラストオーダー等は公式確認）。"
+        ],
+        "allYouCanEat": true,
+        "campaignType": "fair",
+        "priority": "P1",
+        "imageUrl": null
+      },
+      "reviewedAt": "2026-11-25T00:45:00.000Z",
+      "semanticGuard": true,
+      "allowBodyDateEvidence": true
+    },
+    {
+      "brandId": "roan",
+      "officialUrl": "https://ameblo.jp/0141roan/entry-12982836513.html",
+      "semanticTerms": [
+        "大海鮮フェア",
+        "大赤海老"
+      ],
+      "fields": {
+        "title": "大海鮮フェア ホタテ・大赤海老・うなぎ食べ放題",
+        "startDate": null,
+        "endDate": null,
+        "price": 4708,
+        "priceText": "グランコース 大人平日 税込4,708円〜",
+        "limitedIngredients": [
+          "ホタテ",
+          "大赤海老"
+        ],
+        "targetCourses": [
+          "グランコース",
+          "かにコース"
+        ],
+        "conditions": [
+          "露菴9店舗で開催中との公式案内。終了日は未発表。",
+          "対象5品はグランコース・かにコース限定。",
+          "税込4,708円は大人平日グランコースの参考料金。曜日・店舗・コースで異なります。"
+        ],
+        "allYouCanEat": true,
+        "campaignType": "fair",
+        "priority": "P1",
+        "imageUrl": null
+      },
+      "reviewedAt": "2026-11-25T00:45:00.000Z",
+      "contentHash": "2b5687cf5a89bfb9c3c3abccb7aac922d580892d1dd56c322606ab06523069d7",
+      "semanticGuard": true,
+      "allowBodyDateEvidence": true
+    },
+    {
+      "brandId": "asakuma",
+      "officialUrl": "https://www.asakuma.co.jp/fair_gakusei-hamburg.html",
+      "semanticTerms": [
+        "学生ハンバーグ",
+        "サラダバー"
+      ],
+      "fields": {
+        "title": "学生ハンバーグフェア（サラダバー付）",
+        "startDate": null,
+        "endDate": null,
+        "price": 1925,
+        "priceText": "学生ハンバーグ180g サラダバー付 税込1,925円／270g 税込2,585円／大学生ハンバーグ 税込2,805円",
+        "limitedIngredients": [
+          "ハンバーグ"
+        ],
+        "targetCourses": [],
+        "conditions": [
+          "公式メニュー掲載中。終了日は未発表。",
+          "対象店舗の一部はサラダバー別料金。",
+          "「学生」は商品名で、学生限定キャンペーンと断定しません。"
+        ],
+        "allYouCanEat": false,
+        "campaignType": "fair",
+        "priority": "P2",
+        "imageUrl": null
+      },
+      "reviewedAt": "2026-11-25T00:45:00.000Z",
+      "contentHash": "5593fbc1376ecf9886722dc18d5f3114e97774b544cbeee5dc619dfbb4eaa753",
+      "semanticGuard": true,
+      "allowBodyDateEvidence": true
     }
   ]
 }

@@ -29,6 +29,7 @@ export function allowedDetail(brand,url){
   if(u.hostname==='prtimes.jp'){
     if(['amiyakitei','amiyakitei-plus'].includes(brand.brandId))return /^\/main\/html\/rd\/p\/\d+\.000130952\.html$/.test(u.pathname);
     if(['onyasai','gyukaku'].includes(brand.brandId))return /^\/main\/html\/rd\/p\/\d+\.000018604\.html$/.test(u.pathname);
+    if(brand.brandId==='washoku-sato')return /^\/main\/html\/rd\/p\/\d+\.000122416\.html$/.test(u.pathname);
     return false;
   }
   return !!PROFILE[brand.brandId]?.paths.test(u.pathname);

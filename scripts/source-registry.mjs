@@ -22,7 +22,9 @@ export const SOURCES = [
   { brandId:'washoku-sato', name:'和食さと', category:'shabu', priority:5, sources:[
     { type:'brand_news', url:'https://www.sato-res.com/blogs/news/tagged/campaign', primary:true },
     { type:'year_index', url:'https://sato-res.com/news/2026/', primary:false },
-    { type:'brand_top', url:'https://www.sato-res.com/pages/sato', primary:false }
+    { type:'brand_top', url:'https://www.sato-res.com/pages/sato', primary:false },
+    { type:'campaign_detail', url:'https://prtimes.jp/main/html/rd/p/000001045.000122416.html', campaignTitle:'北海道フェア 和食御膳', primary:false },
+    { type:'campaign_detail', url:'https://prtimes.jp/main/html/rd/p/000001046.000122416.html', campaignTitle:'北海道逸品食べ放題', primary:false }
   ]},
   { brandId:'amiyakitei', name:'あみやき亭', category:'yakiniku', priority:6, sources:[
     { type:'brand_top', url:'https://amiyakitei.jp/', primary:true },
@@ -50,6 +52,7 @@ export const SOURCES = [
     { type:'campaign_detail', url:'https://ameblo.jp/0141roan/entry-12975623389.html', campaignTitle:'2026年シルバーウィーク営業について', primary:false },
     { type:'campaign_detail', url:'https://ameblo.jp/0141roan/entry-12970963402.html', campaignTitle:'麻辣湯食べ放題 全時間帯で提供中！', primary:false },
     { type:'campaign_detail', url:'https://ameblo.jp/0141roan/entry-12953365343.html', campaignTitle:'大赤海老も！大ホタテも食べ放題！第2弾！極み大海鮮フェア開催！！', primary:false },
+    { type:'campaign_detail', url:'https://ameblo.jp/0141roan/entry-12982836513.html', campaignTitle:'大海鮮フェア ホタテ・大赤海老・うなぎが食べ放題', primary:false },
     { type:'brand_top', url:'https://www.good-promise.co.jp/roan/', primary:false },
     { type:'reference_detail', url:'https://www.good-promise.co.jp/roan/price02/', primary:false }
   ]},
@@ -65,7 +68,8 @@ export const SOURCES = [
   ]},
   { brandId:'asakuma', name:'ステーキのあさくま', category:'steak', priority:12, sources:[
     { type:'brand_top', url:'https://www.asakuma.co.jp/', primary:true },
-    { type:'reference_detail', url:'https://www.asakuma.co.jp/fair_house-steak.html', primary:false }
+    { type:'reference_detail', url:'https://www.asakuma.co.jp/fair_house-steak.html', primary:false },
+    { type:'campaign_detail', url:'https://www.asakuma.co.jp/fair_gakusei-hamburg.html', campaignTitle:'学生ハンバーグフェア', primary:false }
   ]},
   { brandId:'nikusho-sakai', name:'肉匠坂井', category:'yakiniku', priority:13, sources:[
     { type:'news_index', url:'https://www.yakiniku.jp/nikushou_sakai/news/', primary:true },
