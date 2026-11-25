@@ -67,14 +67,14 @@ test('Amiyakitei company press monitoring separates regular and Plus releases',(
  assert.deepEqual(discoverLinks(regular,html,index).map(x=>x.url),[regularUrl]);
  assert.deepEqual(discoverLinks(plus,html,index).map(x=>x.url),[plusUrl]);
 });
-test('Shabuyo current autumn fair source and food title are discoverable',()=>{
- const b=brand('syabuyo'),fair='https://www.skylark.co.jp/syabuyo/menu/fair_sep/';
+test('Shabuyo current winter fair source and food title are discoverable',()=>{
+ const b=brand('syabuyo'),fair='https://www.skylark.co.jp/syabuyo/menu/fair_nov/';
  assert.ok(b.sources.some(s=>s.type==='campaign_detail'&&s.url===fair));
  assert.equal(allowedDetail(b,fair),true);
  assert.equal(allowedDetail(b,'https://www.skylark.co.jp/syabuyo/campaign/silverweek/'),true);
  assert.equal(allowedDetail(b,'https://www.skylark.co.jp/syabuyo/other/'),false);
- assert.equal(FOOD_TITLE.test('秋のきのこと鴨しゃぶフェア'),true);
- const found=discoverLinks(b,'<a href="/syabuyo/menu/fair_sep/">秋のきのこと鴨しゃぶフェア</a>','https://www.skylark.co.jp/syabuyo/');
+ assert.equal(FOOD_TITLE.test('ラムしゃぶ麻辣湯フェア'),true);
+ const found=discoverLinks(b,'<a href="/syabuyo/menu/fair_nov/">ラムしゃぶ麻辣湯フェア</a>','https://www.skylark.co.jp/syabuyo/');
  assert.equal(found.length,1);assert.equal(found[0].url,fair);
 });
 test('Roan Silver Week uses the exact official blog article as a campaign detail',()=>{
